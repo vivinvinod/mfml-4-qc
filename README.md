@@ -30,18 +30,17 @@ Key Features
 ### Standard Installation
 To install the core package (which includes numpy, numba, tqdm, and scikit-learn), clone the repository and install it via pip:
 
-<code>
+```bash
 git clone [https://github.com/vivinvinod/mfml-qc.git](https://github.com/vivinvinod/mfml-qc.git)
 cd mfml-qc
 pip install .
-</code>
+```
 
 ### Installing Optional Dependencies 
 (PySCF)If you plan to use the built-in PySCFEngine oracle, you can install the package with the optional pyscf dependency. (Note: PySCF can be a heavy dependency, which is why it is kept optional).
-
-<code>
+```
 pip install .[pyscf]
-</code>
+```
 
 ### Developer Installation
 If you are modifying the package source code or want to run the unit tests, install the package in "editable" mode (-e) with the [dev] flag. This installs testing and formatting tools like pytest and black:pip install -e .[dev]
