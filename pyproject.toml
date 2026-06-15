@@ -1,0 +1,54 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mfml-4-qc"
+version = "0.0.1"
+description = "A Multifidelity Machine Learning framework for Quantum Chemistry"
+readme = "README.md"
+requires-python = ">=3.8"
+authors = [
+    { name = "Vivin Vinod", email = "vinod@uni-wuppertal.de" }
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Chemistry"::"Machine Learning",
+]
+
+# Core dependencies
+dependencies = [
+    "numpy>=1.20.0",
+    "numba>=0.55.0",
+    "tqdm>=4.60.0",
+    "scikit-learn>=1.0.0"
+]
+
+# Optional dependencies
+[project.optional-dependencies]
+test = [
+    "pytest>=7.0.0"
+]
+pyscf = [
+    "pyscf>=2.0.0"
+]
+dev = [
+    # A combined list for developers working on the package
+    "pytest>=7.0.0",
+    "pyscf>=2.0.0",
+    "sphinx", # For generating documentation
+    "black"   # For code formatting
+]
+
+#define src as the main folder to look for the package
+[tool.setuptools.packages.find]
+where = ["src"]
+
+# Configure pytest so it knows where to look automatically
+[tool.pytest.ini_options]
+testpaths = [
+    "tests",
+]

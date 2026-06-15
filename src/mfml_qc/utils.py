@@ -1,0 +1,60 @@
+import numpy as np
+from tqdm.auto import tqdm
+import os
+
+def property_differences(file_paths: list):
+    """
+    Function to generate property differences and indexes between fidelities.
+    The first object in the diff_array is the baseline fidelity.
+    The subsequent objects are differences between corresponding fidelities.
+
+    Parameters
+    ----------
+    file_paths : list of str
+        List of exact file paths to the energy/property files. 
+        Files should have 2 columns: [timestamp/ID, property_value].
+        Must be ordered from lowest fidelity (baseline) to highest.
+
+    Returns
+    -------
+    energy_array : np.ndarray(object)
+        Array of properties for each fidelity.
+    index_array : np.ndarray(object)
+        Array of indexes indicating where the properties are with respect to the baseline.
+    """
+    num_fidelities = len(file_paths)
+    energy_array = np.zeros((num_fidelities), dtype=object)
+    index_array = np.zeros((num_fidelities), dtype=object)
+
+    # Load lowest fidelity file (baseline)
+    if not os.path.exists(file_paths[0]):
+        raise FileNotFoundError(f"Could not find baseline file at {file_paths[0]}")
+        
+    E0 = np.loadtxt(file_paths[0])
+    energy_array[0] = E0[:, 1]
+    
+    # Baseline index is just 1-to-1 against itself
+    index_array[0] = np.asarray([np.arange(0, energy_array[0].shape[0]),
+                                 np.arange(0, energy_array[0].shape[0])]).T
+
+    # O(1) Lookup dictionary mapping timestamp -> index in E0
+    # This turns an O(N^3) nested search into a blazing fast O(N) search!
+    E0_map = {val: idx for idx, val in enumerate(E0[:, 0])}
+
+    for i in tqdm(range(0, num_fidelities - 1), desc='Generating energy differences and indexing...', leave=False):
+        Ei = np.loadtxt(file_paths[i])
+        Eip1 = np.loadtxt(file_paths[i + 1])
+        
+        index = []
+        # Create a quick-lookup set for Ei timestamps
+        Ei_set = set(Ei[:, 0])
+        
+        for k, val in enumerate(Eip1[:, 0]):
+            # If the timestamp exists in both Ei and E0
+            if val in Ei_set and val in E0_map:
+                index.append([E0_map[val], k])
+                
+        index_array[i + 1] = np.asarray(index, dtype=int)
+        energy_array[i + 1] = np.copy(Eip1[:, 1])
+
+    return energy_array, index_array
