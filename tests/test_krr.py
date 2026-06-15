@@ -2,7 +2,7 @@ import pytest
 import numpy as np
 from numpy.testing import assert_allclose, assert_equal
 
-from mfml_qc.kernels import (
+from mfml_qc.krr import (
     matern_kernel_symmetric,
     matern_kernel_asymmetric,
     gaussian_kernel_symmetric,
