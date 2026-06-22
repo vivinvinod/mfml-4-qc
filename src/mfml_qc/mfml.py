@@ -5,7 +5,7 @@ from tqdm.auto import tqdm
 from sklearn.linear_model import LinearRegression, Ridge, Lasso
 from sklearn.neural_network import MLPRegressor
 
-# Import our custom classes and ultra-fast kernels
+
 from .krr import (
     KRR,
     gaussian_kernel_symmetric, gaussian_kernel_asymmetric,
@@ -78,14 +78,14 @@ class ModelMFML:
         nfids = self.indexes.shape[0]
         subset_index_array = np.zeros((nfids), dtype=object)
         
-        # Get baseline indices. Shuffle at lowest fidelity if requested.
+        # Get baseline indices
         baseline_indices = np.copy(self.indexes[0][:, 0])
+        # Shuffle at lowest fidelity if needed
         if shuffle:
             np.random.seed(seed)
             np.random.shuffle(baseline_indices)
         
         # Extract the required number of indices for each fidelity
-        # following the universally consistent baseline order.
         for i in range(nfids):
             # Create a fast lookup for this fidelity's available mapping
             fid_map = {row[0]: row[1] for row in self.indexes[i]}
@@ -153,7 +153,7 @@ class ModelMFML:
         else:
             model = copy.deepcopy(self.base_estimator)
             
-        # Support both custom packages (.train) and scikit-learn standard (.fit)
+        # Support both (.train) and (.fit)
         if hasattr(model, 'train'):
             model.train(X_train, y_train)
         elif hasattr(model, 'fit'):
@@ -178,6 +178,7 @@ class ModelMFML:
             self.indexes = indexes
         
         nfids = self.indexes.shape[0]
+        
         # generate indexes/ shuffle as needed
         self.indexes = self._generate_nested_indexes(n_trains=n_trains, shuffle=shuffle, seed=seed)
         
@@ -185,8 +186,9 @@ class ModelMFML:
         self.y_train_breakup() 
         
         self.models = np.zeros((2 * nfids - 1), dtype=object)
-        count = 0
         
+        #keeps track of the sub-models
+        count = 0
         # Upper training
         for i in tqdm(range(nfids), desc='Training upper ML models...', leave=self.p_bar):
             self.models[count] = self._instantiate_and_train(self.X_trains[i], self.y_trains[count])
@@ -206,6 +208,9 @@ class ModelMFML:
         nfids = self.indexes.shape[0]
         
         test_preds = np.zeros((X_test.shape[0], 2 * nfids - 1), dtype=float)
+        
+        # instantiate validation predictions if required
+        # only if y_val is given since we use y_val in the optimizations
         if y_val is not None:
             val_preds = np.zeros((X_val.shape[0], 2 * nfids - 1), dtype=float)
         
@@ -224,7 +229,7 @@ class ModelMFML:
             test_preds[:, count] = self.models[count].predict(X_test)
             count += 1
         
-        # optimzers for o-MFML and related
+        # optimzers for o-MFML
         if optimiser == 'OLS':
             defaultKwargs = {'copy_X': True, 'fit_intercept': False}
             defaultKwargs.update(**optargs)
@@ -288,7 +293,7 @@ class ModelMFML:
             final_preds = np.dot(K_eval_composite, solved_coeffs)
             self.coeffs = solved_coeffs
             
-        else: # Default SGCT logic
+        else: # Default SGCT +-1 sub-model summation
             final_preds = np.zeros((X_test.shape[0]), dtype=float)
             count = 0
             for i in range(nfids):

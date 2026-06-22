@@ -38,15 +38,14 @@ def property_differences(file_paths: list):
                                  np.arange(0, energy_array[0].shape[0])]).T
 
     # O(1) Lookup dictionary mapping timestamp -> index in E0
-    # This turns an O(N^3) nested search into a blazing fast O(N) search!
     E0_map = {val: idx for idx, val in enumerate(E0[:, 0])}
 
-    for i in tqdm(range(0, num_fidelities - 1), desc='Generating energy differences and indexing...', leave=False):
+    for i in tqdm(range(0, num_fidelities - 1), desc='Generating property array and indexes for MFML...', leave=False):
         Ei = np.loadtxt(file_paths[i])
         Eip1 = np.loadtxt(file_paths[i + 1])
         
         index = []
-        # Create a quick-lookup set for Ei timestamps
+        # quick-lookup set for Ei timestamps
         Ei_set = set(Ei[:, 0])
         
         for k, val in enumerate(Eip1[:, 0]):

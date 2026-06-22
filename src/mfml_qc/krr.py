@@ -132,8 +132,8 @@ def gaussian_kernel_symmetric(X: np.ndarray, sigma: float = 100.0) -> np.ndarray
     
     for i in prange(n):
         K[i, i] = 1.0
+        #numba efficient loop
         for j in range(i + 1, n):
-            # Using sum of squared differences directly is highly efficient in Numba
             sq_dist = np.sum((X[i] - X[j])**2)
             value = np.exp(-gamma * sq_dist)
             K[i, j] = value
@@ -244,7 +244,7 @@ def _wasserstein_dist(a_sorted: np.ndarray, b_sorted: np.ndarray, p: float, q: f
     for k in range(2 * m - 1):
         val = all_values[k]
         delta = all_values[k+1] - val
-        # Optimization: Only calculate differences where the interval > 0
+        # Only calculate differences where the interval > 0
         if delta > 0.0:
             a_cdf = np.searchsorted(a_sorted, val, side='right') / m
             b_cdf = np.searchsorted(b_sorted, val, side='right') / m
@@ -360,7 +360,7 @@ class KRR:
 
     def train(self, X_train: np.ndarray, y_train: np.ndarray):
         """
-        Fits the KRR model to the training data.
+        Fits the KRR model
         
         Args:
             X_train (np.ndarray): Training feature data.
@@ -368,7 +368,7 @@ class KRR:
         """
         self.X_train = np.copy(X_train)
         
-        # training kernel matrix
+        # training kernel
         k_train = self._generate_kernel(X_train=self.X_train)
         
         # regularization

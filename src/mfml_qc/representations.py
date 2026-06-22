@@ -41,7 +41,7 @@ def compute_flat_coulomb(Z: np.ndarray, R: np.ndarray) -> np.ndarray:
     
     idx = 0
     for i in prange(N):
-        # Diagonal element
+        # Diagonal
         C_flat[idx] = 0.5 * (Z[i] ** 2.4)
         idx += 1
         
@@ -75,14 +75,16 @@ def parse_trajectory(filepath: str) -> list:
         while True:
             line = f.readline()
             if not line:
-                break # End of file
+                break
             
             line = line.strip()
+            # Skip empty lines
             if not line:
-                continue # Skip empty lines
+                continue 
                 
             n_atoms = int(line)
-            comment = f.readline().strip() # Skip comment line
+            # Skip comment line
+            comment = f.readline().strip()
             
             Z = np.zeros(n_atoms, dtype=np.int32)
             R = np.zeros((n_atoms, 3), dtype=np.float64)
