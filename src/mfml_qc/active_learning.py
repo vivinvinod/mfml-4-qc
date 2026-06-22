@@ -3,6 +3,8 @@ import copy
 from tqdm.auto import tqdm
 from sklearn.model_selection import train_test_split
 
+from typing import Union, Dict, Callable
+
 def _train_estimator(base_estimator: object, X: np.ndarray, y: np.ndarray) -> object:
     """Helper function to instantiate and train a model. Model must have train or fit attribute"""
     model = copy.deepcopy(base_estimator)

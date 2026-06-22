@@ -1,10 +1,11 @@
 import pytest
 import numpy as np
+import copy
 from numpy.testing import assert_array_equal, assert_allclose
 
 from mfml_qc.active_learning import (
     _train_estimator,
-    _compute_krr_variance,
+    _gpr_variance,
     _uq_variance,
     active_learning_loop
 )
@@ -24,7 +25,7 @@ class DummySklearnModel:
             # Return fake standard deviations (e.g., random numbers)
             np.random.seed(42)
             stds = np.random.rand(X.shape[0])
-            return preds, stds
+            return preds, stdscopmute
         return preds
 
 class DummyKRRModel:
