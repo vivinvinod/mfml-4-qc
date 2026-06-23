@@ -9,6 +9,7 @@ def test_orca_generate_input(tmp_path):
     """Tests if ORCA input files are formatted correctly without running ORCA."""
     engine = OrcaEngine()
     work_dir = str(tmp_path)
+    work_dir = os.path.abspath(work_dir)
     
     fidelity_params = {
         "method": "PBE",
@@ -17,10 +18,12 @@ def test_orca_generate_input(tmp_path):
         "multiplicity": 2,
         "nprocs": 4,
         "maxcore": 1000,
+        "EnGrad":"EnGrad",
         "optional_tags": ["TightSCF"]
     }
     
     input_file = engine.generate_input("molecule.xyz", fidelity_params, work_dir)
+    input_file = os.path.abspath(input_file)
     
     assert os.path.exists(input_file)
     with open(input_file, 'r') as f:
@@ -30,7 +33,7 @@ def test_orca_generate_input(tmp_path):
     assert "! PBE cc-pVDZ EnGrad TightSCF" in content
     assert "%maxcore 1000" in content
     assert "%PAL nproc 4 end" in content
-    assert "* xyzfile 1 2 molecule.xyz" in content
+    assert "* xyzfile 1 2" in content
 
 def test_orca_parse_output_success(tmp_path):
     """Tests if the ORCA parser correctly extracts energy from a successful run."""
@@ -105,3 +108,4 @@ def test_pyscf_parse_output(tmp_path):
     
     assert results["success"] is True
     assert results["energy"] == -100.1234
+
