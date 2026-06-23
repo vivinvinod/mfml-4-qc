@@ -2,12 +2,21 @@ from abc import ABC, abstractmethod
 from typing import Dict, Any, Union
 import numpy as np
 
+
 class QuantumEngine(ABC):
     """
     Abstract interface for QC engines.
     Defines the lifecycle of a single calculation.
     """
-    def evaluate(self, geometry: Union[str, tuple], fidelity_params: Dict[str, Any], work_dir: str, clean=True, return_outs=True) -> Dict[str, Any]:
+
+    def evaluate(
+        self,
+        geometry: Union[str, tuple],
+        fidelity_params: Dict[str, Any],
+        work_dir: str,
+        clean=True,
+        return_outs=True,
+    ) -> Dict[str, Any]:
         """
         The main orchestrator method called by the Active Learning loop.
         Handles the entire lifecycle of the calculation.
@@ -23,7 +32,12 @@ class QuantumEngine(ABC):
             pass
 
     @abstractmethod
-    def generate_input(self, geometry: Union[str, tuple], fidelity_params: Dict[str, Any], work_dir: str) -> str:
+    def generate_input(
+        self,
+        geometry: Union[str, tuple],
+        fidelity_params: Dict[str, Any],
+        work_dir: str,
+    ) -> str:
         """Generates the software-specific input file. Returns the path to the input file."""
         pass
 
@@ -35,7 +49,7 @@ class QuantumEngine(ABC):
     @abstractmethod
     def parse_output(self, output_file: str) -> Dict[str, Any]:
         """
-        Parses the output file. 
+        Parses the output file.
         MUST return a dictionary containing at least a 'success': bool key.
         """
         pass
@@ -44,4 +58,3 @@ class QuantumEngine(ABC):
     def cleanup(self, work_dir: str):
         """Removes temporary/scratch files to save disk space."""
         pass
-
