@@ -7,7 +7,7 @@ class QuantumEngine(ABC):
     Abstract interface for QC engines.
     Defines the lifecycle of a single calculation.
     """
-    def evaluate(self, geometry: Union[str, tuple], fidelity_params: Dict[str, Any], work_dir: str) -> Dict[str, Any]:
+    def evaluate(self, geometry: Union[str, tuple], fidelity_params: Dict[str, Any], work_dir: str, clean=True, return_outs=True) -> Dict[str, Any]:
         """
         The main orchestrator method called by the Active Learning loop.
         Handles the entire lifecycle of the calculation.
@@ -15,9 +15,12 @@ class QuantumEngine(ABC):
         input_file = self.generate_input(geometry, fidelity_params, work_dir)
         output_file = self.run_calculation(input_file, work_dir)
         results = self.parse_output(output_file)
-        self.cleanup(work_dir)
-        
-        return results
+        if clean:
+            self.cleanup(work_dir)
+        if return_outs:
+            return results
+        else:
+            pass
 
     @abstractmethod
     def generate_input(self, geometry: Union[str, tuple], fidelity_params: Dict[str, Any], work_dir: str) -> str:
@@ -41,3 +44,4 @@ class QuantumEngine(ABC):
     def cleanup(self, work_dir: str):
         """Removes temporary/scratch files to save disk space."""
         pass
+
