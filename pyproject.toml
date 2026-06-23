@@ -36,18 +36,16 @@ pyscf = [
     "pyscf>=2.0.0"
 ]
 dev = [
-    # A combined list for developers working on the package
     "pytest>=7.0.0",
     "pyscf>=2.0.0",
-    "sphinx", # For generating documentation
-    "black"   # For code formatting
+    "sphinx", # For documentation
+    "black"   # code formatting
 ]
 
-#define src as the main folder to look for the package
 [tool.setuptools.packages.find]
 where = ["src"]
 
-# Configure pytest so it knows where to look automatically
+# for pytests
 [tool.pytest.ini_options]
 testpaths = [
     "tests",
