@@ -48,12 +48,14 @@ class OrcaEngine(QuantumEngine):
             maxcore = fidelity_params.get("maxcore", None)
             optional_tags = fidelity_params.get("optional_tags", [])  # e.g., ["TightSCF", "RIJCOSX"]
             custom_blocks = fidelity_params.get("custom_blocks", "")  # e.g., "%tddft\n  nroots 10\nend"
+            engrad = fidelity_params.get('EnGrad',None)
             
             
             tags_str = " ".join(optional_tags)
-            # EnGrad remains
-            inp_content = f"! {method} {basis} EnGrad {tags_str}\n"
-            
+            if engrad is not None:
+                inp_content = f"! {method} {basis} EnGrad {tags_str}\n"
+            else:
+                inp_content = f"! {method} {basis} {tags_str}\n"
             
             if maxcore is not None:
                 inp_content += f"%maxcore {maxcore}\n"
