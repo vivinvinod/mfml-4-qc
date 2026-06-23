@@ -71,32 +71,63 @@ class ModelMFML:
         Subsets the indexes to match n_trains while strictly retaining nested structure.
         If shuffle is True, it randomizes the selection deterministically based on the seed.
         If shuffle is False, it sequentially selects the first valid nested matches.
+        1. Selects from the lowest fidelity (baseline).
+        2. For subsequent higher fidelities, selects ONLY from the subset chosen in the previous fidelity.
         """
-        if n_trains is None:
-            n_trains = np.asarray([self.indexes[i].shape[0] for i in range(self.indexes.shape[0])])
-            
+        import warnings
+        
         nfids = self.indexes.shape[0]
+        if n_trains is None:
+            n_trains = np.asarray([self.indexes[i].shape[0] for i in range(nfids)])
+            
         subset_index_array = np.zeros((nfids), dtype=object)
         
-        # Get baseline indices
-        baseline_indices = np.copy(self.indexes[0][:, 0])
-        # Shuffle at lowest fidelity if needed
-        if shuffle:
-            np.random.seed(seed)
-            np.random.shuffle(baseline_indices)
+        # Use a local random state to avoid mutating the global seed
+        rng = np.random.RandomState(seed) if shuffle else None
         
-        # Extract the required number of indices for each fidelity
+        # Tracks the selected baseline IDs from the previous (lower) fidelity
+        previous_selected_b_ids = None
+        
         for i in range(nfids):
-            # Create a fast lookup for this fidelity's available mapping
+            avail_b_ids = self.indexes[i][:, 0]
+            
+            if i == 0:
+                # For the baseline, candidates are everything available
+                candidates = list(avail_b_ids)
+            else:
+                # For higher fidelities, candidates MUST exist in the previous (lower) fidelity's selection
+                prev_set = set(previous_selected_b_ids)
+                candidates = [b for b in avail_b_ids if b in prev_set]
+                
+            needed = n_trains[i]
+            
+            # fallback if user requests more samples than exist within the strict nesting constraints
+            if needed > len(candidates):
+                warnings.warn(
+                    f"Requested {needed} samples for fidelity {i}, but only {len(candidates)} "
+                    f"are available within the nested baseline subset. Truncating to {len(candidates)}.",
+                    UserWarning
+                )
+                needed = len(candidates)
+                
+            if needed > 0:
+                if shuffle:
+                    rng.shuffle(candidates)
+                selected_b_ids = candidates[:needed]
+            else:
+                selected_b_ids = []
+                
+            previous_selected_b_ids = selected_b_ids
+            
+            # Map the selected baseline IDs back to [baseline_id, level_id] for this fidelity
             fid_map = {row[0]: row[1] for row in self.indexes[i]}
             
             patched_ind = []
-            for b_idx in baseline_indices:
-                if b_idx in fid_map:
-                    patched_ind.append([b_idx, fid_map[b_idx]])
-                    if len(patched_ind) == n_trains[i]:
-                        break
-                        
+            for b_idx in selected_b_ids:
+                patched_ind.append([b_idx, fid_map[b_idx]])
+                    
+            # Sort to ensure consistent row ordering across all fidelities
+            patched_ind.sort(key=lambda x: x[0])
             subset_index_array[i] = np.asarray(patched_ind, dtype=int)
             
         return subset_index_array
@@ -310,3 +341,4 @@ class ModelMFML:
             self.rmse = np.sqrt(np.mean((final_preds - y_test)**2))
         
         return final_preds
+
