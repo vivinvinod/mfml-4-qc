@@ -7,7 +7,10 @@ from .base import QuantumEngine
 
 
 class PySCFEngine(QuantumEngine):
-    """Concrete implementation for the PySCF library."""
+    """
+    Implementation for the PySCF library as the quantum chemsitry engine.
+    This script is untested and is under works. 
+    """
 
     def __init__(self, python_executable: str = sys.executable):
         """
@@ -37,8 +40,8 @@ class PySCFEngine(QuantumEngine):
         multiplicity = fidelity_params.get("multiplicity", 1)
         spin = multiplicity - 1
 
-        # standalone Python script that executes PySCF and dumps results to JSON.
-        # This isolates PySCF memory leaks from the main run of the scripts.
+        # script that executes PySCF and dumps results to JSON.
+        # Prevents PySCF memory leaks
         script_content = f"""
 import json
 from pyscf import gto, scf, dft
@@ -96,7 +99,7 @@ with open("pyscf_results.json", "w") as f:
                 [self.python_executable, input_file],
                 cwd=work_dir,
                 check=True,
-                capture_output=True,  # Capture stdout so it doesn't spam the main run of mfml/al
+                capture_output=True,  # Capture stdout so it doesn't spam the main run (say in AL)
             )
         except subprocess.CalledProcessError:
             pass
