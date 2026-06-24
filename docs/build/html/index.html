@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Welcome to MFML-4-QC’s documentation! &#8212; Project name not set  documentation</title>
+    <title>Welcome to MFML-4-QC’s documentation! &#8212; MFML-4-QC 0.1.0 documentation</title>
   
   
   
@@ -42,7 +42,7 @@
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=a95f357e85573c9b56d5" />
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=a95f357e85573c9b56d5" />
 
-    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/documentation_options.js?v=01f34227"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/sg-tags.js?v=d80f6fa4"></script>
@@ -124,7 +124,7 @@
   
   
   
-    <p class="title logo__title">Project name not set  documentation</p>
+    <p class="title logo__title">MFML-4-QC 0.1.0 documentation</p>
   
 </a></div>
     
@@ -297,53 +297,6 @@
 </div>
 <section id="api-reference">
 <h2>API Reference<a class="headerlink" href="#api-reference" title="Link to this heading">#</a></h2>
-<section id="mfml-core">
-<h3>MFML Core<a class="headerlink" href="#mfml-core" title="Link to this heading">#</a></h3>
-</section>
-<section id="module-mfml_qc.active_learning">
-<span id="active-learning"></span><h3>Active Learning<a class="headerlink" href="#module-mfml_qc.active_learning" title="Link to this heading">#</a></h3>
-<dl class="py function">
-<dt class="sig sig-object py" id="mfml_qc.active_learning.active_learning_loop">
-<span class="sig-prename descclassname"><span class="pre">mfml_qc.active_learning.</span></span><span class="sig-name descname"><span class="pre">active_learning_loop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_train</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_train</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X_pool</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_pool</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_estimator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">object</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uq_mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Callable</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'variance'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">al_iters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">500</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X_test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p_bar</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">uq_kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="reference internal" href="_modules/mfml_qc/active_learning.html#active_learning_loop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mfml_qc.active_learning.active_learning_loop" title="Link to this definition">#</a></dt>
-<dd><p>Active Learning (AL) loop for training data sampling.</p>
-<p>Iteratively trains a model, evaluates the uncertainty of an unlabeled/pool
-dataset using a specified strategy, and selects the most uncertain sample
-to add to the training set for the next iteration.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>X_train</strong> (<em>np.ndarray</em>) – The initial training feature matrix.</p></li>
-<li><p><strong>y_train</strong> (<em>np.ndarray</em><em> or </em><em>dict</em>) – The initial training target data. If using ‘lfab’, <cite>y_train</cite> must
-be a dict structured as <cite>{‘low’: …, ‘high’: …}</cite>.</p></li>
-<li><p><strong>X_pool</strong> (<em>np.ndarray</em>) – The pool feature matrix from which new samples are selected.</p></li>
-<li><p><strong>y_pool</strong> (<em>np.ndarray</em><em> or </em><em>dict</em>) – The target data corresponding to the pool (revealed sequentially to the model).</p></li>
-<li><p><strong>base_estimator</strong> (<em>object</em>) – The machine learning model providing <cite>.train()</cite>/<cite>.fit()</cite> and <cite>.predict()</cite>.</p></li>
-<li><p><strong>uq_mode</strong> (<em>str</em><em> or </em><em>callable</em><em>, </em><em>optional</em>) – The uncertainty quantification strategy. Options are ‘variance’, ‘ensemble’,
-‘lfab’, or a custom function:
-<cite>func(model, X_pool, y_pool, base_estimator, X_train, y_train, **kwargs)</cite>.
-Defaults to ‘variance’.</p></li>
-<li><p><strong>al_iters</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of active learning loops (samples to select). Defaults to 500.</p></li>
-<li><p><strong>X_test</strong> (<em>np.ndarray</em><em>, </em><em>optional</em>) – The testing feature matrix used solely to track generalization error. Defaults to None.</p></li>
-<li><p><strong>y_test</strong> (<em>np.ndarray</em><em> or </em><em>dict</em><em>, </em><em>optional</em>) – The testing target data. Defaults to None.</p></li>
-<li><p><strong>p_bar</strong> (<em>bool</em><em>, </em><em>optional</em>) – Displays a tqdm progress bar if True. Defaults to True.</p></li>
-<li><p><strong>**uq_kwargs</strong> (<em>dict</em>) – Additional arguments passed to the chosen UQ helper (e.g., <cite>n_ensemble=5</cite>).</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>A dictionary of the active learning results containing:
-- ‘selected_indices’: np.ndarray (Original global pool indices selected)
-- ‘training_sizes’: np.ndarray (Training set sizes per iteration)
-- ‘highest_diffs’: np.ndarray (Max uncertainty values per iteration)
-- ‘model’: object (The final trained ML model)
-- ‘maes’: np.ndarray (Mean Absolute Error tracking, if <cite>X_test</cite> was provided)</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>dict</p>
-</dd>
-</dl>
-</dd></dl>
-
-</section>
 <section id="module-mfml_qc.representations">
 <span id="representations"></span><h3>Representations<a class="headerlink" href="#module-mfml_qc.representations" title="Link to this heading">#</a></h3>
 <dl class="py function">
@@ -428,8 +381,335 @@ the flattened Coulomb matrices.</p>
 </dd></dl>
 
 </section>
+<section id="module-mfml_qc.datasets">
+<span id="data-loaders-utilities"></span><h3>Data Loaders &amp; Utilities<a class="headerlink" href="#module-mfml_qc.datasets" title="Link to this heading">#</a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="mfml_qc.datasets.load_benzene_data">
+<span class="sig-prename descclassname"><span class="pre">mfml_qc.datasets.</span></span><span class="sig-name descname"><span class="pre">load_benzene_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/mfml_qc/datasets.html#load_benzene_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mfml_qc.datasets.load_benzene_data" title="Link to this definition">#</a></dt>
+<dd><p>Helper utility to load and parse the built-in Benzene trajectory dataset.</p>
+<p>This function reads the pre-computed energy and time cost CSV files,
+and either loads the cached Coulomb matrices or generates them
+dynamically from the provided XYZ trajectory file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data_dir</strong> (<em>str</em><em>, </em><em>optional</em>) – Path to the benzene data directory. If None, it dynamically
+resolves the path relative to the installed package’s directory
+(assuming the standard ‘data/benzene’ repository layout).
+Default is None.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><p>A dictionary containing the parsed dataset components:
+- ‘X_CM’ : np.ndarray</p>
+<blockquote>
+<div><p>Flattened Coulomb matrices (shape: 15000, 36).</p>
+</div></blockquote>
+<ul class="simple">
+<li><dl class="simple">
+<dt>’energies’<span class="classifier">np.ndarray</span></dt><dd><p>Raw energies extracted from the CSV data (columns: Time, ZINDO, LC-DFTB, …).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>’timecosts’<span class="classifier">np.ndarray</span></dt><dd><p>Time costs extracted from the CSV data.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>’columns’<span class="classifier">list of str</span></dt><dd><p>List of string names corresponding to each column in the CSVs.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>FileNotFoundError</strong> – If the required ‘energies.csv’ file is not found at the resolved path,
+    indicating the data has not been downloaded or placed correctly.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function" id="module-mfml_qc.utils">
+<dt class="sig sig-object py" id="mfml_qc.utils.property_differences">
+<span class="sig-prename descclassname"><span class="pre">mfml_qc.utils.</span></span><span class="sig-name descname"><span class="pre">property_differences</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_paths</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mfml_qc/utils.html#property_differences"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mfml_qc.utils.property_differences" title="Link to this definition">#</a></dt>
+<dd><p>Helper utility to parse and align nested multi-fidelity datasets from raw text files.</p>
+<p>This function loads data from multiple fidelities and builds a strict nested
+index mapping. Crucially, it returns the <em>full</em> property values for each level
+(not the physical deltas), along with index arrays mapping each higher-fidelity
+sample back to its corresponding baseline geometry ID.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>file_paths</strong> (<em>list</em><em> of </em><em>str</em>) – List of exact file paths to the energy/property files.
+Each file should be formatted with 2 columns: [timestamp/ID, property_value].
+The list MUST be ordered from the lowest fidelity (baseline) to the highest.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><p>A tuple containing <cite>(energy_array, index_array)</cite>:</p>
+<ul class="simple">
+<li><p><strong>energy_array</strong> (<em>np.ndarray</em>): A 1D object array of length <cite>num_fidelities</cite>.
+Each element is a 1D NumPy float array of the extracted property values for that fidelity.</p></li>
+<li><p><strong>index_array</strong> (<em>np.ndarray</em>): A 1D object array of length <cite>num_fidelities</cite>.
+Each element is a 2D NumPy integer array of shape <cite>(N, 2)</cite>. The columns
+represent <cite>[baseline_row_index, current_fidelity_row_index]</cite>.</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>FileNotFoundError</strong> – If the baseline file (the first path in <cite>file_paths</cite>) cannot be located.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
 <section id="kernel-ridge-regression">
 <h3>Kernel Ridge Regression<a class="headerlink" href="#kernel-ridge-regression" title="Link to this heading">#</a></h3>
+<dl class="py class" id="module-mfml_qc.krr">
+<dt class="sig sig-object py" id="mfml_qc.krr.KRR">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mfml_qc.krr.</span></span><span class="sig-name descname"><span class="pre">KRR</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kernel_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'matern'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1e-10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mfml_qc/krr.html#KRR"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mfml_qc.krr.KRR" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Kernel Ridge Regression (KRR) model.</p>
+<p>This class implements a lightweight, pure-NumPy KRR solver tailored
+for the ultra-fast Numba-compiled kernels provided in this module.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="mfml_qc.krr.KRR.predict">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="reference internal" href="_modules/mfml_qc/krr.html#KRR.predict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mfml_qc.krr.KRR.predict" title="Link to this definition">#</a></dt>
+<dd><p>Predicts target values for the given test data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>X_test</strong> (<em>np.ndarray</em>) – The testing feature data matrix.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The predicted target values.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If the model has not been trained yet.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mfml_qc.krr.KRR.train">
+<span class="sig-name descname"><span class="pre">train</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_train</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_train</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mfml_qc/krr.html#KRR.train"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mfml_qc.krr.KRR.train" title="Link to this definition">#</a></dt>
+<dd><p>Fits the Kernel Ridge Regression model to the training data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X_train</strong> (<em>np.ndarray</em>) – The training feature data matrix.</p></li>
+<li><p><strong>y_train</strong> (<em>np.ndarray</em>) – The training target data array.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mfml_qc.krr.gaussian_kernel_asymmetric">
+<span class="sig-prename descclassname"><span class="pre">mfml_qc.krr.</span></span><span class="sig-name descname"><span class="pre">gaussian_kernel_asymmetric</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_train</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X_test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100.0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="reference internal" href="_modules/mfml_qc/krr.html#gaussian_kernel_asymmetric"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mfml_qc.krr.gaussian_kernel_asymmetric" title="Link to this definition">#</a></dt>
+<dd><p>Function to generate the asymmetric Gaussian kernel matrix for a given kernel width, <span class="math notranslate nohighlight">\(\sigma\)</span>.
+The Gaussian kernel matrix entry for some <span class="math notranslate nohighlight">\(x_i \in X_{test}, x_j \in X_{train}\)</span> is computed as:</p>
+<div class="math notranslate nohighlight">
+\[K(x_i,x_j) := \exp\left(\frac{-||x_i - x_j||_2^2}{2\sigma^2}\right)\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X_train</strong> (<em>np.ndarray</em>) – The first matrix of input features (e.g., training set).</p></li>
+<li><p><strong>X_test</strong> (<em>np.ndarray</em>) – The second matrix of input features (e.g., test set).</p></li>
+<li><p><strong>sigma</strong> (<em>float</em><em>, </em><em>optional</em>) – The kernel width parameter. The default is 100.0.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>K</strong> – Asymmetric Gaussian kernel matrix for given inputs X_train and X_test.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mfml_qc.krr.gaussian_kernel_symmetric">
+<span class="sig-prename descclassname"><span class="pre">mfml_qc.krr.</span></span><span class="sig-name descname"><span class="pre">gaussian_kernel_symmetric</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100.0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="reference internal" href="_modules/mfml_qc/krr.html#gaussian_kernel_symmetric"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mfml_qc.krr.gaussian_kernel_symmetric" title="Link to this definition">#</a></dt>
+<dd><p>Function to generate the symmetric Gaussian kernel matrix for a given kernel width, <span class="math notranslate nohighlight">\(\sigma\)</span>.
+The Gaussian kernel matrix entry for some <span class="math notranslate nohighlight">\(x_i, x_j\)</span> is computed as:</p>
+<div class="math notranslate nohighlight">
+\[K(x_i,x_j) := \exp\left(\frac{-||x_i - x_j||_2^2}{2\sigma^2}\right)\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>np.ndarray</em>) – The matrix of input features.</p></li>
+<li><p><strong>sigma</strong> (<em>float</em><em>, </em><em>optional</em>) – The kernel width parameter. The default is 100.0.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>K</strong> – Symmetric Gaussian kernel matrix for given input X.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mfml_qc.krr.laplacian_kernel_asymmetric">
+<span class="sig-prename descclassname"><span class="pre">mfml_qc.krr.</span></span><span class="sig-name descname"><span class="pre">laplacian_kernel_asymmetric</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_train</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X_test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100.0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="reference internal" href="_modules/mfml_qc/krr.html#laplacian_kernel_asymmetric"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mfml_qc.krr.laplacian_kernel_asymmetric" title="Link to this definition">#</a></dt>
+<dd><p>Function to generate the asymmetric Laplacian kernel matrix for a given kernel width, <span class="math notranslate nohighlight">\(\sigma\)</span>.
+The Laplacian kernel matrix entry for some <span class="math notranslate nohighlight">\(x_i \in X_{test}, x_j \in X_{train}\)</span> is computed as:</p>
+<div class="math notranslate nohighlight">
+\[K(x_i,x_j) := \exp\left(\frac{-||x_i - x_j||_1}{\sigma}\right)\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X_train</strong> (<em>np.ndarray</em>) – The first matrix of input features (e.g., training set).</p></li>
+<li><p><strong>X_test</strong> (<em>np.ndarray</em>) – The second matrix of input features (e.g., test set).</p></li>
+<li><p><strong>sigma</strong> (<em>float</em><em>, </em><em>optional</em>) – The kernel width parameter. The default is 100.0.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>K</strong> – Asymmetric Laplacian kernel matrix for given inputs X_train and X_test.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mfml_qc.krr.laplacian_kernel_symmetric">
+<span class="sig-prename descclassname"><span class="pre">mfml_qc.krr.</span></span><span class="sig-name descname"><span class="pre">laplacian_kernel_symmetric</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100.0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="reference internal" href="_modules/mfml_qc/krr.html#laplacian_kernel_symmetric"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mfml_qc.krr.laplacian_kernel_symmetric" title="Link to this definition">#</a></dt>
+<dd><p>Function to generate the symmetric Laplacian kernel matrix for a given kernel width, <span class="math notranslate nohighlight">\(\sigma\)</span>.
+The Laplacian kernel matrix entry for some <span class="math notranslate nohighlight">\(x_i, x_j\)</span> is computed as:</p>
+<div class="math notranslate nohighlight">
+\[K(x_i,x_j) := \exp\left(\frac{-||x_i - x_j||_1}{\sigma}\right)\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>np.ndarray</em>) – The matrix of input features.</p></li>
+<li><p><strong>sigma</strong> (<em>float</em><em>, </em><em>optional</em>) – The kernel width parameter. The default is 100.0.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>K</strong> – Symmetric Laplacian kernel matrix for given input X.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mfml_qc.krr.matern_kernel_asymmetric">
+<span class="sig-prename descclassname"><span class="pre">mfml_qc.krr.</span></span><span class="sig-name descname"><span class="pre">matern_kernel_asymmetric</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_train</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X_test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.5</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="reference internal" href="_modules/mfml_qc/krr.html#matern_kernel_asymmetric"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mfml_qc.krr.matern_kernel_asymmetric" title="Link to this definition">#</a></dt>
+<dd><p>Function to generate the asymmetric Matérn kernel matrix.
+Supports smoothness parameter <span class="math notranslate nohighlight">\(\nu \in \{0.5, 1.5, 2.5\}\)</span>.
+For example, the Matérn 3/2 (<span class="math notranslate nohighlight">\(\nu=1.5\)</span>) kernel entry for some <span class="math notranslate nohighlight">\(x_i \in X_{test}, x_j \in X_{train}\)</span> is computed as:</p>
+<div class="math notranslate nohighlight">
+\[K(x_i,x_j) := \exp\left(-\frac{\sqrt{3}||x_i - x_j||_2}{\sigma}\right) \left(1 + \frac{\sqrt{3}||x_i - x_j||_2}{\sigma}\right)\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X_train</strong> (<em>np.ndarray</em>) – The first matrix of input features (e.g., training set).</p></li>
+<li><p><strong>X_test</strong> (<em>np.ndarray</em>) – The second matrix of input features (e.g., test set).</p></li>
+<li><p><strong>sigma</strong> (<em>float</em><em>, </em><em>optional</em>) – The kernel width parameter. The default is 100.0.</p></li>
+<li><p><strong>nu</strong> (<em>float</em><em>, </em><em>optional</em>) – The smoothness parameter. Supported values are 0.5, 1.5, and 2.5. The default is 1.5.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>K</strong> – Asymmetric Matérn kernel matrix for given inputs X_train and X_test.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mfml_qc.krr.matern_kernel_symmetric">
+<span class="sig-prename descclassname"><span class="pre">mfml_qc.krr.</span></span><span class="sig-name descname"><span class="pre">matern_kernel_symmetric</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.5</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="reference internal" href="_modules/mfml_qc/krr.html#matern_kernel_symmetric"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mfml_qc.krr.matern_kernel_symmetric" title="Link to this definition">#</a></dt>
+<dd><p>Function to generate the symmetric Matérn kernel matrix.
+Supports smoothness parameter <span class="math notranslate nohighlight">\(\nu \in \{0.5, 1.5, 2.5\}\)</span>.
+For example, the Matérn 3/2 (<span class="math notranslate nohighlight">\(\nu=1.5\)</span>) kernel entry for some <span class="math notranslate nohighlight">\(x_i, x_j\)</span> is computed as:</p>
+<div class="math notranslate nohighlight">
+\[K(x_i,x_j) := \exp\left(-\frac{\sqrt{3}||x_i - x_j||_2}{\sigma}\right) \left(1 + \frac{\sqrt{3}||x_i - x_j||_2}{\sigma}\right)\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>np.ndarray</em>) – The matrix of input features.</p></li>
+<li><p><strong>sigma</strong> (<em>float</em><em>, </em><em>optional</em>) – The kernel width parameter. The default is 100.0.</p></li>
+<li><p><strong>nu</strong> (<em>float</em><em>, </em><em>optional</em>) – The smoothness parameter. Supported values are 0.5, 1.5, and 2.5. The default is 1.5.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>K</strong> – Symmetric Matérn kernel matrix for the given input X.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mfml_qc.krr.wasserstein_kernel_asymmetric">
+<span class="sig-prename descclassname"><span class="pre">mfml_qc.krr.</span></span><span class="sig-name descname"><span class="pre">wasserstein_kernel_asymmetric</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_train</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X_test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="reference internal" href="_modules/mfml_qc/krr.html#wasserstein_kernel_asymmetric"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mfml_qc.krr.wasserstein_kernel_asymmetric" title="Link to this definition">#</a></dt>
+<dd><p>Function to generate the asymmetric Wasserstein kernel matrix based on 1D representations.</p>
+<p>The Wasserstein kernel matrix entry for some <span class="math notranslate nohighlight">\(x_i \in X_{test}, x_j \in X_{train}\)</span> is computed as:</p>
+<div class="math notranslate nohighlight">
+\[K(x_i,x_j) := \exp\left(-\frac{W_p(x_i, x_j)^q}{\sigma}\right)\]</div>
+<p>where <span class="math notranslate nohighlight">\(W_p\)</span> is the 1-dimensional Wasserstein distance between the sorted features.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X_train</strong> (<em>np.ndarray</em>) – The first matrix of input features (e.g., training set).</p></li>
+<li><p><strong>X_test</strong> (<em>np.ndarray</em>) – The second matrix of input features (e.g., test set).</p></li>
+<li><p><strong>sigma</strong> (<em>float</em><em>, </em><em>optional</em>) – The kernel width parameter. The default is 100.0.</p></li>
+<li><p><strong>p</strong> (<em>float</em><em>, </em><em>optional</em>) – The power parameter for the CDF difference. The default is 1.0.</p></li>
+<li><p><strong>q</strong> (<em>float</em><em>, </em><em>optional</em>) – The outer exponent parameter. The default is 1.0.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>K</strong> – Asymmetric Wasserstein kernel matrix.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mfml_qc.krr.wasserstein_kernel_symmetric">
+<span class="sig-prename descclassname"><span class="pre">mfml_qc.krr.</span></span><span class="sig-name descname"><span class="pre">wasserstein_kernel_symmetric</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="reference internal" href="_modules/mfml_qc/krr.html#wasserstein_kernel_symmetric"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mfml_qc.krr.wasserstein_kernel_symmetric" title="Link to this definition">#</a></dt>
+<dd><p>Function to generate the symmetric Wasserstein kernel matrix based on 1D representations.</p>
+<p>The Wasserstein kernel matrix entry for some <span class="math notranslate nohighlight">\(x_i, x_j\)</span> is computed as:</p>
+<div class="math notranslate nohighlight">
+\[K(x_i,x_j) := \exp\left(-\frac{W_p(x_i, x_j)^q}{\sigma}\right)\]</div>
+<p>where <span class="math notranslate nohighlight">\(W_p\)</span> is the 1-dimensional Wasserstein distance between the sorted features.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>np.ndarray</em>) – The matrix of input features.</p></li>
+<li><p><strong>sigma</strong> (<em>float</em><em>, </em><em>optional</em>) – The kernel width parameter. The default is 100.0.</p></li>
+<li><p><strong>p</strong> (<em>float</em><em>, </em><em>optional</em>) – The power parameter for the CDF difference. The default is 1.0.</p></li>
+<li><p><strong>q</strong> (<em>float</em><em>, </em><em>optional</em>) – The outer exponent parameter. The default is 1.0.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>K</strong> – Symmetric Wasserstein kernel matrix.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 <section id="module-mfml_qc.oracles.base">
 <span id="quantum-chemistry-oracles"></span><h3>Quantum Chemistry Oracles<a class="headerlink" href="#module-mfml_qc.oracles.base" title="Link to this heading">#</a></h3>
@@ -715,87 +995,129 @@ crashes, and environment variable setup required by the QC engine.</p>
 </dd></dl>
 
 </section>
-<section id="module-mfml_qc.datasets">
-<span id="data-loaders-utilities"></span><h3>Data Loaders &amp; Utilities<a class="headerlink" href="#module-mfml_qc.datasets" title="Link to this heading">#</a></h3>
-<dl class="py function">
-<dt class="sig sig-object py" id="mfml_qc.datasets.load_benzene_data">
-<span class="sig-prename descclassname"><span class="pre">mfml_qc.datasets.</span></span><span class="sig-name descname"><span class="pre">load_benzene_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/mfml_qc/datasets.html#load_benzene_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mfml_qc.datasets.load_benzene_data" title="Link to this definition">#</a></dt>
-<dd><p>Helper utility to load and parse the built-in Benzene trajectory dataset.</p>
-<p>This function reads the pre-computed energy and time cost CSV files,
-and either loads the cached Coulomb matrices or generates them
-dynamically from the provided XYZ trajectory file.</p>
+<section id="multifidelity-machine-learning">
+<h3>Multifidelity Machine Learning<a class="headerlink" href="#multifidelity-machine-learning" title="Link to this heading">#</a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="mfml_qc.mfml.ModelMFML">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mfml_qc.mfml.</span></span><span class="sig-name descname"><span class="pre">ModelMFML</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1e-09</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kernel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'matern'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">715.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p_bar</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_estimator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">object</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mfml_qc/mfml.html#ModelMFML"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mfml_qc.mfml.ModelMFML" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>The Multi-Fidelity Machine Learning (MFML) model.</p>
+<p>This class carries out the training and prediction of
+MFML models. It supports both standard MFML and the
+optimzied MFML (o-MFML) models which are data-adaptive
+combinations of the sub-models.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="mfml_qc.mfml.ModelMFML.X_train_breakup">
+<span class="sig-name descname"><span class="pre">X_train_breakup</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/mfml_qc/mfml.html#ModelMFML.X_train_breakup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mfml_qc.mfml.ModelMFML.X_train_breakup" title="Link to this definition">#</a></dt>
+<dd><p>Extracts the feature matrices (X) for each fidelity level.</p>
+<p>Slices the master <cite>X_train_parent</cite> array using the parsed nested indexes
+so that each fidelity level has a corresponding, correctly sized feature matrix.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mfml_qc.mfml.ModelMFML.predict">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X_val</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_val</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optimiser</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'default'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">optargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mfml_qc/mfml.html#ModelMFML.predict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mfml_qc.mfml.ModelMFML.predict" title="Link to this definition">#</a></dt>
+<dd><p>Predicts target values using the trained multifidelity ensemble.</p>
+<p>Supports standard Single-Grid Combination Technique (SGCT) arithmetic or
+advanced machine-learned combinations (o-MFML) using a validation set.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>data_dir</strong> (<em>str</em><em>, </em><em>optional</em>) – Path to the benzene data directory. If None, it dynamically
-resolves the path relative to the installed package’s directory
-(assuming the standard ‘data/benzene’ repository layout).
-Default is None.</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X_test</strong> (<em>np.ndarray</em>) – The testing feature matrix.</p></li>
+<li><p><strong>X_val</strong> (<em>np.ndarray</em><em>, </em><em>optional</em>) – Validation feature matrix, required if using an advanced optimizer.</p></li>
+<li><p><strong>y_test</strong> (<em>np.ndarray</em><em>, </em><em>optional</em>) – True target values for the test set. If provided, computes MAE and RMSE
+and saves them to the model object.</p></li>
+<li><p><strong>y_val</strong> (<em>np.ndarray</em><em>, </em><em>optional</em>) – True target values for the validation set, required if using an advanced optimizer.</p></li>
+<li><p><strong>optimiser</strong> (<em>str</em><em>, </em><em>optional</em>) – The combination strategy to use. Options include: ‘default’ (SGCT),
+‘OLS’, ‘LRR’, ‘LASSO’, ‘MLPR’, ‘KRR’, or ‘CompKRR’. Defaults to ‘default’.</p></li>
+<li><p><strong>**optargs</strong> (<em>dict</em>) – Additional hyperparameters to pass to the chosen optimizer model.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><p>A dictionary containing the parsed dataset components:
-- ‘X_CM’ : np.ndarray</p>
-<blockquote>
-<div><p>Flattened Coulomb matrices (shape: 15000, 36).</p>
-</div></blockquote>
-<ul class="simple">
-<li><dl class="simple">
-<dt>’energies’<span class="classifier">np.ndarray</span></dt><dd><p>Raw energies extracted from the CSV data (columns: Time, ZINDO, LC-DFTB, …).</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>’timecosts’<span class="classifier">np.ndarray</span></dt><dd><p>Time costs extracted from the CSV data.</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>’columns’<span class="classifier">list of str</span></dt><dd><p>List of string names corresponding to each column in the CSVs.</p>
-</dd>
-</dl>
-</li>
-</ul>
-</p>
+<dd class="field-even"><p>The final predicted target values for the test set.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>dict</p>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>FileNotFoundError</strong> – If the required ‘energies.csv’ file is not found at the resolved path,
-    indicating the data has not been downloaded or placed correctly.</p>
+<dd class="field-odd"><p>np.ndarray</p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="py function" id="module-mfml_qc.utils">
-<dt class="sig sig-object py" id="mfml_qc.utils.property_differences">
-<span class="sig-prename descclassname"><span class="pre">mfml_qc.utils.</span></span><span class="sig-name descname"><span class="pre">property_differences</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_paths</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mfml_qc/utils.html#property_differences"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mfml_qc.utils.property_differences" title="Link to this definition">#</a></dt>
-<dd><p>Helper utility to parse and align nested multi-fidelity datasets from raw text files.</p>
-<p>This function loads data from multiple fidelities and builds a strict nested
-index mapping. Crucially, it returns the <em>full</em> property values for each level
-(not the physical deltas), along with index arrays mapping each higher-fidelity
-sample back to its corresponding baseline geometry ID.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="mfml_qc.mfml.ModelMFML.train">
+<span class="sig-name descname"><span class="pre">train</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_train_parent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_paths</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_trains</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indexes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shuffle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_trains</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mfml_qc/mfml.html#ModelMFML.train"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mfml_qc.mfml.ModelMFML.train" title="Link to this definition">#</a></dt>
+<dd><p>Multifidelity data extraction and training of the sub-models.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>file_paths</strong> (<em>list</em><em> of </em><em>str</em>) – List of exact file paths to the energy/property files.
-Each file should be formatted with 2 columns: [timestamp/ID, property_value].
-The list MUST be ordered from the lowest fidelity (baseline) to the highest.</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><p>A tuple containing <cite>(energy_array, index_array)</cite>:</p>
-<ul class="simple">
-<li><p><strong>energy_array</strong> (<em>np.ndarray</em>): A 1D object array of length <cite>num_fidelities</cite>.
-Each element is a 1D NumPy float array of the extracted property values for that fidelity.</p></li>
-<li><p><strong>index_array</strong> (<em>np.ndarray</em>): A 1D object array of length <cite>num_fidelities</cite>.
-Each element is a 2D NumPy integer array of shape <cite>(N, 2)</cite>. The columns
-represent <cite>[baseline_row_index, current_fidelity_row_index]</cite>.</p></li>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X_train_parent</strong> (<em>np.ndarray</em>) – The complete feature matrix corresponding to the baseline (lowest fidelity) data.</p></li>
+<li><p><strong>file_paths</strong> (<em>list</em><em> of </em><em>str</em><em>, </em><em>optional</em>) – List of paths to property files ordered from lowest to highest fidelity.
+Required if <cite>y_trains</cite> and <cite>indexes</cite> are not provided.</p></li>
+<li><p><strong>y_trains</strong> (<em>np.ndarray</em><em>, </em><em>optional</em>) – Precomputed object array of target properties for each fidelity.</p></li>
+<li><p><strong>indexes</strong> (<em>np.ndarray</em><em>, </em><em>optional</em>) – Precomputed object array of nested mapping indexes.</p></li>
+<li><p><strong>shuffle</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, randomly shuffles the selected nested subsets. Defaults to False.</p></li>
+<li><p><strong>n_trains</strong> (<em>np.ndarray</em><em>, </em><em>optional</em>) – Array specifying the target number of training samples for each fidelity.</p></li>
+<li><p><strong>seed</strong> (<em>int</em><em>, </em><em>optional</em>) – Random seed for shuffling. Defaults to 0.</p></li>
 </ul>
-</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>tuple</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>FileNotFoundError</strong> – If the baseline file (the first path in <cite>file_paths</cite>) cannot be located.</p>
+<dd class="field-even"><p><strong>ValueError</strong> – If neither precomputed arrays (<cite>y_trains</cite>, <cite>indexes</cite>) nor <cite>file_paths</cite> are provided.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mfml_qc.mfml.ModelMFML.y_train_breakup">
+<span class="sig-name descname"><span class="pre">y_train_breakup</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/mfml_qc/mfml.html#ModelMFML.y_train_breakup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mfml_qc.mfml.ModelMFML.y_train_breakup" title="Link to this definition">#</a></dt>
+<dd><p>Extracts the target property arrays (y) for the required
+multifidelity sub-models.</p>
+<p>For N fidelities, the MFML method requires 2N - 1 sub-models:
+N models trained on the target properties directly (upper), and
+N - 1 models trained on the lower fidelity representations of the
+higher fidelity subsets (lower).</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-mfml_qc.active_learning">
+<span id="active-learning"></span><h3>Active Learning<a class="headerlink" href="#module-mfml_qc.active_learning" title="Link to this heading">#</a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="mfml_qc.active_learning.active_learning_loop">
+<span class="sig-prename descclassname"><span class="pre">mfml_qc.active_learning.</span></span><span class="sig-name descname"><span class="pre">active_learning_loop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_train</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_train</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X_pool</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_pool</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_estimator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">object</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uq_mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Callable</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'variance'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">al_iters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">500</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X_test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p_bar</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">uq_kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="reference internal" href="_modules/mfml_qc/active_learning.html#active_learning_loop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mfml_qc.active_learning.active_learning_loop" title="Link to this definition">#</a></dt>
+<dd><p>Active Learning (AL) loop for training data sampling.</p>
+<p>Iteratively trains a model, evaluates the uncertainty of an unlabeled/pool
+dataset using a specified strategy, and selects the most uncertain sample
+to add to the training set for the next iteration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X_train</strong> (<em>np.ndarray</em>) – The initial training feature matrix.</p></li>
+<li><p><strong>y_train</strong> (<em>np.ndarray</em><em> or </em><em>dict</em>) – The initial training target data. If using ‘lfab’, <cite>y_train</cite> must
+be a dict structured as <cite>{‘low’: …, ‘high’: …}</cite>.</p></li>
+<li><p><strong>X_pool</strong> (<em>np.ndarray</em>) – The pool feature matrix from which new samples are selected.</p></li>
+<li><p><strong>y_pool</strong> (<em>np.ndarray</em><em> or </em><em>dict</em>) – The target data corresponding to the pool (revealed sequentially to the model).</p></li>
+<li><p><strong>base_estimator</strong> (<em>object</em>) – The machine learning model providing <cite>.train()</cite>/<cite>.fit()</cite> and <cite>.predict()</cite>.</p></li>
+<li><p><strong>uq_mode</strong> (<em>str</em><em> or </em><em>callable</em><em>, </em><em>optional</em>) – The uncertainty quantification strategy. Options are ‘variance’, ‘ensemble’,
+‘lfab’, or a custom function:
+<cite>func(model, X_pool, y_pool, base_estimator, X_train, y_train, **kwargs)</cite>.
+Defaults to ‘variance’.</p></li>
+<li><p><strong>al_iters</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of active learning loops (samples to select). Defaults to 500.</p></li>
+<li><p><strong>X_test</strong> (<em>np.ndarray</em><em>, </em><em>optional</em>) – The testing feature matrix used solely to track generalization error. Defaults to None.</p></li>
+<li><p><strong>y_test</strong> (<em>np.ndarray</em><em> or </em><em>dict</em><em>, </em><em>optional</em>) – The testing target data. Defaults to None.</p></li>
+<li><p><strong>p_bar</strong> (<em>bool</em><em>, </em><em>optional</em>) – Displays a tqdm progress bar if True. Defaults to True.</p></li>
+<li><p><strong>**uq_kwargs</strong> (<em>dict</em>) – Additional arguments passed to the chosen UQ helper (e.g., <cite>n_ensemble=5</cite>).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A dictionary of the active learning results containing:
+- ‘selected_indices’: np.ndarray (Original global pool indices selected)
+- ‘training_sizes’: np.ndarray (Training set sizes per iteration)
+- ‘highest_diffs’: np.ndarray (Max uncertainty values per iteration)
+- ‘model’: object (The final trained ML model)
+- ‘maes’: np.ndarray (Mean Absolute Error tracking, if <cite>X_test</cite> was provided)</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
 </dd>
 </dl>
 </dd></dl>
@@ -851,18 +1173,33 @@ represent <cite>[baseline_row_index, current_fidelity_row_index]</cite>.</p></li
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#api-reference">API Reference</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml-core">MFML Core</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#module-mfml_qc.active_learning">Active Learning</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.active_learning.active_learning_loop"><code class="docutils literal notranslate"><span class="pre">active_learning_loop()</span></code></a></li>
-</ul>
-</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#module-mfml_qc.representations">Representations</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.representations.compute_flat_coulomb"><code class="docutils literal notranslate"><span class="pre">compute_flat_coulomb()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.representations.generate_coulomb_matrices"><code class="docutils literal notranslate"><span class="pre">generate_coulomb_matrices()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.representations.parse_trajectory"><code class="docutils literal notranslate"><span class="pre">parse_trajectory()</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kernel-ridge-regression">Kernel Ridge Regression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#module-mfml_qc.datasets">Data Loaders &amp; Utilities</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.datasets.load_benzene_data"><code class="docutils literal notranslate"><span class="pre">load_benzene_data()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.utils.property_differences"><code class="docutils literal notranslate"><span class="pre">property_differences()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kernel-ridge-regression">Kernel Ridge Regression</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.krr.KRR"><code class="docutils literal notranslate"><span class="pre">KRR</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.krr.KRR.predict"><code class="docutils literal notranslate"><span class="pre">KRR.predict()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.krr.KRR.train"><code class="docutils literal notranslate"><span class="pre">KRR.train()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.krr.gaussian_kernel_asymmetric"><code class="docutils literal notranslate"><span class="pre">gaussian_kernel_asymmetric()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.krr.gaussian_kernel_symmetric"><code class="docutils literal notranslate"><span class="pre">gaussian_kernel_symmetric()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.krr.laplacian_kernel_asymmetric"><code class="docutils literal notranslate"><span class="pre">laplacian_kernel_asymmetric()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.krr.laplacian_kernel_symmetric"><code class="docutils literal notranslate"><span class="pre">laplacian_kernel_symmetric()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.krr.matern_kernel_asymmetric"><code class="docutils literal notranslate"><span class="pre">matern_kernel_asymmetric()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.krr.matern_kernel_symmetric"><code class="docutils literal notranslate"><span class="pre">matern_kernel_symmetric()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.krr.wasserstein_kernel_asymmetric"><code class="docutils literal notranslate"><span class="pre">wasserstein_kernel_asymmetric()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.krr.wasserstein_kernel_symmetric"><code class="docutils literal notranslate"><span class="pre">wasserstein_kernel_symmetric()</span></code></a></li>
+</ul>
+</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#module-mfml_qc.oracles.base">Quantum Chemistry Oracles</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.oracles.base.QuantumEngine"><code class="docutils literal notranslate"><span class="pre">QuantumEngine</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.oracles.base.QuantumEngine.cleanup"><code class="docutils literal notranslate"><span class="pre">QuantumEngine.cleanup()</span></code></a></li>
@@ -888,9 +1225,18 @@ represent <cite>[baseline_row_index, current_fidelity_row_index]</cite>.</p></li
 </li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#module-mfml_qc.datasets">Data Loaders &amp; Utilities</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.datasets.load_benzene_data"><code class="docutils literal notranslate"><span class="pre">load_benzene_data()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.utils.property_differences"><code class="docutils literal notranslate"><span class="pre">property_differences()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multifidelity-machine-learning">Multifidelity Machine Learning</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.mfml.ModelMFML"><code class="docutils literal notranslate"><span class="pre">ModelMFML</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.mfml.ModelMFML.X_train_breakup"><code class="docutils literal notranslate"><span class="pre">ModelMFML.X_train_breakup()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.mfml.ModelMFML.predict"><code class="docutils literal notranslate"><span class="pre">ModelMFML.predict()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.mfml.ModelMFML.train"><code class="docutils literal notranslate"><span class="pre">ModelMFML.train()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.mfml.ModelMFML.y_train_breakup"><code class="docutils literal notranslate"><span class="pre">ModelMFML.y_train_breakup()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#module-mfml_qc.active_learning">Active Learning</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.active_learning.active_learning_loop"><code class="docutils literal notranslate"><span class="pre">active_learning_loop()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -928,6 +1274,16 @@ represent <cite>[baseline_row_index, current_fidelity_row_index]</cite>.</p></li
 <div class="bd-footer__inner bd-page-width">
   
     <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2026, Vivin Vinod.
+      <br/>
+    
+  </p>
+</div>
       
         <div class="footer-item">
 

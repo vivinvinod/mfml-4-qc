@@ -1,7 +1,14 @@
 import os
 import sys
-# Tell Sphinx where the actual Python package lives
+
 sys.path.insert(0, os.path.abspath('../../src'))
+
+project = 'MFML-4-QC'
+copyright = '2026, Vivin Vinod'
+author = 'Vivin Vinod'
+release = '0.1.0'
+
+#html_title = "MFML-4-QC Documentation"
 
 extensions = [
     'sphinx.ext.autodoc',	# Automatically pulls docstrings from classes/functions
@@ -9,14 +16,13 @@ extensions = [
     'sphinx.ext.viewcode',	# Adds a "[source]" button next to documentation to view the raw Python code
     'sphinx.ext.mathjax',	# Latex math rendering
     'sphinx_gallery.gen_gallery', # Turns examples/ folder into tutorials
-    'nbsphinx',                # Renders Jupyter notebooks
+    'nbsphinx',                # Render Jupyter notebooks
 ]
 
 # Configure Sphinx Gallery
 sphinx_gallery_conf = {
-    'examples_dirs': '../../examples',   # Path to your example scripts
-    'gallery_dirs': 'auto_examples',     # Path where sphinx will save the generated HTML pages
+    'examples_dirs': '../../examples',
+    'gallery_dirs': 'auto_examples',
 }
 
-# Set the theme to the scikit-learn style
 html_theme = 'pydata_sphinx_theme'

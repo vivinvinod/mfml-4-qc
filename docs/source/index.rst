@@ -13,25 +13,21 @@ Welcome to MFML-4-QC's documentation!
 API Reference
 =============
 
-MFML Core
----------
-.. currentmodule:: mfml_qc
-
-.. autoclass:: mfml_qc.mfml.ModelMFML
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Active Learning
----------------
-.. automodule:: mfml_qc.active_learning
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 Representations
 ---------------
 .. automodule:: mfml_qc.representations
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Data Loaders & Utilities
+------------------------
+.. automodule:: mfml_qc.datasets
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. automodule:: mfml_qc.utils
    :members:
    :undoc-members:
    :show-inheritance:
@@ -60,17 +56,23 @@ Quantum Chemistry Oracles
    :undoc-members:
    :show-inheritance:
 
-Data Loaders & Utilities
-------------------------
-.. automodule:: mfml_qc.datasets
+
+Multifidelity Machine Learning
+---------
+.. currentmodule:: mfml_qc
+
+.. autoclass:: mfml_qc.mfml.ModelMFML
    :members:
    :undoc-members:
    :show-inheritance:
 
-.. automodule:: mfml_qc.utils
+Active Learning
+---------------
+.. automodule:: mfml_qc.active_learning
    :members:
    :undoc-members:
    :show-inheritance:
+
 
 Indices and tables
 ==================
