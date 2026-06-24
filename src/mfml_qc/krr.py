@@ -199,7 +199,7 @@ def laplacian_kernel_symmetric(X: np.ndarray, sigma: float = 100.0) -> np.ndarra
     $$
     K(x_i,x_j) := \exp\left(\frac{-||x_i - x_j||_1}{\sigma}\right)
     $$
-
+    
     Parameters
     ----------
     X : np.ndarray
@@ -232,6 +232,24 @@ def laplacian_kernel_asymmetric(
 ) -> np.ndarray:
     """
     Function to generate the asymmetric Laplacian kernel matrix for a given kernel width, $\sigma$.
+    The Laplacian kernel matrix entry for some $x_i \in X_{test}, x_j \in X_{train}$ is computed as:
+    $$
+    K(x_i,x_j) := \exp\left(\frac{-||x_i - x_j||_1}{\sigma}\right)
+    $$
+    
+    Parameters
+    ----------
+    X_train : np.ndarray
+        The first matrix of input features (e.g., training set).
+    X_test : np.ndarray
+        The second matrix of input features (e.g., test set).
+    sigma : float, optional
+        The kernel width parameter. The default is 100.0.
+
+    Returns
+    -------
+    K : np.ndarray
+        Asymmetric Laplacian kernel matrix for given inputs X_train and X_test.
     """
     n_train = X_train.shape[0]
     n_test = X_test.shape[0]
@@ -250,7 +268,35 @@ def laplacian_kernel_asymmetric(
 def _wasserstein_dist(
     a_sorted: np.ndarray, b_sorted: np.ndarray, p: float, q: float
 ) -> float:
-    """Helper function to evaluate the 1D Wasserstein distance between two sets of sorted features."""
+    """
+    Helper function to evaluate the 1D Wasserstein distance between two sets of sorted features.
+
+    This function calculates the Wasserstein distance using the 1D empirical 
+    cumulative distribution functions (CDFs) of the input arrays.
+    
+    Mathematically, the $p$-Wasserstein distance between two 1D distributions 
+    with CDFs $F_a$ and $F_b$ is computed as:
+    $$
+    W_p(a, b) = \left( \int_{-\infty}^{\infty} |F_a(x) - F_b(x)|^p dx \right)^{1/p}
+    $$
+    This function then applies an outer exponent $q$, returning $W_p(a, b)^q$.
+
+    Parameters
+    ----------
+    a_sorted : np.ndarray
+        A 1D array of sorted features for the first sample.
+    b_sorted : np.ndarray
+        A 1D array of sorted features for the second sample.
+    p : float
+        The power parameter for the CDF difference (Wasserstein-p).
+    q : float
+        The outer exponent applied to the final distance metric.
+
+    Returns
+    -------
+    float
+        The calculated Wasserstein distance between the two feature sets.
+    """
     m = a_sorted.shape[0]
     all_values = np.empty(2 * m, dtype=np.float64)
     all_values[:m] = a_sorted
@@ -276,11 +322,19 @@ def wasserstein_kernel_symmetric(
 ) -> np.ndarray:
     """
     Function to generate the symmetric Wasserstein kernel matrix based on 1D representations.
-
+    
+    The Wasserstein kernel matrix entry for some $x_i, x_j$ is computed as:
+    $$
+    K(x_i,x_j) := \exp\left(-\frac{W_p(x_i, x_j)^q}{\sigma}\right)
+    $$
+    where $W_p$ is the 1-dimensional Wasserstein distance between the sorted features.
+    
     Parameters
     ----------
-    X : np.ndarray
-        The matrix of input features.
+    X_train : np.ndarray
+        The first matrix of input features (e.g., training set).
+    X_test : np.ndarray
+        The second matrix of input features (e.g., test set).
     sigma : float, optional
         The kernel width parameter. The default is 100.0.
     p : float, optional
@@ -291,7 +345,7 @@ def wasserstein_kernel_symmetric(
     Returns
     -------
     K : np.ndarray
-        Symmetric Wasserstein kernel matrix.
+        Asymmetric Wasserstein kernel matrix.
     """
     n = X.shape[0]
     # Pre-sort all features along the rows once to avoid redundant sorting in the loops
@@ -321,6 +375,30 @@ def wasserstein_kernel_asymmetric(
 ) -> np.ndarray:
     """
     Function to generate the asymmetric Wasserstein kernel matrix based on 1D representations.
+    
+    The Wasserstein kernel matrix entry for some $x_i \in X_{test}, x_j \in X_{train}$ is computed as:
+    $$
+    K(x_i,x_j) := \exp\left(-\frac{W_p(x_i, x_j)^q}{\sigma}\right)
+    $$
+    where $W_p$ is the 1-dimensional Wasserstein distance between the sorted features.
+    
+    Parameters
+    ----------
+    X_train : np.ndarray
+        The first matrix of input features (e.g., training set).
+    X_test : np.ndarray
+        The second matrix of input features (e.g., test set).
+    sigma : float, optional
+        The kernel width parameter. The default is 100.0.
+    p : float, optional
+        The power parameter for the CDF difference. The default is 1.0.
+    q : float, optional
+        The outer exponent parameter. The default is 1.0.
+
+    Returns
+    -------
+    K : np.ndarray
+        Asymmetric Wasserstein kernel matrix.
     """
     n_train = X_train.shape[0]
     n_test = X_test.shape[0]
@@ -345,7 +423,10 @@ def wasserstein_kernel_asymmetric(
 
 class KRR:
     """
-    Kernel Ridge Regression
+    Kernel Ridge Regression (KRR) model.
+
+    This class implements a lightweight, pure-NumPy KRR solver tailored 
+    for the ultra-fast Numba-compiled kernels provided in this module.
     """
 
     def __init__(
@@ -357,6 +438,26 @@ class KRR:
         q: float = 1.0,
         reg: float = 1e-10,
     ):
+        """
+        Initializes the KRR model.
+
+        Parameters
+        ----------
+        kernel_type : str, optional
+            The type of kernel to use ('matern', 'gaussian', 'laplacian', or 'wasserstein'). 
+            The default is 'matern'.
+        sigma : float, optional
+            The kernel width parameter. The default is 100.0.
+        nu : float, optional
+            The smoothness parameter for the Matérn kernel. The default is 1.5.
+        p : float, optional
+            The power parameter for the Wasserstein kernel. The default is 1.0.
+        q : float, optional
+            The outer exponent parameter for the Wasserstein kernel. The default is 1.0.
+        reg : float, optional
+            The regularization parameter (lambda) added to the diagonal of the 
+            kernel matrix to prevent overfitting and singular matrices. The default is 1e-10.
+        """
         self.kernel_type = kernel_type
         self.sigma = sigma
         self.nu = nu
@@ -369,7 +470,22 @@ class KRR:
     def _generate_kernel(
         self, X_train: np.ndarray, X_test: np.ndarray = None
     ) -> np.ndarray:
-        """Helper to generate the requested kernel matrix."""
+        """
+        Helper method to generate the requested kernel matrix.
+
+        Parameters
+        ----------
+        X_train : np.ndarray
+            The training feature matrix.
+        X_test : np.ndarray, optional
+            The testing feature matrix. If provided, generates an asymmetric kernel. 
+            If None, generates a symmetric training kernel. The default is None.
+
+        Returns
+        -------
+        np.ndarray
+            The evaluated kernel matrix.
+        """
         if self.kernel_type == "matern":
             if X_test is None:
                 return matern_kernel_symmetric(X_train, sigma=self.sigma, nu=self.nu)
@@ -403,11 +519,14 @@ class KRR:
 
     def train(self, X_train: np.ndarray, y_train: np.ndarray):
         """
-        Fits the KRR model
-
-        Args:
-            X_train (np.ndarray): Training feature data.
-            y_train (np.ndarray): Training target data.
+        Fits the Kernel Ridge Regression model to the training data.
+        
+        Parameters
+        ----------
+        X_train : np.ndarray
+            The training feature data matrix.
+        y_train : np.ndarray
+            The training target data array.
         """
         self.X_train = np.copy(X_train)
 
@@ -423,12 +542,21 @@ class KRR:
     def predict(self, X_test: np.ndarray) -> np.ndarray:
         """
         Predicts target values for the given test data.
-
-        Args:
-            X_test (np.ndarray): Testing feature data.
-
-        Returns:
-            np.ndarray: Predicted values.
+        
+        Parameters
+        ----------
+        X_test : np.ndarray
+            The testing feature data matrix.
+            
+        Returns
+        -------
+        np.ndarray
+            The predicted target values.
+            
+        Raises
+        ------
+        ValueError
+            If the model has not been trained yet.
         """
         if self.alphas is None or self.X_train is None:
             raise ValueError("The model has not been trained yet. Call .train() first.")

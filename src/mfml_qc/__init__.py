@@ -1,5 +1,5 @@
 """
-MFML-QC: A Python package for Multifidelity Machine Learning in Quantum Chemistry.
+MFML-4-QC: A Python package for Multifidelity Machine Learning in Quantum Chemistry.
 """
 
-__version__ = "0.0.1"
+__version__ = "0.1.0"

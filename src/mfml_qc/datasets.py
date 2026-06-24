@@ -8,16 +8,36 @@ def load_benzene_data(data_dir: str = None) -> Dict[str, Any]:
     """
     Helper utility to load and parse the built-in Benzene trajectory dataset.
 
-    Args:
-        data_dir (str, optional): Path to the benzene data directory. If None,
-            it dynamically resolves relative to this installed package's directory.
+    This function reads the pre-computed energy and time cost CSV files, 
+    and either loads the cached Coulomb matrices or generates them 
+    dynamically from the provided XYZ trajectory file.
 
-    Returns:
-        dict: A dictionary containing:
-            - 'X_CM': Flattened Coulomb matrices (shape: 15000, 36)
-            - 'energies': Raw energies CSV data (columns: Time, ZINDO, LC-DFTB, ...)
-            - 'timecosts': Time costs CSV data
-            - 'columns': List of string names for each column in the CSVs
+    Parameters
+    ----------
+    data_dir : str, optional
+        Path to the benzene data directory. If None, it dynamically 
+        resolves the path relative to the installed package's directory 
+        (assuming the standard 'data/benzene' repository layout). 
+        Default is None.
+
+    Returns
+    -------
+    dict
+        A dictionary containing the parsed dataset components:
+        - 'X_CM' : np.ndarray
+            Flattened Coulomb matrices (shape: 15000, 36).
+        - 'energies' : np.ndarray
+            Raw energies extracted from the CSV data (columns: Time, ZINDO, LC-DFTB, ...).
+        - 'timecosts' : np.ndarray
+            Time costs extracted from the CSV data.
+        - 'columns' : list of str
+            List of string names corresponding to each column in the CSVs.
+
+    Raises
+    ------
+    FileNotFoundError
+        If the required 'energies.csv' file is not found at the resolved path, 
+        indicating the data has not been downloaded or placed correctly.
     """
     if data_dir is None:
         # Resolve path relative to the installed package directory
@@ -34,10 +54,10 @@ def load_benzene_data(data_dir: str = None) -> Dict[str, Any]:
     if not os.path.exists(csv_path):
         raise FileNotFoundError(
             f"Benzene dataset not found at {data_dir}. "
-            "Ensure you have placed the files in your project's 'data/benzene' directory. If you have not installed the dataset in the pip installation, please do so."
+            "Ensure you have placed the files in your project's 'data/benzene' directory.\nIf you have not installed the dataset in the pip installation, please do so."
         )
 
-    # Generate CM or load if already saved
+    # Generate CM or load if already generated and saved
     if os.path.exists(cm_cache):
         X_CM = np.load(cm_cache)
     else:
