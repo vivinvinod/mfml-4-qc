@@ -199,7 +199,7 @@ def laplacian_kernel_symmetric(X: np.ndarray, sigma: float = 100.0) -> np.ndarra
     $$
     K(x_i,x_j) := \exp\left(\frac{-||x_i - x_j||_1}{\sigma}\right)
     $$
-    
+
     Parameters
     ----------
     X : np.ndarray
@@ -236,7 +236,7 @@ def laplacian_kernel_asymmetric(
     $$
     K(x_i,x_j) := \exp\left(\frac{-||x_i - x_j||_1}{\sigma}\right)
     $$
-    
+
     Parameters
     ----------
     X_train : np.ndarray
@@ -271,10 +271,10 @@ def _wasserstein_dist(
     """
     Helper function to evaluate the 1D Wasserstein distance between two sets of sorted features.
 
-    This function calculates the Wasserstein distance using the 1D empirical 
+    This function calculates the Wasserstein distance using the 1D empirical
     cumulative distribution functions (CDFs) of the input arrays.
-    
-    Mathematically, the $p$-Wasserstein distance between two 1D distributions 
+
+    Mathematically, the $p$-Wasserstein distance between two 1D distributions
     with CDFs $F_a$ and $F_b$ is computed as:
     $$
     W_p(a, b) = \left( \int_{-\infty}^{\infty} |F_a(x) - F_b(x)|^p dx \right)^{1/p}
@@ -322,13 +322,13 @@ def wasserstein_kernel_symmetric(
 ) -> np.ndarray:
     """
     Function to generate the symmetric Wasserstein kernel matrix based on 1D representations.
-    
+
     The Wasserstein kernel matrix entry for some $x_i, x_j$ is computed as:
     $$
     K(x_i,x_j) := \exp\left(-\frac{W_p(x_i, x_j)^q}{\sigma}\right)
     $$
     where $W_p$ is the 1-dimensional Wasserstein distance between the sorted features.
-    
+
     Parameters
     ----------
     X_train : np.ndarray
@@ -375,13 +375,13 @@ def wasserstein_kernel_asymmetric(
 ) -> np.ndarray:
     """
     Function to generate the asymmetric Wasserstein kernel matrix based on 1D representations.
-    
+
     The Wasserstein kernel matrix entry for some $x_i \in X_{test}, x_j \in X_{train}$ is computed as:
     $$
     K(x_i,x_j) := \exp\left(-\frac{W_p(x_i, x_j)^q}{\sigma}\right)
     $$
     where $W_p$ is the 1-dimensional Wasserstein distance between the sorted features.
-    
+
     Parameters
     ----------
     X_train : np.ndarray
@@ -425,7 +425,7 @@ class KRR:
     """
     Kernel Ridge Regression (KRR) model.
 
-    This class implements a lightweight, pure-NumPy KRR solver tailored 
+    This class implements a lightweight, pure-NumPy KRR solver tailored
     for the ultra-fast Numba-compiled kernels provided in this module.
     """
 
@@ -444,7 +444,7 @@ class KRR:
         Parameters
         ----------
         kernel_type : str, optional
-            The type of kernel to use ('matern', 'gaussian', 'laplacian', or 'wasserstein'). 
+            The type of kernel to use ('matern', 'gaussian', 'laplacian', or 'wasserstein').
             The default is 'matern'.
         sigma : float, optional
             The kernel width parameter. The default is 100.0.
@@ -455,7 +455,7 @@ class KRR:
         q : float, optional
             The outer exponent parameter for the Wasserstein kernel. The default is 1.0.
         reg : float, optional
-            The regularization parameter (lambda) added to the diagonal of the 
+            The regularization parameter (lambda) added to the diagonal of the
             kernel matrix to prevent overfitting and singular matrices. The default is 1e-10.
         """
         self.kernel_type = kernel_type
@@ -478,7 +478,7 @@ class KRR:
         X_train : np.ndarray
             The training feature matrix.
         X_test : np.ndarray, optional
-            The testing feature matrix. If provided, generates an asymmetric kernel. 
+            The testing feature matrix. If provided, generates an asymmetric kernel.
             If None, generates a symmetric training kernel. The default is None.
 
         Returns
@@ -520,7 +520,7 @@ class KRR:
     def train(self, X_train: np.ndarray, y_train: np.ndarray):
         """
         Fits the Kernel Ridge Regression model to the training data.
-        
+
         Parameters
         ----------
         X_train : np.ndarray
@@ -542,17 +542,17 @@ class KRR:
     def predict(self, X_test: np.ndarray) -> np.ndarray:
         """
         Predicts target values for the given test data.
-        
+
         Parameters
         ----------
         X_test : np.ndarray
             The testing feature data matrix.
-            
+
         Returns
         -------
         np.ndarray
             The predicted target values.
-            
+
         Raises
         ------
         ValueError

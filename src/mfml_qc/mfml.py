@@ -23,11 +23,11 @@ from .utils import property_differences
 class ModelMFML:
     """
     The Multi-Fidelity Machine Learning (MFML) model.
-    
-    This class carries out the training and prediction of 
-    MFML models. It supports both standard MFML and the 
+
+    This class carries out the training and prediction of
+    MFML models. It supports both standard MFML and the
     optimzied MFML (o-MFML) models which are data-adaptive
-    combinations of the sub-models. 
+    combinations of the sub-models.
     """
 
     def __init__(
@@ -49,7 +49,7 @@ class ModelMFML:
         reg : float, optional
             Regularization parameter for the built-in KRR. Defaults to 1e-9.
         kernel : str, optional
-            Kernel type ('matern', 'gaussian', 'laplacian', 'wasserstein', 'linear'). 
+            Kernel type ('matern', 'gaussian', 'laplacian', 'wasserstein', 'linear').
             Defaults to "matern".
         sigma : float, optional
             Kernel width parameter for the default KRR estimator. Defaults to 715.0.
@@ -60,11 +60,11 @@ class ModelMFML:
         q : float, optional
             Outer exponent parameter for the Wasserstein kernel. Defaults to 1.0.
         p_bar : bool, optional
-            Enables or disables the tqdm progress bars during training and prediction. 
+            Enables or disables the tqdm progress bars during training and prediction.
             Defaults to False.
         base_estimator : object, optional
-            A custom ML model instance to use (e.g., from scikit-learn). 
-            If None, defaults to the built-in KRR. Must have a `.fit(X, y)` 
+            A custom ML model instance to use (e.g., from scikit-learn).
+            If None, defaults to the built-in KRR. Must have a `.fit(X, y)`
             or `.train(X, y)` method, and a `.predict(X)` method.
         """
         self.reg = reg
@@ -95,21 +95,21 @@ class ModelMFML:
 
     def _generate_nested_indexes(self, n_trains=None, shuffle=False, seed=0):
         """
-        Subsets the data indexes to match specified training set sizes while 
+        Subsets the data indexes to match specified training set sizes while
         strictly retaining the nested multifidelity structure.
 
         Uses a bottom-up approach:
         1. Selects from the lowest fidelity (baseline).
-        2. For subsequent higher fidelities, selects ONLY from the subset 
+        2. For subsequent higher fidelities, selects ONLY from the subset
            chosen in the previous fidelity.
 
         Parameters
         ----------
         n_trains : np.ndarray, optional
-            Array specifying the target number of training samples for each fidelity. 
+            Array specifying the target number of training samples for each fidelity.
             If None, uses all available samples.
         shuffle : bool, optional
-            If True, randomizes the selection deterministically based on the seed. 
+            If True, randomizes the selection deterministically based on the seed.
             If False, sequentially selects the first valid nested matches.
         seed : int, optional
             Random seed used for shuffling. Defaults to 0.
@@ -117,7 +117,7 @@ class ModelMFML:
         Returns
         -------
         np.ndarray
-            An object array of shape (nfids,) containing the patched index mappings 
+            An object array of shape (nfids,) containing the patched index mappings
             for each fidelity level.
         """
         import warnings
@@ -179,13 +179,13 @@ class ModelMFML:
         return subset_index_array
 
     def y_train_breakup(self):
-    	"""
-        Extracts the target property arrays (y) for the required 
+        """
+        Extracts the target property arrays (y) for the required
         multifidelity sub-models.
 
-        For N fidelities, the MFML method requires 2N - 1 sub-models: 
-        N models trained on the target properties directly (upper), and 
-        N - 1 models trained on the lower fidelity representations of the 
+        For N fidelities, the MFML method requires 2N - 1 sub-models:
+        N models trained on the target properties directly (upper), and
+        N - 1 models trained on the lower fidelity representations of the
         higher fidelity subsets (lower).
         """
         n = self.indexes.shape[0]
@@ -211,10 +211,10 @@ class ModelMFML:
         self.y_trains = y_trains
 
     def X_train_breakup(self):
-    	"""
+        """
         Extracts the feature matrices (X) for each fidelity level.
 
-        Slices the master `X_train_parent` array using the parsed nested indexes 
+        Slices the master `X_train_parent` array using the parsed nested indexes
         so that each fidelity level has a corresponding, correctly sized feature matrix.
         """
         n = self.indexes.shape[0]
@@ -226,7 +226,7 @@ class ModelMFML:
 
     def _get_optimizer_kernel(self, X1, X2, ktype, sigma, order_nu, metric_p):
         """
-        Helper method to evaluate specific kernel matrices for the KRR/CompKRR optimizers 
+        Helper method to evaluate specific kernel matrices for the KRR/CompKRR optimizers
         in the o-MFML model. This helper function is also used in the non-linear formulation
         of MFML.
 
@@ -281,8 +281,8 @@ class ModelMFML:
     def _instantiate_and_train(self, X_train: np.ndarray, y_train: np.ndarray):
         """
         Helper method to securely instantiate and train a sub-model.
-        
-        Uses duck typing to support arbitrary model architectures (e.g., standard 
+
+        Uses duck typing to support arbitrary model architectures (e.g., standard
         scikit-learn estimators via `.fit` or the custom KRR via `.train`).
 
         Parameters
@@ -339,7 +339,7 @@ class ModelMFML:
         X_train_parent : np.ndarray
             The complete feature matrix corresponding to the baseline (lowest fidelity) data.
         file_paths : list of str, optional
-            List of paths to property files ordered from lowest to highest fidelity. 
+            List of paths to property files ordered from lowest to highest fidelity.
             Required if `y_trains` and `indexes` are not provided.
         y_trains : np.ndarray, optional
             Precomputed object array of target properties for each fidelity.
@@ -416,7 +416,7 @@ class ModelMFML:
         """
         Predicts target values using the trained multifidelity ensemble.
 
-        Supports standard Single-Grid Combination Technique (SGCT) arithmetic or 
+        Supports standard Single-Grid Combination Technique (SGCT) arithmetic or
         advanced machine-learned combinations (o-MFML) using a validation set.
 
         Parameters
@@ -426,12 +426,12 @@ class ModelMFML:
         X_val : np.ndarray, optional
             Validation feature matrix, required if using an advanced optimizer.
         y_test : np.ndarray, optional
-            True target values for the test set. If provided, computes MAE and RMSE 
+            True target values for the test set. If provided, computes MAE and RMSE
             and saves them to the model object.
         y_val : np.ndarray, optional
             True target values for the validation set, required if using an advanced optimizer.
         optimiser : str, optional
-            The combination strategy to use. Options include: 'default' (SGCT), 
+            The combination strategy to use. Options include: 'default' (SGCT),
             'OLS', 'LRR', 'LASSO', 'MLPR', 'KRR', or 'CompKRR'. Defaults to 'default'.
         **optargs : dict
             Additional hyperparameters to pass to the chosen optimizer model.

@@ -5,9 +5,9 @@ import numpy as np
 
 class QuantumEngine(ABC):
     """
-    Abstract interface for quantum chemistry orcale engines. 
-    Defines the lifecycle of a single calculation. 
-    Any new QC software connector must inherit from this class and implement its 
+    Abstract interface for quantum chemistry orcale engines.
+    Defines the lifecycle of a single calculation.
+    Any new QC software connector must inherit from this class and implement its
     abstract methods.
     """
 
@@ -21,22 +21,22 @@ class QuantumEngine(ABC):
     ) -> Dict[str, Any]:
         """
         The main method called by the Active Learning loop.
-        This method handles the entire lifecycle of a quantum chemistry calculation: 
-        generating the input, running the engine, parsing the results, and 
+        This method handles the entire lifecycle of a quantum chemistry calculation:
+        generating the input, running the engine, parsing the results, and
         optionally cleaning up scratch files.
 
         Parameters
         ----------
         geometry : str or tuple
-            The molecular geometry. Can be a filepath to an XYZ file (str) 
+            The molecular geometry. Can be a filepath to an XYZ file (str)
             or a tuple of (Z, R) coordinate arrays.
         fidelity_params : dict
-            A dictionary of engine-specific parameters for this fidelity 
+            A dictionary of engine-specific parameters for this fidelity
             level (e.g., basis set, functional, convergence criteria).
         work_dir : str
             The directory where temporary input/output files should be written.
         clean : bool, optional
-            If True, calls the `cleanup` method after parsing to delete 
+            If True, calls the `cleanup` method after parsing to delete
             heavy scratch/temporary files. Default is True.
         return_outs : bool, optional
             If True, returns the parsed results dictionary. Default is True.
@@ -44,7 +44,7 @@ class QuantumEngine(ABC):
         Returns
         -------
         dict or None
-            A dictionary of parsed properties (e.g., energies, gradients, success flag) 
+            A dictionary of parsed properties (e.g., energies, gradients, success flag)
             if `return_outs` is True. Otherwise, returns None.
         """
         input_file = self.generate_input(geometry, fidelity_params, work_dir)
@@ -88,7 +88,7 @@ class QuantumEngine(ABC):
         """
         Executes the quantum chemistry program.
 
-        This method should handle subprocess calls, error catching for 
+        This method should handle subprocess calls, error catching for
         crashes, and environment variable setup required by the QC engine.
 
         Parameters
@@ -118,8 +118,8 @@ class QuantumEngine(ABC):
         Returns
         -------
         dict
-            A dictionary containing the extracted properties. 
-            MUST contain at least a 'success': bool key indicating if the 
+            A dictionary containing the extracted properties.
+            MUST contain at least a 'success': bool key indicating if the
             calculation terminated normally without crashing.
         """
         pass
@@ -129,9 +129,9 @@ class QuantumEngine(ABC):
         """
         Removes temporary/scratch files to save disk space.
 
-        This method is called automatically by `evaluate` if `clean=True`. 
-        It should safely attempt to delete massive or unnecessary files 
-        (like wavefunctions, heavy integrals, or checkpoint files) 
+        This method is called automatically by `evaluate` if `clean=True`.
+        It should safely attempt to delete massive or unnecessary files
+        (like wavefunctions, heavy integrals, or checkpoint files)
         while leaving the main output log intact.
 
         Parameters

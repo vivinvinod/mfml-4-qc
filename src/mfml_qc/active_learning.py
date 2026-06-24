@@ -8,9 +8,9 @@ from typing import Union, Dict, Callable
 def _train_estimator(base_estimator: object, X: np.ndarray, y: np.ndarray) -> object:
     """
     Helper function to securely instantiate and train a machine learning model.
-    
-    Uses duck typing to support arbitrary model architectures. The provided 
-    base estimator must implement either a `.fit()` method 
+
+    Uses duck typing to support arbitrary model architectures. The provided
+    base estimator must implement either a `.fit()` method
     or a `.train()` method.
 
     Parameters
@@ -67,7 +67,7 @@ def _gpr_variance(model: object, X_train: np.ndarray, X_pool: np.ndarray) -> np.
     np.ndarray
         A 1D array of computed predictive variances for each point in the pool.
     """
-    
+
     # training kernel
     K_train = model._generate_kernel(X_train)
     K_train[np.diag_indices_from(K_train)] += model.reg
@@ -134,7 +134,7 @@ def _uq_ensemble(
     """
     Helper for Ensemble-based uncertainty quantification.
 
-    Estimates uncertainty by training an ensemble of models on random subsets 
+    Estimates uncertainty by training an ensemble of models on random subsets
     (85%) of the training data and computing the variance of their predictions.
 
     Parameters
@@ -179,7 +179,7 @@ def _uq_lfab(
     """
     Helper for Low Fidelity as Bias (LFaB) uncertainty.
 
-    Estimates uncertainty by using the absolute prediction error of a model 
+    Estimates uncertainty by using the absolute prediction error of a model
     trained on a cheap, low-fidelity data.
 
     Parameters
@@ -230,9 +230,9 @@ def active_learning_loop(
 ) -> dict:
     """
     Active Learning (AL) loop for training data sampling.
-    
-    Iteratively trains a model, evaluates the uncertainty of an unlabeled/pool 
-    dataset using a specified strategy, and selects the most uncertain sample 
+
+    Iteratively trains a model, evaluates the uncertainty of an unlabeled/pool
+    dataset using a specified strategy, and selects the most uncertain sample
     to add to the training set for the next iteration.
 
     Parameters
@@ -240,7 +240,7 @@ def active_learning_loop(
     X_train : np.ndarray
         The initial training feature matrix.
     y_train : np.ndarray or dict
-        The initial training target data. If using 'lfab', `y_train` must 
+        The initial training target data. If using 'lfab', `y_train` must
         be a dict structured as `{'low': ..., 'high': ...}`.
     X_pool : np.ndarray
         The pool feature matrix from which new samples are selected.
@@ -249,9 +249,9 @@ def active_learning_loop(
     base_estimator : object
         The machine learning model providing `.train()`/`.fit()` and `.predict()`.
     uq_mode : str or callable, optional
-        The uncertainty quantification strategy. Options are 'variance', 'ensemble', 
-        'lfab', or a custom function: 
-        `func(model, X_pool, y_pool, base_estimator, X_train, y_train, **kwargs)`. 
+        The uncertainty quantification strategy. Options are 'variance', 'ensemble',
+        'lfab', or a custom function:
+        `func(model, X_pool, y_pool, base_estimator, X_train, y_train, **kwargs)`.
         Defaults to 'variance'.
     al_iters : int, optional
         Number of active learning loops (samples to select). Defaults to 500.

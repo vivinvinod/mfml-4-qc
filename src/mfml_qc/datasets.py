@@ -8,16 +8,16 @@ def load_benzene_data(data_dir: str = None) -> Dict[str, Any]:
     """
     Helper utility to load and parse the built-in Benzene trajectory dataset.
 
-    This function reads the pre-computed energy and time cost CSV files, 
-    and either loads the cached Coulomb matrices or generates them 
+    This function reads the pre-computed energy and time cost CSV files,
+    and either loads the cached Coulomb matrices or generates them
     dynamically from the provided XYZ trajectory file.
 
     Parameters
     ----------
     data_dir : str, optional
-        Path to the benzene data directory. If None, it dynamically 
-        resolves the path relative to the installed package's directory 
-        (assuming the standard 'data/benzene' repository layout). 
+        Path to the benzene data directory. If None, it dynamically
+        resolves the path relative to the installed package's directory
+        (assuming the standard 'data/benzene' repository layout).
         Default is None.
 
     Returns
@@ -36,7 +36,7 @@ def load_benzene_data(data_dir: str = None) -> Dict[str, Any]:
     Raises
     ------
     FileNotFoundError
-        If the required 'energies.csv' file is not found at the resolved path, 
+        If the required 'energies.csv' file is not found at the resolved path,
         indicating the data has not been downloaded or placed correctly.
     """
     if data_dir is None:

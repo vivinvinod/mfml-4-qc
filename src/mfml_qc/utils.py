@@ -6,16 +6,16 @@ import os
 def property_differences(file_paths: list):
     """
     Helper utility to parse and align nested multi-fidelity datasets from raw text files.
-    
-    This function loads data from multiple fidelities and builds a strict nested 
-    index mapping. Crucially, it returns the *full* property values for each level 
-    (not the physical deltas), along with index arrays mapping each higher-fidelity 
+
+    This function loads data from multiple fidelities and builds a strict nested
+    index mapping. Crucially, it returns the *full* property values for each level
+    (not the physical deltas), along with index arrays mapping each higher-fidelity
     sample back to its corresponding baseline geometry ID.
 
     Parameters
     ----------
     file_paths : list of str
-        List of exact file paths to the energy/property files. 
+        List of exact file paths to the energy/property files.
         Each file should be formatted with 2 columns: [timestamp/ID, property_value].
         The list MUST be ordered from the lowest fidelity (baseline) to the highest.
 
@@ -23,11 +23,11 @@ def property_differences(file_paths: list):
     -------
     tuple
         A tuple containing `(energy_array, index_array)`:
-        
-        - **energy_array** (*np.ndarray*): A 1D object array of length `num_fidelities`. 
+
+        - **energy_array** (*np.ndarray*): A 1D object array of length `num_fidelities`.
           Each element is a 1D NumPy float array of the extracted property values for that fidelity.
-        - **index_array** (*np.ndarray*): A 1D object array of length `num_fidelities`. 
-          Each element is a 2D NumPy integer array of shape `(N, 2)`. The columns 
+        - **index_array** (*np.ndarray*): A 1D object array of length `num_fidelities`.
+          Each element is a 2D NumPy integer array of shape `(N, 2)`. The columns
           represent `[baseline_row_index, current_fidelity_row_index]`.
 
     Raises

@@ -9,7 +9,7 @@ from .base import QuantumEngine
 class PySCFEngine(QuantumEngine):
     """
     Implementation for the PySCF library as the quantum chemsitry engine.
-    This script is untested and is under works. 
+    This script is untested and is under works.
     """
 
     def __init__(self, python_executable: str = sys.executable):
