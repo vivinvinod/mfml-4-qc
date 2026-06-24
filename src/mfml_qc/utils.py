@@ -5,23 +5,35 @@ import os
 
 def property_differences(file_paths: list):
     """
-    Function to generate property differences and indexes between fidelities.
-    The first object in the diff_array is the baseline fidelity.
-    The subsequent objects are differences between corresponding fidelities.
+    Helper utility to parse and align nested multi-fidelity datasets from raw text files.
+    
+    This function loads data from multiple fidelities and builds a strict nested 
+    index mapping. Crucially, it returns the *full* property values for each level 
+    (not the physical deltas), along with index arrays mapping each higher-fidelity 
+    sample back to its corresponding baseline geometry ID.
 
     Parameters
     ----------
     file_paths : list of str
-        List of exact file paths to the energy/property files.
-        Files should have 2 columns: [timestamp/ID, property_value].
-        Must be ordered from lowest fidelity (baseline) to highest.
+        List of exact file paths to the energy/property files. 
+        Each file should be formatted with 2 columns: [timestamp/ID, property_value].
+        The list MUST be ordered from the lowest fidelity (baseline) to the highest.
 
     Returns
     -------
-    energy_array : np.ndarray(object)
-        Array of properties for each fidelity.
-    index_array : np.ndarray(object)
-        Array of indexes indicating where the properties are with respect to the baseline.
+    tuple
+        A tuple containing `(energy_array, index_array)`:
+        
+        - **energy_array** (*np.ndarray*): A 1D object array of length `num_fidelities`. 
+          Each element is a 1D NumPy float array of the extracted property values for that fidelity.
+        - **index_array** (*np.ndarray*): A 1D object array of length `num_fidelities`. 
+          Each element is a 2D NumPy integer array of shape `(N, 2)`. The columns 
+          represent `[baseline_row_index, current_fidelity_row_index]`.
+
+    Raises
+    ------
+    FileNotFoundError
+        If the baseline file (the first path in `file_paths`) cannot be located.
     """
     num_fidelities = len(file_paths)
     energy_array = np.zeros((num_fidelities), dtype=object)

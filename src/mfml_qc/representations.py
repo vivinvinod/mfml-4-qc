@@ -3,6 +3,11 @@ import numpy as np
 from numba import njit, prange
 from tqdm.auto import tqdm
 
+"""
+The dictionary below is the periodic table elements and their atomic numbers. 
+This is needed to generated the CM.
+"""
+
 ATOMIC_NUMBERS = {
     "H": 1,
     "He": 2,
@@ -128,15 +133,16 @@ ATOMIC_NUMBERS = {
 @njit(fastmath=True)
 def compute_flat_coulomb(Z: np.ndarray, R: np.ndarray) -> np.ndarray:
     """
-    Function to generate 1D flattened unsorted Coulomb matrix (diagonal + upper triangle)
-
+    Computes the 1D flattened unsorted Coulomb matrix (diagonal + upper triangle)
+    using ultra-fast compiled C loops.
+    
     Parameters
     ----------
     Z : np.ndarray
         1D array of nuclear charges (shape: N,)
     R : np.ndarray
         2D array of Cartesian coordinates (shape: N, 3)
-
+        
     Returns
     -------
     np.ndarray
@@ -170,12 +176,16 @@ def compute_flat_coulomb(Z: np.ndarray, R: np.ndarray) -> np.ndarray:
 def parse_trajectory(filepath: str) -> list:
     """
     Reads a concatenated XYZ file entirely in memory, avoiding slow disk I/O.
-
-    Args:
-        filepath (str): Path to the concatenated .xyz file.
-
-    Returns:
-        list of tuples: A list where each element is a tuple of (nuclear_charges, coordinates).
+    
+    Parameters
+    ----------
+    filepath : str
+        Path to the concatenated .xyz file.
+        
+    Returns
+    -------
+    list of tuples
+        A list where each element is a tuple of (nuclear_charges, coordinates).
     """
     geometries = []
 
@@ -214,14 +224,38 @@ def generate_coulomb_matrices(xyz_filepath: str, save_path: str = None) -> np.nd
     Extracts geometries from a concatenated XYZ file and generates
     flattened, unsorted Coulomb matrices for the entire dataset.
 
-    Args:
-        xyz_filepath (str): Path to the source .xyz file.
-        save_path (str, optional): If provided, saves the output array to this
-            filepath as a .npy file (e.g., 'data/CH3Cl_CM.npy').
+    The Coulomb matrix $C$ is a global structural representation defined by two cases:
+    
+    1. Diagonal elements (approximate atomic energies):
+       $$C_{ii} = 0.5 Z_i^{2.4}$$
+       
+    2. Off-diagonal elements (Coulomb repulsion):
+       $$C_{ij} = \frac{Z_i Z_j}{||\mathbf{R}_i - \mathbf{R}_j||_2} \quad \text{for } i \neq j$$
+       
+    where $Z_i$ is the atomic number and $\mathbf{R}_i$ is the Cartesian coordinate of atom $i$.
+    This function flattens the upper triangle (including the diagonal) into a 1D vector.
 
-    Returns:
-        np.ndarray: A 2D array of shape (n_geometries, n_features) containing
-            the flattened Coulomb matrices.
+    Parameters
+    ----------
+    xyz_filepath : str
+        Path to the source .xyz file.
+    save_path : str, optional
+        If provided, saves the output array to this filepath as a .npy file 
+        (e.g., 'data/CH3Cl_CM.npy').
+
+    Returns
+    -------
+    np.ndarray
+        A 2D array of shape (n_geometries, n_features) containing
+        the flattened Coulomb matrices.
+        
+    Raises
+    ------
+    FileNotFoundError
+        If the specified XYZ file does not exist.
+    ValueError
+        If the XYZ file is empty, or if geometries within the trajectory 
+        have inconsistent numbers of atoms.
     """
     if not os.path.exists(xyz_filepath):
         raise FileNotFoundError(f"Could not find the dataset at {xyz_filepath}")

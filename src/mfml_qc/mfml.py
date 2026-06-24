@@ -21,7 +21,14 @@ from .utils import property_differences
 
 
 class ModelMFML:
-    """Class to perform model difference MFML."""
+    """
+    The Multi-Fidelity Machine Learning (MFML) model.
+    
+    This class carries out the training and prediction of 
+    MFML models. It supports both standard MFML and the 
+    optimzied MFML (o-MFML) models which are data-adaptive
+    combinations of the sub-models. 
+    """
 
     def __init__(
         self,
@@ -35,23 +42,30 @@ class ModelMFML:
         base_estimator: object = None,
     ):
         """
+        Initializes the MFML model class.
+
         Parameters
         ----------
-        reg : float
-            Regularization parameter for KRR. Defaults to 1e-9.
-        kernel : str
-            Kernel type ('matern', 'gaussian', 'laplacian', 'wasserstein', 'linear').
-        sigma : float
-            Kernel width parameter.
-        nu : float
-            Smoothness parameter for Matern kernel (0.5, 1.5, 2.5).
-        p, q : float
-            Parameters for Wasserstein kernel.
-        p_bar : bool
-            Enables or disables tqdm progress bar.
+        reg : float, optional
+            Regularization parameter for the built-in KRR. Defaults to 1e-9.
+        kernel : str, optional
+            Kernel type ('matern', 'gaussian', 'laplacian', 'wasserstein', 'linear'). 
+            Defaults to "matern".
+        sigma : float, optional
+            Kernel width parameter for the default KRR estimator. Defaults to 715.0.
+        nu : float, optional
+            Smoothness parameter for the Matérn kernel (0.5, 1.5, 2.5). Defaults to 1.5.
+        p : float, optional
+            Power parameter for the Wasserstein kernel. Defaults to 1.0.
+        q : float, optional
+            Outer exponent parameter for the Wasserstein kernel. Defaults to 1.0.
+        p_bar : bool, optional
+            Enables or disables the tqdm progress bars during training and prediction. 
+            Defaults to False.
         base_estimator : object, optional
-            A custom ML model instance to use. Default is the inbuilt KRR.
-            Must have a `.fit(X, y)` or `.train(X, y)` method, and a `.predict(X)` method.
+            A custom ML model instance to use (e.g., from scikit-learn). 
+            If None, defaults to the built-in KRR. Must have a `.fit(X, y)` 
+            or `.train(X, y)` method, and a `.predict(X)` method.
         """
         self.reg = reg
         self.kernel = kernel
@@ -81,11 +95,30 @@ class ModelMFML:
 
     def _generate_nested_indexes(self, n_trains=None, shuffle=False, seed=0):
         """
-        Subsets the indexes to match n_trains while strictly retaining nested structure.
-        If shuffle is True, it randomizes the selection deterministically based on the seed.
-        If shuffle is False, it sequentially selects the first valid nested matches.
+        Subsets the data indexes to match specified training set sizes while 
+        strictly retaining the nested multifidelity structure.
+
+        Uses a bottom-up approach:
         1. Selects from the lowest fidelity (baseline).
-        2. For subsequent higher fidelities, selects ONLY from the subset chosen in the previous fidelity.
+        2. For subsequent higher fidelities, selects ONLY from the subset 
+           chosen in the previous fidelity.
+
+        Parameters
+        ----------
+        n_trains : np.ndarray, optional
+            Array specifying the target number of training samples for each fidelity. 
+            If None, uses all available samples.
+        shuffle : bool, optional
+            If True, randomizes the selection deterministically based on the seed. 
+            If False, sequentially selects the first valid nested matches.
+        seed : int, optional
+            Random seed used for shuffling. Defaults to 0.
+
+        Returns
+        -------
+        np.ndarray
+            An object array of shape (nfids,) containing the patched index mappings 
+            for each fidelity level.
         """
         import warnings
 
@@ -95,7 +128,7 @@ class ModelMFML:
 
         subset_index_array = np.zeros((nfids), dtype=object)
 
-        # Use a local random state to avoid mutating the global seed
+        # set seed
         rng = np.random.RandomState(seed) if shuffle else None
 
         # Tracks the selected baseline IDs from the previous (lower) fidelity
@@ -146,6 +179,15 @@ class ModelMFML:
         return subset_index_array
 
     def y_train_breakup(self):
+    	"""
+        Extracts the target property arrays (y) for the required 
+        multifidelity sub-models.
+
+        For N fidelities, the MFML method requires 2N - 1 sub-models: 
+        N models trained on the target properties directly (upper), and 
+        N - 1 models trained on the lower fidelity representations of the 
+        higher fidelity subsets (lower).
+        """
         n = self.indexes.shape[0]
         y_trains = np.zeros((2 * n - 1), dtype=object)
         count = 0
@@ -169,6 +211,12 @@ class ModelMFML:
         self.y_trains = y_trains
 
     def X_train_breakup(self):
+    	"""
+        Extracts the feature matrices (X) for each fidelity level.
+
+        Slices the master `X_train_parent` array using the parsed nested indexes 
+        so that each fidelity level has a corresponding, correctly sized feature matrix.
+        """
         n = self.indexes.shape[0]
         X_trains = np.zeros((n), dtype=object)
         for i in tqdm(range(n), desc="Extracting X_trains", leave=self.p_bar):
@@ -177,7 +225,31 @@ class ModelMFML:
         self.X_trains = np.copy(X_trains)
 
     def _get_optimizer_kernel(self, X1, X2, ktype, sigma, order_nu, metric_p):
-        """Helper for the KRR/CompKRR optimizer kernels."""
+        """
+        Helper method to evaluate specific kernel matrices for the KRR/CompKRR optimizers 
+        in the o-MFML model. This helper function is also used in the non-linear formulation
+        of MFML.
+
+        Parameters
+        ----------
+        X1 : np.ndarray
+            First input feature matrix.
+        X2 : np.ndarray or None
+            Second input feature matrix. If None, computes a symmetric kernel.
+        ktype : str
+            Kernel type ('matern', 'gaussian', 'laplacian', 'wasserstein', 'linear').
+        sigma : float
+            Kernel width parameter.
+        order_nu : float
+            Smoothness parameter for Matérn kernel.
+        metric_p : float
+            Power parameter for Wasserstein kernel.
+
+        Returns
+        -------
+        np.ndarray
+            The computed kernel matrix.
+        """
         if ktype == "gaussian":
             return (
                 gaussian_kernel_symmetric(X1, sigma)
@@ -207,7 +279,24 @@ class ModelMFML:
             return np.dot(X1, X1.T) if X2 is None else np.dot(X2, X1.T)
 
     def _instantiate_and_train(self, X_train: np.ndarray, y_train: np.ndarray):
-        """Helper to cleanly instantiate a model and train it. Uses duck typing so it allows for any model architecture."""
+        """
+        Helper method to securely instantiate and train a sub-model.
+        
+        Uses duck typing to support arbitrary model architectures (e.g., standard 
+        scikit-learn estimators via `.fit` or the custom KRR via `.train`).
+
+        Parameters
+        ----------
+        X_train : np.ndarray
+            Training feature matrix.
+        y_train : np.ndarray
+            Training target array.
+
+        Returns
+        -------
+        object
+            The trained model instance.
+        """
         if self.base_estimator is None:
             model = KRR(
                 kernel_type=self.kernel,
@@ -242,6 +331,32 @@ class ModelMFML:
         n_trains: np.ndarray = None,
         seed: int = 0,
     ):
+        """
+        Multifidelity data extraction and training of the sub-models.
+
+        Parameters
+        ----------
+        X_train_parent : np.ndarray
+            The complete feature matrix corresponding to the baseline (lowest fidelity) data.
+        file_paths : list of str, optional
+            List of paths to property files ordered from lowest to highest fidelity. 
+            Required if `y_trains` and `indexes` are not provided.
+        y_trains : np.ndarray, optional
+            Precomputed object array of target properties for each fidelity.
+        indexes : np.ndarray, optional
+            Precomputed object array of nested mapping indexes.
+        shuffle : bool, optional
+            If True, randomly shuffles the selected nested subsets. Defaults to False.
+        n_trains : np.ndarray, optional
+            Array specifying the target number of training samples for each fidelity.
+        seed : int, optional
+            Random seed for shuffling. Defaults to 0.
+
+        Raises
+        ------
+        ValueError
+            If neither precomputed arrays (`y_trains`, `indexes`) nor `file_paths` are provided.
+        """
         tstart = time.time()
         self.X_train_parent = np.copy(X_train_parent)
 
@@ -298,6 +413,34 @@ class ModelMFML:
         optimiser: str = "default",
         **optargs,
     ):
+        """
+        Predicts target values using the trained multifidelity ensemble.
+
+        Supports standard Single-Grid Combination Technique (SGCT) arithmetic or 
+        advanced machine-learned combinations (o-MFML) using a validation set.
+
+        Parameters
+        ----------
+        X_test : np.ndarray
+            The testing feature matrix.
+        X_val : np.ndarray, optional
+            Validation feature matrix, required if using an advanced optimizer.
+        y_test : np.ndarray, optional
+            True target values for the test set. If provided, computes MAE and RMSE 
+            and saves them to the model object.
+        y_val : np.ndarray, optional
+            True target values for the validation set, required if using an advanced optimizer.
+        optimiser : str, optional
+            The combination strategy to use. Options include: 'default' (SGCT), 
+            'OLS', 'LRR', 'LASSO', 'MLPR', 'KRR', or 'CompKRR'. Defaults to 'default'.
+        **optargs : dict
+            Additional hyperparameters to pass to the chosen optimizer model.
+
+        Returns
+        -------
+        np.ndarray
+            The final predicted target values for the test set.
+        """
         tstart = time.time()
         nfids = self.indexes.shape[0]
 
