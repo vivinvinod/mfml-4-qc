@@ -4,10 +4,11 @@ import sys
 sys.path.insert(0, os.path.abspath('../../src'))
 
 extensions = [
-    'sphinx.ext.autodoc',      # Automatically pulls docstrings from classes/functions
-    'sphinx.ext.napoleon',     # Allows Sphinx to read Google/NumPy style docstrings
-    'sphinx.ext.viewcode',     # Adds a "[source]" button next to documentation to view the raw Python code
-    'sphinx_gallery.gen_gallery', # Turns your examples/ folder into tutorials
+    'sphinx.ext.autodoc',	# Automatically pulls docstrings from classes/functions
+    'sphinx.ext.napoleon',	# Allows Sphinx to read docstrings
+    'sphinx.ext.viewcode',	# Adds a "[source]" button next to documentation to view the raw Python code
+    'sphinx.ext.mathjax',	# Latex math rendering
+    'sphinx_gallery.gen_gallery', # Turns examples/ folder into tutorials
     'nbsphinx',                # Renders Jupyter notebooks
 ]
 

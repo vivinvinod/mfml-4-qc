@@ -1,0 +1,724 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>mfml_qc.active_learning &#8212; Project name not set  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=a95f357e85573c9b56d5" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=a95f357e85573c9b56d5" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=fd6457a4" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=a95f357e85573c9b56d5"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=a95f357e85573c9b56d5" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=a95f357e85573c9b56d5" />
+
+    <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/sg-tags.js?v=d80f6fa4"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/mfml_qc/active_learning';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Project name not set  documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../auto_examples/index.html">
+    <no title>
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../auto_examples/index.html">
+    <no title>
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">mfml_qc.active_learning</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for mfml_qc.active_learning</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">copy</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tqdm.auto</span><span class="w"> </span><span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Callable</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_train_estimator</span><span class="p">(</span><span class="n">base_estimator</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span> <span class="n">X</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">object</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Helper function to securely instantiate and train a machine learning model.</span>
+
+<span class="sd">    Uses duck typing to support arbitrary model architectures. The provided</span>
+<span class="sd">    base estimator must implement either a `.fit()` method</span>
+<span class="sd">    or a `.train()` method.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    base_estimator : object</span>
+<span class="sd">        The base machine learning model instance to duplicate and train.</span>
+<span class="sd">    X : np.ndarray</span>
+<span class="sd">        The training feature matrix.</span>
+<span class="sd">    y : np.ndarray</span>
+<span class="sd">        The training target array.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    object</span>
+<span class="sd">        A newly trained copy of the base estimator.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    AttributeError</span>
+<span class="sd">        If the estimator lacks both `.train()` and `.fit()` methods.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">base_estimator</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;train&quot;</span><span class="p">):</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;fit&quot;</span><span class="p">):</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span>
+            <span class="s2">&quot;Estimator must have a &#39;.train(X, y)&#39; or &#39;.fit(X, y)&#39; method.&quot;</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="n">model</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_gpr_variance</span><span class="p">(</span><span class="n">model</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span> <span class="n">X_train</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">X_pool</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computes exact predictive variance used in standard GAussian Process Regression.</span>
+
+<span class="sd">    The predictive variance for a set of pool points $x_*$ is computed as:</span>
+<span class="sd">    $$</span>
+<span class="sd">    \\mathbb{V}[f_*] = k(x_*, x_*) - k(X, x_*)^T (K(X, X) + \\lambda I)^{-1} k(X, x_*)</span>
+<span class="sd">    $$</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    model : object</span>
+<span class="sd">        The initialized KRR model containing the `_generate_kernel` method and `reg` attribute.</span>
+<span class="sd">    X_train : np.ndarray</span>
+<span class="sd">        The training feature matrix $X$.</span>
+<span class="sd">    X_pool : np.ndarray</span>
+<span class="sd">        The pool feature matrix containing the points to evaluate $x_*$.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    np.ndarray</span>
+<span class="sd">        A 1D array of computed predictive variances for each point in the pool.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># training kernel</span>
+    <span class="n">K_train</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">_generate_kernel</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+    <span class="n">K_train</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">diag_indices_from</span><span class="p">(</span><span class="n">K_train</span><span class="p">)]</span> <span class="o">+=</span> <span class="n">model</span><span class="o">.</span><span class="n">reg</span>
+
+    <span class="c1"># pool kernel</span>
+    <span class="n">K_pool_train</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">_generate_kernel</span><span class="p">(</span><span class="n">X_train</span><span class="o">=</span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="o">=</span><span class="n">X_pool</span><span class="p">)</span>
+
+    <span class="c1"># For standard stationary kernels (Matern, Gaussian, Laplacian),</span>
+    <span class="c1"># the distance of a point to itself is 0, so exp(0) = 1.0. -&gt; k(x_*, x_*)</span>
+    <span class="n">k_pool_pool_diag</span> <span class="o">=</span> <span class="mf">1.0</span>
+
+    <span class="c1"># (K(X, X) + reg * I)^{-1} k(X, x_*)</span>
+    <span class="n">inv_K_train_dot_K_pt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">K_train</span><span class="p">,</span> <span class="n">K_pool_train</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+
+    <span class="c1"># diagonal of the result</span>
+    <span class="n">variance</span> <span class="o">=</span> <span class="n">k_pool_pool_diag</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">K_pool_train</span> <span class="o">*</span> <span class="n">inv_K_train_dot_K_pt</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">variance</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_uq_variance</span><span class="p">(</span><span class="n">model</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span> <span class="n">X_pool</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">X_train</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Helper function for Variance-based uncertainty quantification.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    model : object</span>
+<span class="sd">        The trained machine learning model.</span>
+<span class="sd">    X_pool : np.ndarray</span>
+<span class="sd">        The pool feature matrix to evaluate.</span>
+<span class="sd">    X_train : np.ndarray</span>
+<span class="sd">        The feature matrix the model was trained on (required for analytic fallback).</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    np.ndarray</span>
+<span class="sd">        A 1D array of variance estimates for the pool data.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    TypeError</span>
+<span class="sd">        If the model does not support `return_std=True` and is not a recognized KRR model.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">std_pool</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_pool</span><span class="p">,</span> <span class="n">return_std</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">std_pool</span><span class="o">**</span><span class="mi">2</span>
+    <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+        <span class="c1"># Fallback to analytical KRR variance</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;_generate_kernel&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;reg&quot;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">_gpr_variance</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">X_pool</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                <span class="s2">&quot;Estimator does not support &#39;return_std=True&#39; and is not a recognized KRR class.&quot;</span>
+            <span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_uq_ensemble</span><span class="p">(</span>
+    <span class="n">base_estimator</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span>
+    <span class="n">X_pool</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">X_train</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">y_train_primary</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">n_ensemble</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Helper for Ensemble-based uncertainty quantification.</span>
+
+<span class="sd">    Estimates uncertainty by training an ensemble of models on random subsets</span>
+<span class="sd">    (85%) of the training data and computing the variance of their predictions.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    base_estimator : object</span>
+<span class="sd">        The base machine learning model to use for the ensemble.</span>
+<span class="sd">    X_pool : np.ndarray</span>
+<span class="sd">        The pool feature matrix to evaluate.</span>
+<span class="sd">    X_train : np.ndarray</span>
+<span class="sd">        The complete training feature matrix.</span>
+<span class="sd">    y_train_primary : np.ndarray</span>
+<span class="sd">        The complete training target array.</span>
+<span class="sd">    n_ensemble : int, optional</span>
+<span class="sd">        The number of models to include in the ensemble. Defaults to 5.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    np.ndarray</span>
+<span class="sd">        A 1D array of ensemble standard deviations for the pool data.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pool_preds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">X_pool</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">n_ensemble</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_ensemble</span><span class="p">):</span>
+        <span class="n">X_sub</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">y_sub</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+            <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train_primary</span><span class="p">,</span> <span class="n">train_size</span><span class="o">=</span><span class="mf">0.85</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">n</span>
+        <span class="p">)</span>
+        <span class="n">ens_model</span> <span class="o">=</span> <span class="n">_train_estimator</span><span class="p">(</span><span class="n">base_estimator</span><span class="p">,</span> <span class="n">X_sub</span><span class="p">,</span> <span class="n">y_sub</span><span class="p">)</span>
+        <span class="n">pool_preds</span><span class="p">[:,</span> <span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">ens_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_pool</span><span class="p">)</span>
+
+    <span class="n">mean_preds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">pool_preds</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_ensemble</span><span class="p">):</span>
+        <span class="n">pool_preds</span><span class="p">[:,</span> <span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">pool_preds</span><span class="p">[:,</span> <span class="n">n</span><span class="p">]</span> <span class="o">-</span> <span class="n">mean_preds</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">pool_preds</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">n_ensemble</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_uq_lfab</span><span class="p">(</span>
+    <span class="n">base_estimator</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span>
+    <span class="n">X_pool</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">y_pool</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Dict</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span>
+    <span class="n">X_train</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">y_train</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Dict</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Helper for Low Fidelity as Bias (LFaB) uncertainty.</span>
+
+<span class="sd">    Estimates uncertainty by using the absolute prediction error of a model</span>
+<span class="sd">    trained on a cheap, low-fidelity data.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    base_estimator : object</span>
+<span class="sd">        The machine learning model to train on the baseline data.</span>
+<span class="sd">    X_pool : np.ndarray</span>
+<span class="sd">        The pool feature matrix to evaluate.</span>
+<span class="sd">    y_pool : dict or np.ndarray</span>
+<span class="sd">        The target data for the pool. Must be a dictionary containing a &#39;low&#39; key.</span>
+<span class="sd">    X_train : np.ndarray</span>
+<span class="sd">        The training feature matrix.</span>
+<span class="sd">    y_train : dict or np.ndarray</span>
+<span class="sd">        The target data for training. Must be a dictionary containing a &#39;low&#39; key.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    np.ndarray</span>
+<span class="sd">        A 1D array of absolute prediction errors on the low-fidelity baseline.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        If `y_train` or `y_pool` are missing the required &#39;low&#39; dictionary keys.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="ow">or</span> <span class="s2">&quot;low&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">y_train</span> <span class="ow">or</span> <span class="s2">&quot;low&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">y_pool</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">&quot;LFaB UQ requires `y_train` and `y_pool` to be dictionaries containing a &#39;low&#39; key.&quot;</span>
+        <span class="p">)</span>
+
+    <span class="n">model_low</span> <span class="o">=</span> <span class="n">_train_estimator</span><span class="p">(</span><span class="n">base_estimator</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">[</span><span class="s2">&quot;low&quot;</span><span class="p">])</span>
+    <span class="n">preds_pool_low</span> <span class="o">=</span> <span class="n">model_low</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_pool</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">y_pool</span><span class="p">[</span><span class="s2">&quot;low&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">preds_pool_low</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="active_learning_loop">
+<a class="viewcode-back" href="../../index.html#mfml_qc.active_learning.active_learning_loop">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">active_learning_loop</span><span class="p">(</span>
+    <span class="n">X_train</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">y_train</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]],</span>
+    <span class="n">X_pool</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">y_pool</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]],</span>
+    <span class="n">base_estimator</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span>
+    <span class="n">uq_mode</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Callable</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;variance&quot;</span><span class="p">,</span>
+    <span class="n">al_iters</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">500</span><span class="p">,</span>
+    <span class="n">X_test</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">y_test</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">p_bar</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">uq_kwargs</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Active Learning (AL) loop for training data sampling.</span>
+
+<span class="sd">    Iteratively trains a model, evaluates the uncertainty of an unlabeled/pool</span>
+<span class="sd">    dataset using a specified strategy, and selects the most uncertain sample</span>
+<span class="sd">    to add to the training set for the next iteration.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    X_train : np.ndarray</span>
+<span class="sd">        The initial training feature matrix.</span>
+<span class="sd">    y_train : np.ndarray or dict</span>
+<span class="sd">        The initial training target data. If using &#39;lfab&#39;, `y_train` must</span>
+<span class="sd">        be a dict structured as `{&#39;low&#39;: ..., &#39;high&#39;: ...}`.</span>
+<span class="sd">    X_pool : np.ndarray</span>
+<span class="sd">        The pool feature matrix from which new samples are selected.</span>
+<span class="sd">    y_pool : np.ndarray or dict</span>
+<span class="sd">        The target data corresponding to the pool (revealed sequentially to the model).</span>
+<span class="sd">    base_estimator : object</span>
+<span class="sd">        The machine learning model providing `.train()`/`.fit()` and `.predict()`.</span>
+<span class="sd">    uq_mode : str or callable, optional</span>
+<span class="sd">        The uncertainty quantification strategy. Options are &#39;variance&#39;, &#39;ensemble&#39;,</span>
+<span class="sd">        &#39;lfab&#39;, or a custom function:</span>
+<span class="sd">        `func(model, X_pool, y_pool, base_estimator, X_train, y_train, **kwargs)`.</span>
+<span class="sd">        Defaults to &#39;variance&#39;.</span>
+<span class="sd">    al_iters : int, optional</span>
+<span class="sd">        Number of active learning loops (samples to select). Defaults to 500.</span>
+<span class="sd">    X_test : np.ndarray, optional</span>
+<span class="sd">        The testing feature matrix used solely to track generalization error. Defaults to None.</span>
+<span class="sd">    y_test : np.ndarray or dict, optional</span>
+<span class="sd">        The testing target data. Defaults to None.</span>
+<span class="sd">    p_bar : bool, optional</span>
+<span class="sd">        Displays a tqdm progress bar if True. Defaults to True.</span>
+<span class="sd">    **uq_kwargs : dict</span>
+<span class="sd">        Additional arguments passed to the chosen UQ helper (e.g., `n_ensemble=5`).</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    dict</span>
+<span class="sd">        A dictionary of the active learning results containing:</span>
+<span class="sd">        - &#39;selected_indices&#39;: np.ndarray (Original global pool indices selected)</span>
+<span class="sd">        - &#39;training_sizes&#39;: np.ndarray (Training set sizes per iteration)</span>
+<span class="sd">        - &#39;highest_diffs&#39;: np.ndarray (Max uncertainty values per iteration)</span>
+<span class="sd">        - &#39;model&#39;: object (The final trained ML model)</span>
+<span class="sd">        - &#39;maes&#39;: np.ndarray (Mean Absolute Error tracking, if `X_test` was provided)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">maes</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">highest_diffs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">training_sizes</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">selected_indices</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># Track original pool indices</span>
+    <span class="n">pool_tracker</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">X_pool</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">al_iters</span><span class="p">),</span> <span class="n">desc</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;AL Loop (</span><span class="si">{</span><span class="n">uq_mode</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span> <span class="n">disable</span><span class="o">=</span><span class="ow">not</span> <span class="n">p_bar</span><span class="p">):</span>
+        <span class="n">training_sizes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+        <span class="c1"># Determine primary target to train the main model against</span>
+        <span class="n">y_train_primary</span> <span class="o">=</span> <span class="n">y_train</span><span class="p">[</span><span class="s2">&quot;high&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="k">else</span> <span class="n">y_train</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">_train_estimator</span><span class="p">(</span><span class="n">base_estimator</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train_primary</span><span class="p">)</span>
+
+        <span class="c1"># Evaluate MAE if Test set is provided</span>
+        <span class="k">if</span> <span class="n">X_test</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">y_test</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">y_test_primary</span> <span class="o">=</span> <span class="n">y_test</span><span class="p">[</span><span class="s2">&quot;high&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="k">else</span> <span class="n">y_test</span>
+            <span class="n">preds_test</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+            <span class="n">maes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">preds_test</span> <span class="o">-</span> <span class="n">y_test_primary</span><span class="p">)))</span>
+
+        <span class="c1"># Uncertainty Quantification</span>
+        <span class="k">if</span> <span class="nb">callable</span><span class="p">(</span><span class="n">uq_mode</span><span class="p">):</span>
+            <span class="n">uncertainty</span> <span class="o">=</span> <span class="n">uq_mode</span><span class="p">(</span>
+                <span class="n">model</span><span class="p">,</span> <span class="n">X_pool</span><span class="p">,</span> <span class="n">y_pool</span><span class="p">,</span> <span class="n">base_estimator</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="o">**</span><span class="n">uq_kwargs</span>
+            <span class="p">)</span>
+        <span class="k">elif</span> <span class="n">uq_mode</span> <span class="o">==</span> <span class="s2">&quot;variance&quot;</span><span class="p">:</span>
+            <span class="n">uncertainty</span> <span class="o">=</span> <span class="n">_uq_variance</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">X_pool</span><span class="p">,</span> <span class="n">X_train</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">uq_mode</span> <span class="o">==</span> <span class="s2">&quot;ensemble&quot;</span><span class="p">:</span>
+            <span class="n">uncertainty</span> <span class="o">=</span> <span class="n">_uq_ensemble</span><span class="p">(</span>
+                <span class="n">base_estimator</span><span class="p">,</span> <span class="n">X_pool</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train_primary</span><span class="p">,</span> <span class="o">**</span><span class="n">uq_kwargs</span>
+            <span class="p">)</span>
+        <span class="k">elif</span> <span class="n">uq_mode</span> <span class="o">==</span> <span class="s2">&quot;lfab&quot;</span><span class="p">:</span>
+            <span class="n">uncertainty</span> <span class="o">=</span> <span class="n">_uq_lfab</span><span class="p">(</span><span class="n">base_estimator</span><span class="p">,</span> <span class="n">X_pool</span><span class="p">,</span> <span class="n">y_pool</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Unknown uq_mode: </span><span class="si">{</span><span class="n">uq_mode</span><span class="si">}</span><span class="s2">. Use &#39;variance&#39;, &#39;ensemble&#39;, &#39;lfab&#39;, or pass a custom callable.&quot;</span>
+            <span class="p">)</span>
+
+        <span class="c1"># Select highest uncertainty</span>
+        <span class="n">selected_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">uncertainty</span><span class="p">)</span>
+        <span class="n">selected_indices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pool_tracker</span><span class="p">[</span><span class="n">selected_idx</span><span class="p">])</span>
+        <span class="n">highest_diffs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">uncertainty</span><span class="p">[</span><span class="n">selected_idx</span><span class="p">])</span>
+
+        <span class="c1"># Update X and ID tracker</span>
+        <span class="n">X_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_pool</span><span class="p">[</span><span class="n">selected_idx</span><span class="p">]))</span>
+        <span class="n">X_pool</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">X_pool</span><span class="p">,</span> <span class="n">selected_idx</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">pool_tracker</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">pool_tracker</span><span class="p">,</span> <span class="n">selected_idx</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="c1"># Update y</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">y_train</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                <span class="n">y_train</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y_train</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">y_pool</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">selected_idx</span><span class="p">])</span>
+                <span class="n">y_pool</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">y_pool</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">selected_idx</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">y_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_pool</span><span class="p">[</span><span class="n">selected_idx</span><span class="p">])</span>
+            <span class="n">y_pool</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">y_pool</span><span class="p">,</span> <span class="n">selected_idx</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="c1"># Return stuff as dictionary</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;selected_indices&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">selected_indices</span><span class="p">),</span>
+        <span class="s2">&quot;training_sizes&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">training_sizes</span><span class="p">),</span>
+        <span class="s2">&quot;highest_diffs&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">highest_diffs</span><span class="p">),</span>
+        <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="n">model</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="n">X_test</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">y_test</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">results</span><span class="p">[</span><span class="s2">&quot;maes&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">maes</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">results</span></div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=a95f357e85573c9b56d5"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=a95f357e85573c9b56d5"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.19.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

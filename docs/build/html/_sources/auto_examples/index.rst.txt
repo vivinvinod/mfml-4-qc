@@ -15,7 +15,7 @@
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="This example demonstrates how to use the MFML-QC package to load the built-in Benzene trajectory dataset, manually extract a strictly nested multi-fidelity subset using a top-down cascade, and train an MFML model to predict high-fidelity quantum chemistry energies.">
+    <div class="sphx-glr-thumbcontainer" tooltip="This example demonstrates how to use the MFML-QC package to load the built-in Benzene trajectory dataset, manually extract a multi-fidelity subset using a top-down approach, and train an MFML model to predict high-fidelity excitation energies.">
 
 .. only:: html
 

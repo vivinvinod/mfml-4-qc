@@ -54,6 +54,7 @@
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -138,6 +139,12 @@
 <nav>
   <ul class="bd-navbar-elements navbar-nav">
     
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="index.html">
+    <no title>
+  </a>
+</li>
+
   </ul>
 </nav></div>
       
@@ -218,6 +225,12 @@
 <nav>
   <ul class="bd-navbar-elements navbar-nav">
     
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="index.html">
+    <no title>
+  </a>
+</li>
+
   </ul>
 </nav></div>
           
@@ -259,7 +272,10 @@
 <nav class="bd-docs-nav bd-links"
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"></div>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Benzene Multi-Fidelity Example</a></li>
+</ul>
+</div>
 </nav></div>
     </div>
   
@@ -298,6 +314,9 @@
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">&lt;no title&gt;</a></li>
+    
     <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Benzene Multi-Fidelity Example</span></li>
   </ul>
 </nav>
@@ -317,7 +336,7 @@
                   
   <section id="Benzene-Multi-Fidelity-Example">
 <h1>Benzene Multi-Fidelity Example<a class="headerlink" href="#Benzene-Multi-Fidelity-Example" title="Link to this heading">#</a></h1>
-<p>This example demonstrates how to use the MFML-QC package to load the built-in Benzene trajectory dataset, manually extract a strictly nested multi-fidelity subset using a top-down cascade, and train an MFML model to predict high-fidelity quantum chemistry energies.</p>
+<p>This example demonstrates how to use the MFML-QC package to load the built-in Benzene trajectory dataset, manually extract a multi-fidelity subset using a top-down approach, and train an MFML model to predict high-fidelity excitation energies.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
@@ -470,21 +489,6 @@
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 Loading Benzene dataset via built-in loader...
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-Generating Unsorted CMs: 100%|█████████████████████████████████████████████████████████████████| 15000/15000 [00:00&lt;00:00, 32490.18it/s]
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
 Extracting nested data
 Fidelity 0 has 12288 training samples.
 Fidelity 1 has 12288 training samples.
@@ -504,11 +508,11 @@ Training MFML with training data size: [1024  512  256  128]
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-Extracting X_trains: 100%|███████████████████████████████████████████████████████████████████████████████| 4/4 [00:00&lt;00:00, 613.40it/s]
-Extracting upper y_trains: 100%|███████████████████████████████████████████████████████████████████████| 4/4 [00:00&lt;00:00, 16384.00it/s]
-Extracting lower y_trains: 100%|██████████████████████████████████████████████████████████████████████████| 3/3 [00:00&lt;00:00, 20.30it/s]
-Training upper ML models...: 100%|████████████████████████████████████████████████████████████████████████| 4/4 [00:46&lt;00:00, 11.57s/it]
-Training lower ML models: 100%|███████████████████████████████████████████████████████████████████████████| 3/3 [00:23&lt;00:00,  7.87s/it]
+Extracting X_trains: 100%|████████████████████████████████████████████████████████████| 4/4 [00:00&lt;00:00, 555.59it/s]
+Extracting upper y_trains: 100%|████████████████████████████████████████████████████| 4/4 [00:00&lt;00:00, 10088.52it/s]
+Extracting lower y_trains: 100%|███████████████████████████████████████████████████████| 3/3 [00:00&lt;00:00, 15.03it/s]
+Training upper ML models...: 100%|█████████████████████████████████████████████████████| 4/4 [01:16&lt;00:00, 19.08s/it]
+Training lower ML models: 100%|████████████████████████████████████████████████████████| 3/3 [00:35&lt;00:00, 12.00s/it]
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -525,8 +529,8 @@ Predicting on Test Set (2712 samples) with default MFML
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-Upper MFML predictions: 100%|█████████████████████████████████████████████████████████████████████████████| 4/4 [00:03&lt;00:00,  1.07it/s]
-Lower MFML predictions: 100%|█████████████████████████████████████████████████████████████████████████████| 3/3 [00:01&lt;00:00,  1.61it/s]
+Upper MFML predictions: 100%|██████████████████████████████████████████████████████████| 4/4 [00:05&lt;00:00,  1.48s/it]
+Lower MFML predictions: 100%|██████████████████████████████████████████████████████████| 3/3 [00:02&lt;00:00,  1.16it/s]
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -557,6 +561,15 @@ MFML Test Set MAE: 0.005239 eV (0.1205 kcal/mol)
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">&lt;no title&gt;</p>
+      </div>
+    </a>
 </div>
                 </footer>
               
