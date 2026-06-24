@@ -28,6 +28,10 @@ Key Features
 ## Installation
 **Prerequisites:**Python 3.10 or higher
 
+<<<<<<< HEAD
+=======
+```bash
+>>>>>>> f70ec36 (readme installation guide for me locally.)
 # 1. Create the environment (specify Python 3.10 or higher)
 conda create -n mfmlenv python=3.10 -y
 
@@ -42,6 +46,11 @@ pip install -e .[dev]
 
 # Optional: If you want PySCF installed as well, use:
 # pip install -e .[dev,pyscf]
+<<<<<<< HEAD
+=======
+
+```
+>>>>>>> f70ec36 (readme installation guide for me locally.)
 
 ### Standard Installation
 To install the core package (which includes numpy, numba, tqdm, and scikit-learn), clone the repository and install it via pip:
