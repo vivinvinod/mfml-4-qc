@@ -3,9 +3,9 @@ Benzene Multi-Fidelity Example
 ==============================
 
 This example demonstrates how to use the MFML-QC package to load the
-built-in Benzene trajectory dataset, manually extract a strictly nested
-multi-fidelity subset using a top-down cascade, and train an MFML model
-to predict high-fidelity quantum chemistry energies.
+built-in Benzene trajectory dataset, manually extract a
+multi-fidelity subset using a top-down approach, and train an MFML model
+to predict high-fidelity excitation energies.
 """
 
 import os
