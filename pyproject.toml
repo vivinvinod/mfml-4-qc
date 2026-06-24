@@ -37,7 +37,6 @@ pyscf = [
 ]
 dev = [
     "pytest>=7.0.0",
-    "pyscf>=2.0.0",
     "sphinx", # For documentation
     "black"   # code formatting
 ]

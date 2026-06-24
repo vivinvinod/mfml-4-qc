@@ -26,7 +26,7 @@ class DummySklearnModel:
             # Return fake standard deviations (e.g., random numbers)
             np.random.seed(42)
             stds = np.random.rand(X.shape[0])
-            return preds, stdscopmute
+            return preds, stds
         return preds
 
 

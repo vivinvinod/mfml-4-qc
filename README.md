@@ -26,7 +26,22 @@ Key Features
 * **Quantum Chemistry Oracles:** Abstract interfaces to automatically generate inputs, execute runs, and parse outputs from engines like ORCA and PySCF.
 
 ## Installation
-**Prerequisites:**Python 3.8 or higher
+**Prerequisites:**Python 3.10 or higher
+
+# 1. Create the environment (specify Python 3.10 or higher)
+conda create -n mfmlenv python=3.10 -y
+
+# 2. Activate the environment
+conda activate mfmlenv
+
+# 3. Navigate into your unzipped/cloned repository folder
+cd /path/to/mfml-qc
+
+# 4. Install the package in editable mode with development tools (pytest)
+pip install -e .[dev]
+
+# Optional: If you want PySCF installed as well, use:
+# pip install -e .[dev,pyscf]
 
 ### Standard Installation
 To install the core package (which includes numpy, numba, tqdm, and scikit-learn), clone the repository and install it via pip:
