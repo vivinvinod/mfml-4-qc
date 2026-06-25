@@ -325,17 +325,12 @@ using ultra-fast compiled C loops.</p>
 <span class="sig-prename descclassname"><span class="pre">mfml_qc.representations.</span></span><span class="sig-name descname"><span class="pre">generate_coulomb_matrices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xyz_filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="reference internal" href="_modules/mfml_qc/representations.html#generate_coulomb_matrices"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mfml_qc.representations.generate_coulomb_matrices" title="Link to this definition">#</a></dt>
 <dd><p>Extracts geometries from a concatenated XYZ file and generates
 flattened, unsorted Coulomb matrices for the entire dataset.</p>
-<p>The Coulomb matrix <span class="math notranslate nohighlight">\(C\)</span> is a global structural representation defined by two cases:</p>
-<ol class="arabic">
-<li><p>Diagonal elements (approximate atomic energies):</p>
+<p>The Coulomb matrix <span class="math notranslate nohighlight">\(C\)</span> is a global structural representation defined as:</p>
 <div class="math notranslate nohighlight">
-\[C_{ii} = 0.5 Z_i^{2.4}\]</div>
-</li>
-<li><p>Off-diagonal elements (Coulomb repulsion):</p>
-<div class="math notranslate nohighlight">
-\[C_{ij} = \frac{Z_i Z_j}{||\mathbf{R}_i - \mathbf{R}_j||_2} \quad \text{for } i \neq j\]</div>
-</li>
-</ol>
+\[\begin{split}C_{ij} = \begin{cases}
+0.5 Z_i^{2.4} &amp; \text{for } i = j \\
+\frac{Z_i Z_j}{||\mathbf{R}_i - \mathbf{R}_j||_2} &amp; \text{for } i \neq j
+\end{cases}\end{split}\]</div>
 <p>where <span class="math notranslate nohighlight">\(Z_i\)</span> is the atomic number and <span class="math notranslate nohighlight">\(\mathbf{R}_i\)</span> is the Cartesian coordinate of atom <span class="math notranslate nohighlight">\(i\)</span>.
 This function flattens the upper triangle (including the diagonal) into a 1D vector.</p>
 <dl class="field-list simple">
@@ -398,27 +393,12 @@ resolves the path relative to the installed package’s directory
 Default is None.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><p>A dictionary containing the parsed dataset components:
-- ‘X_CM’ : np.ndarray</p>
-<blockquote>
-<div><p>Flattened Coulomb matrices (shape: 15000, 36).</p>
-</div></blockquote>
+<dd class="field-even"><p><p>A dictionary containing the parsed dataset components:</p>
 <ul class="simple">
-<li><dl class="simple">
-<dt>’energies’<span class="classifier">np.ndarray</span></dt><dd><p>Raw energies extracted from the CSV data (columns: Time, ZINDO, LC-DFTB, …).</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>’timecosts’<span class="classifier">np.ndarray</span></dt><dd><p>Time costs extracted from the CSV data.</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>’columns’<span class="classifier">list of str</span></dt><dd><p>List of string names corresponding to each column in the CSVs.</p>
-</dd>
-</dl>
-</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'X_CM'</span></code> (np.ndarray): Flattened Coulomb matrices (shape: 15000, 36).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'energies'</span></code> (np.ndarray): Raw energies extracted from the CSV data.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'timecosts'</span></code> (np.ndarray): Time costs extracted from the CSV data.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'columns'</span></code> (list of str): List of string names corresponding to each column.</p></li>
 </ul>
 </p>
 </dd>
@@ -1082,42 +1062,89 @@ higher fidelity subsets (lower).</p>
 <section id="module-mfml_qc.active_learning">
 <span id="active-learning"></span><h3>Active Learning<a class="headerlink" href="#module-mfml_qc.active_learning" title="Link to this heading">#</a></h3>
 <dl class="py function">
-<dt class="sig sig-object py" id="mfml_qc.active_learning.active_learning_loop">
-<span class="sig-prename descclassname"><span class="pre">mfml_qc.active_learning.</span></span><span class="sig-name descname"><span class="pre">active_learning_loop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_train</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_train</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X_pool</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_pool</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_estimator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">object</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uq_mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Callable</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'variance'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">al_iters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">500</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X_test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p_bar</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">uq_kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="reference internal" href="_modules/mfml_qc/active_learning.html#active_learning_loop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mfml_qc.active_learning.active_learning_loop" title="Link to this definition">#</a></dt>
-<dd><p>Active Learning (AL) loop for training data sampling.</p>
-<p>Iteratively trains a model, evaluates the uncertainty of an unlabeled/pool
-dataset using a specified strategy, and selects the most uncertain sample
-to add to the training set for the next iteration.</p>
+<dt class="sig sig-object py" id="mfml_qc.active_learning.compute_gpr_variance">
+<span class="sig-prename descclassname"><span class="pre">mfml_qc.active_learning.</span></span><span class="sig-name descname"><span class="pre">compute_gpr_variance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_train</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X_pool</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kernel_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'matern'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1e-09</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="reference internal" href="_modules/mfml_qc/active_learning.html#compute_gpr_variance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mfml_qc.active_learning.compute_gpr_variance" title="Link to this definition">#</a></dt>
+<dd><p>Computes the exact analytical predictive variance for a set of pool geometries.</p>
+<p>Because the predictive variance in Gaussian Process Regression (or Kernel Ridge
+Regression) depends strictly on the spatial distribution of the feature data and
+the kernel, it is completely independent of the target properties or model weights.</p>
+<p>The predictive variance for a set of pool points <span class="math notranslate nohighlight">\(x_*\)</span> is given by:</p>
+<div class="math notranslate nohighlight">
+\[\mathbb{V}[x_*] = k(x_*, x_*) - k(X, x_*)^T (K(X, X) + \lambda I)^{-1} k(X, x_*)\]</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>X_train</strong> (<em>np.ndarray</em>) – The initial training feature matrix.</p></li>
-<li><p><strong>y_train</strong> (<em>np.ndarray</em><em> or </em><em>dict</em>) – The initial training target data. If using ‘lfab’, <cite>y_train</cite> must
-be a dict structured as <cite>{‘low’: …, ‘high’: …}</cite>.</p></li>
-<li><p><strong>X_pool</strong> (<em>np.ndarray</em>) – The pool feature matrix from which new samples are selected.</p></li>
-<li><p><strong>y_pool</strong> (<em>np.ndarray</em><em> or </em><em>dict</em>) – The target data corresponding to the pool (revealed sequentially to the model).</p></li>
-<li><p><strong>base_estimator</strong> (<em>object</em>) – The machine learning model providing <cite>.train()</cite>/<cite>.fit()</cite> and <cite>.predict()</cite>.</p></li>
-<li><p><strong>uq_mode</strong> (<em>str</em><em> or </em><em>callable</em><em>, </em><em>optional</em>) – The uncertainty quantification strategy. Options are ‘variance’, ‘ensemble’,
-‘lfab’, or a custom function:
-<cite>func(model, X_pool, y_pool, base_estimator, X_train, y_train, **kwargs)</cite>.
-Defaults to ‘variance’.</p></li>
-<li><p><strong>al_iters</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of active learning loops (samples to select). Defaults to 500.</p></li>
-<li><p><strong>X_test</strong> (<em>np.ndarray</em><em>, </em><em>optional</em>) – The testing feature matrix used solely to track generalization error. Defaults to None.</p></li>
-<li><p><strong>y_test</strong> (<em>np.ndarray</em><em> or </em><em>dict</em><em>, </em><em>optional</em>) – The testing target data. Defaults to None.</p></li>
-<li><p><strong>p_bar</strong> (<em>bool</em><em>, </em><em>optional</em>) – Displays a tqdm progress bar if True. Defaults to True.</p></li>
-<li><p><strong>**uq_kwargs</strong> (<em>dict</em>) – Additional arguments passed to the chosen UQ helper (e.g., <cite>n_ensemble=5</cite>).</p></li>
+<li><p><strong>X_train</strong> (<em>np.ndarray</em>) – The training feature matrix <span class="math notranslate nohighlight">\(X\)</span>.</p></li>
+<li><p><strong>X_pool</strong> (<em>np.ndarray</em>) – The pool feature matrix containing the points to evaluate <span class="math notranslate nohighlight">\(x_*\)</span>.</p></li>
+<li><p><strong>kernel_type</strong> (<em>str</em><em>, </em><em>optional</em>) – The type of kernel to use (‘matern’, ‘gaussian’, ‘laplacian’, or ‘wasserstein’). Defaults to ‘matern’.</p></li>
+<li><p><strong>sigma</strong> (<em>float</em><em>, </em><em>optional</em>) – The kernel width parameter. Defaults to 100.0.</p></li>
+<li><p><strong>reg</strong> (<em>float</em><em>, </em><em>optional</em>) – The regularization parameter (<span class="math notranslate nohighlight">\(\lambda\)</span>). Defaults to 1e-9.</p></li>
+<li><p><strong>nu</strong> (<em>float</em><em>, </em><em>optional</em>) – Smoothness parameter for the Matérn kernel. Defaults to 1.5.</p></li>
+<li><p><strong>p</strong> (<em>float</em><em>, </em><em>optional</em>) – Power parameter for the Wasserstein kernel. Defaults to 1.0.</p></li>
+<li><p><strong>q</strong> (<em>float</em><em>, </em><em>optional</em>) – Outer exponent parameter for the Wasserstein kernel. Defaults to 1.0.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>A dictionary of the active learning results containing:
-- ‘selected_indices’: np.ndarray (Original global pool indices selected)
-- ‘training_sizes’: np.ndarray (Training set sizes per iteration)
-- ‘highest_diffs’: np.ndarray (Max uncertainty values per iteration)
-- ‘model’: object (The final trained ML model)
-- ‘maes’: np.ndarray (Mean Absolute Error tracking, if <cite>X_test</cite> was provided)</p>
+<dd class="field-even"><p>A 1D array of computed predictive variances for each point in the pool.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>dict</p>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mfml_qc.active_learning.ensemble_variance">
+<span class="sig-prename descclassname"><span class="pre">mfml_qc.active_learning.</span></span><span class="sig-name descname"><span class="pre">ensemble_variance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">base_estimator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">object</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X_pool</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X_train</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_train</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_ensemble</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="reference internal" href="_modules/mfml_qc/active_learning.html#ensemble_variance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mfml_qc.active_learning.ensemble_variance" title="Link to this definition">#</a></dt>
+<dd><p>Computes Ensemble-based uncertainty quantification.</p>
+<p>Estimates uncertainty by training an ensemble of models on random subsets
+(85%) of the training data and computing the variance of their predictions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>base_estimator</strong> (<em>object</em>) – The base machine learning model to use for the ensemble.</p></li>
+<li><p><strong>X_pool</strong> (<em>np.ndarray</em>) – The pool feature matrix to evaluate.</p></li>
+<li><p><strong>X_train</strong> (<em>np.ndarray</em>) – The complete training feature matrix.</p></li>
+<li><p><strong>y_train</strong> (<em>np.ndarray</em>) – The complete training target array.</p></li>
+<li><p><strong>n_ensemble</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of models to include in the ensemble. Defaults to 5.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A 1D array of ensemble standard deviations for the pool data.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mfml_qc.active_learning.lfab">
+<span class="sig-prename descclassname"><span class="pre">mfml_qc.active_learning.</span></span><span class="sig-name descname"><span class="pre">lfab</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">base_estimator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">object</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X_pool</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_pool_low</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X_train</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_train_low</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="reference internal" href="_modules/mfml_qc/active_learning.html#lfab"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mfml_qc.active_learning.lfab" title="Link to this definition">#</a></dt>
+<dd><p>Computes Low Fidelity as Bias (LFaB) uncertainty quantification.</p>
+<p>Estimates uncertainty by using the absolute prediction error of a model
+trained on low-fidelity data. Areas where the low-fidelity surrogate struggles
+are assumed to be areas of high uncertainty.</p>
+<p>The LFaB error for a set of pool points <span class="math notranslate nohighlight">\(x_*\)</span> is computed as:</p>
+<div class="math notranslate nohighlight">
+\[LFaB[x_*] = \left\lvert \hat{P}^{low}_{ML} - P^{low}_{ref} \right\rvert\]</div>
+<p>where <span class="math notranslate nohighlight">\(\hat{P}^{low}_{ML}\)</span> is the low-fidelity prediction of the ML model
+and <span class="math notranslate nohighlight">\(P^{low}_{ref}\)</span> is the reference low-fidelity value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>base_estimator</strong> (<em>object</em>) – The machine learning model to train on the baseline data.</p></li>
+<li><p><strong>X_pool</strong> (<em>np.ndarray</em>) – The pool feature matrix to evaluate.</p></li>
+<li><p><strong>y_pool_low</strong> (<em>np.ndarray</em>) – The low-fidelity target data corresponding to the pool geometries.</p></li>
+<li><p><strong>X_train</strong> (<em>np.ndarray</em>) – The training feature matrix.</p></li>
+<li><p><strong>y_train_low</strong> (<em>np.ndarray</em>) – The low-fidelity target data corresponding to the training geometries.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A 1D array of absolute prediction errors on the low-fidelity baseline.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1236,7 +1263,9 @@ Defaults to ‘variance’.</p></li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#module-mfml_qc.active_learning">Active Learning</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.active_learning.active_learning_loop"><code class="docutils literal notranslate"><span class="pre">active_learning_loop()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.active_learning.compute_gpr_variance"><code class="docutils literal notranslate"><span class="pre">compute_gpr_variance()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.active_learning.ensemble_variance"><code class="docutils literal notranslate"><span class="pre">ensemble_variance()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.active_learning.lfab"><code class="docutils literal notranslate"><span class="pre">lfab()</span></code></a></li>
 </ul>
 </li>
 </ul>
