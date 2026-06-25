@@ -217,18 +217,14 @@ def generate_coulomb_matrices(xyz_filepath: str, save_path: str = None) -> np.nd
     Extracts geometries from a concatenated XYZ file and generates
     flattened, unsorted Coulomb matrices for the entire dataset.
 
-    The Coulomb matrix :math:`C` is a global structural representation defined by two cases:
-
-    1. Diagonal elements (approximate atomic energies):
-
-       .. math::
-           C_{ii} = 0.5 Z_i^{2.4}
-
-    2. Off-diagonal elements (Coulomb repulsion):
-
-       .. math::
-           C_{ij} = \frac{Z_i Z_j}{||\mathbf{R}_i - \mathbf{R}_j||_2} \quad \text{for } i \neq j
-
+    The Coulomb matrix :math:`C` is a global structural representation defined as:
+    
+    .. math::
+        C_{ij} = \begin{cases}
+        0.5 Z_i^{2.4} & \text{for } i = j \\
+        \frac{Z_i Z_j}{||\mathbf{R}_i - \mathbf{R}_j||_2} & \text{for } i \neq j
+        \end{cases}
+           
     where :math:`Z_i` is the atomic number and :math:`\mathbf{R}_i` is the Cartesian coordinate of atom :math:`i`.
     This function flattens the upper triangle (including the diagonal) into a 1D vector.
 

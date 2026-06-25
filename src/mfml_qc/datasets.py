@@ -24,14 +24,11 @@ def load_benzene_data(data_dir: str = None) -> Dict[str, Any]:
     -------
     dict
         A dictionary containing the parsed dataset components:
-        - 'X_CM' : np.ndarray
-            Flattened Coulomb matrices (shape: 15000, 36).
-        - 'energies' : np.ndarray
-            Raw energies extracted from the CSV data (columns: Time, ZINDO, LC-DFTB, ...).
-        - 'timecosts' : np.ndarray
-            Time costs extracted from the CSV data.
-        - 'columns' : list of str
-            List of string names corresponding to each column in the CSVs.
+
+        * ``'X_CM'`` (np.ndarray): Flattened Coulomb matrices (shape: 15000, 36).
+        * ``'energies'`` (np.ndarray): Raw energies extracted from the CSV data.
+        * ``'timecosts'`` (np.ndarray): Time costs extracted from the CSV data.
+        * ``'columns'`` (list of str): List of string names corresponding to each column.
 
     Raises
     ------
