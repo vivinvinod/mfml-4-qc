@@ -19,6 +19,108 @@ Here are some examples of how to use MFML-QC.
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="How to optimized-MFML with data-adaptive weights">
+
+.. only:: html
+
+  .. image:: /auto_examples/images/thumb/sphx_glr_06_omfml_thumb.png
+    :alt:
+
+  :doc:`/auto_examples/06_omfml`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Optimized Multifidelity Machine Learning</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="How to active learning with LFaB.">
+
+.. only:: html
+
+  .. image:: /auto_examples/images/thumb/sphx_glr_08_pool_based_active_learning_thumb.png
+    :alt:
+
+  :doc:`/auto_examples/08_pool_based_active_learning`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Pool-Active Learning for Training Data Sampling</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="In this tutorial, we will take a look at building our first multifidelity machine learning model with kernel ridge regression as the architecture.">
+
+.. only:: html
+
+  .. image:: /auto_examples/images/thumb/sphx_glr_03_mfml_basics_thumb.png
+    :alt:
+
+  :doc:`/auto_examples/03_mfml_basics`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Multifidelity Machine Learning Basics</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="How to perform calculations with ORCA engine.">
+
+.. only:: html
+
+  .. image:: /auto_examples/images/thumb/sphx_glr_07_orca_orcale_thumb.png
+    :alt:
+
+  :doc:`/auto_examples/07_orca_orcale`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">ORCA Oracle Calls</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="How to cross-validation for MFML without breaking nested structure.">
+
+.. only:: html
+
+  .. image:: /auto_examples/images/thumb/sphx_glr_05_mfml_learning_curve_thumb.png
+    :alt:
+
+  :doc:`/auto_examples/05_mfml_learning_curve`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Multifidelity Machine Learning - Cross-Validation Technique</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="There is a great saying, &quot;If it walks like a duck, quacks like a duck, it must be a duck...&quot; the origins of which are uncertain.">
+
+.. only:: html
+
+  .. image:: /auto_examples/images/thumb/sphx_glr_04_duck_typing_mfml_thumb.png
+    :alt:
+
+  :doc:`/auto_examples/04_duck_typing_mfml`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Multifidelity Machine Learning - Duck Typing</div>
+    </div>
+
+
+.. raw:: html
+
     <div class="sphx-glr-thumbcontainer" tooltip="This tutorial covers the basics of data handling, visualization, and structural representation generation in MFML-QC. We will use an inbuilt dataset for the benzene molecule.">
 
 .. only:: html
@@ -61,6 +163,12 @@ Here are some examples of how to use MFML-QC.
 .. toctree::
    :hidden:
 
+   /auto_examples/06_omfml
+   /auto_examples/08_pool_based_active_learning
+   /auto_examples/03_mfml_basics
+   /auto_examples/07_orca_orcale
+   /auto_examples/05_mfml_learning_curve
+   /auto_examples/04_duck_typing_mfml
    /auto_examples/01_load_and_represent
    /auto_examples/02_krr_learning_curve
 

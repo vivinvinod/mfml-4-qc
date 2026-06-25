@@ -35,7 +35,7 @@ geometries which have the def2-TZVP fidelity
 we will build a single fidelity KRR model to
 predict these energies.
 
-.. GENERATED FROM PYTHON SOURCE LINES 19-43
+.. GENERATED FROM PYTHON SOURCE LINES 19-45
 
 .. code-block:: Python
 
@@ -47,7 +47,9 @@ predict these energies.
     dataset = load_benzene_data()
 
     X = dataset["X_CM"]
-    y = dataset["energies"][:, 7]  # Selecting TZVP (index 7; recall that index 0 is the time step)
+    y = dataset["energies"][
+        :, 7
+    ]  # Selecting TZVP (index 7; recall that index 0 is the time step)
 
     # Filter out NaNs
     mask = ~np.isnan(y)
@@ -64,7 +66,7 @@ predict these energies.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 44-56
+.. GENERATED FROM PYTHON SOURCE LINES 46-58
 
 Learning Curve Generator Function
 ----------------
@@ -79,7 +81,7 @@ as a function of the nunmber of training samples used.
 To get a statistical idea of the error, we will generate learning curves
 for 10 random sub-sampling of the training dataset.
 
-.. GENERATED FROM PYTHON SOURCE LINES 56-116
+.. GENERATED FROM PYTHON SOURCE LINES 58-119
 
 .. code-block:: Python
 
@@ -95,7 +97,7 @@ for 10 random sub-sampling of the training dataset.
         y_train: np.ndarray,
         X_test: np.ndarray,
         y_test: np.ndarray,
-        kernel_type: str = 'matern',
+        kernel_type: str = "matern",
         sigma: float = 100.0,
         reg: float = 1e-10,
         nu=1.5,
@@ -144,13 +146,14 @@ for 10 random sub-sampling of the training dataset.
         return full_maes
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 117-120
+
+.. GENERATED FROM PYTHON SOURCE LINES 120-123
 
 The learning curve
 ---------------------------
 get the maes
 
-.. GENERATED FROM PYTHON SOURCE LINES 120-150
+.. GENERATED FROM PYTHON SOURCE LINES 123-153
 
 .. code-block:: Python
 

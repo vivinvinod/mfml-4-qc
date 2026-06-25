@@ -273,6 +273,12 @@
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="06_omfml.html">Optimized Multifidelity Machine Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_pool_based_active_learning.html">Pool-Active Learning for Training Data Sampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_mfml_basics.html">Multifidelity Machine Learning Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_orca_orcale.html">ORCA Oracle Calls</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_mfml_learning_curve.html">Multifidelity Machine Learning - Cross-Validation Technique</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_duck_typing_mfml.html">Multifidelity Machine Learning - Duck Typing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01_load_and_represent.html">Multi-Fidelity Dataset - Benzene</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Kernel Ridge Regression</a></li>
 </ul>
@@ -352,7 +358,9 @@
 <span class="n">dataset</span> <span class="o">=</span> <span class="n">load_benzene_data</span><span class="p">()</span>
 
 <span class="n">X</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;X_CM&quot;</span><span class="p">]</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;energies&quot;</span><span class="p">][:,</span> <span class="mi">7</span><span class="p">]</span>  <span class="c1"># Selecting TZVP (index 7; recall that index 0 is the time step)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;energies&quot;</span><span class="p">][</span>
+    <span class="p">:,</span> <span class="mi">7</span>
+<span class="p">]</span>  <span class="c1"># Selecting TZVP (index 7; recall that index 0 is the time step)</span>
 
 <span class="c1"># Filter out NaNs</span>
 <span class="n">mask</span> <span class="o">=</span> <span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
@@ -398,7 +406,7 @@ error, we will generate learning curves for 10 random sub-sampling of the traini
     <span class="n">y_train</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
     <span class="n">X_test</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
     <span class="n">y_test</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
-    <span class="n">kernel_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;matern&#39;</span><span class="p">,</span>
+    <span class="n">kernel_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;matern&quot;</span><span class="p">,</span>
     <span class="n">sigma</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">100.0</span><span class="p">,</span>
     <span class="n">reg</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1e-10</span><span class="p">,</span>
     <span class="n">nu</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span>

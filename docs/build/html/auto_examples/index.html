@@ -51,7 +51,7 @@
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Multi-Fidelity Dataset - Benzene" href="01_load_and_represent.html" />
+    <link rel="next" title="Optimized Multifidelity Machine Learning" href="06_omfml.html" />
     <link rel="prev" title="Welcome to MFML-4-QC’s documentation!" href="../index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -271,6 +271,12 @@
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="06_omfml.html">Optimized Multifidelity Machine Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_pool_based_active_learning.html">Pool-Active Learning for Training Data Sampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_mfml_basics.html">Multifidelity Machine Learning Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_orca_orcale.html">ORCA Oracle Calls</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_mfml_learning_curve.html">Multifidelity Machine Learning - Cross-Validation Technique</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_duck_typing_mfml.html">Multifidelity Machine Learning - Duck Typing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01_load_and_represent.html">Multi-Fidelity Dataset - Benzene</a></li>
 <li class="toctree-l1"><a class="reference internal" href="02_krr_learning_curve.html">Kernel Ridge Regression</a></li>
 </ul>
@@ -333,7 +339,25 @@
   <section id="examples">
 <h1>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h1>
 <p>Here are some examples of how to use MFML-QC.</p>
-<div id='sg-tag-list' class='sphx-glr-tag-list'></div><div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="This tutorial covers the basics of data handling, visualization, and structural representation generation in MFML-QC. We will use an inbuilt dataset for the benzene molecule."><img alt="" src="../_images/sphx_glr_01_load_and_represent_thumb.png" />
+<div id='sg-tag-list' class='sphx-glr-tag-list'></div><div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="How to optimized-MFML with data-adaptive weights"><img alt="" src="../_images/sphx_glr_06_omfml_thumb.png" />
+<p><a class="reference internal" href="06_omfml.html"><span class="doc">Optimized Multifidelity Machine Learning</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Optimized Multifidelity Machine Learning</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="How to active learning with LFaB."><img alt="" src="../_images/sphx_glr_08_pool_based_active_learning_thumb.png" />
+<p><a class="reference internal" href="08_pool_based_active_learning.html"><span class="doc">Pool-Active Learning for Training Data Sampling</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Pool-Active Learning for Training Data Sampling</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="In this tutorial, we will take a look at building our first multifidelity machine learning model with kernel ridge regression as the architecture."><img alt="" src="../_images/sphx_glr_03_mfml_basics_thumb.png" />
+<p><a class="reference internal" href="03_mfml_basics.html"><span class="doc">Multifidelity Machine Learning Basics</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Multifidelity Machine Learning Basics</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="How to perform calculations with ORCA engine."><img alt="" src="../_images/sphx_glr_07_orca_orcale_thumb.png" />
+<p><a class="reference internal" href="07_orca_orcale.html"><span class="doc">ORCA Oracle Calls</span></a></p>
+  <div class="sphx-glr-thumbnail-title">ORCA Oracle Calls</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="How to cross-validation for MFML without breaking nested structure."><img alt="" src="../_images/sphx_glr_05_mfml_learning_curve_thumb.png" />
+<p><a class="reference internal" href="05_mfml_learning_curve.html"><span class="doc">Multifidelity Machine Learning - Cross-Validation Technique</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Multifidelity Machine Learning - Cross-Validation Technique</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="There is a great saying, &quot;If it walks like a duck, quacks like a duck, it must be a duck...&quot; the origins of which are uncertain."><img alt="" src="../_images/sphx_glr_04_duck_typing_mfml_thumb.png" />
+<p><a class="reference internal" href="04_duck_typing_mfml.html"><span class="doc">Multifidelity Machine Learning - Duck Typing</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Multifidelity Machine Learning - Duck Typing</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="This tutorial covers the basics of data handling, visualization, and structural representation generation in MFML-QC. We will use an inbuilt dataset for the benzene molecule."><img alt="" src="../_images/sphx_glr_01_load_and_represent_thumb.png" />
 <p><a class="reference internal" href="01_load_and_represent.html"><span class="doc">Multi-Fidelity Dataset - Benzene</span></a></p>
   <div class="sphx-glr-thumbnail-title">Multi-Fidelity Dataset - Benzene</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="In this tutorial, we will build our first kernel based machine learning model with the in-built Kernel Ridge Regressor module. We will focus on a single fidelity KRR model that predicts the excitation energies of the benzene molecule from the dataset provided in this package."><img alt="" src="../_images/sphx_glr_02_krr_learning_curve_thumb.png" />
@@ -372,11 +396,11 @@
       </div>
     </a>
     <a class="right-next"
-       href="01_load_and_represent.html"
+       href="06_omfml.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Multi-Fidelity Dataset - Benzene</p>
+        <p class="prev-next-title">Optimized Multifidelity Machine Learning</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
