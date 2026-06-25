@@ -24,7 +24,9 @@ from mfml_qc.datasets import load_benzene_data
 dataset = load_benzene_data()
 
 X = dataset["X_CM"]
-y = dataset["energies"][:, 7]  # Selecting TZVP (index 7; recall that index 0 is the time step)
+y = dataset["energies"][
+    :, 7
+]  # Selecting TZVP (index 7; recall that index 0 is the time step)
 
 # Filter out NaNs
 mask = ~np.isnan(y)
@@ -65,7 +67,7 @@ def sf_LC(
     y_train: np.ndarray,
     X_test: np.ndarray,
     y_test: np.ndarray,
-    kernel_type: str = 'matern',
+    kernel_type: str = "matern",
     sigma: float = 100.0,
     reg: float = 1e-10,
     nu=1.5,
@@ -112,6 +114,7 @@ def sf_LC(
             maes.append(np.mean(np.abs(preds_test - y_test)))
         full_maes[:, n] = np.asarray(maes)
     return full_maes
+
 
 # %%%
 # The learning curve
