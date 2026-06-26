@@ -389,6 +389,128 @@
 
     <span class="k">return</span> <span class="n">energy_array</span><span class="p">,</span> <span class="n">index_array</span></div>
 
+
+
+<div class="viewcode-block" id="build_hierarchy_arrays">
+<a class="viewcode-back" href="../../index.html#mfml_qc.utils.build_hierarchy_arrays">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">build_hierarchy_arrays</span><span class="p">(</span><span class="n">data_train</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">hierarchy_cols</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Extracts valid subsets and mean-centers energies across a fidelity hierarchy.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data_train : np.ndarray</span>
+<span class="sd">        The training data array containing all fidelities.</span>
+<span class="sd">    hierarchy_cols : list of int</span>
+<span class="sd">        Column indices for the fidelities, ordered from lowest to highest.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    tuple</span>
+<span class="sd">        (y_trains, indexes, means) where y_trains and indexes are object arrays</span>
+<span class="sd">        formatted for the ModelMFML, and means are the centering offsets.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">num_fids</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">hierarchy_cols</span><span class="p">)</span>
+    <span class="n">y_trains</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_fids</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span>
+    <span class="n">indexes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_fids</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span>
+    <span class="n">means</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_fids</span><span class="p">)</span>
+
+    <span class="c1"># 1. Process Baseline (Lowest Fidelity)</span>
+    <span class="n">baseline_col</span> <span class="o">=</span> <span class="n">hierarchy_cols</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">baseline_vals</span> <span class="o">=</span> <span class="n">data_train</span><span class="p">[:,</span> <span class="n">baseline_col</span><span class="p">]</span>
+    <span class="n">means</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">baseline_vals</span><span class="p">)</span>
+
+    <span class="c1"># Baseline is mapped 1-to-1 against itself</span>
+    <span class="n">y_trains</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">baseline_vals</span> <span class="o">-</span> <span class="n">means</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">indexes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">(</span>
+        <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">baseline_vals</span><span class="p">)),</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">baseline_vals</span><span class="p">)))</span>
+    <span class="p">)</span>
+
+    <span class="c1"># 2. Process Higher Fidelities</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_fids</span><span class="p">):</span>
+        <span class="n">target_col</span> <span class="o">=</span> <span class="n">hierarchy_cols</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">valid_rows</span> <span class="o">=</span> <span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">data_train</span><span class="p">[:,</span> <span class="n">target_col</span><span class="p">])</span>
+
+        <span class="n">target_vals</span> <span class="o">=</span> <span class="n">data_train</span><span class="p">[</span><span class="n">valid_rows</span><span class="p">,</span> <span class="n">target_col</span><span class="p">]</span>
+        <span class="n">means</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">target_vals</span><span class="p">)</span>
+        <span class="n">y_trains</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">target_vals</span> <span class="o">-</span> <span class="n">means</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+        <span class="n">baseline_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">valid_rows</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">level_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">target_vals</span><span class="p">))</span>
+        <span class="n">indexes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">baseline_idx</span><span class="p">,</span> <span class="n">level_idx</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">y_trains</span><span class="p">,</span> <span class="n">indexes</span><span class="p">,</span> <span class="n">means</span></div>
+
+
+
+<div class="viewcode-block" id="top_down_subsetting">
+<a class="viewcode-back" href="../../index.html#mfml_qc.utils.top_down_subsetting">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">top_down_subsetting</span><span class="p">(</span>
+    <span class="n">y_trains</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">indexes</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">n_trains_target</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">seed</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">42</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Subsets the data using a top-down cascade to maintain strict nested structures.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    y_trains : np.ndarray</span>
+<span class="sd">        The full target properties array.</span>
+<span class="sd">    indexes : np.ndarray</span>
+<span class="sd">        The full mapping indexes array.</span>
+<span class="sd">    n_trains_target : list of int</span>
+<span class="sd">        Target number of samples for each fidelity (lowest to highest).</span>
+<span class="sd">    seed : int, optional</span>
+<span class="sd">        Random state seed for shuffling. Defaults to 42.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    tuple</span>
+<span class="sd">        (subset_y_trains, subset_indexes) ready for MFML training.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">num_fids</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y_trains</span><span class="p">)</span>
+    <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+
+    <span class="n">subset_y_trains</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_fids</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span>
+    <span class="n">subset_indexes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_fids</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span>
+
+    <span class="c1"># Track baseline IDs, cascading downwards from highest to lowest</span>
+    <span class="n">selected_b_ids</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_fids</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">needed</span> <span class="o">=</span> <span class="n">n_trains_target</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">selected_b_ids</span><span class="p">)</span>
+        <span class="n">avail_b_ids</span> <span class="o">=</span> <span class="n">indexes</span><span class="p">[</span><span class="n">i</span><span class="p">][:,</span> <span class="mi">0</span><span class="p">]</span>
+
+        <span class="n">selected_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">selected_b_ids</span><span class="p">)</span>
+        <span class="n">candidates</span> <span class="o">=</span> <span class="p">[</span><span class="n">b</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">avail_b_ids</span> <span class="k">if</span> <span class="n">b</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">selected_set</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">needed</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">rng</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">candidates</span><span class="p">)</span>
+            <span class="n">selected_b_ids</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">candidates</span><span class="p">[:</span><span class="n">needed</span><span class="p">])</span>
+
+        <span class="c1"># Map back to fetch original target values</span>
+        <span class="n">fid_map</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span> <span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">y_trains</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">idx</span><span class="p">])</span> <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">indexes</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="p">}</span>
+
+        <span class="n">extracted_data</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">b_idx</span> <span class="ow">in</span> <span class="n">selected_b_ids</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">b_idx</span> <span class="ow">in</span> <span class="n">fid_map</span><span class="p">:</span>
+                <span class="n">old_lvl_idx</span><span class="p">,</span> <span class="n">y_val</span> <span class="o">=</span> <span class="n">fid_map</span><span class="p">[</span><span class="n">b_idx</span><span class="p">]</span>
+                <span class="n">extracted_data</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">b_idx</span><span class="p">,</span> <span class="n">y_val</span><span class="p">))</span>
+
+        <span class="n">extracted_data</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+        <span class="n">final_ind</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">final_y</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">new_lvl_idx</span><span class="p">,</span> <span class="p">(</span><span class="n">b_idx</span><span class="p">,</span> <span class="n">y_val</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">extracted_data</span><span class="p">):</span>
+            <span class="n">final_ind</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">b_idx</span><span class="p">,</span> <span class="n">new_lvl_idx</span><span class="p">])</span>
+            <span class="n">final_y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y_val</span><span class="p">)</span>
+
+        <span class="n">subset_indexes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">final_ind</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+        <span class="n">subset_y_trains</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">final_y</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">subset_y_trains</span><span class="p">,</span> <span class="n">subset_indexes</span></div>
+
 </pre></div>
 
                 </article>

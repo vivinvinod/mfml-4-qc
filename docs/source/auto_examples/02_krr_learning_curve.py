@@ -9,6 +9,8 @@ dataset provided in this package.
 
 """
 
+
+
 # %%%
 # Loading the Built-in Dataset
 # ----------------------------
@@ -138,6 +140,7 @@ mean_mae = np.mean(maes, axis=1)
 std_mae = np.std(maes, axis=1)
 train_sizes = [2**i for i in range(1, 9)]
 
+# sphinx_gallery_thumbnail_number = 1
 plt.figure(figsize=(6, 5))
 plt.errorbar(
     train_sizes, mean_mae, yerr=std_mae, fmt="o-", capsize=5, label="KRR (TZVP)"

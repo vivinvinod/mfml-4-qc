@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Multifidelity Machine Learning - Duck Typing &#8212; MFML-4-QC 0.1.0 documentation</title>
+    <title>Duck Typing for MFML &#8212; MFML-4-QC 0.1.0 documentation</title>
   
   
   
@@ -54,8 +54,8 @@
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Multi-Fidelity Dataset - Benzene" href="01_load_and_represent.html" />
-    <link rel="prev" title="Multifidelity Machine Learning - Cross-Validation Technique" href="05_mfml_learning_curve.html" />
+    <link rel="next" title="Multifidelity Machine Learning - Cross-Validation Technique" href="05_mfml_learning_curve.html" />
+    <link rel="prev" title="The Basics of MFML" href="03_mfml_basics.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -274,14 +274,14 @@
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="06_omfml.html">Optimized Multifidelity Machine Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="08_pool_based_active_learning.html">Pool-Active Learning for Training Data Sampling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03_mfml_basics.html">Multifidelity Machine Learning Basics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="07_orca_orcale.html">ORCA Oracle Calls</a></li>
-<li class="toctree-l1"><a class="reference internal" href="05_mfml_learning_curve.html">Multifidelity Machine Learning - Cross-Validation Technique</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Multifidelity Machine Learning - Duck Typing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01_load_and_represent.html">Multi-Fidelity Dataset - Benzene</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_load_and_represent.html">A Multi-Fidelity Dataset: MD Benzene</a></li>
 <li class="toctree-l1"><a class="reference internal" href="02_krr_learning_curve.html">Kernel Ridge Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_mfml_basics.html">The Basics of MFML</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Duck Typing for MFML</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_mfml_learning_curve.html">Multifidelity Machine Learning - Cross-Validation Technique</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_omfml.html">Optimized Multifidelity Machine Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_orca_orcale.html">ORCA Oracle Calls</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_pool_based_active_learning.html">Pool-Active Learning for Training Data Sampling</a></li>
 </ul>
 </div>
 </nav></div>
@@ -325,7 +325,7 @@
     
     <li class="breadcrumb-item"><a href="index.html" class="nav-link">Examples</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Multifidelity Machine Learning - Duck Typing</span></li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Duck Typing for MFML</span></li>
   </ul>
 </nav>
 </div>
@@ -342,17 +342,193 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="Multifidelity-Machine-Learning---Duck-Typing">
-<h1>Multifidelity Machine Learning - Duck Typing<a class="headerlink" href="#Multifidelity-Machine-Learning---Duck-Typing" title="Link to this heading">#</a></h1>
-<p>There is a great saying, “If it walks like a duck, quacks like a duck, it must be a duck…” the origins of which are uncertain.</p>
+  <section id="Duck-Typing-for-MFML">
+<h1>Duck Typing for MFML<a class="headerlink" href="#Duck-Typing-for-MFML" title="Link to this heading">#</a></h1>
+<p>This example demonstrates the “duck typing” flexibility of the <code class="docutils literal notranslate"><span class="pre">ModelMFML</span></code> orchestrator. DUck typing is summarized well with ‘If it walks like a duck, swims like a duck, and wualks like a duck, it must be a duck.’ Here, we use it to mean that we can use any ML architecture that has certain attributes. While MFML-QC provides an ultra-fast, built-in Kernel Ridge Regressor (KRR), you are not forced into using it.</p>
+<p>Because the ModelMFML class is flexible, you can pass any custom machine learning model (such as a Neural Network or Random Forest from <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>) using the <code class="docutils literal notranslate"><span class="pre">base_estimator</span></code> argument, provided it has standard <code class="docutils literal notranslate"><span class="pre">.fit(X,</span> <span class="pre">y)</span></code> or <code class="docutils literal notranslate"><span class="pre">.train(X,y)</span></code>, and <code class="docutils literal notranslate"><span class="pre">.predict(X)</span></code> methods!</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># sphinx_gallery_thumbnail_path = &#39;../../data/media/ducktyping.png&#39;</span>
 </pre></div>
 </div>
 </div>
+<section id="Imports-and-Helper-Functions">
+<h2>Imports and Helper Functions<a class="headerlink" href="#Imports-and-Helper-Functions" title="Link to this heading">#</a></h2>
+<p>We reuse the exact same helper functions from the previous tutorial to extract and strictly nest our multi-fidelity training data.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mfml_qc.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_benzene_data</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mfml_qc.mfml</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModelMFML</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mfml_qc.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">build_hierarchy_arrays</span><span class="p">,</span> <span class="n">top_down_subsetting</span>
+
+<span class="c1"># Import a completely different algorithm from scikit-learn</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.ensemble</span><span class="w"> </span><span class="kn">import</span> <span class="n">RandomForestRegressor</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/home/vvinod/miniforge3/lib/python3.12/site-packages/tqdm/auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
+  from .autonotebook import tqdm as notebook_tqdm
+</pre></div></div>
+</div>
+</section>
+<section id="Loading-and-Splitting-Data">
+<h2>Loading and Splitting Data<a class="headerlink" href="#Loading-and-Splitting-Data" title="Link to this heading">#</a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span> <span class="o">=</span> <span class="n">load_benzene_data</span><span class="p">()</span>
+
+<span class="n">X_CM</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;X_CM&quot;</span><span class="p">]</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;energies&quot;</span><span class="p">]</span>
+
+<span class="n">hierarchy_cols</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
+<span class="n">num_fids</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">hierarchy_cols</span><span class="p">)</span>
+
+<span class="n">train_mask</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">12288</span>
+<span class="n">test_mask</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">12288</span>
+
+<span class="n">X_train_parent</span> <span class="o">=</span> <span class="n">X_CM</span><span class="p">[</span><span class="n">train_mask</span><span class="p">]</span>
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">X_CM</span><span class="p">[</span><span class="n">test_mask</span><span class="p">]</span>
+<span class="n">data_train</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">train_mask</span><span class="p">]</span>
+<span class="n">data_test</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">test_mask</span><span class="p">]</span>
+
+<span class="n">y_trains</span><span class="p">,</span> <span class="n">indexes</span><span class="p">,</span> <span class="n">means</span> <span class="o">=</span> <span class="n">build_hierarchy_arrays</span><span class="p">(</span><span class="n">data_train</span><span class="p">,</span> <span class="n">hierarchy_cols</span><span class="p">)</span>
+
+<span class="c1"># We use the same target sample sizes as the previous tutorial</span>
+<span class="n">n_trains_target</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1024</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">128</span><span class="p">]</span>
+<span class="n">subset_y_trains</span><span class="p">,</span> <span class="n">subset_indexes</span> <span class="o">=</span> <span class="n">top_down_subsetting</span><span class="p">(</span>
+    <span class="n">y_trains</span><span class="p">,</span> <span class="n">indexes</span><span class="p">,</span> <span class="n">n_trains_target</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">42</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Passing-a-Custom-Base-Estimator">
+<h2>Passing a Custom Base Estimator<a class="headerlink" href="#Passing-a-Custom-Base-Estimator" title="Link to this heading">#</a></h2>
+<p>Instead of initializing the default Kernel Ridge Regressor, we will initialize a Random Forest Regressor from <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>. Before we get into the code, let’s briefly review the mechanics of a Random Forest Regressor. Unlike Kernel Ridge Regression, which relies on measuring continuous structural distances (kernels), a Random Forest is an ensemble method constructed from multiple decision trees.</p>
+<p>For a given input geometry representation <span class="math notranslate nohighlight">\(x\)</span>, each individual decision tree <span class="math notranslate nohighlight">\(k\)</span> in the forest makes an independent prediction <span class="math notranslate nohighlight">\(h_k(x)\)</span>. The final ensemble prediction <span class="math notranslate nohighlight">\(\hat{y}\)</span> is simply the average of all <span class="math notranslate nohighlight">\(K\)</span> trees:</p>
+<p><span class="math">\begin{align}\hat{y}(x) = \frac{1}{K} \sum_{k=1}^{K} h_k(x)\end{align}</span></p>
+<p>By training each tree on a random subset of the data (bootstrapping) and considering a random subset of features at each split, the Random Forest drastically reduces the variance and overfitting that is common in single decision trees.</p>
+<p>Notice how we pass the initialized <code class="docutils literal notranslate"><span class="pre">sk_model</span></code> directly to the <code class="docutils literal notranslate"><span class="pre">base_estimator</span></code> argument of the <code class="docutils literal notranslate"><span class="pre">ModelMFML</span></code> orchestrator. The orchestrator will automatically duplicate this tree-based model for all 2N-1 required combinations!</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sk_model</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span>
+    <span class="n">n_estimators</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span>
+<span class="p">)</span>
+
+<span class="c1"># the mfml model class takes the random forest regressor as the base-estimator</span>
+<span class="n">mfml_model</span> <span class="o">=</span> <span class="n">ModelMFML</span><span class="p">(</span><span class="n">base_estimator</span><span class="o">=</span><span class="n">sk_model</span><span class="p">,</span> <span class="n">p_bar</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># The orchestrator handles calling `.fit()` on the Random Forest models natively</span>
+<span class="n">mfml_model</span><span class="o">.</span><span class="n">train</span><span class="p">(</span>
+    <span class="n">X_train_parent</span><span class="o">=</span><span class="n">X_train_parent</span><span class="p">,</span> <span class="n">y_trains</span><span class="o">=</span><span class="n">subset_y_trains</span><span class="p">,</span> <span class="n">indexes</span><span class="o">=</span><span class="n">subset_indexes</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+
+</pre></div></div>
+</div>
+</section>
+<section id="Predicting-and-Evaluating">
+<h2>Predicting and Evaluating<a class="headerlink" href="#Predicting-and-Evaluating" title="Link to this heading">#</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_test_true</span> <span class="o">=</span> <span class="n">data_test</span><span class="p">[:,</span> <span class="n">hierarchy_cols</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+
+<span class="n">preds</span> <span class="o">=</span> <span class="n">mfml_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="o">=</span><span class="n">X_test</span><span class="p">,</span> <span class="n">optimiser</span><span class="o">=</span><span class="s2">&quot;default&quot;</span><span class="p">)</span>
+
+<span class="c1"># Un-center the predictions</span>
+<span class="n">preds</span> <span class="o">+=</span> <span class="n">means</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">mae</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">preds</span> <span class="o">-</span> <span class="n">y_test_true</span><span class="p">))</span>
+<span class="n">mae_kcal</span> <span class="o">=</span> <span class="n">mae</span> <span class="o">*</span> <span class="mi">23</span>  <span class="c1"># eV to kcal/mol</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;MFML (Random Forest) Test Set MAE: </span><span class="si">{</span><span class="n">mae</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2"> eV (</span><span class="si">{</span><span class="n">mae_kcal</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> kcal/mol)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+MFML (Random Forest) Test Set MAE: 0.029552 eV (0.6797 kcal/mol)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+
+</pre></div></div>
+</div>
+</section>
+<section id="Parity-Plot">
+<h2>Parity Plot<a class="headerlink" href="#Parity-Plot" title="Link to this heading">#</a></h2>
+<p>We can visualize the performance of our Random Forest-based MFML model. While kernels generally perform better for molecular representations like the Coulomb Matrix, this proves the framework is completely model-agnostic!</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="c1"># Plot the scatter points</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y_test_true</span><span class="p">,</span> <span class="n">preds</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;dodgerblue&quot;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>
+
+<span class="c1"># Calculate the limits to draw a perfect 45-degree diagonal line</span>
+<span class="n">min_val</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">y_test_true</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">preds</span><span class="p">))</span>
+<span class="n">max_val</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">y_test_true</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">preds</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">min_val</span><span class="p">,</span> <span class="n">max_val</span><span class="p">],</span> <span class="p">[</span><span class="n">min_val</span><span class="p">,</span> <span class="n">max_val</span><span class="p">],</span> <span class="s2">&quot;k--&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;True def2-TZVP Energy (eV)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;MFML Predicted Energy (eV)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Parity Plot: True vs. Predicted (Random Forest)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/auto_examples_04_duck_typing_mfml_11_0.png" src="../_images/auto_examples_04_duck_typing_mfml_11_0.png" />
+</div>
+</div>
+</section>
 </section>
 
 
@@ -366,20 +542,20 @@
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="05_mfml_learning_curve.html"
+       href="03_mfml_basics.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Multifidelity Machine Learning - Cross-Validation Technique</p>
+        <p class="prev-next-title">The Basics of MFML</p>
       </div>
     </a>
     <a class="right-next"
-       href="01_load_and_represent.html"
+       href="05_mfml_learning_curve.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Multi-Fidelity Dataset - Benzene</p>
+        <p class="prev-next-title">Multifidelity Machine Learning - Cross-Validation Technique</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -393,6 +569,22 @@
                 <dialog id="pst-secondary-sidebar-modal"></dialog>
                 <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Imports-and-Helper-Functions">Imports and Helper Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Loading-and-Splitting-Data">Loading and Splitting Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Passing-a-Custom-Base-Estimator">Passing a Custom Base Estimator</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Predicting-and-Evaluating">Predicting and Evaluating</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Parity-Plot">Parity Plot</a></li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
 

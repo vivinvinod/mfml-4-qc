@@ -18,7 +18,7 @@
 .. _sphx_glr_auto_examples_01_load_and_represent.py:
 
 
-Multi-Fidelity Dataset - Benzene
+A Multi-Fidelity Dataset: MD Benzene
 ==============================
 
 This tutorial covers the basics of data handling, visualization, and structural
@@ -40,14 +40,22 @@ installed the package using ``pip install .`` from the root directory so the
 dataset is correctly packaged, or manually place the data files inside the
 ``data/benzene`` directory.
 
-.. GENERATED FROM PYTHON SOURCE LINES 26-30
+.. GENERATED FROM PYTHON SOURCE LINES 24-27
+
+.. code-block:: Python
+
+
+    # sphinx_gallery_thumbnail_path = '../../data/media/benzene.png'
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 28-32
 
 Loading the Built-in Dataset
 ----------------------------
 We start by loading the built-in dataset using our provided utility function.
 This automatically handles path resolution and caching for you.
 
-.. GENERATED FROM PYTHON SOURCE LINES 30-41
+.. GENERATED FROM PYTHON SOURCE LINES 32-43
 
 .. code-block:: Python
 
@@ -63,7 +71,7 @@ This automatically handles path resolution and caching for you.
     print(f"Columns in CSV: {dataset['columns']}")
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 42-47
+.. GENERATED FROM PYTHON SOURCE LINES 44-49
 
 Exploring the Data
 ------------------
@@ -71,7 +79,7 @@ The data consists of vertical excitation energies computed at multiple fidelitie
 and their corresponding computational time costs. Let's extract them and look
 at the distributions.
 
-.. GENERATED FROM PYTHON SOURCE LINES 47-75
+.. GENERATED FROM PYTHON SOURCE LINES 49-77
 
 .. code-block:: Python
 
@@ -104,7 +112,7 @@ at the distributions.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 76-85
+.. GENERATED FROM PYTHON SOURCE LINES 78-87
 
 Why Multi-Fidelity Machine Learning?
 ------------------------------------------
@@ -116,7 +124,7 @@ To ensure a fair comparison, we will extract a strict subset of geometries from
 the training set (the first 12,288 samples) where the most expensive
 calculation (def2-QZVP) is present.
 
-.. GENERATED FROM PYTHON SOURCE LINES 85-140
+.. GENERATED FROM PYTHON SOURCE LINES 87-142
 
 .. code-block:: Python
 
@@ -176,7 +184,7 @@ calculation (def2-QZVP) is present.
     plt.show()
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 141-151
+.. GENERATED FROM PYTHON SOURCE LINES 143-153
 
 Generating Molecular Representations
 -------------------------------------
@@ -189,7 +197,7 @@ the tutorials.
 The ``load_benzene_data()`` function automatically invoked
 routines to compute and load these representations for us.
 
-.. GENERATED FROM PYTHON SOURCE LINES 151-156
+.. GENERATED FROM PYTHON SOURCE LINES 153-158
 
 .. code-block:: Python
 
@@ -199,7 +207,7 @@ routines to compute and load these representations for us.
     print(f"Coulomb Matrix Features per geometry: {X_CM.shape[1]}")
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 157-164
+.. GENERATED FROM PYTHON SOURCE LINES 159-166
 
 Custom Datasets
 ---------------
@@ -209,7 +217,7 @@ manually.
 
 The representations module handles the file parsing and memory allocation automatically:
 
-.. GENERATED FROM PYTHON SOURCE LINES 164-172
+.. GENERATED FROM PYTHON SOURCE LINES 166-174
 
 .. code-block:: Python
 

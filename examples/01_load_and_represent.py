@@ -1,5 +1,5 @@
 """
-Multi-Fidelity Dataset - Benzene
+A Multi-Fidelity Dataset: MD Benzene
 ==============================
 
 This tutorial covers the basics of data handling, visualization, and structural
@@ -21,6 +21,8 @@ installed the package using ``pip install .`` from the root directory so the
 dataset is correctly packaged, or manually place the data files inside the
 ``data/benzene`` directory.
 """
+
+# sphinx_gallery_thumbnail_path = '../../data/media/benzene.png'
 
 # %%%
 # Loading the Built-in Dataset

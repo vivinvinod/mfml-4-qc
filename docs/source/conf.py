@@ -1,5 +1,6 @@
 import os
 import sys
+from sphinx_gallery.sorting import FileNameSortKey
 
 sys.path.insert(0, os.path.abspath('../../src'))
 
@@ -23,6 +24,7 @@ extensions = [
 sphinx_gallery_conf = {
     'examples_dirs': '../../examples',
     'gallery_dirs': 'auto_examples',
+    'within_subsection_order': FileNameSortKey, 
 }
 
 html_theme = 'pydata_sphinx_theme'

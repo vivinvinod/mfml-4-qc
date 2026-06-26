@@ -54,7 +54,8 @@
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="Multi-Fidelity Dataset - Benzene" href="01_load_and_represent.html" />
+    <link rel="next" title="The Basics of MFML" href="03_mfml_basics.html" />
+    <link rel="prev" title="A Multi-Fidelity Dataset: MD Benzene" href="01_load_and_represent.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -273,14 +274,14 @@
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="06_omfml.html">Optimized Multifidelity Machine Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="08_pool_based_active_learning.html">Pool-Active Learning for Training Data Sampling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03_mfml_basics.html">Multifidelity Machine Learning Basics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="07_orca_orcale.html">ORCA Oracle Calls</a></li>
-<li class="toctree-l1"><a class="reference internal" href="05_mfml_learning_curve.html">Multifidelity Machine Learning - Cross-Validation Technique</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_duck_typing_mfml.html">Multifidelity Machine Learning - Duck Typing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01_load_and_represent.html">Multi-Fidelity Dataset - Benzene</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_load_and_represent.html">A Multi-Fidelity Dataset: MD Benzene</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Kernel Ridge Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_mfml_basics.html">The Basics of MFML</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_duck_typing_mfml.html">Duck Typing for MFML</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_mfml_learning_curve.html">Multifidelity Machine Learning - Cross-Validation Technique</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_omfml.html">Optimized Multifidelity Machine Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_orca_orcale.html">ORCA Oracle Calls</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_pool_based_active_learning.html">Pool-Active Learning for Training Data Sampling</a></li>
 </ul>
 </div>
 </nav></div>
@@ -482,6 +483,7 @@ error, we will generate learning curves for 10 random sub-sampling of the traini
 <span class="n">std_mae</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">maes</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">train_sizes</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="o">**</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">)]</span>
 
+<span class="c1"># sphinx_gallery_thumbnail_number = 1</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span>
     <span class="n">train_sizes</span><span class="p">,</span> <span class="n">mean_mae</span><span class="p">,</span> <span class="n">yerr</span><span class="o">=</span><span class="n">std_mae</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;o-&quot;</span><span class="p">,</span> <span class="n">capsize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;KRR (TZVP)&quot;</span>
@@ -523,8 +525,17 @@ error, we will generate learning curves for 10 random sub-sampling of the traini
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Multi-Fidelity Dataset - Benzene</p>
+        <p class="prev-next-title">A Multi-Fidelity Dataset: MD Benzene</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="03_mfml_basics.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">The Basics of MFML</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>

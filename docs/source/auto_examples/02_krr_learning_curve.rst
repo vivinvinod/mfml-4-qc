@@ -26,7 +26,7 @@ the in-built Kernel Ridge Regressor module. We will focus on a single fidelity K
 model that predicts the excitation energies of the benzene molecule from the
 dataset provided in this package.
 
-.. GENERATED FROM PYTHON SOURCE LINES 13-19
+.. GENERATED FROM PYTHON SOURCE LINES 15-21
 
 Loading the Built-in Dataset
 ----------------------------
@@ -35,7 +35,7 @@ geometries which have the def2-TZVP fidelity
 we will build a single fidelity KRR model to
 predict these energies.
 
-.. GENERATED FROM PYTHON SOURCE LINES 19-45
+.. GENERATED FROM PYTHON SOURCE LINES 21-47
 
 .. code-block:: Python
 
@@ -66,7 +66,7 @@ predict these energies.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 46-58
+.. GENERATED FROM PYTHON SOURCE LINES 48-60
 
 Learning Curve Generator Function
 ----------------
@@ -81,7 +81,7 @@ as a function of the nunmber of training samples used.
 To get a statistical idea of the error, we will generate learning curves
 for 10 random sub-sampling of the training dataset.
 
-.. GENERATED FROM PYTHON SOURCE LINES 58-119
+.. GENERATED FROM PYTHON SOURCE LINES 60-121
 
 .. code-block:: Python
 
@@ -147,13 +147,13 @@ for 10 random sub-sampling of the training dataset.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 120-123
+.. GENERATED FROM PYTHON SOURCE LINES 122-125
 
 The learning curve
 ---------------------------
 get the maes
 
-.. GENERATED FROM PYTHON SOURCE LINES 123-153
+.. GENERATED FROM PYTHON SOURCE LINES 125-156
 
 .. code-block:: Python
 
@@ -175,6 +175,7 @@ get the maes
     std_mae = np.std(maes, axis=1)
     train_sizes = [2**i for i in range(1, 9)]
 
+    # sphinx_gallery_thumbnail_number = 1
     plt.figure(figsize=(6, 5))
     plt.errorbar(
         train_sizes, mean_mae, yerr=std_mae, fmt="o-", capsize=5, label="KRR (TZVP)"

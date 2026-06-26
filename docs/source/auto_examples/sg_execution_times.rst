@@ -6,7 +6,7 @@
 
 Computation times
 =================
-**00:00.000** total execution time for 2 files **from auto_examples**:
+**00:00.000** total execution time for 8 files **from auto_examples**:
 
 .. container::
 
@@ -36,5 +36,23 @@ Computation times
      - 00:00.000
      - 0.0
    * - :ref:`sphx_glr_auto_examples_02_krr_learning_curve.py` (``02_krr_learning_curve.py``)
+     - 00:00.000
+     - 0.0
+   * - :ref:`sphx_glr_auto_examples_03_mfml_basics.py` (``03_mfml_basics.py``)
+     - 00:00.000
+     - 0.0
+   * - :ref:`sphx_glr_auto_examples_04_duck_typing_mfml.py` (``04_duck_typing_mfml.py``)
+     - 00:00.000
+     - 0.0
+   * - :ref:`sphx_glr_auto_examples_05_mfml_learning_curve.py` (``05_mfml_learning_curve.py``)
+     - 00:00.000
+     - 0.0
+   * - :ref:`sphx_glr_auto_examples_06_omfml.py` (``06_omfml.py``)
+     - 00:00.000
+     - 0.0
+   * - :ref:`sphx_glr_auto_examples_07_orca_orcale.py` (``07_orca_orcale.py``)
+     - 00:00.000
+     - 0.0
+   * - :ref:`sphx_glr_auto_examples_08_pool_based_active_learning.py` (``08_pool_based_active_learning.py``)
      - 00:00.000
      - 0.0

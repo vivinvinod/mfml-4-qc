@@ -293,10 +293,6 @@
 <h1>Welcome to MFML-4-QC’s documentation!<a class="headerlink" href="#welcome-to-mfml-4-qc-s-documentation" title="Link to this heading">#</a></h1>
 <p><strong>MFML-4-QC</strong> is a Python package for Multifidelity Machine Learning in Quantum Chemistry. It provides an in built, Numba-accelerated Kernel Ridge Regression backend, dynamic active learning, and automated interfaces to quantum chemistry engines like ORCA.</p>
 <div class="toctree-wrapper compound">
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">User Guide &amp; Examples</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="auto_examples/index.html">Examples</a></li>
-</ul>
 </div>
 <section id="api-reference">
 <h2>API Reference<a class="headerlink" href="#api-reference" title="Link to this heading">#</a></h2>
@@ -416,6 +412,27 @@ Default is None.</p>
 </dd></dl>
 
 <dl class="py function" id="module-mfml_qc.utils">
+<dt class="sig sig-object py" id="mfml_qc.utils.build_hierarchy_arrays">
+<span class="sig-prename descclassname"><span class="pre">mfml_qc.utils.</span></span><span class="sig-name descname"><span class="pre">build_hierarchy_arrays</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_train</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hierarchy_cols</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span></span></span><a class="reference internal" href="_modules/mfml_qc/utils.html#build_hierarchy_arrays"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mfml_qc.utils.build_hierarchy_arrays" title="Link to this definition">#</a></dt>
+<dd><p>Extracts valid subsets and mean-centers energies across a fidelity hierarchy.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data_train</strong> (<em>np.ndarray</em>) – The training data array containing all fidelities.</p></li>
+<li><p><strong>hierarchy_cols</strong> (<em>list</em><em> of </em><em>int</em>) – Column indices for the fidelities, ordered from lowest to highest.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>(y_trains, indexes, means) where y_trains and indexes are object arrays
+formatted for the ModelMFML, and means are the centering offsets.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="mfml_qc.utils.property_differences">
 <span class="sig-prename descclassname"><span class="pre">mfml_qc.utils.</span></span><span class="sig-name descname"><span class="pre">property_differences</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_paths</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mfml_qc/utils.html#property_differences"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mfml_qc.utils.property_differences" title="Link to this definition">#</a></dt>
 <dd><p>Helper utility to parse and align nested multi-fidelity datasets from raw text files.</p>
@@ -445,6 +462,28 @@ represent <cite>[baseline_row_index, current_fidelity_row_index]</cite>.</p></li
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>FileNotFoundError</strong> – If the baseline file (the first path in <cite>file_paths</cite>) cannot be located.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mfml_qc.utils.top_down_subsetting">
+<span class="sig-prename descclassname"><span class="pre">mfml_qc.utils.</span></span><span class="sig-name descname"><span class="pre">top_down_subsetting</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_trains</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indexes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_trains_target</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span></span></span><a class="reference internal" href="_modules/mfml_qc/utils.html#top_down_subsetting"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mfml_qc.utils.top_down_subsetting" title="Link to this definition">#</a></dt>
+<dd><p>Subsets the data using a top-down cascade to maintain strict nested structures.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>y_trains</strong> (<em>np.ndarray</em>) – The full target properties array.</p></li>
+<li><p><strong>indexes</strong> (<em>np.ndarray</em>) – The full mapping indexes array.</p></li>
+<li><p><strong>n_trains_target</strong> (<em>list</em><em> of </em><em>int</em>) – Target number of samples for each fidelity (lowest to highest).</p></li>
+<li><p><strong>seed</strong> (<em>int</em><em>, </em><em>optional</em>) – Random state seed for shuffling. Defaults to 42.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>(subset_y_trains, subset_indexes) ready for MFML training.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1211,7 +1250,9 @@ and <span class="math notranslate nohighlight">\(P^{low}_{ref}\)</span> is the r
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#module-mfml_qc.datasets">Data Loaders &amp; Utilities</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.datasets.load_benzene_data"><code class="docutils literal notranslate"><span class="pre">load_benzene_data()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.utils.build_hierarchy_arrays"><code class="docutils literal notranslate"><span class="pre">build_hierarchy_arrays()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.utils.property_differences"><code class="docutils literal notranslate"><span class="pre">property_differences()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.utils.top_down_subsetting"><code class="docutils literal notranslate"><span class="pre">top_down_subsetting()</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kernel-ridge-regression">Kernel Ridge Regression</a><ul class="nav section-nav flex-column">
