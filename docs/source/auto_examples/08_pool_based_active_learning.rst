@@ -19,16 +19,27 @@
 
 
 Pool-Active Learning for Training Data Sampling
-===============================================
+================================================
 
 How to active learning with LFaB.
 
 .. GENERATED FROM PYTHON SOURCE LINES 8-10
 
+
+
+
+
+
+
 .. code-block:: Python
 
 
     import numpy as np
+
+
+.. rst-class:: sphx-glr-timing
+
+   **Total running time of the script:** (0 minutes 0.001 seconds)
 
 
 .. _sphx_glr_download_auto_examples_08_pool_based_active_learning.py:

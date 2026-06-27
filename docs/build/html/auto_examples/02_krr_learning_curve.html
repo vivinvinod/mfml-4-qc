@@ -278,9 +278,9 @@
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Kernel Ridge Regression</a></li>
 <li class="toctree-l1"><a class="reference internal" href="03_mfml_basics.html">The Basics of MFML</a></li>
 <li class="toctree-l1"><a class="reference internal" href="04_duck_typing_mfml.html">Duck Typing for MFML</a></li>
-<li class="toctree-l1"><a class="reference internal" href="05_mfml_learning_curve.html">Multifidelity Machine Learning - Cross-Validation Technique</a></li>
-<li class="toctree-l1"><a class="reference internal" href="06_omfml.html">Optimized Multifidelity Machine Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="07_orca_orcale.html">ORCA Oracle Calls</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_mfml_learning_curve.html">MFML Cross-Validation and Learning Curves</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_omfml.html">Optimized MFML</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_orca_oracle.html">ORCA Oracle Calls</a></li>
 <li class="toctree-l1"><a class="reference internal" href="08_pool_based_active_learning.html">Pool-Active Learning for Training Data Sampling</a></li>
 </ul>
 </div>
@@ -483,8 +483,7 @@ error, we will generate learning curves for 10 random sub-sampling of the traini
 <span class="n">std_mae</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">maes</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">train_sizes</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="o">**</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">)]</span>
 
-<span class="c1"># sphinx_gallery_thumbnail_number = 1</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span>
     <span class="n">train_sizes</span><span class="p">,</span> <span class="n">mean_mae</span><span class="p">,</span> <span class="n">yerr</span><span class="o">=</span><span class="n">std_mae</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;o-&quot;</span><span class="p">,</span> <span class="n">capsize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;KRR (TZVP)&quot;</span>
 <span class="p">)</span>

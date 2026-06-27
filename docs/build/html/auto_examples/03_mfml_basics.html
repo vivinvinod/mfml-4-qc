@@ -278,9 +278,9 @@
 <li class="toctree-l1"><a class="reference internal" href="02_krr_learning_curve.html">Kernel Ridge Regression</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">The Basics of MFML</a></li>
 <li class="toctree-l1"><a class="reference internal" href="04_duck_typing_mfml.html">Duck Typing for MFML</a></li>
-<li class="toctree-l1"><a class="reference internal" href="05_mfml_learning_curve.html">Multifidelity Machine Learning - Cross-Validation Technique</a></li>
-<li class="toctree-l1"><a class="reference internal" href="06_omfml.html">Optimized Multifidelity Machine Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="07_orca_orcale.html">ORCA Oracle Calls</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_mfml_learning_curve.html">MFML Cross-Validation and Learning Curves</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_omfml.html">Optimized MFML</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_orca_oracle.html">ORCA Oracle Calls</a></li>
 <li class="toctree-l1"><a class="reference internal" href="08_pool_based_active_learning.html">Pool-Active Learning for Training Data Sampling</a></li>
 </ul>
 </div>
@@ -345,21 +345,13 @@
   <section id="The-Basics-of-MFML">
 <h1>The Basics of MFML<a class="headerlink" href="#The-Basics-of-MFML" title="Link to this heading">#</a></h1>
 <p>This example demonstrates how to use the MFML-QC package to load the built-in Benzene trajectory dataset, manually extract a multi-fidelity subset using a top-down approach (that is start with the highest fidelity then move down the fidelity hierarchy), and train an MFML model to predict high-fidelity excitation energies.</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># sphinx_gallery_thumbnail_path = &#39;../../data/media/MFML_pyramid.png&#39;</span>
-</pre></div>
-</div>
-</div>
 <section id="Imports-and-Helper-Functions">
 <h2>Imports and Helper Functions<a class="headerlink" href="#Imports-and-Helper-Functions" title="Link to this heading">#</a></h2>
 <p>Before we begin the actual MFML workflow, let’s define two highly reusable helper functions. These are present in the utils script of the MFML package.</p>
 <p>The first function parses our raw CSV arrays, mean-centers the target properties,and establishes the foundational <code class="docutils literal notranslate"><span class="pre">indexes</span></code> mapping arrays that link high-fidelity calculations back to their low-fidelity entries and corresponding geometries.</p>
 <p>The second helper function handles <strong>Top-Down Nested Extraction</strong>. Because the provided benzene datasets is sparsely populated at high fidelities, a top-down extraction of the data guarantees that any geometry selected for a high-fidelity training set is strictly included in all lower-fidelity training sets beneath it. Note that in practice, however, one would start from the lowest fidelity and try to build their way up from there (Such as Adaptive-MFMLO. This will form a separate tutorial.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
@@ -384,11 +376,10 @@
 <h2>Loading and Splitting the Dataset<a class="headerlink" href="#Loading-and-Splitting-the-Dataset" title="Link to this heading">#</a></h2>
 <p>Let’s load the built-in Benzene dataset and split it chronologically into a training pool (the first 12,288 geometries) and a test set. We will use a 4-fidelity example which in increasing order of accuracy are LC-DFTB, TD-DFT (STO-3G), TD-DFT (def2-SVP), and TD-DFT (def2-TZVP).</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Loading Benzene dataset via built-in loader...&quot;</span><span class="p">)</span>
-<span class="n">dataset</span> <span class="o">=</span> <span class="n">load_benzene_data</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span> <span class="o">=</span> <span class="n">load_benzene_data</span><span class="p">()</span>
 
 <span class="n">X_CM</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;X_CM&quot;</span><span class="p">]</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;energies&quot;</span><span class="p">]</span>
@@ -414,7 +405,6 @@
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Loading Benzene dataset via built-in loader...
 (12288, 9) (2712, 9)
 </pre></div></div>
 </div>
@@ -423,7 +413,7 @@ Loading Benzene dataset via built-in loader...
 <h2>Preparing the Multi-Fidelity Data<a class="headerlink" href="#Preparing-the-Multi-Fidelity-Data" title="Link to this heading">#</a></h2>
 <p>We use our helper functions to extract the full valid arrays, and then apply the top-down nested extraction to enforce our specific target sizes. Here we will use 1024 samples at LC-DFTB, 512 at STO-3G, 256 at def2-SVP, and 128 samples at def2-TZVP</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_trains</span><span class="p">,</span> <span class="n">indexes</span><span class="p">,</span> <span class="n">means</span> <span class="o">=</span> <span class="n">build_hierarchy_arrays</span><span class="p">(</span><span class="n">data_train</span><span class="p">,</span> <span class="n">hierarchy_cols</span><span class="p">)</span>
@@ -439,7 +429,7 @@ Loading Benzene dataset via built-in loader...
 <h2>Instantiating the MFML Model<a class="headerlink" href="#Instantiating-the-MFML-Model" title="Link to this heading">#</a></h2>
 <p>With our data strictly nested and formatted, we can instantiate the <code class="docutils literal notranslate"><span class="pre">ModelMFML</span></code> class. It will automatically build and train the 2N - 1 underlying sub-models required.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mfml_model</span> <span class="o">=</span> <span class="n">ModelMFML</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s2">&quot;matern&quot;</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">715.0</span><span class="p">,</span> <span class="n">reg</span><span class="o">=</span><span class="mf">1e-9</span><span class="p">,</span> <span class="n">p_bar</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -448,7 +438,7 @@ Loading Benzene dataset via built-in loader...
 </div>
 <p>We pass the subset arrays here to train on our specific N_trains targets. In a different example where we carry out a bottom-to-top data nestedness, we will come across an internal shuffler built in for the MFML. It must be noted that shuffling of training data here is what is often called random sub-sampling. The order of the data itself in training kernel based models does not affect the model.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mfml_model</span><span class="o">.</span><span class="n">train</span><span class="p">(</span>
@@ -470,7 +460,7 @@ Loading Benzene dataset via built-in loader...
 <h2>Predicting and Evaluating<a class="headerlink" href="#Predicting-and-Evaluating" title="Link to this heading">#</a></h2>
 <p>We predict the test geometries using the standard +1 and -1 wieghts and un-center the predictions using the highest-fidelity mean.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Pick def2-TZVP (highest fidelity) as our &quot;ground truth&quot; test targets</span>
@@ -512,12 +502,12 @@ MFML Test Set MAE: 0.008261 eV (0.1900 kcal/mol)
 </div>
 <p>Often, it is worth visualising a parity plot which is simply a scatter plot between the predictions and the true reference of the test set.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y_test_true</span><span class="p">,</span> <span class="n">preds</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;dodgerblue&quot;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>
 
 <span class="c1"># the 45 degree diagonal indicates the ideal of everything matches perfectly</span>
@@ -538,7 +528,7 @@ MFML Test Set MAE: 0.008261 eV (0.1900 kcal/mol)
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/auto_examples_03_mfml_basics_15_0.png" src="../_images/auto_examples_03_mfml_basics_15_0.png" />
+<img alt="../_images/auto_examples_03_mfml_basics_14_0.png" src="../_images/auto_examples_03_mfml_basics_14_0.png" />
 </div>
 </div>
 </section>

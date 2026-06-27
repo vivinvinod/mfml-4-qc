@@ -312,7 +312,7 @@
 <span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">copy</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">tqdm.auto</span><span class="w"> </span><span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tqdm</span><span class="w"> </span><span class="kn">import</span> <span class="n">tqdm</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LinearRegression</span><span class="p">,</span> <span class="n">Ridge</span><span class="p">,</span> <span class="n">Lasso</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.neural_network</span><span class="w"> </span><span class="kn">import</span> <span class="n">MLPRegressor</span>
 
@@ -792,7 +792,7 @@
             <span class="n">test_preds</span><span class="p">[:,</span> <span class="n">count</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">models</span><span class="p">[</span><span class="n">count</span><span class="p">]</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
             <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
 
-        <span class="c1"># optimzers for o-MFML</span>
+        <span class="c1"># optimizers for o-MFML</span>
         <span class="k">if</span> <span class="n">optimiser</span> <span class="o">==</span> <span class="s2">&quot;OLS&quot;</span><span class="p">:</span>
             <span class="n">defaultKwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;copy_X&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;fit_intercept&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}</span>
             <span class="n">defaultKwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="o">**</span><span class="n">optargs</span><span class="p">)</span>

@@ -11,6 +11,8 @@ release = '0.1.0'
 
 #html_title = "MFML-4-QC Documentation"
 
+html_static_path = ['../../data/media']
+
 extensions = [
     'sphinx.ext.autodoc',	# Automatically pulls docstrings from classes/functions
     'sphinx.ext.napoleon',	# Allows Sphinx to read docstrings
@@ -24,7 +26,8 @@ extensions = [
 sphinx_gallery_conf = {
     'examples_dirs': '../../examples',
     'gallery_dirs': 'auto_examples',
-    'within_subsection_order': FileNameSortKey, 
+    'within_subsection_order': FileNameSortKey,
+    'filename_pattern': r'\.py$',
 }
 
 html_theme = 'pydata_sphinx_theme'

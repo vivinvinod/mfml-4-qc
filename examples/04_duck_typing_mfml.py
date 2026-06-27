@@ -12,10 +12,9 @@ Because the ModelMFML class is flexible, you can pass any custom machine
 learning model (such as a Neural Network or Random Forest from ``scikit-learn``)
 using the ``base_estimator`` argument, provided it has standard ``.fit(X, y)`` or ``.train(X,y)``,
 and ``.predict(X)`` methods!
+
+.. sphinx_gallery_thumbnail_path = '_static/ducktyping.png'
 """
-
-# sphinx_gallery_thumbnail_path = '../../data/media/ducktyping.png'
-
 
 # %%
 # Imports and Helper Functions
@@ -124,10 +123,10 @@ print(f"MFML (Random Forest) Test Set MAE: {mae:.6f} eV ({mae_kcal:.4f} kcal/mol
 # the Coulomb Matrix, this proves the framework is completely model-agnostic!
 
 
-plt.figure(figsize=(6, 6))
+plt.figure(figsize=(5, 5))
 
 # Plot the scatter points
-plt.scatter(y_test_true, preds, alpha=0.6, color="dodgerblue", edgecolor="k", s=25)
+plt.scatter(y_test_true, preds, alpha=0.6, color="lightcoral", edgecolor="k", s=25)
 
 # Calculate the limits to draw a perfect 45-degree diagonal line
 min_val = min(np.min(y_test_true), np.min(preds))

@@ -19,7 +19,7 @@
 
 
 A Multi-Fidelity Dataset: MD Benzene
-==============================
+====================================
 
 This tutorial covers the basics of data handling, visualization, and structural
 representation generation in MFML-QC. We will use an inbuilt dataset for the benzene molecule.
@@ -40,22 +40,14 @@ installed the package using ``pip install .`` from the root directory so the
 dataset is correctly packaged, or manually place the data files inside the
 ``data/benzene`` directory.
 
-.. GENERATED FROM PYTHON SOURCE LINES 24-27
-
-.. code-block:: Python
-
-
-    # sphinx_gallery_thumbnail_path = '../../data/media/benzene.png'
-
-
-.. GENERATED FROM PYTHON SOURCE LINES 28-32
+.. GENERATED FROM PYTHON SOURCE LINES 26-30
 
 Loading the Built-in Dataset
 ----------------------------
 We start by loading the built-in dataset using our provided utility function.
 This automatically handles path resolution and caching for you.
 
-.. GENERATED FROM PYTHON SOURCE LINES 32-43
+.. GENERATED FROM PYTHON SOURCE LINES 30-41
 
 .. code-block:: Python
 
@@ -71,7 +63,20 @@ This automatically handles path resolution and caching for you.
     print(f"Columns in CSV: {dataset['columns']}")
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 44-49
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ .. code-block:: none
+
+    Keys in dataset: ['X_CM', 'energies', 'timecosts', 'columns']
+    Columns in CSV: ['Time', 'ZINDO', 'LC-DFTB', 'STO-3G', '3-21G', '6-31G', 'def2-SVP', 'def2-TZVP', 'def2-QZVP']
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 42-47
 
 Exploring the Data
 ------------------
@@ -79,7 +84,7 @@ The data consists of vertical excitation energies computed at multiple fidelitie
 and their corresponding computational time costs. Let's extract them and look
 at the distributions.
 
-.. GENERATED FROM PYTHON SOURCE LINES 49-77
+.. GENERATED FROM PYTHON SOURCE LINES 47-75
 
 .. code-block:: Python
 
@@ -112,7 +117,18 @@ at the distributions.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 78-87
+
+
+.. image-sg:: /auto_examples/images/sphx_glr_01_load_and_represent_001.png
+   :alt: TD-LC-DFTB Energies, TD-DFT def2-TZVP Energies
+   :srcset: /auto_examples/images/sphx_glr_01_load_and_represent_001.png
+   :class: sphx-glr-single-img
+
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 76-85
 
 Why Multi-Fidelity Machine Learning?
 ------------------------------------------
@@ -124,7 +140,7 @@ To ensure a fair comparison, we will extract a strict subset of geometries from
 the training set (the first 12,288 samples) where the most expensive
 calculation (def2-QZVP) is present.
 
-.. GENERATED FROM PYTHON SOURCE LINES 87-142
+.. GENERATED FROM PYTHON SOURCE LINES 85-140
 
 .. code-block:: Python
 
@@ -160,7 +176,7 @@ calculation (def2-QZVP) is present.
     # ---------------------------------------------------------
     # Plotting Mean and Std Dev
     # ---------------------------------------------------------
-    plt.figure(figsize=(9, 6))
+    plt.figure(figsize=(5, 4))
 
     # Plotting with error bars
     plt.errorbar(
@@ -184,7 +200,24 @@ calculation (def2-QZVP) is present.
     plt.show()
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 143-153
+
+
+.. image-sg:: /auto_examples/images/sphx_glr_01_load_and_represent_002.png
+   :alt: Mean Computational Cost per Fidelity
+   :srcset: /auto_examples/images/sphx_glr_01_load_and_represent_002.png
+   :class: sphx-glr-single-img
+
+
+.. rst-class:: sphx-glr-script-out
+
+ .. code-block:: none
+
+    Found 384 training geometries with complete hierarchy data.
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 141-151
 
 Generating Molecular Representations
 -------------------------------------
@@ -197,7 +230,7 @@ the tutorials.
 The ``load_benzene_data()`` function automatically invoked
 routines to compute and load these representations for us.
 
-.. GENERATED FROM PYTHON SOURCE LINES 153-158
+.. GENERATED FROM PYTHON SOURCE LINES 151-156
 
 .. code-block:: Python
 
@@ -207,7 +240,20 @@ routines to compute and load these representations for us.
     print(f"Coulomb Matrix Features per geometry: {X_CM.shape[1]}")
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 159-166
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ .. code-block:: none
+
+    Total Geometries: 15000
+    Coulomb Matrix Features per geometry: 78
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 157-164
 
 Custom Datasets
 ---------------
@@ -217,7 +263,7 @@ manually.
 
 The representations module handles the file parsing and memory allocation automatically:
 
-.. GENERATED FROM PYTHON SOURCE LINES 166-174
+.. GENERATED FROM PYTHON SOURCE LINES 164-172
 
 .. code-block:: Python
 
@@ -229,6 +275,17 @@ The representations module handles the file parsing and memory allocation automa
     #     xyz_filepath="path/to/your/custom_trajectory.xyz",
     #     save_path="optional/path/to/cache_coulomb_matrices.npy"
     # )
+
+
+
+
+
+
+
+
+.. rst-class:: sphx-glr-timing
+
+   **Total running time of the script:** (0 minutes 0.978 seconds)
 
 
 .. _sphx_glr_download_auto_examples_01_load_and_represent.py:

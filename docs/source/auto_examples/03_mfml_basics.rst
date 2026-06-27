@@ -19,7 +19,7 @@
 
 
 The Basics of MFML
-==============
+==================
 
 This example demonstrates how to use the MFML-QC package to load the
 built-in Benzene trajectory dataset, manually extract a multi-fidelity
@@ -27,15 +27,7 @@ subset using a top-down approach (that is start with the highest fidelity
 then move down the fidelity hierarchy), and train an MFML model
 to predict high-fidelity excitation energies.
 
-.. GENERATED FROM PYTHON SOURCE LINES 11-14
-
-.. code-block:: Python
-
-
-    # sphinx_gallery_thumbnail_path = '../../data/media/MFML_pyramid.png'
-
-
-.. GENERATED FROM PYTHON SOURCE LINES 15-31
+.. GENERATED FROM PYTHON SOURCE LINES 13-29
 
 Imports and Helper Functions
 ----------------------------
@@ -54,7 +46,7 @@ training set is strictly included in all lower-fidelity training sets beneath it
 Note that in practice, however, one would start from the lowest fidelity and try to
 build their way up from there (Such as Adaptive-MFMLO. This will form a separate tutorial.
 
-.. GENERATED FROM PYTHON SOURCE LINES 31-39
+.. GENERATED FROM PYTHON SOURCE LINES 29-37
 
 .. code-block:: Python
 
@@ -67,7 +59,13 @@ build their way up from there (Such as Adaptive-MFMLO. This will form a separate
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 40-46
+
+
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 38-44
 
 Loading and Splitting the Dataset
 ---------------------------------
@@ -76,12 +74,11 @@ a training pool (the first 12,288 geometries) and a test set.
 We will use a 4-fidelity example which in increasing order of accuracy are
 LC-DFTB, TD-DFT (STO-3G), TD-DFT (def2-SVP), and TD-DFT (def2-TZVP).
 
-.. GENERATED FROM PYTHON SOURCE LINES 46-67
+.. GENERATED FROM PYTHON SOURCE LINES 44-64
 
 .. code-block:: Python
 
 
-    print("Loading Benzene dataset via built-in loader...")
     dataset = load_benzene_data()
 
     X_CM = dataset["X_CM"]
@@ -102,7 +99,19 @@ LC-DFTB, TD-DFT (STO-3G), TD-DFT (def2-SVP), and TD-DFT (def2-TZVP).
     print(data_train.shape, data_test.shape)
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 68-73
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ .. code-block:: none
+
+    (12288, 9) (2712, 9)
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 65-70
 
 Preparing the Multi-Fidelity Data
 ---------------------------------
@@ -110,7 +119,7 @@ We use our helper functions to extract the full valid arrays, and then apply
 the top-down nested extraction to enforce our specific target sizes.
 Here we will use 1024 samples at LC-DFTB, 512 at STO-3G, 256 at def2-SVP, and 128 samples at def2-TZVP
 
-.. GENERATED FROM PYTHON SOURCE LINES 73-80
+.. GENERATED FROM PYTHON SOURCE LINES 70-77
 
 .. code-block:: Python
 
@@ -122,7 +131,13 @@ Here we will use 1024 samples at LC-DFTB, 512 at STO-3G, 256 at def2-SVP, and 12
     )
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 81-86
+
+
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 78-83
 
 Instantiating the MFML Model
 -----------------------
@@ -130,7 +145,7 @@ With our data strictly nested and formatted, we can instantiate the
 ``ModelMFML`` class. It will automatically build and train the
 2N - 1 underlying sub-models required.
 
-.. GENERATED FROM PYTHON SOURCE LINES 86-89
+.. GENERATED FROM PYTHON SOURCE LINES 83-86
 
 .. code-block:: Python
 
@@ -138,7 +153,13 @@ With our data strictly nested and formatted, we can instantiate the
     mfml_model = ModelMFML(kernel="matern", sigma=715.0, reg=1e-9, p_bar=False)
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 90-96
+
+
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 87-93
 
 We pass the subset arrays here to train on our specific N_trains targets.
 In a different example where we carry out a bottom-to-top data nestedness,
@@ -147,7 +168,7 @@ It must be noted that shuffling of training data here is what is
 often called random sub-sampling. The order of the data itself in training
 kernel based models does not affect the model.
 
-.. GENERATED FROM PYTHON SOURCE LINES 96-101
+.. GENERATED FROM PYTHON SOURCE LINES 93-98
 
 .. code-block:: Python
 
@@ -157,14 +178,25 @@ kernel based models does not affect the model.
     )
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 102-106
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ .. code-block:: none
+
+    Extracting X_trains:   0%|          | 0/4 [00:00<?, ?it/s]                                                              Extracting upper y_trains:   0%|          | 0/4 [00:00<?, ?it/s]                                                                    Extracting lower y_trains:   0%|          | 0/3 [00:00<?, ?it/s]                                                                    Training upper ML models...:   0%|          | 0/4 [00:00<?, ?it/s]    Training upper ML models...:  50%|█████     | 2/4 [00:00<00:00, 18.01it/s]                                                                              Training lower ML models:   0%|          | 0/3 [00:00<?, ?it/s]                                                               
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 99-103
 
 Predicting and Evaluating
 -------------------------
 We predict the test geometries using the standard +1 and -1
 wieghts and un-center the predictions using the highest-fidelity mean.
 
-.. GENERATED FROM PYTHON SOURCE LINES 106-119
+.. GENERATED FROM PYTHON SOURCE LINES 103-116
 
 .. code-block:: Python
 
@@ -182,19 +214,31 @@ wieghts and un-center the predictions using the highest-fidelity mean.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 120-123
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ .. code-block:: none
+
+    Upper MFML predictions:   0%|          | 0/4 [00:00<?, ?it/s]    Upper MFML predictions:  25%|██▌       | 1/4 [00:00<00:00,  5.81it/s]    Upper MFML predictions:  50%|█████     | 2/4 [00:00<00:00,  6.74it/s]    Upper MFML predictions: 100%|██████████| 4/4 [00:00<00:00,  9.72it/s]                                                                         Lower MFML predictions:   0%|          | 0/3 [00:00<?, ?it/s]    Lower MFML predictions:  33%|███▎      | 1/3 [00:00<00:00,  8.54it/s]    Lower MFML predictions:  67%|██████▋   | 2/3 [00:00<00:00,  9.04it/s]                                                                         MFML Test Set MAE: 0.008261 eV (0.1900 kcal/mol)
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 117-120
 
 Often, it is worth visualising a parity plot
 which is simply a scatter plot between the predictions
 and the true reference of the test set.
 
-.. GENERATED FROM PYTHON SOURCE LINES 123-139
+.. GENERATED FROM PYTHON SOURCE LINES 120-136
 
 .. code-block:: Python
 
     import matplotlib.pyplot as plt
 
-    plt.figure(figsize=(6, 6))
+    plt.figure(figsize=(5, 5))
     plt.scatter(y_test_true, preds, alpha=0.6, color="dodgerblue", edgecolor="k", s=25)
 
     # the 45 degree diagonal indicates the ideal of everything matches perfectly
@@ -208,6 +252,22 @@ and the true reference of the test set.
     plt.grid(True, linestyle="--", alpha=0.6)
     plt.tight_layout()
     plt.show()
+
+
+
+.. image-sg:: /auto_examples/images/sphx_glr_03_mfml_basics_001.png
+   :alt: Parity Plot: True vs. Predicted
+   :srcset: /auto_examples/images/sphx_glr_03_mfml_basics_001.png
+   :class: sphx-glr-single-img
+
+
+
+
+
+
+.. rst-class:: sphx-glr-timing
+
+   **Total running time of the script:** (0 minutes 1.303 seconds)
 
 
 .. _sphx_glr_download_auto_examples_03_mfml_basics.py:

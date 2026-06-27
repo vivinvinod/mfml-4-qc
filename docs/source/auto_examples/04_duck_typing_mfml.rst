@@ -32,23 +32,16 @@ learning model (such as a Neural Network or Random Forest from ``scikit-learn``)
 using the ``base_estimator`` argument, provided it has standard ``.fit(X, y)`` or ``.train(X,y)``,
 and ``.predict(X)`` methods!
 
-.. GENERATED FROM PYTHON SOURCE LINES 16-20
+.. sphinx_gallery_thumbnail_path = '_static/ducktyping.png'
 
-.. code-block:: Python
-
-
-    # sphinx_gallery_thumbnail_path = '../../data/media/ducktyping.png'
-
-
-
-.. GENERATED FROM PYTHON SOURCE LINES 21-25
+.. GENERATED FROM PYTHON SOURCE LINES 20-24
 
 Imports and Helper Functions
 ----------------------------
 We reuse the exact same helper functions from the previous tutorial to extract
 and strictly nest our multi-fidelity training data.
 
-.. GENERATED FROM PYTHON SOURCE LINES 25-38
+.. GENERATED FROM PYTHON SOURCE LINES 24-37
 
 .. code-block:: Python
 
@@ -66,12 +59,18 @@ and strictly nest our multi-fidelity training data.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 39-41
+
+
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 38-40
 
 Loading and Splitting Data
 --------------------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 41-65
+.. GENERATED FROM PYTHON SOURCE LINES 40-64
 
 .. code-block:: Python
 
@@ -100,7 +99,13 @@ Loading and Splitting Data
     )
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 66-91
+
+
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 65-90
 
 Passing a Custom Base Estimator
 -------------------------------
@@ -128,7 +133,7 @@ Notice how we pass the initialized ``sk_model`` directly to the ``base_estimator
 argument of the ``ModelMFML`` orchestrator. The orchestrator will automatically
 duplicate this tree-based model for all 2N-1 required combinations!
 
-.. GENERATED FROM PYTHON SOURCE LINES 91-104
+.. GENERATED FROM PYTHON SOURCE LINES 90-103
 
 .. code-block:: Python
 
@@ -146,12 +151,23 @@ duplicate this tree-based model for all 2N-1 required combinations!
     )
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 105-107
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ .. code-block:: none
+
+    Extracting X_trains:   0%|          | 0/4 [00:00<?, ?it/s]                                                              Extracting upper y_trains:   0%|          | 0/4 [00:00<?, ?it/s]                                                                    Extracting lower y_trains:   0%|          | 0/3 [00:00<?, ?it/s]                                                                    Training upper ML models...:   0%|          | 0/4 [00:00<?, ?it/s]    Training upper ML models...:  25%|██▌       | 1/4 [00:00<00:02,  1.41it/s]    Training upper ML models...:  50%|█████     | 2/4 [00:01<00:01,  1.97it/s]    Training upper ML models...:  75%|███████▌  | 3/4 [00:01<00:00,  2.70it/s]    Training upper ML models...: 100%|██████████| 4/4 [00:01<00:00,  3.66it/s]                                                                              Training lower ML models:   0%|          | 0/3 [00:00<?, ?it/s]    Training lower ML models:  33%|███▎      | 1/3 [00:00<00:00,  2.73it/s]    Training lower ML models:  67%|██████▋   | 2/3 [00:00<00:00,  3.15it/s]    Training lower ML models: 100%|██████████| 3/3 [00:00<00:00,  4.38it/s]                                                                       
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 104-106
 
 Predicting and Evaluating
 -------------------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 107-119
+.. GENERATED FROM PYTHON SOURCE LINES 106-118
 
 .. code-block:: Python
 
@@ -168,7 +184,19 @@ Predicting and Evaluating
     print(f"MFML (Random Forest) Test Set MAE: {mae:.6f} eV ({mae_kcal:.4f} kcal/mol)")
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 120-125
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ .. code-block:: none
+
+    Upper MFML predictions:   0%|          | 0/4 [00:00<?, ?it/s]    Upper MFML predictions: 100%|██████████| 4/4 [00:00<00:00, 36.54it/s]                                                                         Lower MFML predictions:   0%|          | 0/3 [00:00<?, ?it/s]                                                                 MFML (Random Forest) Test Set MAE: 0.029552 eV (0.6797 kcal/mol)
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 119-124
 
 Parity Plot
 -----------
@@ -176,16 +204,16 @@ We can visualize the performance of our Random Forest-based MFML model.
 While kernels generally perform better for molecular representations like
 the Coulomb Matrix, this proves the framework is completely model-agnostic!
 
-.. GENERATED FROM PYTHON SOURCE LINES 125-143
+.. GENERATED FROM PYTHON SOURCE LINES 124-142
 
 .. code-block:: Python
 
 
 
-    plt.figure(figsize=(6, 6))
+    plt.figure(figsize=(5, 5))
 
     # Plot the scatter points
-    plt.scatter(y_test_true, preds, alpha=0.6, color="dodgerblue", edgecolor="k", s=25)
+    plt.scatter(y_test_true, preds, alpha=0.6, color="lightcoral", edgecolor="k", s=25)
 
     # Calculate the limits to draw a perfect 45-degree diagonal line
     min_val = min(np.min(y_test_true), np.min(preds))
@@ -198,6 +226,22 @@ the Coulomb Matrix, this proves the framework is completely model-agnostic!
     plt.grid(True, linestyle="--", alpha=0.6)
     plt.tight_layout()
     plt.show()
+
+
+
+.. image-sg:: /auto_examples/images/sphx_glr_04_duck_typing_mfml_001.png
+   :alt: Parity Plot: True vs. Predicted (Random Forest)
+   :srcset: /auto_examples/images/sphx_glr_04_duck_typing_mfml_001.png
+   :class: sphx-glr-single-img
+
+
+
+
+
+
+.. rst-class:: sphx-glr-timing
+
+   **Total running time of the script:** (0 minutes 2.749 seconds)
 
 
 .. _sphx_glr_download_auto_examples_04_duck_typing_mfml.py:

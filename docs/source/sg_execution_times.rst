@@ -6,7 +6,7 @@
 
 Computation times
 =================
-**00:00.000** total execution time for 1 file **from all galleries**:
+**01:06.615** total execution time for 8 files **from all galleries**:
 
 .. container::
 
@@ -32,6 +32,27 @@ Computation times
    * - Example
      - Time
      - Mem (MB)
-   * - :ref:`sphx_glr_auto_examples_01_benzene_example.py` (``../../examples/01_benzene_example.py``)
-     - 00:00.000
+   * - :ref:`sphx_glr_auto_examples_06_omfml.py` (``../../examples/06_omfml.py``)
+     - 00:35.085
+     - 0.0
+   * - :ref:`sphx_glr_auto_examples_05_mfml_learning_curve.py` (``../../examples/05_mfml_learning_curve.py``)
+     - 00:20.512
+     - 0.0
+   * - :ref:`sphx_glr_auto_examples_02_krr_learning_curve.py` (``../../examples/02_krr_learning_curve.py``)
+     - 00:05.987
+     - 0.0
+   * - :ref:`sphx_glr_auto_examples_04_duck_typing_mfml.py` (``../../examples/04_duck_typing_mfml.py``)
+     - 00:02.749
+     - 0.0
+   * - :ref:`sphx_glr_auto_examples_03_mfml_basics.py` (``../../examples/03_mfml_basics.py``)
+     - 00:01.303
+     - 0.0
+   * - :ref:`sphx_glr_auto_examples_01_load_and_represent.py` (``../../examples/01_load_and_represent.py``)
+     - 00:00.978
+     - 0.0
+   * - :ref:`sphx_glr_auto_examples_07_orca_oracle.py` (``../../examples/07_orca_oracle.py``)
+     - 00:00.001
+     - 0.0
+   * - :ref:`sphx_glr_auto_examples_08_pool_based_active_learning.py` (``../../examples/08_pool_based_active_learning.py``)
+     - 00:00.001
      - 0.0

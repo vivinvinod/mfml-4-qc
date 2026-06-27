@@ -1,6 +1,6 @@
 """
 A Multi-Fidelity Dataset: MD Benzene
-==============================
+====================================
 
 This tutorial covers the basics of data handling, visualization, and structural
 representation generation in MFML-QC. We will use an inbuilt dataset for the benzene molecule.
@@ -21,8 +21,6 @@ installed the package using ``pip install .`` from the root directory so the
 dataset is correctly packaged, or manually place the data files inside the
 ``data/benzene`` directory.
 """
-
-# sphinx_gallery_thumbnail_path = '../../data/media/benzene.png'
 
 # %%%
 # Loading the Built-in Dataset
@@ -116,7 +114,7 @@ stds = [np.std(filtered_timecosts[:, i]) for i in method_indices]
 # ---------------------------------------------------------
 # Plotting Mean and Std Dev
 # ---------------------------------------------------------
-plt.figure(figsize=(9, 6))
+plt.figure(figsize=(5, 4))
 
 # Plotting with error bars
 plt.errorbar(

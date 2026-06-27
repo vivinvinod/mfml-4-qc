@@ -278,9 +278,9 @@
 <li class="toctree-l1"><a class="reference internal" href="02_krr_learning_curve.html">Kernel Ridge Regression</a></li>
 <li class="toctree-l1"><a class="reference internal" href="03_mfml_basics.html">The Basics of MFML</a></li>
 <li class="toctree-l1"><a class="reference internal" href="04_duck_typing_mfml.html">Duck Typing for MFML</a></li>
-<li class="toctree-l1"><a class="reference internal" href="05_mfml_learning_curve.html">Multifidelity Machine Learning - Cross-Validation Technique</a></li>
-<li class="toctree-l1"><a class="reference internal" href="06_omfml.html">Optimized Multifidelity Machine Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="07_orca_orcale.html">ORCA Oracle Calls</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_mfml_learning_curve.html">MFML Cross-Validation and Learning Curves</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_omfml.html">Optimized MFML</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_orca_oracle.html">ORCA Oracle Calls</a></li>
 <li class="toctree-l1"><a class="reference internal" href="08_pool_based_active_learning.html">Pool-Active Learning for Training Data Sampling</a></li>
 </ul>
 </div>
@@ -352,20 +352,12 @@
 <section id="Downloading-the-Dataset">
 <h2>Downloading the Dataset<a class="headerlink" href="#Downloading-the-Dataset" title="Link to this heading">#</a></h2>
 <p>The Benzene dataset is built into the package to allow for quick benchmarking. If you encounter a <code class="docutils literal notranslate"><span class="pre">FileNotFoundError</span></code> during this tutorial, ensure you have installed the package using <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">.</span></code> from the root directory so the dataset is correctly packaged, or manually place the data files inside the <code class="docutils literal notranslate"><span class="pre">data/benzene</span></code> directory.</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># sphinx_gallery_thumbnail_path = &#39;../../data/media/benzene.png&#39;</span>
-</pre></div>
-</div>
-</div>
 </section>
 <section id="Loading-the-Built-in-Dataset">
 <h2>Loading the Built-in Dataset<a class="headerlink" href="#Loading-the-Built-in-Dataset" title="Link to this heading">#</a></h2>
 <p>We start by loading the built-in dataset using our provided utility function. This automatically handles path resolution and caching for you.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
@@ -383,19 +375,19 @@
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
-<div class="output_area docutils container">
+<div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-Keys in dataset: [&#39;X_CM&#39;, &#39;energies&#39;, &#39;timecosts&#39;, &#39;columns&#39;]
-Columns in CSV: [&#39;Time&#39;, &#39;ZINDO&#39;, &#39;LC-DFTB&#39;, &#39;STO-3G&#39;, &#39;3-21G&#39;, &#39;6-31G&#39;, &#39;def2-SVP&#39;, &#39;def2-TZVP&#39;, &#39;def2-QZVP&#39;]
+/home/vvinod/miniforge3/lib/python3.12/site-packages/tqdm/auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
+  from .autonotebook import tqdm as notebook_tqdm
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
-<div class="output_area stderr docutils container">
+<div class="output_area docutils container">
 <div class="highlight"><pre>
-/home/vvinod/miniforge3/lib/python3.12/site-packages/tqdm/auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
-  from .autonotebook import tqdm as notebook_tqdm
+Keys in dataset: [&#39;X_CM&#39;, &#39;energies&#39;, &#39;timecosts&#39;, &#39;columns&#39;]
+Columns in CSV: [&#39;Time&#39;, &#39;ZINDO&#39;, &#39;LC-DFTB&#39;, &#39;STO-3G&#39;, &#39;3-21G&#39;, &#39;6-31G&#39;, &#39;def2-SVP&#39;, &#39;def2-TZVP&#39;, &#39;def2-QZVP&#39;]
 </pre></div></div>
 </div>
 </section>
@@ -403,7 +395,7 @@ Columns in CSV: [&#39;Time&#39;, &#39;ZINDO&#39;, &#39;LC-DFTB&#39;, &#39;STO-3G
 <h2>Exploring the Data<a class="headerlink" href="#Exploring-the-Data" title="Link to this heading">#</a></h2>
 <p>The data consists of vertical excitation energies computed at multiple fidelities and their corresponding computational time costs. Let’s extract them and look at the distributions.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">energies</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;energies&quot;</span><span class="p">]</span>
@@ -438,7 +430,7 @@ Columns in CSV: [&#39;Time&#39;, &#39;ZINDO&#39;, &#39;LC-DFTB&#39;, &#39;STO-3G
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/auto_examples_01_load_and_represent_5_0.png" src="../_images/auto_examples_01_load_and_represent_5_0.png" />
+<img alt="../_images/auto_examples_01_load_and_represent_4_0.png" src="../_images/auto_examples_01_load_and_represent_4_0.png" />
 </div>
 </div>
 </section>
@@ -447,7 +439,7 @@ Columns in CSV: [&#39;Time&#39;, &#39;ZINDO&#39;, &#39;LC-DFTB&#39;, &#39;STO-3G
 <p>Multi-fidelity machine learning relies on the fact that lower levels of theory are significantly cheaper to compute. Let’s visualize the computational time cost distributions across all fidelities to see if we can make a case for MFML.</p>
 <p>To ensure a fair comparison, we will extract a strict subset of geometries from the training set (the first 12,288 samples) where the most expensive calculation (def2-QZVP) is present.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_energies</span> <span class="o">=</span> <span class="n">energies</span><span class="p">[:</span><span class="mi">12288</span><span class="p">]</span>
@@ -481,7 +473,7 @@ Columns in CSV: [&#39;Time&#39;, &#39;ZINDO&#39;, &#39;LC-DFTB&#39;, &#39;STO-3G
 <span class="c1"># ---------------------------------------------------------</span>
 <span class="c1"># Plotting Mean and Std Dev</span>
 <span class="c1"># ---------------------------------------------------------</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 
 <span class="c1"># Plotting with error bars</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span>
@@ -518,7 +510,7 @@ Found 384 training geometries with complete hierarchy data.
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/auto_examples_01_load_and_represent_7_1.png" src="../_images/auto_examples_01_load_and_represent_7_1.png" />
+<img alt="../_images/auto_examples_01_load_and_represent_6_1.png" src="../_images/auto_examples_01_load_and_represent_6_1.png" />
 </div>
 </div>
 </section>
@@ -527,7 +519,7 @@ Found 384 training geometries with complete hierarchy data.
 <p>Machine learning models cannot read raw 3D Cartesian (XYZ) coordinates directly, as they are not translationally or rotationally invariant. Instead, we map the 3D structures into a flattened 1D vector called the <strong>Coulomb Matrix (CM)</strong>. This is one of the simplest molecular descriptors and we will use this throughout the tutorials.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">load_benzene_data()</span></code> function automatically invoked routines to compute and load these representations for us.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_CM</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;X_CM&quot;</span><span class="p">]</span>
@@ -551,7 +543,7 @@ Coulomb Matrix Features per geometry: 78
 <p>If you are working with your own custom molecular dynamics trajectory (e.g., an <code class="docutils literal notranslate"><span class="pre">.xyz</span></code> file) instead of the built-in dataset, you can generate these representations manually.</p>
 <p>The representations module handles the file parsing and memory allocation automatically:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mfml_qc.representations</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_coulomb_matrices</span>

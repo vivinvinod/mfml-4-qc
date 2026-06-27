@@ -1,6 +1,6 @@
 """
 The Basics of MFML
-==============
+==================
 
 This example demonstrates how to use the MFML-QC package to load the
 built-in Benzene trajectory dataset, manually extract a multi-fidelity
@@ -8,8 +8,6 @@ subset using a top-down approach (that is start with the highest fidelity
 then move down the fidelity hierarchy), and train an MFML model
 to predict high-fidelity excitation energies.
 """
-
-# sphinx_gallery_thumbnail_path = '../../data/media/MFML_pyramid.png'
 
 # %%
 # Imports and Helper Functions
@@ -44,7 +42,6 @@ from mfml_qc.utils import build_hierarchy_arrays, top_down_subsetting
 # We will use a 4-fidelity example which in increasing order of accuracy are
 # LC-DFTB, TD-DFT (STO-3G), TD-DFT (def2-SVP), and TD-DFT (def2-TZVP).
 
-print("Loading Benzene dataset via built-in loader...")
 dataset = load_benzene_data()
 
 X_CM = dataset["X_CM"]
@@ -122,7 +119,7 @@ print(f"MFML Test Set MAE: {mae:.6f} eV ({mae_kcal:.4f} kcal/mol)")
 # and the true reference of the test set.
 import matplotlib.pyplot as plt
 
-plt.figure(figsize=(6, 6))
+plt.figure(figsize=(5, 5))
 plt.scatter(y_test_true, preds, alpha=0.6, color="dodgerblue", edgecolor="k", s=25)
 
 # the 45 degree diagonal indicates the ideal of everything matches perfectly

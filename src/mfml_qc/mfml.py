@@ -1,7 +1,7 @@
 import numpy as np
 import time
 import copy
-from tqdm.auto import tqdm
+from tqdm import tqdm
 from sklearn.linear_model import LinearRegression, Ridge, Lasso
 from sklearn.neural_network import MLPRegressor
 
@@ -468,7 +468,7 @@ class ModelMFML:
             test_preds[:, count] = self.models[count].predict(X_test)
             count += 1
 
-        # optimzers for o-MFML
+        # optimizers for o-MFML
         if optimiser == "OLS":
             defaultKwargs = {"copy_X": True, "fit_intercept": False}
             defaultKwargs.update(**optargs)
