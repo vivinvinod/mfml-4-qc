@@ -158,7 +158,7 @@ duplicate this tree-based model for all 2N-1 required combinations!
 
  .. code-block:: none
 
-    Extracting X_trains:   0%|          | 0/4 [00:00<?, ?it/s]                                                              Extracting upper y_trains:   0%|          | 0/4 [00:00<?, ?it/s]                                                                    Extracting lower y_trains:   0%|          | 0/3 [00:00<?, ?it/s]                                                                    Training upper ML models...:   0%|          | 0/4 [00:00<?, ?it/s]    Training upper ML models...:  25%|██▌       | 1/4 [00:00<00:02,  1.41it/s]    Training upper ML models...:  50%|█████     | 2/4 [00:01<00:01,  1.97it/s]    Training upper ML models...:  75%|███████▌  | 3/4 [00:01<00:00,  2.70it/s]    Training upper ML models...: 100%|██████████| 4/4 [00:01<00:00,  3.66it/s]                                                                              Training lower ML models:   0%|          | 0/3 [00:00<?, ?it/s]    Training lower ML models:  33%|███▎      | 1/3 [00:00<00:00,  2.73it/s]    Training lower ML models:  67%|██████▋   | 2/3 [00:00<00:00,  3.15it/s]    Training lower ML models: 100%|██████████| 3/3 [00:00<00:00,  4.38it/s]                                                                       
+    Extracting X_trains:   0%|          | 0/4 [00:00<?, ?it/s]                                                              Extracting upper y_trains:   0%|          | 0/4 [00:00<?, ?it/s]                                                                    Extracting lower y_trains:   0%|          | 0/3 [00:00<?, ?it/s]                                                                    Training upper ML models...:   0%|          | 0/4 [00:00<?, ?it/s]    Training upper ML models...:  25%|██▌       | 1/4 [00:00<00:00,  6.01it/s]    Training upper ML models...:  50%|█████     | 2/4 [00:00<00:00,  6.47it/s]    Training upper ML models...:  75%|███████▌  | 3/4 [00:00<00:00,  7.21it/s]    Training upper ML models...: 100%|██████████| 4/4 [00:00<00:00,  7.96it/s]                                                                              Training lower ML models:   0%|          | 0/3 [00:00<?, ?it/s]    Training lower ML models:  33%|███▎      | 1/3 [00:00<00:00,  7.50it/s]    Training lower ML models:  67%|██████▋   | 2/3 [00:00<00:00,  8.06it/s]    Training lower ML models: 100%|██████████| 3/3 [00:00<00:00,  8.74it/s]                                                                       
 
 
 
@@ -191,7 +191,7 @@ Predicting and Evaluating
 
  .. code-block:: none
 
-    Upper MFML predictions:   0%|          | 0/4 [00:00<?, ?it/s]    Upper MFML predictions: 100%|██████████| 4/4 [00:00<00:00, 36.54it/s]                                                                         Lower MFML predictions:   0%|          | 0/3 [00:00<?, ?it/s]                                                                 MFML (Random Forest) Test Set MAE: 0.029552 eV (0.6797 kcal/mol)
+    Upper MFML predictions:   0%|          | 0/4 [00:00<?, ?it/s]    Upper MFML predictions: 100%|██████████| 4/4 [00:00<00:00, 34.56it/s]                                                                         Lower MFML predictions:   0%|          | 0/3 [00:00<?, ?it/s]                                                                 MFML (Random Forest) Test Set MAE: 0.029552 eV (0.6797 kcal/mol)
 
 
 
@@ -241,7 +241,9 @@ the Coulomb Matrix, this proves the framework is completely model-agnostic!
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 2.749 seconds)
+   **Total running time of the script:** (0 minutes 2.411 seconds)
+
+**Estimated memory usage:**  135 MB
 
 
 .. _sphx_glr_download_auto_examples_04_duck_typing_mfml.py:

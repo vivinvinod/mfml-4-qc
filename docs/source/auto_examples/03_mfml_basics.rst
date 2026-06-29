@@ -185,7 +185,7 @@ kernel based models does not affect the model.
 
  .. code-block:: none
 
-    Extracting X_trains:   0%|          | 0/4 [00:00<?, ?it/s]                                                              Extracting upper y_trains:   0%|          | 0/4 [00:00<?, ?it/s]                                                                    Extracting lower y_trains:   0%|          | 0/3 [00:00<?, ?it/s]                                                                    Training upper ML models...:   0%|          | 0/4 [00:00<?, ?it/s]    Training upper ML models...:  50%|█████     | 2/4 [00:00<00:00, 18.01it/s]                                                                              Training lower ML models:   0%|          | 0/3 [00:00<?, ?it/s]                                                               
+    Extracting X_trains:   0%|          | 0/4 [00:00<?, ?it/s]                                                              Extracting upper y_trains:   0%|          | 0/4 [00:00<?, ?it/s]                                                                    Extracting lower y_trains:   0%|          | 0/3 [00:00<?, ?it/s]                                                                    Training upper ML models...:   0%|          | 0/4 [00:00<?, ?it/s]                                                                      Training lower ML models:   0%|          | 0/3 [00:00<?, ?it/s]                                                               
 
 
 
@@ -221,7 +221,7 @@ wieghts and un-center the predictions using the highest-fidelity mean.
 
  .. code-block:: none
 
-    Upper MFML predictions:   0%|          | 0/4 [00:00<?, ?it/s]    Upper MFML predictions:  25%|██▌       | 1/4 [00:00<00:00,  5.81it/s]    Upper MFML predictions:  50%|█████     | 2/4 [00:00<00:00,  6.74it/s]    Upper MFML predictions: 100%|██████████| 4/4 [00:00<00:00,  9.72it/s]                                                                         Lower MFML predictions:   0%|          | 0/3 [00:00<?, ?it/s]    Lower MFML predictions:  33%|███▎      | 1/3 [00:00<00:00,  8.54it/s]    Lower MFML predictions:  67%|██████▋   | 2/3 [00:00<00:00,  9.04it/s]                                                                         MFML Test Set MAE: 0.008261 eV (0.1900 kcal/mol)
+    Upper MFML predictions:   0%|          | 0/4 [00:00<?, ?it/s]    Upper MFML predictions: 100%|██████████| 4/4 [00:00<00:00, 33.60it/s]                                                                         Lower MFML predictions:   0%|          | 0/3 [00:00<?, ?it/s]                                                                 MFML Test Set MAE: 0.008261 eV (0.1900 kcal/mol)
 
 
 
@@ -267,7 +267,9 @@ and the true reference of the test set.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 1.303 seconds)
+   **Total running time of the script:** (0 minutes 1.952 seconds)
+
+**Estimated memory usage:**  143 MB
 
 
 .. _sphx_glr_download_auto_examples_03_mfml_basics.py:

@@ -47,6 +47,8 @@
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/sg-tags.js?v=d80f6fa4"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'auto_examples/index';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -277,8 +279,8 @@
 <li class="toctree-l1"><a class="reference internal" href="04_duck_typing_mfml.html">Duck Typing for MFML</a></li>
 <li class="toctree-l1"><a class="reference internal" href="05_mfml_learning_curve.html">MFML Cross-Validation and Learning Curves</a></li>
 <li class="toctree-l1"><a class="reference internal" href="06_omfml.html">Optimized MFML</a></li>
-<li class="toctree-l1"><a class="reference internal" href="07_orca_oracle.html">ORCA Oracle Calls</a></li>
-<li class="toctree-l1"><a class="reference internal" href="08_pool_based_active_learning.html">Pool-Active Learning for Training Data Sampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_orca_oracle.html">Interfacing with QC Oracles (ORCA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_pool_based_active_learning.html">Active Learning Protocols</a></li>
 </ul>
 </div>
 </nav></div>
@@ -357,12 +359,12 @@
 </div><div class="sphx-glr-thumbcontainer" tooltip="This example demonstrates the use of optimized multifidelity machine learning (o-MFML) with a comparison of learning curves for:"><img alt="" src="../_images/sphx_glr_06_omfml_thumb.png" />
 <p><a class="reference internal" href="06_omfml.html"><span class="doc">Optimized MFML</span></a></p>
   <div class="sphx-glr-thumbnail-title">Optimized MFML</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="How to perform calculations with ORCA engine."><img alt="" src="../_images/sphx_glr_07_orca_oracle_thumb.png" />
-<p><a class="reference internal" href="07_orca_oracle.html"><span class="doc">ORCA Oracle Calls</span></a></p>
-  <div class="sphx-glr-thumbnail-title">ORCA Oracle Calls</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="How to active learning with LFaB."><img alt="" src="../_images/sphx_glr_08_pool_based_active_learning_thumb.png" />
-<p><a class="reference internal" href="08_pool_based_active_learning.html"><span class="doc">Pool-Active Learning for Training Data Sampling</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Pool-Active Learning for Training Data Sampling</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="This tutorial demonstrates how to use the OrcaEngine to perform quantum chemistry calculations."><img alt="" src="../_images/sphx_glr_07_orca_oracle_thumb.png" />
+<p><a class="reference internal" href="07_orca_oracle.html"><span class="doc">Interfacing with QC Oracles (ORCA)</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Interfacing with QC Oracles (ORCA)</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="In machine learning for quantum chemistry, molecular geometries are often abundant but labeling them with the properties (e.g., running expensive quantum chemistry calculations for excitation energies) is costly. Active Learning (AL) solves this by iteratively selecting only the most informative geometries from an unlabeled pool to add to the training set."><img alt="" src="../_images/sphx_glr_08_pool_based_active_learning_thumb.png" />
+<p><a class="reference internal" href="08_pool_based_active_learning.html"><span class="doc">Active Learning Protocols</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Active Learning Protocols</div>
 </div></div><div class="toctree-wrapper compound">
 </div>
 <div class="sphx-glr-footer sphx-glr-footer-gallery docutils container">
@@ -458,7 +460,7 @@
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
     <br/>
   </p>
 </div>

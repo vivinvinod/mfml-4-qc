@@ -121,7 +121,7 @@ Here are some examples of how to use MFML-QC.
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="How to perform calculations with ORCA engine.">
+    <div class="sphx-glr-thumbcontainer" tooltip="This tutorial demonstrates how to use the OrcaEngine to perform quantum chemistry calculations.">
 
 .. only:: html
 
@@ -132,13 +132,13 @@ Here are some examples of how to use MFML-QC.
 
 .. raw:: html
 
-      <div class="sphx-glr-thumbnail-title">ORCA Oracle Calls</div>
+      <div class="sphx-glr-thumbnail-title">Interfacing with QC Oracles (ORCA)</div>
     </div>
 
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="How to active learning with LFaB.">
+    <div class="sphx-glr-thumbcontainer" tooltip="In machine learning for quantum chemistry, molecular geometries are often abundant but labeling them with the properties (e.g., running expensive quantum chemistry calculations for excitation energies) is costly. Active Learning (AL) solves this by iteratively selecting only the most informative geometries from an unlabeled pool to add to the training set.">
 
 .. only:: html
 
@@ -149,7 +149,7 @@ Here are some examples of how to use MFML-QC.
 
 .. raw:: html
 
-      <div class="sphx-glr-thumbnail-title">Pool-Active Learning for Training Data Sampling</div>
+      <div class="sphx-glr-thumbnail-title">Active Learning Protocols</div>
     </div>
 
 

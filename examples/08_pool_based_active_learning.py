@@ -158,9 +158,9 @@ def run_active_learning(uq_mode: str, iters: int = 500) -> list:
 
         mae = np.mean(np.abs(preds - y_test_centered))
         maes.append(mae)
-        if i % 100 == 0:
+        if i % 50 == 0:
             print(
-                f"Iteration {i}/{iters}; MAE: {mae}; Training Data Size: {X_tr.shape[0]}"
+                f"{uq_mode} ---- Iteration {i}/{iters} ---- MAE: {mae}"
             )
 
     return maes
@@ -169,7 +169,7 @@ def run_active_learning(uq_mode: str, iters: int = 500) -> list:
 # %%
 # Running the Protocols
 # ----------------------
-# We will now run 500 iterations for each of the three protocols to observe
+# We will now run 200 iterations for each of the three protocols to observe
 # which data acquisition strategy identifies the most important molecules quickest!
 # It is also wiorth noting that in practice, one rarely has the higher fidelity pre-computed
 # and would generally run the LFaB to identify the best geometries where onw would compute the
@@ -177,7 +177,7 @@ def run_active_learning(uq_mode: str, iters: int = 500) -> list:
 # we are going to pretend that each iteration of the AL loop we 'compute' the
 # LC-DFTB energies for the selected sample.
 
-n_iters = 500
+n_iters = 200
 
 maes_gpr = run_active_learning("gpr", iters=n_iters)
 maes_ens = run_active_learning("ensemble", iters=n_iters)

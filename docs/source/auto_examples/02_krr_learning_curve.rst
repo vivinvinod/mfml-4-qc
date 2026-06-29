@@ -214,7 +214,9 @@ get the maes
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 5.987 seconds)
+   **Total running time of the script:** (0 minutes 3.744 seconds)
+
+**Estimated memory usage:**  254 MB
 
 
 .. _sphx_glr_download_auto_examples_02_krr_learning_curve.py:

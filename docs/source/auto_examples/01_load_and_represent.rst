@@ -285,7 +285,9 @@ The representations module handles the file parsing and memory allocation automa
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 0.978 seconds)
+   **Total running time of the script:** (0 minutes 1.021 seconds)
+
+**Estimated memory usage:**  207 MB
 
 
 .. _sphx_glr_download_auto_examples_01_load_and_represent.py:

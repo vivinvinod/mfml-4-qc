@@ -166,8 +166,43 @@
   {
    "is_class": true,
    "is_explicit": false,
-   "module": "sklearn.utils._estimator_html_repr",
-   "module_short": "sklearn.utils._estimator_html_repr",
+   "module": "sklearn.utils._repr_html.base",
+   "module_short": "sklearn.utils._repr_html.base",
+   "name": "ReprHTMLMixin"
+  },
+  {
+   "is_class": true,
+   "is_explicit": false,
+   "module": "sklearn.utils._repr_html",
+   "module_short": "sklearn.utils._repr_html",
+   "name": "ReprHTMLMixin"
+  },
+  {
+   "is_class": true,
+   "is_explicit": false,
+   "module": "sklearn.utils",
+   "module_short": "sklearn.utils",
+   "name": "ReprHTMLMixin"
+  },
+  {
+   "is_class": true,
+   "is_explicit": false,
+   "module": "sklearn",
+   "module_short": "sklearn",
+   "name": "ReprHTMLMixin"
+  },
+  {
+   "is_class": true,
+   "is_explicit": false,
+   "module": "sklearn.utils._repr_html.base",
+   "module_short": "sklearn.utils._repr_html.base",
+   "name": "_HTMLDocumentationLinkMixin"
+  },
+  {
+   "is_class": true,
+   "is_explicit": false,
+   "module": "sklearn.utils._repr_html",
+   "module_short": "sklearn.utils._repr_html",
    "name": "_HTMLDocumentationLinkMixin"
   },
   {
