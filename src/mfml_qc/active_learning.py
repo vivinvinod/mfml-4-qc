@@ -43,7 +43,7 @@ def _train_estimator(base_estimator: object, X: np.ndarray, y: np.ndarray) -> ob
     return model
 
 
-def compute_gpr_variance(
+def gpr_variance(
     X_train: np.ndarray,
     X_pool: np.ndarray,
     kernel_type: str = "matern",
@@ -113,6 +113,7 @@ def ensemble_variance(
     X_train: np.ndarray,
     y_train: np.ndarray,
     n_ensemble: int = 5,
+    train_size: float = 0.85,
 ) -> np.ndarray:
     """
     Computes Ensemble-based uncertainty quantification.
@@ -132,6 +133,8 @@ def ensemble_variance(
         The complete training target array.
     n_ensemble : int, optional
         The number of models to include in the ensemble. Defaults to 5.
+    train_size : float, optional
+        The fraction of training data to use for the ensemble of models. Default is 85 (that is 85%).
 
     Returns
     -------
@@ -141,7 +144,7 @@ def ensemble_variance(
     pool_preds = np.zeros((X_pool.shape[0], n_ensemble), dtype=float)
     for n in range(n_ensemble):
         X_sub, _, y_sub, _ = train_test_split(
-            X_train, y_train, train_size=0.85, random_state=n
+            X_train, y_train, train_size=train_size, random_state=n
         )
         ens_model = _train_estimator(base_estimator, X_sub, y_sub)
         pool_preds[:, n] = ens_model.predict(X_pool)

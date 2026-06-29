@@ -178,7 +178,7 @@ class ModelMFML:
 
         return subset_index_array
 
-    def y_train_breakup(self):
+    def _y_train_breakup(self):
         """
         Extracts the target property arrays (y) for the required
         multifidelity sub-models.
@@ -210,7 +210,7 @@ class ModelMFML:
 
         self.y_trains = y_trains
 
-    def X_train_breakup(self):
+    def _X_train_breakup(self):
         """
         Extracts the feature matrices (X) for each fidelity level.
 
@@ -377,8 +377,8 @@ class ModelMFML:
             n_trains=n_trains, shuffle=shuffle, seed=seed
         )
 
-        self.X_train_breakup()
-        self.y_train_breakup()
+        self._X_train_breakup()
+        self._y_train_breakup()
 
         self.models = np.zeros((2 * nfids - 1), dtype=object)
 

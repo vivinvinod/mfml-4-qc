@@ -330,6 +330,11 @@ def wasserstein_kernel_symmetric(
         K(x_i,x_j) := \exp\left(-\frac{W_p(x_i, x_j)^q}{\sigma}\right)
 
     where :math:`W_p` is the 1-dimensional Wasserstein distance between the sorted features.
+    The :math:`p`-Wasserstein distance between two 1D distributions
+    with CDFs :math:`F_a` and :math:`F_b` is computed as:
+
+    .. math::
+        W_p(a, b) = \left( \int_{-\infty}^{\infty} |F_a(x) - F_b(x)|^p dx \right)^{1/p}
 
     Parameters
     ----------
@@ -382,6 +387,11 @@ def wasserstein_kernel_asymmetric(
         K(x_i,x_j) := \exp\left(-\frac{W_p(x_i, x_j)^q}{\sigma}\right)
 
     where :math:`W_p` is the 1-dimensional Wasserstein distance between the sorted features.
+    The :math:`p`-Wasserstein distance between two 1D distributions
+    with CDFs :math:`F_a` and :math:`F_b` is computed as:
+
+    .. math::
+        W_p(a, b) = \left( \int_{-\infty}^{\infty} |F_a(x) - F_b(x)|^p dx \right)^{1/p}
 
     Parameters
     ----------

@@ -130,7 +130,8 @@ def top_down_subsetting(
     y_trains: np.ndarray, indexes: np.ndarray, n_trains_target: list, seed: int = 42
 ) -> tuple:
     """
-    Subsets the data using a top-down cascade to maintain strict nested structures.
+    Function to produce nested subsets of data from a multifidelity dataset where
+    sample selection is carried out from the highest fidelity to the lowest.
 
     Parameters
     ----------

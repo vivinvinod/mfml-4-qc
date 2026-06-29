@@ -5,7 +5,7 @@ from sklearn.linear_model import Ridge
 
 from mfml_qc.active_learning import (
     _train_estimator,
-    compute_gpr_variance,
+    gpr_variance,
     ensemble_variance,
     lfab,
 )
@@ -88,7 +88,7 @@ def test_compute_gpr_variance(uq_data):
     """Tests the exact algebraic Gaussian Process/KRR variance calculation."""
     X_train, _, X_pool, _ = uq_data
 
-    variances = compute_gpr_variance(
+    variances = gpr_variance(
         X_train=X_train, X_pool=X_pool, kernel_type="matern", sigma=10.0, reg=1e-6
     )
 
@@ -106,7 +106,7 @@ def test_compute_gpr_variance_zero_distance(uq_data):
     X_train, _, _, _ = uq_data
 
     # If the pool IS the training data, variance should be extremely small (bounded by reg)
-    variances = compute_gpr_variance(
+    variances = gpr_variance(
         X_train=X_train, X_pool=X_train, kernel_type="gaussian", sigma=1.0, reg=1e-9
     )
 
