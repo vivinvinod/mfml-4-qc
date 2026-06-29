@@ -20,6 +20,8 @@ distinct ways to set up and execute an ORCA calculation:
 
 import os
 import shutil
+import numpy as np
+import matplotlib.pyplot as plt
 from mfml_qc.oracles import OrcaEngine
 
 # this will be the working directory
@@ -57,7 +59,7 @@ fidelity_params_dynamic = {
 # NOTE: Update 'orca_path' to point to your actual ORCA binary,
 # e.g., '/opt/orca_5_0_3_linux_x86-64_openmpi411/orca'
 orca_engine_1 = OrcaEngine(
-    orca_path="../../../../opt/orca_5_0_3_linux_x86-64_openmpi411/orca"
+    orca_path="/../../../../opt/orca_5_0_3_linux_x86-64_openmpi411/orca"
 )
 
 
@@ -152,7 +154,12 @@ advanced_properties = {
 }
 
 # Initialize a new engine, passing the properties we want to extract upfront
-orca_engine_2 = OrcaEngine(orca_path="orca", properties_to_extract=advanced_properties)
+orca_engine_2 = OrcaEngine(
+    orca_path="/../../../../opt/orca_5_0_3_linux_x86-64_openmpi411/orca",
+    properties_to_extract=advanced_properties,
+)
+
+orca_ran_successfully = False
 
 try:
     # By setting return_outs=True, evaluate() automatically parses the output!
@@ -187,10 +194,116 @@ try:
         for key, val in state_1.items():
             print(f"  {key}: {val}")
 
+    orca_ran_successfully = True
+
 except FileNotFoundError:
     print("ORCA executable not found in PATH! Skipping calculation execution.")
     with open(os.path.join(workspace, "orca_template", "calc.inp"), "r") as f:
         print("\nGenerated Template Input File:\n", f.read())
+
+
+# %%
+# Visualizing the Oracle Results
+# ------------------------------
+# Let's visualize the target water molecule. If ORCA successfully executed on
+# your machine, we will overlay the computed properties (Energy, Gradients,
+# and TD-DFT spectra) directly onto the plot!
+
+fig = plt.figure(figsize=(6, 6))
+ax = fig.add_subplot(111, projection="3d")
+
+# coordinates of our test water molecule
+coords = np.array(
+    [
+        [0.000, 0.000, 0.000],  # Oxygen
+        [0.000, 0.757, 0.587],  # Hydrogen
+        [0.000, -0.757, 0.587],  # Hydrogen
+    ]
+)
+atoms = ["O", "H", "H"]
+colors = ["red", "lightgrey", "lightgrey"]
+sizes = [600, 250, 250]
+
+# Plot the atoms
+for i in range(3):
+    ax.scatter(
+        coords[i, 0],
+        coords[i, 1],
+        coords[i, 2],
+        c=colors[i],
+        s=sizes[i],
+        edgecolors="k",
+        depthshade=False,
+        zorder=5,
+    )
+    # Add small text labels next to atoms
+    ax.text(
+        coords[i, 0],
+        coords[i, 1],
+        coords[i, 2] + 0.1,
+        atoms[i],
+        fontsize=12,
+        ha="center",
+        weight="bold",
+        zorder=10,
+    )
+
+# Draw bonds (O-H)
+ax.plot(
+    [coords[0, 0], coords[1, 0]],
+    [coords[0, 1], coords[1, 1]],
+    [coords[0, 2], coords[1, 2]],
+    "k-",
+    lw=3,
+    zorder=1,
+)
+ax.plot(
+    [coords[0, 0], coords[2, 0]],
+    [coords[0, 1], coords[2, 1]],
+    [coords[0, 2], coords[2, 2]],
+    "k-",
+    lw=3,
+    zorder=1,
+)
+
+ax.set_axis_off()
+ax.set_title("Properties from the ORCA Oracle", fontsize=14, weight="bold", pad=20)
+ax.view_init(elev=20, azim=45)
+
+# text box of properties
+text_str = ""
+if orca_ran_successfully and results_2.get("success", False):
+    energy = results_2.get("e_final", "N/A")
+    text_str += f"Total Energy:\n  {energy:.3f} Eh\n\n"
+
+    if "gradients" in results_advanced:
+        max_grad = np.max(np.abs(results_advanced["gradients"]))
+        text_str += f"Max Gradient:\n  {max_grad:.6f} Eh/bohr\n\n"
+
+    if "tddft_spectrum" in results_advanced:
+        text_str += "First 3 Excited States:\n"
+        for state in results_advanced["tddft_spectrum"][:3]:
+            text_str += f"  S{state['state']}: {state['energy_cm1']:>8.1f} cm⁻¹\n"
+else:
+    text_str += "ORCA Binary Not Found.\nDisplaying Geometry Only."
+
+# Add the property box to the top left of the figure
+props = dict(
+    boxstyle="round,pad=0.8", facecolor="whitesmoke", alpha=0.9, edgecolor="gray"
+)
+ax.text2D(
+    0.05,
+    0.2,
+    text_str,
+    transform=ax.transAxes,
+    fontsize=11,
+    verticalalignment="top",
+    bbox=props,
+    family="monospace",
+)
+
+plt.tight_layout()
+plt.show()
 
 # Clean up our tutorial workspace (optional)
 shutil.rmtree(workspace)
