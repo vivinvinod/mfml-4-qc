@@ -13,67 +13,64 @@
 
 MFML-4-QC is an open-source library that enables multifidelity machine learning for quantum chemical systems. While the multifidelity methods are model-architecture agnostic, this library provides a lightweight, ultra-fast Numba-compiled Kernel Ridge Regression (KRR) setup as the primary architecture. Users can seamlessly integrate their own custom ML models (e.g., from scikit-learn) and directly interface with quantum chemistry engines like ORCA and PySCF for automated data generation and active learning.
 
-🪲 Bug Reports: If you find a bug in MFML-4-QC, or have a feature request, please open a GitHub issue.
+## Bug Reports  
+If you find a bug in MFML-4-QC, or have a feature request, please open a GitHub issue.
 
-If you use this package, please consider citing the following articles:
-* TBA
-* TBA
-
-Key Features
+## Key Features
 * **Ultra-Fast Kernels:** Compute Matérn, Gaussian, Laplacian, and Wasserstein kernels efficiently using JIT-compiled C-loops via Numba.
 * **In-Memory Representations:** Generate flattened Coulomb Matrices directly from .xyz trajectories without slow disk I/O.
 * **Flexible ML Architectures:** Use the built-in KRR or drop in any scikit-learn compatible estimator (e.g., RandomForestRegressor, MLPRegressor).
 * **Quantum Chemistry Oracles:** Abstract interfaces to automatically generate inputs, execute runs, and parse outputs from engines like ORCA and PySCF.
 
-## Installation
-**Prerequisites:**Python 3.10 or higher
-
-<<<<<<< HEAD
-=======
-```bash
->>>>>>> f70ec36 (readme installation guide for me locally.)
-# 1. Create the environment (specify Python 3.10 or higher)
-conda create -n mfmlenv python=3.10 -y
-
-# 2. Activate the environment
-conda activate mfmlenv
-
-# 3. Navigate into your unzipped/cloned repository folder
-cd /path/to/mfml-qc
-
-# 4. Install the package in editable mode with development tools (pytest)
-pip install -e .[dev]
-
-# Optional: If you want PySCF installed as well, use:
-# pip install -e .[dev,pyscf]
-<<<<<<< HEAD
-=======
-
-```
->>>>>>> f70ec36 (readme installation guide for me locally.)
+## Installation (v0.1.0 beta)
+**Prerequisites:** Python 3.10 or higher. We highly recommend using a `conda` virtual environment to manage dependencies.
 
 ### Standard Installation
-To install the core package (which includes numpy, numba, tqdm, and scikit-learn), clone the repository and install it via pip:
 ```bash
-git clone [https://github.com/vivinvinod/mfml-qc.git](https://github.com/vivinvinod/mfml-qc.git)
-cd mfml-qc
+# Clone the repository
+git clone https://github.com/vivinvinod/mfml-qc.git
+
+# Create and activate a fresh conda environment
+conda create -n mfmlenv python=3.10 -y
+conda activate mfmlenv
+
+# Install the package
 pip install .
 ```
 
-### Installing Optional Dependencies 
-(PySCF)If you plan to use the built-in PySCFEngine oracle, you can install the package with the optional pyscf dependency. (Note: PySCF can be a heavy dependency, which is why it is kept optional).
+
+### Additional Dependencies
+If you plan to use the built-in `PySCFEngine` oracle, you can install the package with the optional PySCF dependency. (Note: PySCF can be a heavy dependency, which is why it is kept optional).
+
 ```bash
 pip install .[pyscf]
 ```
 
+TO run the `ORCAEngine` you will need to install ORCA. See the [official ORCA manual](https://www.faccts.de/docs/orca/6.1/manual/contents/quickstartguide/installation.html) for details on how to do so.
+
 ### Developer Installation
-If you are modifying the package source code or want to run the unit tests, install the package in "editable" mode (-e) with the [dev] flag. This installs testing and formatting tools like `pytest` and `black`:
+If you are beta testing, modifying the source code, or want to build the local documentation, install the package in "editable" mode (`-e`) with the `[dev]` flag. This installs testing tools (`pytest`, `black` etc) and the Sphinx documentation stack:
+
 ```bash
 pip install -e .[dev]
 ```
 
-## Examples
-(Examples and tutorials will be added here soon.)
+
+## Documentation and Examples
+
+MFML-4-QC comes with a comprehensive Sphinx-Gallery documentation site that includes detailed API references and copy-pasteable tutorials.
+
+To view the documentation locally, go to `docs/build/html/` and open `index.html` in a browser of your choice. 
+
+You can also browse the raw tutorial scripts directly in the `examples/` directory of this repository.
+
+
+## Citation
+If you use this package, please consider citing the following articles:
+* TBA
+* TBA
+
+
 
 
 
