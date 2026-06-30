@@ -1,0 +1,8 @@
+__pycache__/
+.pytest_cache/
+venv/
+test_package.ipynb
+.ipynb_checkpoints/
+src/mfml_4_qc.egg-info/
+data/benzene/X_CM.npy
+docs/build/
