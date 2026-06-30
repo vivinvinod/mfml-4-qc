@@ -16,7 +16,8 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
     "Intended Audience :: Science/Research",
-    "Topic :: Scientific/Engineering :: Chemistry :: Machine Learning",
+    "Topic :: Scientific/Engineering :: Chemistry",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
 ]
 
 # Core dependencies
