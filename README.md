@@ -25,7 +25,33 @@ If you find a bug in MFML-4-QC, or have a feature request, please open a GitHub 
 ## Installation (v0.1.0 beta)
 **Prerequisites:** Python 3.10 or higher. We highly recommend using a `conda` virtual environment to manage dependencies.
 
-### Standard Installation
+### Sanbox Installation - TestPyPI
+```bash
+# Create and activate a fresh conda environment
+conda create -n mfmlenv python=3.10 -y
+conda activate mfmlenv
+
+# First install dependency packages
+pip install "numpy>=2.0.0" "numba>=0.60.0" tqdm scikit-learn
+
+# Install the package ignoring dependencies
+pip install -i https://test.pypi.org/simple/ --no-deps mfml-4-qc
+```
+
+
+### Installing from PyPI (UNAVAILABLE)
+Once a stable version is released, users can directly install the pakcage from PyPI using the `pip` call.
+```bash
+# Create and activate a fresh conda environment
+conda create -n mfmlenv python=3.10 -y
+conda activate mfmlenv
+
+# Install the package
+pip install mfml-4-qc
+```
+
+### Install Directly From Source
+You can also directly download the GitHub repo and install the package from there.
 ```bash
 # Clone the repository
 git clone https://github.com/vivinvinod/mfml-qc.git

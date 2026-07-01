@@ -3,6 +3,6 @@ __pycache__/
 venv/
 test_package.ipynb
 .ipynb_checkpoints/
-src/mfml_4_qc.egg-info/
+src/*.egg-info/
 data/benzene/X_CM.npy
 docs/build/
