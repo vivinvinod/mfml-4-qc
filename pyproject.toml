@@ -20,13 +20,6 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Artificial Intelligence",
 ]
 
-# where to find
-[project.urls]
-Homepage = "https://github.com/vivinvinod/mfml-qc"
-Repository = "https://github.com/vivinvinod/mfml-qc.git"
-"Bug Tracker" = "https://github.com/vivinvinod/mfml-qc/issues"
-Documentation = "https://mfml-qc.readthedocs.io/"
-
 # Core dependencies
 dependencies = [
     "numpy>=2.0.0",
@@ -34,6 +27,15 @@ dependencies = [
     "tqdm>=4.60.0",
     "scikit-learn>=1.0.0"
 ]
+
+# where to find
+[project.urls]
+Homepage = "https://github.com/vivinvinod/mfml-qc"
+Repository = "https://github.com/vivinvinod/mfml-qc.git"
+"Bug Tracker" = "https://github.com/vivinvinod/mfml-qc/issues"
+Documentation = "https://mfml-qc.readthedocs.io/"
+
+
 
 # Optional dependencies
 [project.optional-dependencies]
