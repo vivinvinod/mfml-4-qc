@@ -1,22 +1,9 @@
 # Multifidelity Machine Learning for Quantum Chemistry (MFML-4-QC)
 
-<div align="center">
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="mfml_logo_dark.png">
-  <source media="(prefers-color-scheme: light)" srcset="mfml_logo_light.png">
-  <p align="center">
-  <img alt="MFML-4-QC logo" src="mfml_logo_light.png" width="400">
-  </p>
-</picture>
-</div>
-
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 MFML-4-QC is an open-source library that enables multifidelity machine learning for quantum chemical systems. While the multifidelity methods are model-architecture agnostic, this library provides a lightweight, ultra-fast Numba-compiled Kernel Ridge Regression (KRR) setup as the primary architecture. Users can seamlessly integrate their own custom ML models (e.g., from scikit-learn) and directly interface with quantum chemistry engines like ORCA and PySCF for automated data generation and active learning.
-
-## Bug Reports  
-If you find a bug in MFML-4-QC, or have a feature request, please open a GitHub issue.
 
 ## Key Features
 * **Ultra-Fast Kernels:** Compute Matérn, Gaussian, Laplacian, and Wasserstein kernels efficiently using JIT-compiled C-loops via Numba.
@@ -69,10 +56,9 @@ If you are beta testing, modifying the source code, or want to build the local d
 pip install -e .[dev]
 ```
 
-
 ## Documentation and Examples
 
-MFML-4-QC comes with a comprehensive documentation site that includes detailed API references and copy-pasteable tutorials.
+MFML-4-QC comes with a comprehensive documentation site that includes detailed API references and tutorials. An inbuilt 15 picosecond MD-trajectory of benzene is also provided as an inbuilt dataset for preliminary exploration of the package. 
 
 To view the documentation locally, go to `docs/build/html/` and open `index.html` in a browser of your choice. 
 
