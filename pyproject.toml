@@ -25,6 +25,7 @@ dependencies = [
     "numpy>=2.0.0",
     "numba>=0.60.0",
     "tqdm>=4.60.0",
+    "matplotlib",
     "scikit-learn>=1.0.0"
 ]
 
@@ -51,6 +52,7 @@ dev = [
     "black",   # code formatting
     "nbsphinx",
     "memory_profiler",
+    "sphinx-gallery", "pydata-sphinx-theme","pyparsing"
 ]
 
 [tool.setuptools.packages.find]
