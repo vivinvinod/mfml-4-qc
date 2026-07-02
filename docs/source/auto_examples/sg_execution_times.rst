@@ -1,12 +1,12 @@
 
 :orphan:
 
-.. _sphx_glr_sg_execution_times:
+.. _sphx_glr_auto_examples_sg_execution_times:
 
 
 Computation times
 =================
-**02:17.798** total execution time for 8 files **from all galleries**:
+**02:17.798** total execution time for 8 files **from auto_examples**:
 
 .. container::
 
@@ -32,27 +32,27 @@ Computation times
    * - Example
      - Time
      - Mem (MB)
-   * - :ref:`sphx_glr_auto_examples_08_pool_based_active_learning.py` (``../../examples/08_pool_based_active_learning.py``)
+   * - :ref:`sphx_glr_auto_examples_08_pool_based_active_learning.py` (``08_pool_based_active_learning.py``)
      - 01:24.321
      - 197.1
-   * - :ref:`sphx_glr_auto_examples_06_omfml.py` (``../../examples/06_omfml.py``)
+   * - :ref:`sphx_glr_auto_examples_06_omfml.py` (``06_omfml.py``)
      - 00:23.530
      - 188.9
-   * - :ref:`sphx_glr_auto_examples_05_mfml_learning_curve.py` (``../../examples/05_mfml_learning_curve.py``)
+   * - :ref:`sphx_glr_auto_examples_05_mfml_learning_curve.py` (``05_mfml_learning_curve.py``)
      - 00:13.156
      - 198.4
-   * - :ref:`sphx_glr_auto_examples_07_orca_oracle.py` (``../../examples/07_orca_oracle.py``)
+   * - :ref:`sphx_glr_auto_examples_07_orca_oracle.py` (``07_orca_oracle.py``)
      - 00:07.338
      - 112.4
-   * - :ref:`sphx_glr_auto_examples_02_krr_learning_curve.py` (``../../examples/02_krr_learning_curve.py``)
+   * - :ref:`sphx_glr_auto_examples_02_krr_learning_curve.py` (``02_krr_learning_curve.py``)
      - 00:04.488
      - 255.3
-   * - :ref:`sphx_glr_auto_examples_04_duck_typing_mfml.py` (``../../examples/04_duck_typing_mfml.py``)
+   * - :ref:`sphx_glr_auto_examples_04_duck_typing_mfml.py` (``04_duck_typing_mfml.py``)
      - 00:02.130
      - 136.7
-   * - :ref:`sphx_glr_auto_examples_03_mfml_basics.py` (``../../examples/03_mfml_basics.py``)
+   * - :ref:`sphx_glr_auto_examples_03_mfml_basics.py` (``03_mfml_basics.py``)
      - 00:01.808
      - 145.3
-   * - :ref:`sphx_glr_auto_examples_01_load_and_represent.py` (``../../examples/01_load_and_represent.py``)
+   * - :ref:`sphx_glr_auto_examples_01_load_and_represent.py` (``01_load_and_represent.py``)
      - 00:01.026
      - 203.4
