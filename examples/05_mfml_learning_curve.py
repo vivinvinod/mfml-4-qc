@@ -8,7 +8,7 @@ methods. They depict the relationship between the model's prediction error and
 the amount of training data provided.
 
 However, validating a Multi-Fidelity Machine Learning (MFML) model requires a
-highly specialized approach due to the strict structural constraints of the data.
+highly specialized approach due to the nested structural constraints of the data.
 """
 
 # %%
@@ -52,8 +52,10 @@ highly specialized approach due to the strict structural constraints of the data
 #
 #     MAE = \frac{1}{N_{\mathrm{test}}}\sum_{q=1}^{N_{\mathrm{test}}}\left\lvert P_{\mathrm{ML}}\left(\boldsymbol{X}_q^{\mathrm{ref}}\right) - {y}^{\mathrm{ref}}_q\right\rvert
 #
-# Fortunately, the ``ModelMFML`` class natively handles this entire complex
-# algorithm internally!
+#
+# The MFML class natively handles the shuffling of training
+# data for cross-validation while maintaining the nested structure
+# requirements for the multifidelity data.
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -94,12 +96,11 @@ y_test_true = data_test[:, hierarchy_cols[-1]]
 # Generating the Learning Curve
 # -----------------------------
 # We will generate a learning curve by training the MFML model at different
-# training set sizes. To ensure the nested hierarchy is maintained, we simply
+# training set sizes. We simply
 # double the training size at each lower fidelity (e.g., if the highest fidelity
 # gets 64 samples, the hierarchy will be 512, 256, 128, 64).
 #
 # We perform this for ``navg = 5`` random shuffles to calculate variance.
-# *(Note: For production publication, navg=10 or higher is recommended).*
 
 # High fidelity target sizes
 hf_train_sizes = 2 ** np.arange(1, 9)
@@ -172,7 +173,7 @@ plt.errorbar(
 )
 
 # plot cosmetics
-plt.xscale("log", base=2)
+plt.xscale("log")
 plt.yscale("log")
 plt.xticks(hf_train_sizes, labels=[str(s) for s in hf_train_sizes])
 
@@ -183,11 +184,3 @@ plt.legend()
 plt.grid(True, which="both", ls="--", alpha=0.4)
 plt.tight_layout()
 plt.show()
-
-# %%
-# Comparing to Single-Fidelity
-# ----------------------------
-# In a typical research workflow, you would plot this curve alongside a standard
-# single-fidelity learning curve (like the one generated in Tutorial 2) to
-# explicitly demonstrate the data-efficiency gains achieved by leveraging
-# lower-level baseline calculations!

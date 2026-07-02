@@ -14,7 +14,7 @@ three different Uncertainty Quantification (UQ) metrics:
 
 1. **GPR Variance**: Uses the exact analytical predictive variance of the kernel.
 2. **Ensemble Variance**: Uses the variance of predictions across an ensemble of models.
-3. **LFaB (Learning from a Baseline)**: Uses the prediction error on a cheap, low-fidelity baseline property.
+3. **LFaB (Low Fidelity as Bias)**: Uses the prediction error on a cheap, low-fidelity baseline property.
 
 Note that GPR Variance and Ensemble Variance rely *only* on the structural features (Coulomb Matrices)
 of the pool to estimate uncertainty. **LFaB**, however, strictly requires that the cheap,
@@ -159,15 +159,13 @@ def run_active_learning(uq_mode: str, iters: int = 500) -> list:
         mae = np.mean(np.abs(preds - y_test_centered))
         maes.append(mae)
         if i % 50 == 0:
-            print(
-                f"{uq_mode} ---- Iteration {i}/{iters} ---- MAE: {mae}"
-            )
+            print(f"{uq_mode} ---- Iteration {i}/{iters} ---- MAE: {mae}")
 
     return maes
 
 
 # %%
-# Running the Protocols
+# Running the Active Learning Protocols
 # ----------------------
 # We will now run 200 iterations for each of the three protocols to observe
 # which data acquisition strategy identifies the most important molecules quickest!
@@ -203,7 +201,7 @@ plt.loglog(
 
 plt.xlabel("Training Set Size")
 plt.ylabel("Test Set MAE (eV)")
-plt.title("Active Learning Convergence on Benzene (LC-DFTB)")
+plt.title("Active Learning on MD-Benzene (LC-DFTB)")
 plt.legend()
 plt.grid(True, linestyle="--", alpha=0.6)
 

@@ -7,7 +7,7 @@ sys.path.insert(0, os.path.abspath('../../src'))
 project = 'MFML-4-QC'
 copyright = '2026, Vivin Vinod'
 author = 'Vivin Vinod'
-release = '0.1.0'
+release = '1.0.0'
 
 #html_title = "MFML-4-QC Documentation"
 

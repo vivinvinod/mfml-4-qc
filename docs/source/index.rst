@@ -1,5 +1,5 @@
 =====================================
-Welcome to MFML-4-QC's documentation!
+Documentation for MFML-4-QC
 =====================================
 
 **MFML-4-QC** is a Python package for Multifidelity Machine Learning in Quantum Chemistry. It provides an in built, Numba-accelerated Kernel Ridge Regression backend, dynamic active learning, and automated interfaces to quantum chemistry engines like ORCA.
@@ -10,6 +10,8 @@ Welcome to MFML-4-QC's documentation!
    :caption: User Guide & Examples
 
    auto_examples/index
+   
+   computation_times
 
 API Reference
 =============

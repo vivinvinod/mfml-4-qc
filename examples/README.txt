@@ -1,4 +1,4 @@
 Examples
-========
+=========
 
-Here are some examples of how to use MFML-QC.
+The below are some examples on how to get started with MFML for your own QC workflow. 

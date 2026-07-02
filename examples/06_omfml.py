@@ -1,6 +1,7 @@
 """
 Optimized MFML
 ===============
+Optimized MFML is an extension of MFML which uses data-adaptive combination of sub-models for superior model precision. Further details on the mechanism can be found in Mach. Learn.: Sci. Technol. 5 015054 (10.1088/2632-2153/ad2cef).
 
 This example demonstrates the use of optimized multifidelity machine learning (o-MFML) with a comparison of learning curves for:
 
@@ -11,7 +12,7 @@ This example demonstrates the use of optimized multifidelity machine learning (o
 Data Setup
 ----------
 - **Training Pool**: 12,288 samples (used to draw nested training subsets).
-- **Validation Set**: 712 high-fidelity samples (used strictly to train the o-MFML OLS optimizer).
+- **Validation Set**: 712 high-fidelity samples (used strictly validation set for the o-MFML OLS optimizer).
 - **Test Set**: 2,000 samples (used for final MAE evaluation).
 """
 
@@ -72,7 +73,7 @@ y_val_centered = y_val_true - means[-1]
 hf_train_sizes = 2 ** np.arange(1, 9)
 navg = 5
 
-# Arrays to store the Mean Absolute Errors (in kcal/mol)
+# Arrays to store the Mean Absolute Errors
 sf_maes = np.zeros((len(hf_train_sizes), navg))
 mfml_maes = np.zeros((len(hf_train_sizes), navg))
 omfml_maes = np.zeros((len(hf_train_sizes), navg))
@@ -158,7 +159,7 @@ plt.errorbar(
     color="dodgerblue",
     capsize=5,
     linewidth=2,
-    label="MFML (SGCT)",
+    label="MFML",
 )
 
 plt.errorbar(
@@ -169,17 +170,17 @@ plt.errorbar(
     color="darkorange",
     capsize=5,
     linewidth=2,
-    label="o-MFML (OLS Optimizer)",
+    label="o-MFML (OLS)",
 )
 
 # Formatting the plot
-plt.xscale("log", base=2)
+plt.xscale("log")
 plt.yscale("log")
 plt.xticks(hf_train_sizes, labels=[str(s) for s in hf_train_sizes])
 
 plt.xlabel(r"Target Fidelity Training Size ($N_{\mathrm{train}}^{\mathrm{TZVP}}$)")
 plt.ylabel("Test Set MAE (kcal/mol)")
-plt.title("Learning Curves: KRR vs. MFML vs. o-MFML")
+plt.title("Learning Curves")
 plt.legend()
 plt.grid(True, which="both", ls="--", alpha=0.4)
 plt.tight_layout()

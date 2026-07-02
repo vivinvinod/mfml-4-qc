@@ -1,20 +1,9 @@
-<div align="center">
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="mfml_logo_dark.png">
-  <source media="(prefers-color-scheme: light)" srcset="mfml_logo_light.png">
-  <p align="center">
-  <img alt="MFML-4-QC logo" src="mfml_logo_light.png" width="400">
-  </p>
-</picture>
-</div>
+# Multifidelity Machine Learning for Quantum Chemistry (MFML-4-QC)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 MFML-4-QC is an open-source library that enables multifidelity machine learning for quantum chemical systems. While the multifidelity methods are model-architecture agnostic, this library provides a lightweight, ultra-fast Numba-compiled Kernel Ridge Regression (KRR) setup as the primary architecture. Users can seamlessly integrate their own custom ML models (e.g., from scikit-learn) and directly interface with quantum chemistry engines like ORCA and PySCF for automated data generation and active learning.
-
-## Bug Reports  
-If you find a bug in MFML-4-QC, or have a feature request, please open a GitHub issue.
 
 ## Key Features
 * **Ultra-Fast Kernels:** Compute Matérn, Gaussian, Laplacian, and Wasserstein kernels efficiently using JIT-compiled C-loops via Numba.
@@ -22,24 +11,10 @@ If you find a bug in MFML-4-QC, or have a feature request, please open a GitHub 
 * **Flexible ML Architectures:** Use the built-in KRR or drop in any scikit-learn compatible estimator (e.g., RandomForestRegressor, MLPRegressor).
 * **Quantum Chemistry Oracles:** Abstract interfaces to automatically generate inputs, execute runs, and parse outputs from engines like ORCA and PySCF.
 
-## Installation (v0.1.0 beta)
-**Prerequisites:** Python 3.10 or higher. We highly recommend using a `conda` virtual environment to manage dependencies.
+## Installation (v1.0.0)
+**Prerequisites:** Python 3.10 or higher. It is best to install within a fresh `conda` environment to avoid dependency clashes.
 
-### Sanbox Installation - TestPyPI
-```bash
-# Create and activate a fresh conda environment
-conda create -n mfmlenv python=3.10 -y
-conda activate mfmlenv
-
-# First install dependency packages
-pip install "numpy>=2.0.0" "numba>=0.60.0" tqdm scikit-learn
-
-# Install the package ignoring dependencies
-pip install -i https://test.pypi.org/simple/ --no-deps mfml-4-qc
-```
-
-
-### Installing from PyPI (UNAVAILABLE)
+### Installing from PyPI
 Once a stable version is released, users can directly install the pakcage from PyPI using the `pip` call.
 ```bash
 # Create and activate a fresh conda environment
@@ -81,10 +56,9 @@ If you are beta testing, modifying the source code, or want to build the local d
 pip install -e .[dev]
 ```
 
-
 ## Documentation and Examples
 
-MFML-4-QC comes with a comprehensive Sphinx-Gallery documentation site that includes detailed API references and copy-pasteable tutorials.
+MFML-4-QC comes with a comprehensive documentation site that includes detailed API references and tutorials. An inbuilt 15 picosecond MD-trajectory of benzene is also provided as an inbuilt dataset for preliminary exploration of the package. 
 
 To view the documentation locally, go to `docs/build/html/` and open `index.html` in a browser of your choice. 
 

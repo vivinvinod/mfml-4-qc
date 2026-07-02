@@ -133,7 +133,7 @@ maes = sf_LC(
     nmax=8,
 )
 
-# Plot the MAE vs training samples
+# Plot the MAE vs training set size
 mean_mae = np.mean(maes, axis=1)
 std_mae = np.std(maes, axis=1)
 train_sizes = [2**i for i in range(1, 9)]
@@ -142,7 +142,7 @@ plt.figure(figsize=(5, 4))
 plt.errorbar(
     train_sizes, mean_mae, yerr=std_mae, fmt="o-", capsize=5, label="KRR (TZVP)"
 )
-plt.xscale("log", base=2)
+plt.xscale("log")
 plt.yscale("log")
 plt.xlabel("Training Size")
 plt.ylabel("MAE (eV)")

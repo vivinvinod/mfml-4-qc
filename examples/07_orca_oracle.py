@@ -287,7 +287,6 @@ if orca_ran_successfully and results_2.get("success", False):
 else:
     text_str += "ORCA Binary Not Found.\nDisplaying Geometry Only."
 
-# Add the property box to the top left of the figure
 props = dict(
     boxstyle="round,pad=0.8", facecolor="whitesmoke", alpha=0.9, edgecolor="gray"
 )
@@ -305,5 +304,6 @@ ax.text2D(
 plt.tight_layout()
 plt.show()
 
-# Clean up our tutorial workspace (optional)
+# Clean up our tutorial workspace
+# comment this line if you wish to see what ORCA produced
 shutil.rmtree(workspace)

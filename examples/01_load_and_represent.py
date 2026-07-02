@@ -26,7 +26,8 @@ dataset is correctly packaged, or manually place the data files inside the
 # Loading the Built-in Dataset
 # ----------------------------
 # We start by loading the built-in dataset using our provided utility function.
-# This automatically handles path resolution and caching for you.
+# This automatically handles path resolution and caching for you. Note that a
+# cached unsorted Coulomb Matrix for all 15,000 geometries will be generated.
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -114,7 +115,7 @@ stds = [np.std(filtered_timecosts[:, i]) for i in method_indices]
 # ---------------------------------------------------------
 # Plotting Mean and Std Dev
 # ---------------------------------------------------------
-plt.figure(figsize=(5, 4))
+plt.figure(figsize=(8, 4))
 
 # Plotting with error bars
 plt.errorbar(
@@ -140,9 +141,9 @@ plt.show()
 # %%%
 # Generating Molecular Representations
 # -------------------------------------
-# Machine learning models cannot read raw 3D Cartesian (XYZ) coordinates directly,
+# Machine learning models generally cannot learn from raw 3D Cartesian (XYZ) coordinates directly,
 # as they are not translationally or rotationally invariant. Instead, we map the
-# 3D structures into a flattened 1D vector called the **Coulomb Matrix (CM)**.
+# 3D structures into a molecular descriptor called the **Coulomb Matrix (CM)**.
 # This is one of the simplest molecular descriptors and we will use this throughout
 # the tutorials.
 #

@@ -12,7 +12,7 @@ to predict high-fidelity excitation energies.
 # %%
 # Imports and Helper Functions
 # ----------------------------
-# Before we begin the actual MFML workflow, let's define two highly reusable helper functions.
+# Before we begin the actual MFML workflow, let's define two helper functions.
 # These are present in the utils script of the MFML package.
 #
 # The first function parses our raw CSV arrays, mean-centers
@@ -25,7 +25,7 @@ to predict high-fidelity excitation energies.
 # a top-down extraction of the data guarantees that any geometry selected for a high-fidelity
 # training set is strictly included in all lower-fidelity training sets beneath it.
 # Note that in practice, however, one would start from the lowest fidelity and try to
-# build their way up from there (Such as Adaptive-MFMLO. This will form a separate tutorial.
+# build their way up from there (Such as Adaptive-MFML). This will form a separate tutorial.
 
 import os
 import numpy as np
@@ -99,7 +99,7 @@ mfml_model.train(
 # Predicting and Evaluating
 # -------------------------
 # We predict the test geometries using the standard +1 and -1
-# wieghts and un-center the predictions using the highest-fidelity mean.
+# weights and un-center the predictions using the highest-fidelity mean.
 
 # Pick def2-TZVP (highest fidelity) as our "ground truth" test targets
 y_test_true = data_test[:, hierarchy_cols[-1]]
@@ -129,7 +129,7 @@ plt.plot([min_val, max_val], [min_val, max_val], "k--", lw=2)
 
 plt.xlabel("True def2-TZVP Energy (eV)")
 plt.ylabel("MFML Predicted Energy (eV)")
-plt.title("Parity Plot: True vs. Predicted")
+plt.title("Parity Plot (MFML-KRR)")
 plt.grid(True, linestyle="--", alpha=0.6)
 plt.tight_layout()
 plt.show()

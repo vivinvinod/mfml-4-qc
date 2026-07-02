@@ -3,7 +3,7 @@ Duck Typing for MFML
 ================================
 
 This example demonstrates the "duck typing" flexibility of the ``ModelMFML``
-orchestrator. DUck typing is summarized well with 'If it walks like a duck, swims like a duck, and wualks like a duck, it must be a duck.'
+orchestrator. DUck typing is summarized well with 'If it walks like a duck, quacks like a duck, and swims like a duck, it must be a duck.'
 Here, we use it to mean that we can use any ML architecture that has certain attributes.
 While MFML-QC provides an ultra-fast, built-in Kernel Ridge
 Regressor (KRR), you are not forced into using it.
@@ -13,7 +13,6 @@ learning model (such as a Neural Network or Random Forest from ``scikit-learn``)
 using the ``base_estimator`` argument, provided it has standard ``.fit(X, y)`` or ``.train(X,y)``,
 and ``.predict(X)`` methods!
 
-.. sphinx_gallery_thumbnail_path = '_static/ducktyping.png'
 """
 
 # %%
@@ -30,13 +29,13 @@ from mfml_qc.datasets import load_benzene_data
 from mfml_qc.mfml import ModelMFML
 from mfml_qc.utils import build_hierarchy_arrays, top_down_subsetting
 
-# Import a completely different algorithm from scikit-learn
+# We will use tha random forest regressor from scikit learn
 from sklearn.ensemble import RandomForestRegressor
 
 
 # %%
 # Loading and Splitting Data
-# --------------------------
+# ---------------------------
 dataset = load_benzene_data()
 
 X_CM = dataset["X_CM"]
@@ -85,8 +84,8 @@ subset_y_trains, subset_indexes = top_down_subsetting(
 # decision trees.
 #
 # Notice how we pass the initialized ``sk_model`` directly to the ``base_estimator``
-# argument of the ``ModelMFML`` orchestrator. The orchestrator will automatically
-# duplicate this tree-based model for all 2N-1 required combinations!
+# argument of the ``ModelMFML`` object. The script will automatically
+# duplicate this tree-based model for all 2N-1 required sub-models!
 
 sk_model = RandomForestRegressor(
     n_estimators=50, max_depth=10, random_state=42, n_jobs=-1
@@ -95,16 +94,17 @@ sk_model = RandomForestRegressor(
 # the mfml model class takes the random forest regressor as the base-estimator
 mfml_model = ModelMFML(base_estimator=sk_model, p_bar=False)
 
-# The orchestrator handles calling `.fit()` on the Random Forest models natively
+# The class internally handles calling `.fit()` on the Random Forest models natively
 mfml_model.train(
     X_train_parent=X_train_parent, y_trains=subset_y_trains, indexes=subset_indexes
 )
 
 # %%
 # Predicting and Evaluating
-# -------------------------
+# --------------------------
 y_test_true = data_test[:, hierarchy_cols[-1]]
 
+# the `default` optimiser carries out basic MFML
 preds = mfml_model.predict(X_test=X_test, optimiser="default")
 
 # Un-center the predictions
@@ -120,8 +120,8 @@ print(f"MFML (Random Forest) Test Set MAE: {mae:.6f} eV ({mae_kcal:.4f} kcal/mol
 # -----------
 # We can visualize the performance of our Random Forest-based MFML model.
 # While kernels generally perform better for molecular representations like
-# the Coulomb Matrix, this proves the framework is completely model-agnostic!
-
+# the Coulomb Matrix, this example shows that the framework is completely
+# model-agnostic and can be used in a modular fashion.
 
 plt.figure(figsize=(5, 5))
 
@@ -135,7 +135,7 @@ plt.plot([min_val, max_val], [min_val, max_val], "k--", lw=2)
 
 plt.xlabel("True def2-TZVP Energy (eV)")
 plt.ylabel("MFML Predicted Energy (eV)")
-plt.title("Parity Plot: True vs. Predicted (Random Forest)")
+plt.title("Parity Plot (MFML-Random Forest)")
 plt.grid(True, linestyle="--", alpha=0.6)
 plt.tight_layout()
 plt.show()
