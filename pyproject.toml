@@ -48,7 +48,9 @@ pyscf = [
 dev = [
     "pytest>=7.0.0",
     "sphinx", # For documentation
-    "black"   # code formatting
+    "black",   # code formatting
+    "nbsphinx",
+    "memory_profiler",
 ]
 
 [tool.setuptools.packages.find]

@@ -11,7 +11,6 @@ release = '1.0.0'
 
 #html_title = "MFML-4-QC Documentation"
 
-html_static_path = ['../../data/media']
 
 extensions = [
     'sphinx.ext.autodoc',	# Automatically pulls docstrings from classes/functions
