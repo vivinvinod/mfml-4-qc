@@ -6,3 +6,4 @@ test_package.ipynb
 src/*.egg-info/
 data/benzene/X_CM.npy
 docs/build/
+build/
