@@ -33,7 +33,6 @@ from mfml_qc.datasets import load_benzene_data
 from mfml_qc.mfml import ModelMFML
 from mfml_qc.utils import build_hierarchy_arrays, top_down_subsetting
 
-
 # %%
 # Loading and Splitting the Dataset
 # ---------------------------------
