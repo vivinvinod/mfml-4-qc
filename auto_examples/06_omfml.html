@@ -1,0 +1,703 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Optimized MFML &#8212; MFML-4-QC 1.0.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=a95f357e85573c9b56d5" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=a95f357e85573c9b56d5" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=fd6457a4" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css?v=2aa19091" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=a95f357e85573c9b56d5"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=a95f357e85573c9b56d5" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=a95f357e85573c9b56d5" />
+
+    <script src="../_static/documentation_options.js?v=8d563738"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/sg-tags.js?v=d80f6fa4"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'auto_examples/06_omfml';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Interfacing with QC Oracles (ORCA)" href="07_orca_oracle.html" />
+    <link rel="prev" title="MFML Cross-Validation and Learning Curves" href="05_mfml_learning_curve.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">MFML-4-QC 1.0.0 documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="index.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../computation_times.html">
+    Computation Times
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="index.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../computation_times.html">
+    Computation Times
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item pst-sidebar-collapse"><button id="pst-collapse-sidebar-button" aria-expanded="true" aria-controls="pst-primary-sidebar"><svg class="pst-icon svg-inline--fa" role="img" aria-hidden="true" focusable="false" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+    <path fill="currentColor" d="M3 15.5C2.36232 15.5 1.74874 15.2564 1.28478 14.8189C0.820828 14.3815 0.541576 13.7832 0.504167 13.1467L0.5 13L0.5 3C0.499965 2.36232 0.743605 1.74874 1.18107 1.28478C1.61854 0.820828 2.21676 0.541576 2.85333 0.504167L3 0.5L13 0.5C13.6377 0.499965 14.2513 0.743605 14.7152 1.18107C15.1792 1.61854 15.4584 2.21676 15.4958 2.85333L15.5 3L15.5 13C15.5 13.6377 15.2564 14.2513 14.8189 14.7152C14.3815 15.1792 13.7832 15.4584 13.1467 15.4958L13 15.5L3 15.5ZM3 13.8333L10.5 13.8333L10.5 2.16667L3 2.16667C2.79589 2.16669 2.59889 2.24163 2.44636 2.37726C2.29383 2.5129 2.19638 2.69979 2.1725 2.9025L2.16667 3L2.16667 13C2.16669 13.2041 2.24163 13.4011 2.37726 13.5536C2.5129 13.7062 2.69979 13.8036 2.9025 13.8275L3 13.8333ZM6.65583 10.325L6.5775 10.2558L4.91083 8.58917C4.76735 8.44567 4.68116 8.25476 4.66843 8.05223C4.65569 7.84971 4.71729 7.6495 4.84167 7.48917L4.91083 7.41083L6.5775 5.74417C6.72747 5.59471 6.9287 5.50794 7.14032 5.50148C7.35194 5.49502 7.55809 5.56935 7.7169 5.70937C7.8757 5.8494 7.97525 6.04463 7.99533 6.25539C8.01541 6.46616 7.95451 6.67667 7.825 6.84417L7.75583 6.9225L6.67917 8L7.75583 9.0775C7.89931 9.22099 7.98551 9.41191 7.99824 9.61443C8.01097 9.81695 7.94938 10.0172 7.825 10.1775L7.75583 10.2558C7.61234 10.3993 7.42142 10.4855 7.2189 10.4982C7.01638 10.511 6.81617 10.4494 6.65583 10.325Z"/>
+  </svg>
+  <span class="pst-collapse-sidebar-label">Collapse Sidebar</span>
+  <span class="pst-expand-sidebar-label">Expand Sidebar</span>
+</button></div>
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_load_and_represent.html">A Multi-Fidelity Dataset: MD Benzene</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_krr_learning_curve.html">Kernel Ridge Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_mfml_basics.html">The Basics of MFML</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_duck_typing_mfml.html">Duck Typing for MFML</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_mfml_learning_curve.html">MFML Cross-Validation and Learning Curves</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Optimized MFML</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_orca_oracle.html">Interfacing with QC Oracles (ORCA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_pool_based_active_learning.html">Active Learning Protocols</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">Examples</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Optimized MFML</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="Optimized-MFML">
+<h1>Optimized MFML<a class="headerlink" href="#Optimized-MFML" title="Link to this heading">#</a></h1>
+<p>Optimized MFML is an extension of MFML which uses data-adaptive combination of sub-models for superior model precision. Further details on the mechanism can be found in Mach. Learn.: Sci. Technol. 5 015054 (10.1088/2632-2153/ad2cef).</p>
+<p>This example demonstrates the use of optimized multifidelity machine learning (o-MFML) with a comparison of learning curves for:</p>
+<ol class="arabic simple">
+<li><p><strong>Single-Fidelity Kernel Ridge Regression (SF-KRR)</strong>: Trained exclusively on high-fidelity data.</p></li>
+<li><p><strong>Multi-Fidelity Machine Learning (MFML)</strong>: Uses the default summation of sub-model predictions.</p></li>
+<li><p><strong>Optimized MFML (o-MFML)</strong>: Uses an Ordinary Least Squares (OLS) optimizer to learn the optimal combination weights for the sub-models based on a validation set.</p></li>
+</ol>
+<section id="Data-Setup">
+<h2>Data Setup<a class="headerlink" href="#Data-Setup" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Training Pool</strong>: 12,288 samples (used to draw nested training subsets).</p></li>
+<li><p><strong>Validation Set</strong>: 712 high-fidelity samples (used strictly validation set for the o-MFML OLS optimizer).</p></li>
+<li><p><strong>Test Set</strong>: 2,000 samples (used for final MAE evaluation).</p></li>
+</ul>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mfml_qc.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_benzene_data</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mfml_qc.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">build_hierarchy_arrays</span><span class="p">,</span> <span class="n">top_down_subsetting</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mfml_qc.krr</span><span class="w"> </span><span class="kn">import</span> <span class="n">KRR</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mfml_qc.mfml</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModelMFML</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Loading-and-Splitting-the-Dataset">
+<h2>Loading and Splitting the Dataset<a class="headerlink" href="#Loading-and-Splitting-the-Dataset" title="Link to this heading">#</a></h2>
+<p>We load the Benzene trajectory and explicitly slice it into the three required cohorts: Training Pool, Validation Set, and Test Set.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span> <span class="o">=</span> <span class="n">load_benzene_data</span><span class="p">()</span>
+
+<span class="n">X_CM</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;X_CM&quot;</span><span class="p">]</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;energies&quot;</span><span class="p">]</span>
+
+<span class="c1"># Fidelities: LC-DFTB, STO-3G, def2-SVP, def2-TZVP</span>
+<span class="n">hierarchy_cols</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
+
+<span class="c1"># Establish the strict boundaries</span>
+<span class="n">train_mask</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">12288</span>
+<span class="n">val_mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">data</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">12288</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">data</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">13000</span><span class="p">)</span>
+<span class="n">test_mask</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">13000</span>
+
+<span class="c1"># training data</span>
+<span class="n">X_train_parent</span> <span class="o">=</span> <span class="n">X_CM</span><span class="p">[</span><span class="n">train_mask</span><span class="p">]</span>
+<span class="n">data_train</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">train_mask</span><span class="p">]</span>
+
+<span class="c1"># validation data</span>
+<span class="n">X_val</span> <span class="o">=</span> <span class="n">X_CM</span><span class="p">[</span><span class="n">val_mask</span><span class="p">]</span>
+<span class="n">y_val_true</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">val_mask</span><span class="p">,</span> <span class="n">hierarchy_cols</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+
+<span class="c1"># Test Set</span>
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">X_CM</span><span class="p">[</span><span class="n">test_mask</span><span class="p">]</span>
+<span class="n">y_test_true</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">test_mask</span><span class="p">,</span> <span class="n">hierarchy_cols</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Preparing-the-Data-Arrays">
+<h2>Preparing the Data Arrays<a class="headerlink" href="#Preparing-the-Data-Arrays" title="Link to this heading">#</a></h2>
+<p>We extract the fully populated hierarchy arrays for the training pool. We also mean-center the validation targets using the exact same high-fidelity training mean.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_trains</span><span class="p">,</span> <span class="n">indexes</span><span class="p">,</span> <span class="n">means</span> <span class="o">=</span> <span class="n">build_hierarchy_arrays</span><span class="p">(</span><span class="n">data_train</span><span class="p">,</span> <span class="n">hierarchy_cols</span><span class="p">)</span>
+<span class="n">y_val_centered</span> <span class="o">=</span> <span class="n">y_val_true</span> <span class="o">-</span> <span class="n">means</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Generating-the-Learning-Curves">
+<h2>Generating the Learning Curves<a class="headerlink" href="#Generating-the-Learning-Curves" title="Link to this heading">#</a></h2>
+<p>We will loop over increasing high-fidelity training capacities. At each step, we evaluate all three models and average the results over multiple random shuffles.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hf_train_sizes</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">**</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
+<span class="n">navg</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="c1"># Arrays to store the Mean Absolute Errors</span>
+<span class="n">sf_maes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">hf_train_sizes</span><span class="p">),</span> <span class="n">navg</span><span class="p">))</span>
+<span class="n">mfml_maes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">hf_train_sizes</span><span class="p">),</span> <span class="n">navg</span><span class="p">))</span>
+<span class="n">omfml_maes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">hf_train_sizes</span><span class="p">),</span> <span class="n">navg</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">navg</span><span class="p">):</span>
+
+    <span class="k">for</span> <span class="n">s_idx</span><span class="p">,</span> <span class="n">hf_size</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">hf_train_sizes</span><span class="p">):</span>
+
+        <span class="c1"># Define the target hierarchy sizes: [8x, 4x, 2x, 1x]</span>
+        <span class="n">n_trains_target</span> <span class="o">=</span> <span class="p">[</span><span class="n">hf_size</span> <span class="o">*</span> <span class="mi">8</span><span class="p">,</span> <span class="n">hf_size</span> <span class="o">*</span> <span class="mi">4</span><span class="p">,</span> <span class="n">hf_size</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">hf_size</span><span class="p">]</span>
+
+        <span class="c1"># Perform top-down cascade to guarantee nestedness</span>
+        <span class="n">subset_y</span><span class="p">,</span> <span class="n">subset_idx</span> <span class="o">=</span> <span class="n">top_down_subsetting</span><span class="p">(</span>
+            <span class="n">y_trains</span><span class="p">,</span> <span class="n">indexes</span><span class="p">,</span> <span class="n">n_trains_target</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">42</span> <span class="o">+</span> <span class="n">n</span>
+        <span class="p">)</span>
+
+        <span class="c1"># single fidelity KRR</span>
+        <span class="n">X_sf</span> <span class="o">=</span> <span class="n">X_train_parent</span><span class="p">[</span><span class="n">subset_idx</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][:,</span> <span class="mi">0</span><span class="p">]]</span>
+        <span class="n">y_sf</span> <span class="o">=</span> <span class="n">subset_y</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="n">krr_sf</span> <span class="o">=</span> <span class="n">KRR</span><span class="p">(</span><span class="n">kernel_type</span><span class="o">=</span><span class="s2">&quot;matern&quot;</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">715.0</span><span class="p">,</span> <span class="n">reg</span><span class="o">=</span><span class="mf">1e-9</span><span class="p">)</span>
+        <span class="n">krr_sf</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">X_sf</span><span class="p">,</span> <span class="n">y_sf</span><span class="p">)</span>
+
+        <span class="n">preds_sf</span> <span class="o">=</span> <span class="n">krr_sf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span> <span class="o">+</span> <span class="n">means</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">sf_maes</span><span class="p">[</span><span class="n">s_idx</span><span class="p">,</span> <span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">preds_sf</span> <span class="o">-</span> <span class="n">y_test_true</span><span class="p">))</span> <span class="o">*</span> <span class="mi">23</span>
+
+        <span class="c1"># basic MFML</span>
+        <span class="n">mfml_model</span> <span class="o">=</span> <span class="n">ModelMFML</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s2">&quot;matern&quot;</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">715.0</span><span class="p">,</span> <span class="n">reg</span><span class="o">=</span><span class="mf">1e-9</span><span class="p">,</span> <span class="n">p_bar</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">mfml_model</span><span class="o">.</span><span class="n">train</span><span class="p">(</span>
+            <span class="n">X_train_parent</span><span class="o">=</span><span class="n">X_train_parent</span><span class="p">,</span> <span class="n">y_trains</span><span class="o">=</span><span class="n">subset_y</span><span class="p">,</span> <span class="n">indexes</span><span class="o">=</span><span class="n">subset_idx</span>
+        <span class="p">)</span>
+
+        <span class="n">preds_mfml</span> <span class="o">=</span> <span class="n">mfml_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="o">=</span><span class="n">X_test</span><span class="p">,</span> <span class="n">optimiser</span><span class="o">=</span><span class="s2">&quot;default&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="n">means</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">mfml_maes</span><span class="p">[</span><span class="n">s_idx</span><span class="p">,</span> <span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">preds_mfml</span> <span class="o">-</span> <span class="n">y_test_true</span><span class="p">))</span> <span class="o">*</span> <span class="mi">23</span>
+
+        <span class="c1"># o-MFML</span>
+        <span class="n">preds_omfml</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">mfml_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span>
+                <span class="n">X_test</span><span class="o">=</span><span class="n">X_test</span><span class="p">,</span> <span class="n">X_val</span><span class="o">=</span><span class="n">X_val</span><span class="p">,</span> <span class="n">y_val</span><span class="o">=</span><span class="n">y_val_centered</span><span class="p">,</span> <span class="n">optimiser</span><span class="o">=</span><span class="s2">&quot;OLS&quot;</span>
+            <span class="p">)</span>
+            <span class="o">+</span> <span class="n">means</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="p">)</span>
+
+        <span class="n">omfml_maes</span><span class="p">[</span><span class="n">s_idx</span><span class="p">,</span> <span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">preds_omfml</span> <span class="o">-</span> <span class="n">y_test_true</span><span class="p">))</span> <span class="o">*</span> <span class="mi">23</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+
+</pre></div></div>
+</div>
+</section>
+<section id="Visualizing-the-Comparison">
+<h2>Visualizing the Comparison<a class="headerlink" href="#Visualizing-the-Comparison" title="Link to this heading">#</a></h2>
+<p>Finally, we plot the averaged learning curves to see how standard MFML dominates at extremely low data regimes, and how o-MFML optimizes the weights as the training set size increases.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate means over the random shuffles</span>
+<span class="n">mean_sf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">sf_maes</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">mean_mfml</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">mfml_maes</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">mean_omfml</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">omfml_maes</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Calculate standard deviations for error bars</span>
+<span class="n">std_sf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">sf_maes</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">std_mfml</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">mfml_maes</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">std_omfml</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">omfml_maes</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="c1"># Plotting the three curves</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span>
+    <span class="n">hf_train_sizes</span><span class="p">,</span>
+    <span class="n">mean_sf</span><span class="p">,</span>
+    <span class="n">yerr</span><span class="o">=</span><span class="n">std_sf</span><span class="p">,</span>
+    <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;o-&quot;</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span>
+    <span class="n">capsize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Single-Fidelity KRR&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span>
+    <span class="n">hf_train_sizes</span><span class="p">,</span>
+    <span class="n">mean_mfml</span><span class="p">,</span>
+    <span class="n">yerr</span><span class="o">=</span><span class="n">std_mfml</span><span class="p">,</span>
+    <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;s-&quot;</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;dodgerblue&quot;</span><span class="p">,</span>
+    <span class="n">capsize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;MFML&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span>
+    <span class="n">hf_train_sizes</span><span class="p">,</span>
+    <span class="n">mean_omfml</span><span class="p">,</span>
+    <span class="n">yerr</span><span class="o">=</span><span class="n">std_omfml</span><span class="p">,</span>
+    <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;d-&quot;</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;darkorange&quot;</span><span class="p">,</span>
+    <span class="n">capsize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;o-MFML (OLS)&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Formatting the plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s2">&quot;log&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s2">&quot;log&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">hf_train_sizes</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">hf_train_sizes</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Target Fidelity Training Size ($N_{\mathrm</span><span class="si">{train}</span><span class="s2">}^{\mathrm</span><span class="si">{TZVP}</span><span class="s2">}$)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Test Set MAE (kcal/mol)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Learning Curves&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/auto_examples_06_omfml_9_0.png" src="../_images/auto_examples_06_omfml_9_0.png" />
+</div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="05_mfml_learning_curve.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">MFML Cross-Validation and Learning Curves</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="07_orca_oracle.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Interfacing with QC Oracles (ORCA)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Data-Setup">Data Setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Loading-and-Splitting-the-Dataset">Loading and Splitting the Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Preparing-the-Data-Arrays">Preparing the Data Arrays</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Generating-the-Learning-Curves">Generating the Learning Curves</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Visualizing-the-Comparison">Visualizing the Comparison</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../_sources/auto_examples/06_omfml.ipynb.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=a95f357e85573c9b56d5"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=a95f357e85573c9b56d5"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2026, Vivin Vinod.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.19.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
