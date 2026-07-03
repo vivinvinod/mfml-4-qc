@@ -28,7 +28,7 @@ If you find a bug in MFML-4-QC, or have a feature request, please open a GitHub 
 **Prerequisites:** Python 3.10 or higher. It is best to install within a fresh `conda` environment to avoid dependency clashes.
 
 ### Installing from PyPI
-Once a stable version is released, users can directly install the pakcage from PyPI using the `pip` call.
+Users can directly install the pakcage from PyPI using the `pip` call. The package is available at https://pypi.org/project/mfml-4-qc/1.0.0/ and can be installed with the following steps:
 ```bash
 # Create and activate a fresh conda environment
 conda create -n mfmlenv python=3.10 -y
