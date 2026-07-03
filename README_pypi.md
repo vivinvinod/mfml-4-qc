@@ -62,16 +62,4 @@ MFML-4-QC comes with a comprehensive documentation site that includes detailed A
 
 You can view the documentation at https://vivinvinod.github.io/mfml-4-qc/.
 To view the documentation locally, go to `docs/build/html/` and open `index.html` in a browser of your choice. 
-
-You can also browse the raw tutorial scripts directly in the `examples/` directory of this repository.
-
-
-## Citation
-If you use this package, please consider citing the following articles:
-* TBA
-* TBA
-
-
-
-
-
+You can also browse the raw tutorial scripts directly in the `examples/` directory of the code repository.
