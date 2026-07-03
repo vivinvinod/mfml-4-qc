@@ -32,9 +32,9 @@ dependencies = [
 # where to find
 [project.urls]
 Homepage = "https://github.com/vivinvinod/mfml-4-qc"
-Repository = "https://github.com/vivinvinod/mfml-qc.git"
+Repository = "https://github.com/vivinvinod/mfml-4-qc.git"
 "Bug Tracker" = "https://github.com/vivinvinod/mfml-4-qc/issues"
-Documentation = "https://mfml-qc.readthedocs.io/"
+Documentation = "https://vivinvinod.github.io/mfml-4-qc/index.html"
 
 
 

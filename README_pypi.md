@@ -29,7 +29,7 @@ pip install mfml-4-qc
 You can also directly download the GitHub repo and install the package from there.
 ```bash
 # Clone the repository
-git clone https://github.com/vivinvinod/mfml-qc.git
+git clone https://github.com/vivinvinod/mfml-4-qc.git
 
 # Create and activate a fresh conda environment
 conda create -n mfmlenv python=3.10 -y
@@ -47,7 +47,7 @@ If you plan to use the built-in `PySCFEngine` oracle, you can install the packag
 pip install .[pyscf]
 ```
 
-TO run the `ORCAEngine` you will need to install ORCA. See the [official ORCA manual](https://www.faccts.de/docs/orca/6.1/manual/contents/quickstartguide/installation.html) for details on how to do so.
+To run the `ORCAEngine` you will need to install ORCA. See the [official ORCA manual](https://www.faccts.de/docs/orca/6.1/manual/contents/quickstartguide/installation.html) for details on how to do so.
 
 ### Developer Installation
 If you are beta testing, modifying the source code, or want to build the local documentation, install the package in "editable" mode (`-e`) with the `[dev]` flag. This installs testing tools (`pytest`, `black` etc) and the Sphinx documentation stack:
@@ -60,6 +60,7 @@ pip install -e .[dev]
 
 MFML-4-QC comes with a comprehensive documentation site that includes detailed API references and tutorials. An inbuilt 15 picosecond MD-trajectory of benzene is also provided as an inbuilt dataset for preliminary exploration of the package. 
 
+You can view the documentation at https://vivinvinod.github.io/mfml-4-qc/.
 To view the documentation locally, go to `docs/build/html/` and open `index.html` in a browser of your choice. 
 
 You can also browse the raw tutorial scripts directly in the `examples/` directory of this repository.
