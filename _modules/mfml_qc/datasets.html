@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>mfml_qc.datasets &#8212; MFML-4-QC 1.0.0 documentation</title>
+    <title>mfml_qc.datasets &#8212; MFML-4-QC 1.5.0 documentation</title>
   
   
   
@@ -30,7 +30,7 @@
 <link href="../../_static/styles/pydata-sphinx-theme.css?digest=a95f357e85573c9b56d5" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=fd6457a4" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=c83e6b79" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
@@ -41,7 +41,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=a95f357e85573c9b56d5" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=a95f357e85573c9b56d5" />
 
-    <script src="../../_static/documentation_options.js?v=8d563738"></script>
+    <script src="../../_static/documentation_options.js?v=e0a75244"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/sg-tags.js?v=d80f6fa4"></script>
@@ -120,7 +120,7 @@
   
   
   
-    <p class="title logo__title">MFML-4-QC 1.0.0 documentation</p>
+    <p class="title logo__title">MFML-4-QC 1.5.0 documentation</p>
   
 </a></div>
     
@@ -142,8 +142,8 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../computation_times.html">
-    Computation Times
+  <a class="nav-link nav-internal" href="../../_autosummary/mfml_qc.html">
+    mfml_qc
   </a>
 </li>
 
@@ -233,8 +233,8 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../computation_times.html">
-    Computation Times
+  <a class="nav-link nav-internal" href="../../_autosummary/mfml_qc.html">
+    mfml_qc
   </a>
 </li>
 
@@ -326,13 +326,13 @@
 <span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">.representations</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_coulomb_matrices</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.representations</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_coulomb_matrices</span><span class="p">,</span> <span class="n">compute_flat_coulomb</span>
 
 
 <div class="viewcode-block" id="load_benzene_data">
 <a class="viewcode-back" href="../../index.html#mfml_qc.datasets.load_benzene_data">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">load_benzene_data</span><span class="p">(</span><span class="n">data_dir</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Helper utility to load and parse the built-in Benzene trajectory dataset.</span>
 
 <span class="sd">    This function reads the pre-computed energy and time cost CSV files,</span>
@@ -343,8 +343,8 @@
 <span class="sd">    ----------</span>
 <span class="sd">    data_dir : str, optional</span>
 <span class="sd">        Path to the benzene data directory. If None, it dynamically</span>
-<span class="sd">        resolves the path relative to the installed package&#39;s directory</span>
-<span class="sd">        (assuming the standard &#39;data/benzene&#39; repository layout).</span>
+<span class="sd">        resolves the path relative to the installed package's directory</span>
+<span class="sd">        (assuming the standard 'data/benzene' repository layout).</span>
 <span class="sd">        Default is None.</span>
 
 <span class="sd">    Returns</span>
@@ -352,33 +352,33 @@
 <span class="sd">    dict</span>
 <span class="sd">        A dictionary containing the parsed dataset components:</span>
 
-<span class="sd">        * ``&#39;X_CM&#39;`` (np.ndarray): Flattened Coulomb matrices (shape: 15000, 36).</span>
-<span class="sd">        * ``&#39;energies&#39;`` (np.ndarray): Raw energies extracted from the CSV data.</span>
-<span class="sd">        * ``&#39;timecosts&#39;`` (np.ndarray): Time costs extracted from the CSV data.</span>
-<span class="sd">        * ``&#39;columns&#39;`` (list of str): List of string names corresponding to each column.</span>
+<span class="sd">        * ``'X_CM'`` (np.ndarray): Flattened Coulomb matrices (shape: 15000, 36).</span>
+<span class="sd">        * ``'energies'`` (np.ndarray): Raw energies extracted from the CSV data.</span>
+<span class="sd">        * ``'timecosts'`` (np.ndarray): Time costs extracted from the CSV data.</span>
+<span class="sd">        * ``'columns'`` (list of str): List of string names corresponding to each column.</span>
 
 <span class="sd">    Raises</span>
 <span class="sd">    ------</span>
 <span class="sd">    FileNotFoundError</span>
-<span class="sd">        If the required &#39;energies.csv&#39; file is not found at the resolved path,</span>
+<span class="sd">        If the required 'energies.csv' file is not found at the resolved path,</span>
 <span class="sd">        indicating the data has not been downloaded or placed correctly.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">if</span> <span class="n">data_dir</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="c1"># Resolve path relative to the installed package directory</span>
-        <span class="c1"># package lives in src/mfml_qc/ so we go two levels up to find the root &#39;data/benzene&#39;</span>
+        <span class="c1"># package lives in src/mfml_qc/ so we go two levels up to find the root 'data/benzene'</span>
         <span class="n">data_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span>
-            <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span> <span class="s2">&quot;..&quot;</span><span class="p">,</span> <span class="s2">&quot;..&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">,</span> <span class="s2">&quot;benzene&quot;</span><span class="p">)</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span> <span class="s2">".."</span><span class="p">,</span> <span class="s2">".."</span><span class="p">,</span> <span class="s2">"data"</span><span class="p">,</span> <span class="s2">"benzene"</span><span class="p">)</span>
         <span class="p">)</span>
 
-    <span class="n">xyz_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="s2">&quot;traj.xyz&quot;</span><span class="p">)</span>
-    <span class="n">csv_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="s2">&quot;energies.csv&quot;</span><span class="p">)</span>
-    <span class="n">time_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="s2">&quot;timecosts.csv&quot;</span><span class="p">)</span>
-    <span class="n">cm_cache</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="s2">&quot;X_CM.npy&quot;</span><span class="p">)</span>
+    <span class="n">xyz_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="s2">"traj.xyz"</span><span class="p">)</span>
+    <span class="n">csv_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="s2">"energies.csv"</span><span class="p">)</span>
+    <span class="n">time_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="s2">"timecosts.csv"</span><span class="p">)</span>
+    <span class="n">cm_cache</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="s2">"X_CM.npy"</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">csv_path</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;Benzene dataset not found at </span><span class="si">{</span><span class="n">data_dir</span><span class="si">}</span><span class="s2">. &quot;</span>
-            <span class="s2">&quot;Ensure you have placed the files in your project&#39;s &#39;data/benzene&#39; directory.</span><span class="se">\n</span><span class="s2">If you have not installed the dataset in the pip installation, please do so.&quot;</span>
+            <span class="sa">f</span><span class="s2">"Benzene dataset not found at </span><span class="si">{</span><span class="n">data_dir</span><span class="si">}</span><span class="s2">. "</span>
+            <span class="s2">"Ensure you have placed the files in your project's 'data/benzene' directory.</span><span class="se">\n</span><span class="s2">If you have not installed the dataset in the pip installation, please do so."</span>
         <span class="p">)</span>
 
     <span class="c1"># Generate CM or load if already generated and saved</span>
@@ -388,28 +388,112 @@
         <span class="n">X_CM</span> <span class="o">=</span> <span class="n">generate_coulomb_matrices</span><span class="p">(</span><span class="n">xyz_path</span><span class="p">,</span> <span class="n">save_path</span><span class="o">=</span><span class="n">cm_cache</span><span class="p">)</span>
 
     <span class="c1"># Energies and Time costs</span>
-    <span class="n">energies</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">genfromtxt</span><span class="p">(</span><span class="n">csv_path</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">&quot;,&quot;</span><span class="p">,</span> <span class="n">skip_header</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">timecosts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">genfromtxt</span><span class="p">(</span><span class="n">time_path</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">&quot;,&quot;</span><span class="p">,</span> <span class="n">skip_header</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">energies</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">genfromtxt</span><span class="p">(</span><span class="n">csv_path</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">","</span><span class="p">,</span> <span class="n">skip_header</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">timecosts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">genfromtxt</span><span class="p">(</span><span class="n">time_path</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">","</span><span class="p">,</span> <span class="n">skip_header</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
     <span class="c1"># Define exact columns representing the CSV structure</span>
     <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="s2">&quot;Time&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;ZINDO&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;LC-DFTB&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;STO-3G&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;3-21G&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;6-31G&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;def2-SVP&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;def2-TZVP&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;def2-QZVP&quot;</span><span class="p">,</span>
+        <span class="s2">"Time"</span><span class="p">,</span>
+        <span class="s2">"ZINDO"</span><span class="p">,</span>
+        <span class="s2">"LC-DFTB"</span><span class="p">,</span>
+        <span class="s2">"STO-3G"</span><span class="p">,</span>
+        <span class="s2">"3-21G"</span><span class="p">,</span>
+        <span class="s2">"6-31G"</span><span class="p">,</span>
+        <span class="s2">"def2-SVP"</span><span class="p">,</span>
+        <span class="s2">"def2-TZVP"</span><span class="p">,</span>
+        <span class="s2">"def2-QZVP"</span><span class="p">,</span>
     <span class="p">]</span>
 
     <span class="k">return</span> <span class="p">{</span>
-        <span class="s2">&quot;X_CM&quot;</span><span class="p">:</span> <span class="n">X_CM</span><span class="p">,</span>
-        <span class="s2">&quot;energies&quot;</span><span class="p">:</span> <span class="n">energies</span><span class="p">,</span>
-        <span class="s2">&quot;timecosts&quot;</span><span class="p">:</span> <span class="n">timecosts</span><span class="p">,</span>
-        <span class="s2">&quot;columns&quot;</span><span class="p">:</span> <span class="n">columns</span><span class="p">,</span>
+        <span class="s2">"X_CM"</span><span class="p">:</span> <span class="n">X_CM</span><span class="p">,</span>
+        <span class="s2">"energies"</span><span class="p">:</span> <span class="n">energies</span><span class="p">,</span>
+        <span class="s2">"timecosts"</span><span class="p">:</span> <span class="n">timecosts</span><span class="p">,</span>
+        <span class="s2">"columns"</span><span class="p">:</span> <span class="n">columns</span><span class="p">,</span>
     <span class="p">}</span></div>
+
+
+
+<div class="viewcode-block" id="load_nitrophenol_data">
+<a class="viewcode-back" href="../../index.html#mfml_qc.datasets.load_nitrophenol_data">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">load_nitrophenol_data</span><span class="p">(</span><span class="n">data_dir</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Load and parse the built-in QeMFi nitrophenol dataset.</span>
+
+<span class="sd">    The QeMFi dataset contains multifidelity electronic structure properties</span>
+<span class="sd">    for 15,000 MD geometries of nitrophenol at 5 SCF fidelity levels</span>
+<span class="sd">    (STO-3G, 3-21G, 6-31G, def2-SVP, def2-TZVP).</span>
+
+<span class="sd">    Reference: Vinod et al., J. Chem. Phys. (2024).</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data_dir : str, optional</span>
+<span class="sd">        Path to the nitrophenol data directory. If None, resolves the path</span>
+<span class="sd">        relative to the installed package's directory (assuming the standard</span>
+<span class="sd">        'data/nitrophenol' repository layout). Default is None.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    dict</span>
+<span class="sd">        A dictionary containing the parsed dataset components:</span>
+
+<span class="sd">        * ``'R'`` (np.ndarray): Cartesian coordinates, shape (15000, 15, 3).</span>
+<span class="sd">        * ``'Z'`` (np.ndarray): Atomic numbers, shape (15,).</span>
+<span class="sd">        * ``'SCF'`` (np.ndarray): SCF energies at 5 fidelities, shape (15000, 5).</span>
+<span class="sd">        * ``'DPe'`` (np.ndarray): Electronic dipole moments, shape (15000, 5, 3).</span>
+<span class="sd">        * ``'X_CM'`` (np.ndarray): Flattened Coulomb matrices, shape (15000, 120).</span>
+<span class="sd">        * ``'fidelities'`` (list of str): Fidelity level names.</span>
+<span class="sd">        * ``'ID'`` (np.ndarray, optional): WS22 geometry indices, shape (15000,).</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    FileNotFoundError</span>
+<span class="sd">        If the required data file is not found at the resolved path.</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="n">data_dir</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">data_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span> <span class="s2">".."</span><span class="p">,</span> <span class="s2">".."</span><span class="p">,</span> <span class="s2">"data"</span><span class="p">,</span> <span class="s2">"nitrophenol"</span><span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="n">npz_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="s2">"QeMFi_nitrophenol.npz"</span><span class="p">)</span>
+    <span class="n">cm_cache</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="s2">"X_CM.npy"</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">npz_path</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">"QeMFi nitrophenol dataset not found at </span><span class="si">{</span><span class="n">data_dir</span><span class="si">}</span><span class="s2">. "</span>
+            <span class="s2">"Ensure you have placed QeMFi_nitrophenol.npz in your project's "</span>
+            <span class="s2">"'data/nitrophenol' directory."</span>
+        <span class="p">)</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">npz_path</span><span class="p">,</span> <span class="n">allow_pickle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">R</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">"R"</span><span class="p">]</span>
+    <span class="n">Z</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">"Z"</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">cm_cache</span><span class="p">):</span>
+        <span class="n">X_CM</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">cm_cache</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">n_geom</span> <span class="o">=</span> <span class="n">R</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">n_feat</span> <span class="o">=</span> <span class="n">Z</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">Z</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="n">X_CM</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_geom</span><span class="p">,</span> <span class="n">n_feat</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_geom</span><span class="p">):</span>
+            <span class="n">X_CM</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">compute_flat_coulomb</span><span class="p">(</span><span class="n">Z</span><span class="o">=</span><span class="n">Z</span><span class="p">,</span> <span class="n">R</span><span class="o">=</span><span class="n">R</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">cm_cache</span><span class="p">,</span> <span class="n">X_CM</span><span class="p">)</span>
+
+    <span class="n">fidelities</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"STO-3G"</span><span class="p">,</span> <span class="s2">"3-21G"</span><span class="p">,</span> <span class="s2">"6-31G"</span><span class="p">,</span> <span class="s2">"def2-SVP"</span><span class="p">,</span> <span class="s2">"def2-TZVP"</span><span class="p">]</span>
+
+    <span class="n">result</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">"R"</span><span class="p">:</span> <span class="n">R</span><span class="p">,</span>
+        <span class="s2">"Z"</span><span class="p">:</span> <span class="n">Z</span><span class="p">,</span>
+        <span class="s2">"SCF"</span><span class="p">:</span> <span class="n">data</span><span class="p">[</span><span class="s2">"SCF"</span><span class="p">],</span>
+        <span class="s2">"DPe"</span><span class="p">:</span> <span class="n">data</span><span class="p">[</span><span class="s2">"DPe"</span><span class="p">],</span>
+        <span class="s2">"X_CM"</span><span class="p">:</span> <span class="n">X_CM</span><span class="p">,</span>
+        <span class="s2">"fidelities"</span><span class="p">:</span> <span class="n">fidelities</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="s2">"ID"</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">files</span><span class="p">:</span>
+        <span class="n">result</span><span class="p">[</span><span class="s2">"ID"</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">"ID"</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">result</span></div>
 
 </pre></div>
 

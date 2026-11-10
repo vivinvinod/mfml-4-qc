@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>mfml_qc.utils &#8212; MFML-4-QC 1.0.0 documentation</title>
+    <title>mfml_qc.utils &#8212; MFML-4-QC 1.5.0 documentation</title>
   
   
   
@@ -30,7 +30,7 @@
 <link href="../../_static/styles/pydata-sphinx-theme.css?digest=a95f357e85573c9b56d5" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=fd6457a4" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=c83e6b79" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
@@ -41,7 +41,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=a95f357e85573c9b56d5" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=a95f357e85573c9b56d5" />
 
-    <script src="../../_static/documentation_options.js?v=8d563738"></script>
+    <script src="../../_static/documentation_options.js?v=e0a75244"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/sg-tags.js?v=d80f6fa4"></script>
@@ -120,7 +120,7 @@
   
   
   
-    <p class="title logo__title">MFML-4-QC 1.0.0 documentation</p>
+    <p class="title logo__title">MFML-4-QC 1.5.0 documentation</p>
   
 </a></div>
     
@@ -142,8 +142,8 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../computation_times.html">
-    Computation Times
+  <a class="nav-link nav-internal" href="../../_autosummary/mfml_qc.html">
+    mfml_qc
   </a>
 </li>
 
@@ -233,8 +233,8 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../computation_times.html">
-    Computation Times
+  <a class="nav-link nav-internal" href="../../_autosummary/mfml_qc.html">
+    mfml_qc
   </a>
 </li>
 
@@ -331,7 +331,7 @@
 <div class="viewcode-block" id="property_differences">
 <a class="viewcode-back" href="../../index.html#mfml_qc.utils.property_differences">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">property_differences</span><span class="p">(</span><span class="n">file_paths</span><span class="p">:</span> <span class="nb">list</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Helper utility to parse and align nested multi-fidelity datasets from raw text files.</span>
 
 <span class="sd">    This function loads data from multiple fidelities and builds a strict nested</span>
@@ -361,14 +361,14 @@
 <span class="sd">    ------</span>
 <span class="sd">    FileNotFoundError</span>
 <span class="sd">        If the baseline file (the first path in `file_paths`) cannot be located.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">num_fidelities</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">file_paths</span><span class="p">)</span>
     <span class="n">energy_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">num_fidelities</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span>
     <span class="n">index_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">num_fidelities</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span>
 
     <span class="c1"># Load lowest fidelity file (baseline)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">file_paths</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
-        <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Could not find baseline file at </span><span class="si">{</span><span class="n">file_paths</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Could not find baseline file at </span><span class="si">{</span><span class="n">file_paths</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
     <span class="n">E0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">file_paths</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
     <span class="n">energy_array</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">E0</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
@@ -383,7 +383,7 @@
 
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span>
         <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">num_fidelities</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span>
-        <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;Generating property array and indexes for MFML...&quot;</span><span class="p">,</span>
+        <span class="n">desc</span><span class="o">=</span><span class="s2">"Generating property array and indexes for MFML..."</span><span class="p">,</span>
         <span class="n">leave</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="n">Ei</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">file_paths</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
@@ -408,7 +408,7 @@
 <div class="viewcode-block" id="build_hierarchy_arrays">
 <a class="viewcode-back" href="../../index.html#mfml_qc.utils.build_hierarchy_arrays">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">build_hierarchy_arrays</span><span class="p">(</span><span class="n">data_train</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">hierarchy_cols</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Extracts valid subsets and mean-centers energies across a fidelity hierarchy.</span>
 
 <span class="sd">    Parameters</span>
@@ -423,7 +423,7 @@
 <span class="sd">    tuple</span>
 <span class="sd">        (y_trains, indexes, means) where y_trains and indexes are object arrays</span>
 <span class="sd">        formatted for the ModelMFML, and means are the centering offsets.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">num_fids</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">hierarchy_cols</span><span class="p">)</span>
     <span class="n">y_trains</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_fids</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span>
     <span class="n">indexes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_fids</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span>
@@ -462,7 +462,7 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">top_down_subsetting</span><span class="p">(</span>
     <span class="n">y_trains</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">indexes</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">n_trains_target</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">seed</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">42</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Function to produce nested subsets of data from a multifidelity dataset where</span>
 <span class="sd">    sample selection is carried out from the highest fidelity to the lowest.</span>
 
@@ -481,7 +481,7 @@
 <span class="sd">    -------</span>
 <span class="sd">    tuple</span>
 <span class="sd">        (subset_y_trains, subset_indexes) ready for MFML training.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">num_fids</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y_trains</span><span class="p">)</span>
     <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
 

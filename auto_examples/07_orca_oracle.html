@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Interfacing with QC Oracles (ORCA) &#8212; MFML-4-QC 1.0.0 documentation</title>
+    <title>Interfacing with QC Oracles (ORCA) &#8212; MFML-4-QC 1.5.0 documentation</title>
   
   
   
@@ -31,7 +31,7 @@
 <link href="../_static/styles/pydata-sphinx-theme.css?digest=a95f357e85573c9b56d5" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=fd6457a4" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=c83e6b79" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
@@ -43,7 +43,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=a95f357e85573c9b56d5" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=a95f357e85573c9b56d5" />
 
-    <script src="../_static/documentation_options.js?v=8d563738"></script>
+    <script src="../_static/documentation_options.js?v=e0a75244"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/sg-tags.js?v=d80f6fa4"></script>
@@ -126,7 +126,7 @@
   
   
   
-    <p class="title logo__title">MFML-4-QC 1.0.0 documentation</p>
+    <p class="title logo__title">MFML-4-QC 1.5.0 documentation</p>
   
 </a></div>
     
@@ -148,8 +148,8 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../computation_times.html">
-    Computation Times
+  <a class="nav-link nav-internal" href="../_autosummary/mfml_qc.html">
+    mfml_qc
   </a>
 </li>
 
@@ -241,8 +241,8 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../computation_times.html">
-    Computation Times
+  <a class="nav-link nav-internal" href="../_autosummary/mfml_qc.html">
+    mfml_qc
   </a>
 </li>
 
@@ -296,6 +296,11 @@
 <li class="toctree-l1"><a class="reference internal" href="06_omfml.html">Optimized MFML</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Interfacing with QC Oracles (ORCA)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="08_pool_based_active_learning.html">Active Learning Protocols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_autodiff_forces.html">Autodifferentiable Force Prediction with MFML</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_vector_krr_dipole.html">Vector KRR for Dipole Moments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_rpr_vector_krr.html">RPR Frame Canonicalization for Vector KRR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_vector_mfml_dipole.html">Vector MFML for Dipole Moments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_vector_mfml_learning_curves.html">Learning Curve generation for: RPR × T × MFML</a></li>
 </ul>
 </div>
 </nav></div>
@@ -371,24 +376,23 @@
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">shutil</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">mfml_qc.oracles</span><span class="w"> </span><span class="kn">import</span> <span class="n">OrcaEngine</span>
-
-<span class="c1"># this will be the working directory</span>
-<span class="n">workspace</span> <span class="o">=</span> <span class="s2">&quot;tutorial_workspace&quot;</span>
-<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">workspace</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="n">single_mol_xyz</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">workspace</span><span class="p">,</span> <span class="s2">&quot;test_water.xyz&quot;</span><span class="p">)</span>
-
-<span class="c1"># Write a dummy water molecule to an XYZ file</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">single_mol_xyz</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;3</span><span class="se">\n</span><span class="s2">Water test molecule</span><span class="se">\n</span><span class="s2">O 0.000 0.000 0.000</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;H 0.000 0.757 0.587</span><span class="se">\n</span><span class="s2">H 0.000 -0.757 0.587</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="w">
+</span><span class="kn">import</span><span class="w"> </span><span class="nn">shutil</span><span class="w">
+</span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span><span class="w">
+</span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib</span><span class="nn">.</span><span class="nn">pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span><span class="w">
+</span><span class="kn">from</span><span class="w"> </span><span class="nn">mfml_qc</span><span class="nn">.</span><span class="nn">oracles</span><span class="w"> </span><span class="kn">import</span> <a class="sphx-glr-backref-module-mfml_qc-oracles sphx-glr-backref-type-py-class reference internal" href="../index.html#mfml_qc.oracles.orca.OrcaEngine" title="mfml_qc.oracles.OrcaEngine"><span class="n">OrcaEngine</span></a><span class="w">
+</span><span class="w">
+</span><span class="c1"># this will be the working directory</span><span class="w">
+</span><span class="n">workspace</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s2">tutorial_workspace</span><span class="s2">&quot;</span><span class="w">
+</span><span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">workspace</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="w">
+</span><span class="w">
+</span><span class="n">single_mol_xyz</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">workspace</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s2">test_water.xyz</span><span class="s2">&quot;</span><span class="p">)</span><span class="w">
+</span><span class="w">
+</span><span class="c1"># Write a dummy water molecule to an XYZ file</span><span class="w">
+</span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">single_mol_xyz</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s2">w</span><span class="s2">&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span><span class="w">
+</span>    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="s2">3</span><span class="se">\n</span><span class="s2">Water test molecule</span><span class="se">\n</span><span class="s2">O 0.000 0.000 0.000</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span><span class="w">
+</span>    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="s2">H 0.000 0.757 0.587</span><span class="se">\n</span><span class="s2">H 0.000 -0.757 0.587</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span><span class="w">
+</span></pre></div></div>
 </div>
 </section>
 <section id="Method-1:-Dynamic-Parameter-Generation">
@@ -398,60 +402,59 @@
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fidelity_params_dynamic</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;method&quot;</span><span class="p">:</span> <span class="s2">&quot;CAM-B3LYP&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;basis&quot;</span><span class="p">:</span> <span class="s2">&quot;def2-TZVP&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;charge&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-    <span class="s2">&quot;multiplicity&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-    <span class="s2">&quot;nprocs&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>  <span class="c1"># Request 2 cores</span>
-    <span class="s2">&quot;maxcore&quot;</span><span class="p">:</span> <span class="mi">2000</span><span class="p">,</span>  <span class="c1"># Allocate max 2000 MB memory per core</span>
-    <span class="s2">&quot;optional_tags&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;TightSCF&quot;</span><span class="p">,</span> <span class="s2">&quot;RIJCOSX&quot;</span><span class="p">],</span>
-    <span class="s2">&quot;EnGrad&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>  <span class="c1"># we will not compute gradients (Forces)</span>
-    <span class="c1"># We can inject multi-line blocks for complex tasks like TD-DFT:</span>
-    <span class="s2">&quot;custom_blocks&quot;</span><span class="p">:</span> <span class="s2">&quot;%tddft</span><span class="se">\n</span><span class="s2">  ETol 1e-6</span><span class="se">\n</span><span class="s2">  RTol 1e-6</span><span class="se">\n</span><span class="s2">  nroots 10</span><span class="se">\n</span><span class="s2">end&quot;</span><span class="p">,</span>
-<span class="p">}</span>
-
-<span class="c1"># Initialize the engine.</span>
-<span class="c1"># NOTE: Update &#39;orca_path&#39; to point to your actual ORCA binary,</span>
-<span class="c1"># e.g., &#39;/opt/orca_5_0_3_linux_x86-64_openmpi411/orca&#39;</span>
-<span class="n">orca_engine_1</span> <span class="o">=</span> <span class="n">OrcaEngine</span><span class="p">(</span>
-    <span class="n">orca_path</span><span class="o">=</span><span class="s2">&quot;/../../../../opt/orca_5_0_3_linux_x86-64_openmpi411/orca&quot;</span>
-<span class="p">)</span>
-
-
-<span class="k">try</span><span class="p">:</span>
-    <span class="c1"># We set clean=False so we can inspect the generated files later.</span>
-    <span class="c1"># return_outs=False means the engine will run but won&#39;t parse it automatically.</span>
-    <span class="n">orca_engine_1</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span>
-        <span class="n">geometry</span><span class="o">=</span><span class="n">single_mol_xyz</span><span class="p">,</span>
-        <span class="n">fidelity_params</span><span class="o">=</span><span class="n">fidelity_params_dynamic</span><span class="p">,</span>
-        <span class="n">work_dir</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">workspace</span><span class="p">,</span> <span class="s2">&quot;orca_dynamic&quot;</span><span class="p">),</span>
-        <span class="n">return_outs</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-        <span class="n">clean</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-    <span class="p">)</span>
-
-    <span class="c1"># We can manually define what to extract and parse the output file afterward:</span>
-    <span class="n">orca_engine_1</span><span class="o">.</span><span class="n">properties_to_extract</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Total Energy&quot;</span><span class="p">:</span> <span class="s2">&quot;FINAL SINGLE POINT ENERGY&quot;</span><span class="p">}</span>
-    <span class="n">results_1</span> <span class="o">=</span> <span class="n">orca_engine_1</span><span class="o">.</span><span class="n">parse_output</span><span class="p">(</span>
-        <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">workspace</span><span class="p">,</span> <span class="s2">&quot;orca_dynamic&quot;</span><span class="p">,</span> <span class="s2">&quot;calc.out&quot;</span><span class="p">)</span>
-    <span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Extracted Properties:&quot;</span><span class="p">,</span> <span class="n">results_1</span><span class="p">)</span>
-
-    <span class="c1"># let&#39;s also take a look at the input file generated:</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">workspace</span><span class="p">,</span> <span class="s2">&quot;orca_dynamic&quot;</span><span class="p">,</span> <span class="s2">&quot;calc.inp&quot;</span><span class="p">),</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Generated Input File:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
-
-
-<span class="c1"># in case you do not have ORCA installed you can still see the input file generated</span>
-<span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ORCA executable not found in PATH! Skipping calculation execution.&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;However, the engine successfully generated the input file!&quot;</span><span class="p">)</span>
-
-    <span class="c1"># Let&#39;s peek at the file it generated for us:</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">workspace</span><span class="p">,</span> <span class="s2">&quot;orca_dynamic&quot;</span><span class="p">,</span> <span class="s2">&quot;calc.inp&quot;</span><span class="p">),</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Generated Input File:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
-</pre></div>
-</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span class="n">fidelity_params_dynamic</span> <span class="o">=</span> <span class="p">{</span><span class="w">
+</span>    <span class="s2">&quot;</span><span class="s2">method</span><span class="s2">&quot;</span><span class="p">:</span> <span class="s2">&quot;</span><span class="s2">CAM-B3LYP</span><span class="s2">&quot;</span><span class="p">,</span><span class="w">
+</span>    <span class="s2">&quot;</span><span class="s2">basis</span><span class="s2">&quot;</span><span class="p">:</span> <span class="s2">&quot;</span><span class="s2">def2-TZVP</span><span class="s2">&quot;</span><span class="p">,</span><span class="w">
+</span>    <span class="s2">&quot;</span><span class="s2">charge</span><span class="s2">&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span><span class="w">
+</span>    <span class="s2">&quot;</span><span class="s2">multiplicity</span><span class="s2">&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span><span class="w">
+</span>    <span class="s2">&quot;</span><span class="s2">nprocs</span><span class="s2">&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>  <span class="c1"># Request 2 cores</span><span class="w">
+</span>    <span class="s2">&quot;</span><span class="s2">maxcore</span><span class="s2">&quot;</span><span class="p">:</span> <span class="mi">2000</span><span class="p">,</span>  <span class="c1"># Allocate max 2000 MB memory per core</span><span class="w">
+</span>    <span class="s2">&quot;</span><span class="s2">optional_tags</span><span class="s2">&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;</span><span class="s2">TightSCF</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s2">RIJCOSX</span><span class="s2">&quot;</span><span class="p">]</span><span class="p">,</span><span class="w">
+</span>    <span class="s2">&quot;</span><span class="s2">EnGrad</span><span class="s2">&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>  <span class="c1"># we will not compute gradients (Forces)</span><span class="w">
+</span>    <span class="c1"># We can inject multi-line blocks for complex tasks like TD-DFT:</span><span class="w">
+</span>    <span class="s2">&quot;</span><span class="s2">custom_blocks</span><span class="s2">&quot;</span><span class="p">:</span> <span class="s2">&quot;</span><span class="s2">%</span><span class="s2">tddft</span><span class="se">\n</span><span class="s2">  ETol 1e-6</span><span class="se">\n</span><span class="s2">  RTol 1e-6</span><span class="se">\n</span><span class="s2">  nroots 10</span><span class="se">\n</span><span class="s2">end</span><span class="s2">&quot;</span><span class="p">,</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="w">
+</span><span class="c1"># Initialize the engine.</span><span class="w">
+</span><span class="c1"># NOTE: Update 'orca_path' to point to your actual ORCA binary,</span><span class="w">
+</span><span class="c1"># e.g., '/opt/orca_5_0_3_linux_x86-64_openmpi411/orca'</span><span class="w">
+</span><a class="sphx-glr-backref-module-mfml_qc-oracles sphx-glr-backref-type-py-class sphx-glr-backref-instance reference internal" href="../index.html#mfml_qc.oracles.orca.OrcaEngine" title="mfml_qc.oracles.OrcaEngine"><span class="n">orca_engine_1</span></a> <span class="o">=</span> <a class="sphx-glr-backref-module-mfml_qc-oracles sphx-glr-backref-type-py-class reference internal" href="../index.html#mfml_qc.oracles.orca.OrcaEngine" title="mfml_qc.oracles.OrcaEngine"><span class="n">OrcaEngine</span></a><span class="p">(</span><span class="w">
+</span>    <span class="n">orca_path</span><span class="o">=</span><span class="s2">&quot;</span><span class="s2">/../../../../opt/orca_5_0_3_linux_x86-64_openmpi411/orca</span><span class="s2">&quot;</span><span class="w">
+</span><span class="p">)</span><span class="w">
+</span><span class="w">
+</span><span class="w">
+</span><span class="k">try</span><span class="p">:</span><span class="w">
+</span>    <span class="c1"># We set clean=False so we can inspect the generated files later.</span><span class="w">
+</span>    <span class="c1"># return_outs=False means the engine will run but won't parse it automatically.</span><span class="w">
+</span>    <a class="sphx-glr-backref-module-mfml_qc-oracles sphx-glr-backref-type-py-method reference internal" href="../index.html#mfml_qc.oracles.base.QuantumEngine.evaluate" title="mfml_qc.oracles.QuantumEngine.evaluate"><span class="n">orca_engine_1</span><span class="o">.</span><span class="n">evaluate</span></a><span class="p">(</span><span class="w">
+</span>        <span class="n">geometry</span><span class="o">=</span><span class="n">single_mol_xyz</span><span class="p">,</span><span class="w">
+</span>        <span class="n">fidelity_params</span><span class="o">=</span><span class="n">fidelity_params_dynamic</span><span class="p">,</span><span class="w">
+</span>        <span class="n">work_dir</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">workspace</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s2">orca_dynamic</span><span class="s2">&quot;</span><span class="p">)</span><span class="p">,</span><span class="w">
+</span>        <span class="n">return_outs</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="w">
+</span>        <span class="n">clean</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="w">
+</span>    <span class="p">)</span><span class="w">
+</span><span class="w">
+</span>    <span class="c1"># We can manually define what to extract and parse the output file afterward:</span><span class="w">
+</span>    <a class="sphx-glr-backref-module-mfml_qc-oracles sphx-glr-backref-type-py-class sphx-glr-backref-instance reference internal" href="../index.html#mfml_qc.oracles.orca.OrcaEngine" title="mfml_qc.oracles.OrcaEngine"><span class="n">orca_engine_1</span></a><span class="o">.</span><span class="n">properties_to_extract</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;</span><span class="s2">Total Energy</span><span class="s2">&quot;</span><span class="p">:</span> <span class="s2">&quot;</span><span class="s2">FINAL SINGLE POINT ENERGY</span><span class="s2">&quot;</span><span class="p">}</span><span class="w">
+</span>    <span class="n">results_1</span> <span class="o">=</span> <a class="sphx-glr-backref-module-mfml_qc-oracles sphx-glr-backref-type-py-method reference internal" href="../index.html#mfml_qc.oracles.orca.OrcaEngine.parse_output" title="mfml_qc.oracles.OrcaEngine.parse_output"><span class="n">orca_engine_1</span><span class="o">.</span><span class="n">parse_output</span></a><span class="p">(</span><span class="w">
+</span>        <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">workspace</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s2">orca_dynamic</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s2">calc.out</span><span class="s2">&quot;</span><span class="p">)</span><span class="w">
+</span>    <span class="p">)</span><span class="w">
+</span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="s2">Extracted Properties:</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">results_1</span><span class="p">)</span><span class="w">
+</span><span class="w">
+</span>    <span class="c1"># let's also take a look at the input file generated:</span><span class="w">
+</span>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">workspace</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s2">orca_dynamic</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s2">calc.inp</span><span class="s2">&quot;</span><span class="p">)</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s2">r</span><span class="s2">&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span><span class="w">
+</span>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Generated Input File:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="p">)</span><span class="p">)</span><span class="w">
+</span><span class="w">
+</span><span class="w">
+</span><span class="c1"># in case you do not have ORCA installed you can still see the input file generated</span><span class="w">
+</span><span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span><span class="w">
+</span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="s2">ORCA executable not found in PATH! Skipping calculation execution.</span><span class="s2">&quot;</span><span class="p">)</span><span class="w">
+</span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="s2">However, the engine successfully generated the input file!</span><span class="s2">&quot;</span><span class="p">)</span><span class="w">
+</span><span class="w">
+</span>    <span class="c1"># Let's peek at the file it generated for us:</span><span class="w">
+</span>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">workspace</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s2">orca_dynamic</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s2">calc.inp</span><span class="s2">&quot;</span><span class="p">)</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s2">r</span><span class="s2">&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span><span class="w">
+</span>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Generated Input File:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="p">)</span><span class="p">)</span><span class="w">
+</span></pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
@@ -497,87 +500,86 @@ end
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">template_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">workspace</span><span class="p">,</span> <span class="s2">&quot;TZVP_template.inp&quot;</span><span class="p">)</span>
-
-<span class="c1"># notice that we will now ask for the energy gradients (with EnGrad keyword)</span>
-<span class="n">template_content</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;! CAM-B3LYP def2-TZVP  def2/J TightSCF RIJCOSX EnGrad</span>
-<span class="s2">#%maxcore 2000</span>
-<span class="s2">%PAL nproc 2 end</span>
-<span class="s2">%tddft</span>
-<span class="s2">   ETol 1e-6</span>
-<span class="s2">   RTol 1e-6</span>
-<span class="s2">   nroots 10</span>
-<span class="s2">   maxdim 100</span>
-<span class="s2">   tprint 1E-10</span>
-<span class="s2">   triplets false</span>
-<span class="s2">end</span>
-<span class="s2">&quot;&quot;&quot;</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">template_file</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">template_content</span><span class="p">)</span>
-
-<span class="n">fidelity_params_template</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;template_file&quot;</span><span class="p">:</span> <span class="n">template_file</span><span class="p">,</span>
-    <span class="s2">&quot;charge&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-    <span class="s2">&quot;multiplicity&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-<span class="p">}</span>
-
-<span class="c1"># Define the exact text labels to search for in the ORCA output file</span>
-<span class="n">advanced_properties</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;e_scf&quot;</span><span class="p">:</span> <span class="s2">&quot;E(SCF)  =&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;de_cis&quot;</span><span class="p">:</span> <span class="s2">&quot;DE(CIS) =&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;e_tot&quot;</span><span class="p">:</span> <span class="s2">&quot;E(tot)  =&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;e_final&quot;</span><span class="p">:</span> <span class="s2">&quot;FINAL SINGLE POINT ENERGY&quot;</span><span class="p">,</span>
-<span class="p">}</span>
-
-<span class="c1"># Initialize a new engine, passing the properties we want to extract upfront</span>
-<span class="n">orca_engine_2</span> <span class="o">=</span> <span class="n">OrcaEngine</span><span class="p">(</span>
-    <span class="n">orca_path</span><span class="o">=</span><span class="s2">&quot;/../../../../opt/orca_5_0_3_linux_x86-64_openmpi411/orca&quot;</span><span class="p">,</span>
-    <span class="n">properties_to_extract</span><span class="o">=</span><span class="n">advanced_properties</span><span class="p">,</span>
-<span class="p">)</span>
-
-<span class="n">orca_ran_successfully</span> <span class="o">=</span> <span class="kc">False</span>
-
-<span class="k">try</span><span class="p">:</span>
-    <span class="c1"># By setting return_outs=True, evaluate() automatically parses the output!</span>
-    <span class="n">results_2</span> <span class="o">=</span> <span class="n">orca_engine_2</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span>
-        <span class="n">geometry</span><span class="o">=</span><span class="n">single_mol_xyz</span><span class="p">,</span>
-        <span class="n">fidelity_params</span><span class="o">=</span><span class="n">fidelity_params_template</span><span class="p">,</span>
-        <span class="n">work_dir</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">workspace</span><span class="p">,</span> <span class="s2">&quot;orca_template&quot;</span><span class="p">),</span>
-        <span class="n">clean</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-        <span class="n">return_outs</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Parsed Results:&quot;</span><span class="p">,</span> <span class="n">results_2</span><span class="p">)</span>
-
-    <span class="c1"># %%</span>
-    <span class="c1"># Parsing Spectra and Gradients</span>
-    <span class="c1"># -----------------------------</span>
-    <span class="c1"># Because we included &#39;EnGrad&#39; and &#39;%tddft&#39; in our template, ORCA generates</span>
-    <span class="c1"># gradients and absorption spectra. We can manually call the parser on the</span>
-    <span class="c1"># generated output file to extract these advanced arrays!</span>
-
-    <span class="n">output_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">workspace</span><span class="p">,</span> <span class="s2">&quot;orca_template&quot;</span><span class="p">,</span> <span class="s2">&quot;calc.out&quot;</span><span class="p">)</span>
-    <span class="n">results_advanced</span> <span class="o">=</span> <span class="n">orca_engine_2</span><span class="o">.</span><span class="n">parse_output</span><span class="p">(</span>
-        <span class="n">output_file</span><span class="o">=</span><span class="n">output_path</span><span class="p">,</span> <span class="n">parse_gradients</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">parse_spectra</span><span class="o">=</span><span class="kc">True</span>
-    <span class="p">)</span>
-
-    <span class="k">if</span> <span class="s2">&quot;gradients&quot;</span> <span class="ow">in</span> <span class="n">results_advanced</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;First atom gradients (x, y, z):&quot;</span><span class="p">,</span> <span class="n">results_advanced</span><span class="p">[</span><span class="s2">&quot;gradients&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
-
-    <span class="k">if</span> <span class="s2">&quot;tddft_spectrum&quot;</span> <span class="ow">in</span> <span class="n">results_advanced</span><span class="p">:</span>
-        <span class="c1"># The spectrum is returned as a list of state dictionaries</span>
-        <span class="n">state_1</span> <span class="o">=</span> <span class="n">results_advanced</span><span class="p">[</span><span class="s2">&quot;tddft_spectrum&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">TD-DFT State 1:&quot;</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">state_1</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">val</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-
-    <span class="n">orca_ran_successfully</span> <span class="o">=</span> <span class="kc">True</span>
-
-<span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ORCA executable not found in PATH! Skipping calculation execution.&quot;</span><span class="p">)</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">workspace</span><span class="p">,</span> <span class="s2">&quot;orca_template&quot;</span><span class="p">,</span> <span class="s2">&quot;calc.inp&quot;</span><span class="p">),</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Generated Template Input File:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
-</pre></div>
-</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span class="n">template_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">workspace</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s2">TZVP_template.inp</span><span class="s2">&quot;</span><span class="p">)</span><span class="w">
+</span><span class="w">
+</span><span class="c1"># notice that we will now ask for the energy gradients (with EnGrad keyword)</span><span class="w">
+</span><span class="n">template_content</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span><span class="s2">! CAM-B3LYP def2-TZVP  def2/J TightSCF RIJCOSX EnGrad</span><span class="s2">
+</span><span class="s2">#</span><span class="s2">%</span><span class="s2">maxcore 2000</span><span class="s2">
+</span><span class="s2">%</span><span class="s2">PAL nproc 2 end</span><span class="s2">
+</span><span class="s2">%</span><span class="s2">tddft</span><span class="s2">
+</span><span class="s2">   ETol 1e-6</span><span class="s2">
+</span><span class="s2">   RTol 1e-6</span><span class="s2">
+</span><span class="s2">   nroots 10</span><span class="s2">
+</span><span class="s2">   maxdim 100</span><span class="s2">
+</span><span class="s2">   tprint 1E-10</span><span class="s2">
+</span><span class="s2">   triplets false</span><span class="s2">
+</span><span class="s2">end</span><span class="s2">
+</span><span class="s2">&quot;&quot;&quot;</span><span class="w">
+</span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">template_file</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s2">w</span><span class="s2">&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span><span class="w">
+</span>    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">template_content</span><span class="p">)</span><span class="w">
+</span><span class="w">
+</span><span class="n">fidelity_params_template</span> <span class="o">=</span> <span class="p">{</span><span class="w">
+</span>    <span class="s2">&quot;</span><span class="s2">template_file</span><span class="s2">&quot;</span><span class="p">:</span> <span class="n">template_file</span><span class="p">,</span><span class="w">
+</span>    <span class="s2">&quot;</span><span class="s2">charge</span><span class="s2">&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span><span class="w">
+</span>    <span class="s2">&quot;</span><span class="s2">multiplicity</span><span class="s2">&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="w">
+</span><span class="c1"># Define the exact text labels to search for in the ORCA output file</span><span class="w">
+</span><span class="n">advanced_properties</span> <span class="o">=</span> <span class="p">{</span><span class="w">
+</span>    <span class="s2">&quot;</span><span class="s2">e_scf</span><span class="s2">&quot;</span><span class="p">:</span> <span class="s2">&quot;</span><span class="s2">E(SCF)  =</span><span class="s2">&quot;</span><span class="p">,</span><span class="w">
+</span>    <span class="s2">&quot;</span><span class="s2">de_cis</span><span class="s2">&quot;</span><span class="p">:</span> <span class="s2">&quot;</span><span class="s2">DE(CIS) =</span><span class="s2">&quot;</span><span class="p">,</span><span class="w">
+</span>    <span class="s2">&quot;</span><span class="s2">e_tot</span><span class="s2">&quot;</span><span class="p">:</span> <span class="s2">&quot;</span><span class="s2">E(tot)  =</span><span class="s2">&quot;</span><span class="p">,</span><span class="w">
+</span>    <span class="s2">&quot;</span><span class="s2">e_final</span><span class="s2">&quot;</span><span class="p">:</span> <span class="s2">&quot;</span><span class="s2">FINAL SINGLE POINT ENERGY</span><span class="s2">&quot;</span><span class="p">,</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="w">
+</span><span class="c1"># Initialize a new engine, passing the properties we want to extract upfront</span><span class="w">
+</span><a class="sphx-glr-backref-module-mfml_qc-oracles sphx-glr-backref-type-py-class sphx-glr-backref-instance reference internal" href="../index.html#mfml_qc.oracles.orca.OrcaEngine" title="mfml_qc.oracles.OrcaEngine"><span class="n">orca_engine_2</span></a> <span class="o">=</span> <a class="sphx-glr-backref-module-mfml_qc-oracles sphx-glr-backref-type-py-class reference internal" href="../index.html#mfml_qc.oracles.orca.OrcaEngine" title="mfml_qc.oracles.OrcaEngine"><span class="n">OrcaEngine</span></a><span class="p">(</span><span class="w">
+</span>    <span class="n">orca_path</span><span class="o">=</span><span class="s2">&quot;</span><span class="s2">/../../../../opt/orca_5_0_3_linux_x86-64_openmpi411/orca</span><span class="s2">&quot;</span><span class="p">,</span><span class="w">
+</span>    <span class="n">properties_to_extract</span><span class="o">=</span><span class="n">advanced_properties</span><span class="p">,</span><span class="w">
+</span><span class="p">)</span><span class="w">
+</span><span class="w">
+</span><span class="n">orca_ran_successfully</span> <span class="o">=</span> <span class="kc">False</span><span class="w">
+</span><span class="w">
+</span><span class="k">try</span><span class="p">:</span><span class="w">
+</span>    <span class="c1"># By setting return_outs=True, evaluate() automatically parses the output!</span><span class="w">
+</span>    <span class="n">results_2</span> <span class="o">=</span> <a class="sphx-glr-backref-module-mfml_qc-oracles sphx-glr-backref-type-py-method reference internal" href="../index.html#mfml_qc.oracles.base.QuantumEngine.evaluate" title="mfml_qc.oracles.QuantumEngine.evaluate"><span class="n">orca_engine_2</span><span class="o">.</span><span class="n">evaluate</span></a><span class="p">(</span><span class="w">
+</span>        <span class="n">geometry</span><span class="o">=</span><span class="n">single_mol_xyz</span><span class="p">,</span><span class="w">
+</span>        <span class="n">fidelity_params</span><span class="o">=</span><span class="n">fidelity_params_template</span><span class="p">,</span><span class="w">
+</span>        <span class="n">work_dir</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">workspace</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s2">orca_template</span><span class="s2">&quot;</span><span class="p">)</span><span class="p">,</span><span class="w">
+</span>        <span class="n">clean</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="w">
+</span>        <span class="n">return_outs</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="w">
+</span>    <span class="p">)</span><span class="w">
+</span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="s2">Parsed Results:</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">results_2</span><span class="p">)</span><span class="w">
+</span><span class="w">
+</span>    <span class="c1"># %%</span><span class="w">
+</span>    <span class="c1"># Parsing Spectra and Gradients</span><span class="w">
+</span>    <span class="c1"># -----------------------------</span><span class="w">
+</span>    <span class="c1"># Because we included 'EnGrad' and '%tddft' in our template, ORCA generates</span><span class="w">
+</span>    <span class="c1"># gradients and absorption spectra. We can manually call the parser on the</span><span class="w">
+</span>    <span class="c1"># generated output file to extract these advanced arrays!</span><span class="w">
+</span><span class="w">
+</span>    <span class="n">output_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">workspace</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s2">orca_template</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s2">calc.out</span><span class="s2">&quot;</span><span class="p">)</span><span class="w">
+</span>    <span class="n">results_advanced</span> <span class="o">=</span> <a class="sphx-glr-backref-module-mfml_qc-oracles sphx-glr-backref-type-py-method reference internal" href="../index.html#mfml_qc.oracles.orca.OrcaEngine.parse_output" title="mfml_qc.oracles.OrcaEngine.parse_output"><span class="n">orca_engine_2</span><span class="o">.</span><span class="n">parse_output</span></a><span class="p">(</span><span class="w">
+</span>        <span class="n">output_file</span><span class="o">=</span><span class="n">output_path</span><span class="p">,</span> <span class="n">parse_gradients</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">parse_spectra</span><span class="o">=</span><span class="kc">True</span><span class="w">
+</span>    <span class="p">)</span><span class="w">
+</span><span class="w">
+</span>    <span class="k">if</span> <span class="s2">&quot;</span><span class="s2">gradients</span><span class="s2">&quot;</span> <span class="ow">in</span> <span class="n">results_advanced</span><span class="p">:</span><span class="w">
+</span>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="s2">First atom gradients (x, y, z):</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">results_advanced</span><span class="p">[</span><span class="s2">&quot;</span><span class="s2">gradients</span><span class="s2">&quot;</span><span class="p">]</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="p">)</span><span class="w">
+</span><span class="w">
+</span>    <span class="k">if</span> <span class="s2">&quot;</span><span class="s2">tddft_spectrum</span><span class="s2">&quot;</span> <span class="ow">in</span> <span class="n">results_advanced</span><span class="p">:</span><span class="w">
+</span>        <span class="c1"># The spectrum is returned as a list of state dictionaries</span><span class="w">
+</span>        <span class="n">state_1</span> <span class="o">=</span> <span class="n">results_advanced</span><span class="p">[</span><span class="s2">&quot;</span><span class="s2">tddft_spectrum</span><span class="s2">&quot;</span><span class="p">]</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w">
+</span>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">TD-DFT State 1:</span><span class="s2">&quot;</span><span class="p">)</span><span class="w">
+</span>        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">state_1</span><span class="o">.</span><span class="n">items</span><span class="p">(</span><span class="p">)</span><span class="p">:</span><span class="w">
+</span>            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="s2">  </span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">val</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span><span class="w">
+</span><span class="w">
+</span>    <span class="n">orca_ran_successfully</span> <span class="o">=</span> <span class="kc">True</span><span class="w">
+</span><span class="w">
+</span><span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span><span class="w">
+</span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="s2">ORCA executable not found in PATH! Skipping calculation execution.</span><span class="s2">&quot;</span><span class="p">)</span><span class="w">
+</span>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">workspace</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s2">orca_template</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s2">calc.inp</span><span class="s2">&quot;</span><span class="p">)</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s2">r</span><span class="s2">&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span><span class="w">
+</span>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Generated Template Input File:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="p">)</span><span class="p">)</span><span class="w">
+</span></pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
@@ -605,106 +607,105 @@ TD-DFT State 1:
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;3d&quot;</span><span class="p">)</span>
-
-<span class="c1"># coordinates of our test water molecule</span>
-<span class="n">coords</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
-    <span class="p">[</span>
-        <span class="p">[</span><span class="mf">0.000</span><span class="p">,</span> <span class="mf">0.000</span><span class="p">,</span> <span class="mf">0.000</span><span class="p">],</span>  <span class="c1"># Oxygen</span>
-        <span class="p">[</span><span class="mf">0.000</span><span class="p">,</span> <span class="mf">0.757</span><span class="p">,</span> <span class="mf">0.587</span><span class="p">],</span>  <span class="c1"># Hydrogen</span>
-        <span class="p">[</span><span class="mf">0.000</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.757</span><span class="p">,</span> <span class="mf">0.587</span><span class="p">],</span>  <span class="c1"># Hydrogen</span>
-    <span class="p">]</span>
-<span class="p">)</span>
-<span class="n">atoms</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;O&quot;</span><span class="p">,</span> <span class="s2">&quot;H&quot;</span><span class="p">,</span> <span class="s2">&quot;H&quot;</span><span class="p">]</span>
-<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="s2">&quot;lightgrey&quot;</span><span class="p">,</span> <span class="s2">&quot;lightgrey&quot;</span><span class="p">]</span>
-<span class="n">sizes</span> <span class="o">=</span> <span class="p">[</span><span class="mi">600</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">250</span><span class="p">]</span>
-
-<span class="c1"># Plot the atoms</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
-        <span class="n">coords</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
-        <span class="n">coords</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
-        <span class="n">coords</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
-        <span class="n">c</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
-        <span class="n">s</span><span class="o">=</span><span class="n">sizes</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
-        <span class="n">edgecolors</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span>
-        <span class="n">depthshade</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-        <span class="n">zorder</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
-    <span class="p">)</span>
-    <span class="c1"># Add small text labels next to atoms</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span>
-        <span class="n">coords</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
-        <span class="n">coords</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
-        <span class="n">coords</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.1</span><span class="p">,</span>
-        <span class="n">atoms</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
-        <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
-        <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span>
-        <span class="n">weight</span><span class="o">=</span><span class="s2">&quot;bold&quot;</span><span class="p">,</span>
-        <span class="n">zorder</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
-    <span class="p">)</span>
-
-<span class="c1"># Draw bonds (O-H)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
-    <span class="p">[</span><span class="n">coords</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">coords</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]],</span>
-    <span class="p">[</span><span class="n">coords</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">coords</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span>
-    <span class="p">[</span><span class="n">coords</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">coords</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]],</span>
-    <span class="s2">&quot;k-&quot;</span><span class="p">,</span>
-    <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
-    <span class="n">zorder</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-<span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
-    <span class="p">[</span><span class="n">coords</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">coords</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">]],</span>
-    <span class="p">[</span><span class="n">coords</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">coords</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span>
-    <span class="p">[</span><span class="n">coords</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">coords</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]],</span>
-    <span class="s2">&quot;k-&quot;</span><span class="p">,</span>
-    <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
-    <span class="n">zorder</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-<span class="p">)</span>
-
-<span class="n">ax</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Properties from the ORCA Oracle&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s2">&quot;bold&quot;</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">view_init</span><span class="p">(</span><span class="n">elev</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">azim</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
-
-<span class="c1"># text box of properties</span>
-<span class="n">text_str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-<span class="k">if</span> <span class="n">orca_ran_successfully</span> <span class="ow">and</span> <span class="n">results_2</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;success&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
-    <span class="n">energy</span> <span class="o">=</span> <span class="n">results_2</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;e_final&quot;</span><span class="p">,</span> <span class="s2">&quot;N/A&quot;</span><span class="p">)</span>
-    <span class="n">text_str</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;Total Energy:</span><span class="se">\n</span><span class="s2">  </span><span class="si">{</span><span class="n">energy</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> Eh</span><span class="se">\n\n</span><span class="s2">&quot;</span>
-
-    <span class="k">if</span> <span class="s2">&quot;gradients&quot;</span> <span class="ow">in</span> <span class="n">results_advanced</span><span class="p">:</span>
-        <span class="n">max_grad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">results_advanced</span><span class="p">[</span><span class="s2">&quot;gradients&quot;</span><span class="p">]))</span>
-        <span class="n">text_str</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;Max Gradient:</span><span class="se">\n</span><span class="s2">  </span><span class="si">{</span><span class="n">max_grad</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2"> Eh/bohr</span><span class="se">\n\n</span><span class="s2">&quot;</span>
-
-    <span class="k">if</span> <span class="s2">&quot;tddft_spectrum&quot;</span> <span class="ow">in</span> <span class="n">results_advanced</span><span class="p">:</span>
-        <span class="n">text_str</span> <span class="o">+=</span> <span class="s2">&quot;First 3 Excited States:</span><span class="se">\n</span><span class="s2">&quot;</span>
-        <span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="n">results_advanced</span><span class="p">[</span><span class="s2">&quot;tddft_spectrum&quot;</span><span class="p">][:</span><span class="mi">3</span><span class="p">]:</span>
-            <span class="n">text_str</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;  S</span><span class="si">{</span><span class="n">state</span><span class="p">[</span><span class="s1">&#39;state&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">state</span><span class="p">[</span><span class="s1">&#39;energy_cm1&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">&gt;8.1f</span><span class="si">}</span><span class="s2"> cm⁻¹</span><span class="se">\n</span><span class="s2">&quot;</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="n">text_str</span> <span class="o">+=</span> <span class="s2">&quot;ORCA Binary Not Found.</span><span class="se">\n</span><span class="s2">Displaying Geometry Only.&quot;</span>
-
-<span class="n">props</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-    <span class="n">boxstyle</span><span class="o">=</span><span class="s2">&quot;round,pad=0.8&quot;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;whitesmoke&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span>
-<span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">text2D</span><span class="p">(</span>
-    <span class="mf">0.05</span><span class="p">,</span>
-    <span class="mf">0.2</span><span class="p">,</span>
-    <span class="n">text_str</span><span class="p">,</span>
-    <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span>
-    <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span>
-    <span class="n">verticalalignment</span><span class="o">=</span><span class="s2">&quot;top&quot;</span><span class="p">,</span>
-    <span class="n">bbox</span><span class="o">=</span><span class="n">props</span><span class="p">,</span>
-    <span class="n">family</span><span class="o">=</span><span class="s2">&quot;monospace&quot;</span><span class="p">,</span>
-<span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-
-<span class="c1"># Clean up our tutorial workspace</span>
-<span class="c1"># comment this line if you wish to see what ORCA produced</span>
-<span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="n">workspace</span><span class="p">)</span>
-</pre></div>
-</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span><span class="p">)</span><span class="w">
+</span><span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;</span><span class="s2">3d</span><span class="s2">&quot;</span><span class="p">)</span><span class="w">
+</span><span class="w">
+</span><span class="c1"># coordinates of our test water molecule</span><span class="w">
+</span><span class="n">coords</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="w">
+</span>    <span class="p">[</span><span class="w">
+</span>        <span class="p">[</span><span class="mf">0.000</span><span class="p">,</span> <span class="mf">0.000</span><span class="p">,</span> <span class="mf">0.000</span><span class="p">]</span><span class="p">,</span>  <span class="c1"># Oxygen</span><span class="w">
+</span>        <span class="p">[</span><span class="mf">0.000</span><span class="p">,</span> <span class="mf">0.757</span><span class="p">,</span> <span class="mf">0.587</span><span class="p">]</span><span class="p">,</span>  <span class="c1"># Hydrogen</span><span class="w">
+</span>        <span class="p">[</span><span class="mf">0.000</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.757</span><span class="p">,</span> <span class="mf">0.587</span><span class="p">]</span><span class="p">,</span>  <span class="c1"># Hydrogen</span><span class="w">
+</span>    <span class="p">]</span><span class="w">
+</span><span class="p">)</span><span class="w">
+</span><span class="n">atoms</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;</span><span class="s2">O</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s2">H</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s2">H</span><span class="s2">&quot;</span><span class="p">]</span><span class="w">
+</span><span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;</span><span class="s2">red</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s2">lightgrey</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s2">lightgrey</span><span class="s2">&quot;</span><span class="p">]</span><span class="w">
+</span><span class="n">sizes</span> <span class="o">=</span> <span class="p">[</span><span class="mi">600</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">250</span><span class="p">]</span><span class="w">
+</span><span class="w">
+</span><span class="c1"># Plot the atoms</span><span class="w">
+</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="p">:</span><span class="w">
+</span>    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="w">
+</span>        <span class="n">coords</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="p">,</span><span class="w">
+</span>        <span class="n">coords</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="p">,</span><span class="w">
+</span>        <span class="n">coords</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="p">,</span><span class="w">
+</span>        <span class="n">c</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">,</span><span class="w">
+</span>        <span class="n">s</span><span class="o">=</span><span class="n">sizes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">,</span><span class="w">
+</span>        <span class="n">edgecolors</span><span class="o">=</span><span class="s2">&quot;</span><span class="s2">k</span><span class="s2">&quot;</span><span class="p">,</span><span class="w">
+</span>        <span class="n">depthshade</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="w">
+</span>        <span class="n">zorder</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="w">
+</span>    <span class="p">)</span><span class="w">
+</span>    <span class="c1"># Add small text labels next to atoms</span><span class="w">
+</span>    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="w">
+</span>        <span class="n">coords</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="p">,</span><span class="w">
+</span>        <span class="n">coords</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="p">,</span><span class="w">
+</span>        <span class="n">coords</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.1</span><span class="p">,</span><span class="w">
+</span>        <span class="n">atoms</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">,</span><span class="w">
+</span>        <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span><span class="w">
+</span>        <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;</span><span class="s2">center</span><span class="s2">&quot;</span><span class="p">,</span><span class="w">
+</span>        <span class="n">weight</span><span class="o">=</span><span class="s2">&quot;</span><span class="s2">bold</span><span class="s2">&quot;</span><span class="p">,</span><span class="w">
+</span>        <span class="n">zorder</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span><span class="w">
+</span>    <span class="p">)</span><span class="w">
+</span><span class="w">
+</span><span class="c1"># Draw bonds (O-H)</span><span class="w">
+</span><span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="w">
+</span>    <span class="p">[</span><span class="n">coords</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="p">,</span> <span class="n">coords</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="p">]</span><span class="p">,</span><span class="w">
+</span>    <span class="p">[</span><span class="n">coords</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="p">,</span> <span class="n">coords</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="p">]</span><span class="p">,</span><span class="w">
+</span>    <span class="p">[</span><span class="n">coords</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="p">,</span> <span class="n">coords</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="p">]</span><span class="p">,</span><span class="w">
+</span>    <span class="s2">&quot;</span><span class="s2">k-</span><span class="s2">&quot;</span><span class="p">,</span><span class="w">
+</span>    <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="w">
+</span>    <span class="n">zorder</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w">
+</span><span class="p">)</span><span class="w">
+</span><span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="w">
+</span>    <span class="p">[</span><span class="n">coords</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="p">,</span> <span class="n">coords</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="p">]</span><span class="p">,</span><span class="w">
+</span>    <span class="p">[</span><span class="n">coords</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="p">,</span> <span class="n">coords</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="p">]</span><span class="p">,</span><span class="w">
+</span>    <span class="p">[</span><span class="n">coords</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="p">,</span> <span class="n">coords</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="p">]</span><span class="p">,</span><span class="w">
+</span>    <span class="s2">&quot;</span><span class="s2">k-</span><span class="s2">&quot;</span><span class="p">,</span><span class="w">
+</span>    <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="w">
+</span>    <span class="n">zorder</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w">
+</span><span class="p">)</span><span class="w">
+</span><span class="w">
+</span><span class="n">ax</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">(</span><span class="p">)</span><span class="w">
+</span><span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;</span><span class="s2">Properties from the ORCA Oracle</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s2">&quot;</span><span class="s2">bold</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span><span class="w">
+</span><span class="n">ax</span><span class="o">.</span><span class="n">view_init</span><span class="p">(</span><span class="n">elev</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">azim</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span><span class="w">
+</span><span class="w">
+</span><span class="c1"># text box of properties</span><span class="w">
+</span><span class="n">text_str</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s2">&quot;</span><span class="w">
+</span><span class="k">if</span> <span class="n">orca_ran_successfully</span> <span class="ow">and</span> <span class="n">results_2</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;</span><span class="s2">success</span><span class="s2">&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span><span class="p">:</span><span class="w">
+</span>    <span class="n">energy</span> <span class="o">=</span> <span class="n">results_2</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;</span><span class="s2">e_final</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s2">N/A</span><span class="s2">&quot;</span><span class="p">)</span><span class="w">
+</span>    <span class="n">text_str</span> <span class="o">+</span><span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="s2">Total Energy:</span><span class="se">\n</span><span class="s2">  </span><span class="si">{</span><span class="n">energy</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> Eh</span><span class="se">\n</span><span class="se">\n</span><span class="s2">&quot;</span><span class="w">
+</span><span class="w">
+</span>    <span class="k">if</span> <span class="s2">&quot;</span><span class="s2">gradients</span><span class="s2">&quot;</span> <span class="ow">in</span> <span class="n">results_advanced</span><span class="p">:</span><span class="w">
+</span>        <span class="n">max_grad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">results_advanced</span><span class="p">[</span><span class="s2">&quot;</span><span class="s2">gradients</span><span class="s2">&quot;</span><span class="p">]</span><span class="p">)</span><span class="p">)</span><span class="w">
+</span>        <span class="n">text_str</span> <span class="o">+</span><span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="s2">Max Gradient:</span><span class="se">\n</span><span class="s2">  </span><span class="si">{</span><span class="n">max_grad</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2"> Eh/bohr</span><span class="se">\n</span><span class="se">\n</span><span class="s2">&quot;</span><span class="w">
+</span><span class="w">
+</span>    <span class="k">if</span> <span class="s2">&quot;</span><span class="s2">tddft_spectrum</span><span class="s2">&quot;</span> <span class="ow">in</span> <span class="n">results_advanced</span><span class="p">:</span><span class="w">
+</span>        <span class="n">text_str</span> <span class="o">+</span><span class="o">=</span> <span class="s2">&quot;</span><span class="s2">First 3 Excited States:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="w">
+</span>        <span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="n">results_advanced</span><span class="p">[</span><span class="s2">&quot;</span><span class="s2">tddft_spectrum</span><span class="s2">&quot;</span><span class="p">]</span><span class="p">[</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span><span class="p">:</span><span class="w">
+</span>            <span class="n">text_str</span> <span class="o">+</span><span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="s2">  S</span><span class="si">{</span><span class="n">state</span><span class="p">[</span><span class="s1">'</span><span class="s1">state</span><span class="s1">'</span><span class="p">]</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">state</span><span class="p">[</span><span class="s1">'</span><span class="s1">energy_cm1</span><span class="s1">'</span><span class="p">]</span><span class="si">:</span><span class="s2">&gt;8.1f</span><span class="si">}</span><span class="s2"> cm⁻¹</span><span class="se">\n</span><span class="s2">&quot;</span><span class="w">
+</span><span class="k">else</span><span class="p">:</span><span class="w">
+</span>    <span class="n">text_str</span> <span class="o">+</span><span class="o">=</span> <span class="s2">&quot;</span><span class="s2">ORCA Binary Not Found.</span><span class="se">\n</span><span class="s2">Displaying Geometry Only.</span><span class="s2">&quot;</span><span class="w">
+</span><span class="w">
+</span><span class="n">props</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="w">
+</span>    <span class="n">boxstyle</span><span class="o">=</span><span class="s2">&quot;</span><span class="s2">round,pad=0.8</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;</span><span class="s2">whitesmoke</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;</span><span class="s2">gray</span><span class="s2">&quot;</span><span class="w">
+</span><span class="p">)</span><span class="w">
+</span><span class="n">ax</span><span class="o">.</span><span class="n">text2D</span><span class="p">(</span><span class="w">
+</span>    <span class="mf">0.05</span><span class="p">,</span><span class="w">
+</span>    <span class="mf">0.2</span><span class="p">,</span><span class="w">
+</span>    <span class="n">text_str</span><span class="p">,</span><span class="w">
+</span>    <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span><span class="w">
+</span>    <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span><span class="w">
+</span>    <span class="n">verticalalignment</span><span class="o">=</span><span class="s2">&quot;</span><span class="s2">top</span><span class="s2">&quot;</span><span class="p">,</span><span class="w">
+</span>    <span class="n">bbox</span><span class="o">=</span><span class="n">props</span><span class="p">,</span><span class="w">
+</span>    <span class="n">family</span><span class="o">=</span><span class="s2">&quot;</span><span class="s2">monospace</span><span class="s2">&quot;</span><span class="p">,</span><span class="w">
+</span><span class="p">)</span><span class="w">
+</span><span class="w">
+</span><span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">(</span><span class="p">)</span><span class="w">
+</span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="p">)</span><span class="w">
+</span><span class="w">
+</span><span class="c1"># Clean up our tutorial workspace</span><span class="w">
+</span><span class="c1"># comment this line if you wish to see what ORCA produced</span><span class="w">
+</span><span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="n">workspace</span><span class="p">)</span><span class="w">
+</span></pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">

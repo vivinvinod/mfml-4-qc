@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Optimized MFML &#8212; MFML-4-QC 1.0.0 documentation</title>
+    <title>Optimized MFML &#8212; MFML-4-QC 1.5.0 documentation</title>
   
   
   
@@ -31,7 +31,7 @@
 <link href="../_static/styles/pydata-sphinx-theme.css?digest=a95f357e85573c9b56d5" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=fd6457a4" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=c83e6b79" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
@@ -43,7 +43,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=a95f357e85573c9b56d5" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=a95f357e85573c9b56d5" />
 
-    <script src="../_static/documentation_options.js?v=8d563738"></script>
+    <script src="../_static/documentation_options.js?v=e0a75244"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/sg-tags.js?v=d80f6fa4"></script>
@@ -126,7 +126,7 @@
   
   
   
-    <p class="title logo__title">MFML-4-QC 1.0.0 documentation</p>
+    <p class="title logo__title">MFML-4-QC 1.5.0 documentation</p>
   
 </a></div>
     
@@ -148,8 +148,8 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../computation_times.html">
-    Computation Times
+  <a class="nav-link nav-internal" href="../_autosummary/mfml_qc.html">
+    mfml_qc
   </a>
 </li>
 
@@ -241,8 +241,8 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../computation_times.html">
-    Computation Times
+  <a class="nav-link nav-internal" href="../_autosummary/mfml_qc.html">
+    mfml_qc
   </a>
 </li>
 
@@ -296,6 +296,11 @@
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Optimized MFML</a></li>
 <li class="toctree-l1"><a class="reference internal" href="07_orca_oracle.html">Interfacing with QC Oracles (ORCA)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="08_pool_based_active_learning.html">Active Learning Protocols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_autodiff_forces.html">Autodifferentiable Force Prediction with MFML</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_vector_krr_dipole.html">Vector KRR for Dipole Moments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_rpr_vector_krr.html">RPR Frame Canonicalization for Vector KRR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_vector_mfml_dipole.html">Vector MFML for Dipole Moments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_vector_mfml_learning_curves.html">Learning Curve generation for: RPR × T × MFML</a></li>
 </ul>
 </div>
 </nav></div>
@@ -376,14 +381,13 @@
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">mfml_qc.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_benzene_data</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">mfml_qc.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">build_hierarchy_arrays</span><span class="p">,</span> <span class="n">top_down_subsetting</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">mfml_qc.krr</span><span class="w"> </span><span class="kn">import</span> <span class="n">KRR</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">mfml_qc.mfml</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModelMFML</span>
-</pre></div>
-</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span><span class="w">
+</span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib</span><span class="nn">.</span><span class="nn">pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span><span class="w">
+</span><span class="kn">from</span><span class="w"> </span><span class="nn">mfml_qc</span><span class="nn">.</span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <a class="sphx-glr-backref-module-mfml_qc-datasets sphx-glr-backref-type-py-function reference internal" href="../index.html#mfml_qc.datasets.load_benzene_data" title="mfml_qc.datasets.load_benzene_data"><span class="n">load_benzene_data</span></a><span class="w">
+</span><span class="kn">from</span><span class="w"> </span><span class="nn">mfml_qc</span><span class="nn">.</span><span class="nn">utils</span><span class="w"> </span><span class="kn">import</span> <a class="sphx-glr-backref-module-mfml_qc-utils sphx-glr-backref-type-py-function reference internal" href="../index.html#mfml_qc.utils.build_hierarchy_arrays" title="mfml_qc.utils.build_hierarchy_arrays"><span class="n">build_hierarchy_arrays</span></a><span class="p">,</span> <a class="sphx-glr-backref-module-mfml_qc-utils sphx-glr-backref-type-py-function reference internal" href="../index.html#mfml_qc.utils.top_down_subsetting" title="mfml_qc.utils.top_down_subsetting"><span class="n">top_down_subsetting</span></a><span class="w">
+</span><span class="kn">from</span><span class="w"> </span><span class="nn">mfml_qc</span><span class="nn">.</span><span class="nn">krr</span><span class="w"> </span><span class="kn">import</span> <a class="sphx-glr-backref-module-mfml_qc-krr sphx-glr-backref-type-py-class reference internal" href="../index.html#mfml_qc.krr.KRR" title="mfml_qc.krr.KRR"><span class="n">KRR</span></a><span class="w">
+</span><span class="kn">from</span><span class="w"> </span><span class="nn">mfml_qc</span><span class="nn">.</span><span class="nn">mfml</span><span class="w"> </span><span class="kn">import</span> <a class="sphx-glr-backref-module-mfml_qc-mfml sphx-glr-backref-type-py-class reference internal" href="../index.html#mfml_qc.mfml.ModelMFML" title="mfml_qc.mfml.ModelMFML"><span class="n">ModelMFML</span></a><span class="w">
+</span></pre></div></div>
 </div>
 </section>
 <section id="Loading-and-Splitting-the-Dataset">
@@ -393,32 +397,31 @@
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span> <span class="o">=</span> <span class="n">load_benzene_data</span><span class="p">()</span>
-
-<span class="n">X_CM</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;X_CM&quot;</span><span class="p">]</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;energies&quot;</span><span class="p">]</span>
-
-<span class="c1"># Fidelities: LC-DFTB, STO-3G, def2-SVP, def2-TZVP</span>
-<span class="n">hierarchy_cols</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
-
-<span class="c1"># Establish the strict boundaries</span>
-<span class="n">train_mask</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">12288</span>
-<span class="n">val_mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">data</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">12288</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">data</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">13000</span><span class="p">)</span>
-<span class="n">test_mask</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">13000</span>
-
-<span class="c1"># training data</span>
-<span class="n">X_train_parent</span> <span class="o">=</span> <span class="n">X_CM</span><span class="p">[</span><span class="n">train_mask</span><span class="p">]</span>
-<span class="n">data_train</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">train_mask</span><span class="p">]</span>
-
-<span class="c1"># validation data</span>
-<span class="n">X_val</span> <span class="o">=</span> <span class="n">X_CM</span><span class="p">[</span><span class="n">val_mask</span><span class="p">]</span>
-<span class="n">y_val_true</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">val_mask</span><span class="p">,</span> <span class="n">hierarchy_cols</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
-
-<span class="c1"># Test Set</span>
-<span class="n">X_test</span> <span class="o">=</span> <span class="n">X_CM</span><span class="p">[</span><span class="n">test_mask</span><span class="p">]</span>
-<span class="n">y_test_true</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">test_mask</span><span class="p">,</span> <span class="n">hierarchy_cols</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
-</pre></div>
-</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span class="n">dataset</span> <span class="o">=</span> <a class="sphx-glr-backref-module-mfml_qc-datasets sphx-glr-backref-type-py-function reference internal" href="../index.html#mfml_qc.datasets.load_benzene_data" title="mfml_qc.datasets.load_benzene_data"><span class="n">load_benzene_data</span></a><span class="p">(</span><span class="p">)</span><span class="w">
+</span><span class="w">
+</span><span class="n">X_CM</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;</span><span class="s2">X_CM</span><span class="s2">&quot;</span><span class="p">]</span><span class="w">
+</span><span class="n">data</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;</span><span class="s2">energies</span><span class="s2">&quot;</span><span class="p">]</span><span class="w">
+</span><span class="w">
+</span><span class="c1"># Fidelities: LC-DFTB, STO-3G, def2-SVP, def2-TZVP</span><span class="w">
+</span><span class="n">hierarchy_cols</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span><span class="w">
+</span><span class="w">
+</span><span class="c1"># Establish the strict boundaries</span><span class="w">
+</span><span class="n">train_mask</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="p">:</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">12288</span><span class="w">
+</span><span class="n">val_mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="p">:</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span><span class="o">=</span> <span class="mi">12288</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="p">:</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">13000</span><span class="p">)</span><span class="w">
+</span><span class="n">test_mask</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="p">:</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span><span class="o">=</span> <span class="mi">13000</span><span class="w">
+</span><span class="w">
+</span><span class="c1"># training data</span><span class="w">
+</span><span class="n">X_train_parent</span> <span class="o">=</span> <span class="n">X_CM</span><span class="p">[</span><span class="n">train_mask</span><span class="p">]</span><span class="w">
+</span><span class="n">data_train</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">train_mask</span><span class="p">]</span><span class="w">
+</span><span class="w">
+</span><span class="c1"># validation data</span><span class="w">
+</span><span class="n">X_val</span> <span class="o">=</span> <span class="n">X_CM</span><span class="p">[</span><span class="n">val_mask</span><span class="p">]</span><span class="w">
+</span><span class="n">y_val_true</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">val_mask</span><span class="p">,</span> <span class="n">hierarchy_cols</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="p">]</span><span class="w">
+</span><span class="w">
+</span><span class="c1"># Test Set</span><span class="w">
+</span><span class="n">X_test</span> <span class="o">=</span> <span class="n">X_CM</span><span class="p">[</span><span class="n">test_mask</span><span class="p">]</span><span class="w">
+</span><span class="n">y_test_true</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">test_mask</span><span class="p">,</span> <span class="n">hierarchy_cols</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="p">]</span><span class="w">
+</span></pre></div></div>
 </div>
 </section>
 <section id="Preparing-the-Data-Arrays">
@@ -428,10 +431,9 @@
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_trains</span><span class="p">,</span> <span class="n">indexes</span><span class="p">,</span> <span class="n">means</span> <span class="o">=</span> <span class="n">build_hierarchy_arrays</span><span class="p">(</span><span class="n">data_train</span><span class="p">,</span> <span class="n">hierarchy_cols</span><span class="p">)</span>
-<span class="n">y_val_centered</span> <span class="o">=</span> <span class="n">y_val_true</span> <span class="o">-</span> <span class="n">means</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-</pre></div>
-</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span class="n">y_trains</span><span class="p">,</span> <span class="n">indexes</span><span class="p">,</span> <span class="n">means</span> <span class="o">=</span> <a class="sphx-glr-backref-module-mfml_qc-utils sphx-glr-backref-type-py-function reference internal" href="../index.html#mfml_qc.utils.build_hierarchy_arrays" title="mfml_qc.utils.build_hierarchy_arrays"><span class="n">build_hierarchy_arrays</span></a><span class="p">(</span><span class="n">data_train</span><span class="p">,</span> <span class="n">hierarchy_cols</span><span class="p">)</span><span class="w">
+</span><span class="n">y_val_centered</span> <span class="o">=</span> <span class="n">y_val_true</span> <span class="o">-</span> <span class="n">means</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="w">
+</span></pre></div></div>
 </div>
 </section>
 <section id="Generating-the-Learning-Curves">
@@ -441,56 +443,55 @@
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hf_train_sizes</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">**</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
-<span class="n">navg</span> <span class="o">=</span> <span class="mi">5</span>
-
-<span class="c1"># Arrays to store the Mean Absolute Errors</span>
-<span class="n">sf_maes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">hf_train_sizes</span><span class="p">),</span> <span class="n">navg</span><span class="p">))</span>
-<span class="n">mfml_maes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">hf_train_sizes</span><span class="p">),</span> <span class="n">navg</span><span class="p">))</span>
-<span class="n">omfml_maes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">hf_train_sizes</span><span class="p">),</span> <span class="n">navg</span><span class="p">))</span>
-
-<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">navg</span><span class="p">):</span>
-
-    <span class="k">for</span> <span class="n">s_idx</span><span class="p">,</span> <span class="n">hf_size</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">hf_train_sizes</span><span class="p">):</span>
-
-        <span class="c1"># Define the target hierarchy sizes: [8x, 4x, 2x, 1x]</span>
-        <span class="n">n_trains_target</span> <span class="o">=</span> <span class="p">[</span><span class="n">hf_size</span> <span class="o">*</span> <span class="mi">8</span><span class="p">,</span> <span class="n">hf_size</span> <span class="o">*</span> <span class="mi">4</span><span class="p">,</span> <span class="n">hf_size</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">hf_size</span><span class="p">]</span>
-
-        <span class="c1"># Perform top-down cascade to guarantee nestedness</span>
-        <span class="n">subset_y</span><span class="p">,</span> <span class="n">subset_idx</span> <span class="o">=</span> <span class="n">top_down_subsetting</span><span class="p">(</span>
-            <span class="n">y_trains</span><span class="p">,</span> <span class="n">indexes</span><span class="p">,</span> <span class="n">n_trains_target</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">42</span> <span class="o">+</span> <span class="n">n</span>
-        <span class="p">)</span>
-
-        <span class="c1"># single fidelity KRR</span>
-        <span class="n">X_sf</span> <span class="o">=</span> <span class="n">X_train_parent</span><span class="p">[</span><span class="n">subset_idx</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][:,</span> <span class="mi">0</span><span class="p">]]</span>
-        <span class="n">y_sf</span> <span class="o">=</span> <span class="n">subset_y</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-
-        <span class="n">krr_sf</span> <span class="o">=</span> <span class="n">KRR</span><span class="p">(</span><span class="n">kernel_type</span><span class="o">=</span><span class="s2">&quot;matern&quot;</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">715.0</span><span class="p">,</span> <span class="n">reg</span><span class="o">=</span><span class="mf">1e-9</span><span class="p">)</span>
-        <span class="n">krr_sf</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">X_sf</span><span class="p">,</span> <span class="n">y_sf</span><span class="p">)</span>
-
-        <span class="n">preds_sf</span> <span class="o">=</span> <span class="n">krr_sf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span> <span class="o">+</span> <span class="n">means</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-        <span class="n">sf_maes</span><span class="p">[</span><span class="n">s_idx</span><span class="p">,</span> <span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">preds_sf</span> <span class="o">-</span> <span class="n">y_test_true</span><span class="p">))</span> <span class="o">*</span> <span class="mi">23</span>
-
-        <span class="c1"># basic MFML</span>
-        <span class="n">mfml_model</span> <span class="o">=</span> <span class="n">ModelMFML</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s2">&quot;matern&quot;</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">715.0</span><span class="p">,</span> <span class="n">reg</span><span class="o">=</span><span class="mf">1e-9</span><span class="p">,</span> <span class="n">p_bar</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-        <span class="n">mfml_model</span><span class="o">.</span><span class="n">train</span><span class="p">(</span>
-            <span class="n">X_train_parent</span><span class="o">=</span><span class="n">X_train_parent</span><span class="p">,</span> <span class="n">y_trains</span><span class="o">=</span><span class="n">subset_y</span><span class="p">,</span> <span class="n">indexes</span><span class="o">=</span><span class="n">subset_idx</span>
-        <span class="p">)</span>
-
-        <span class="n">preds_mfml</span> <span class="o">=</span> <span class="n">mfml_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="o">=</span><span class="n">X_test</span><span class="p">,</span> <span class="n">optimiser</span><span class="o">=</span><span class="s2">&quot;default&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="n">means</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-        <span class="n">mfml_maes</span><span class="p">[</span><span class="n">s_idx</span><span class="p">,</span> <span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">preds_mfml</span> <span class="o">-</span> <span class="n">y_test_true</span><span class="p">))</span> <span class="o">*</span> <span class="mi">23</span>
-
-        <span class="c1"># o-MFML</span>
-        <span class="n">preds_omfml</span> <span class="o">=</span> <span class="p">(</span>
-            <span class="n">mfml_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span>
-                <span class="n">X_test</span><span class="o">=</span><span class="n">X_test</span><span class="p">,</span> <span class="n">X_val</span><span class="o">=</span><span class="n">X_val</span><span class="p">,</span> <span class="n">y_val</span><span class="o">=</span><span class="n">y_val_centered</span><span class="p">,</span> <span class="n">optimiser</span><span class="o">=</span><span class="s2">&quot;OLS&quot;</span>
-            <span class="p">)</span>
-            <span class="o">+</span> <span class="n">means</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-        <span class="p">)</span>
-
-        <span class="n">omfml_maes</span><span class="p">[</span><span class="n">s_idx</span><span class="p">,</span> <span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">preds_omfml</span> <span class="o">-</span> <span class="n">y_test_true</span><span class="p">))</span> <span class="o">*</span> <span class="mi">23</span>
-</pre></div>
-</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span class="n">hf_train_sizes</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span><span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span><span class="w">
+</span><span class="n">navg</span> <span class="o">=</span> <span class="mi">5</span><span class="w">
+</span><span class="w">
+</span><span class="c1"># Arrays to store the Mean Absolute Errors</span><span class="w">
+</span><span class="n">sf_maes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">hf_train_sizes</span><span class="p">)</span><span class="p">,</span> <span class="n">navg</span><span class="p">)</span><span class="p">)</span><span class="w">
+</span><span class="n">mfml_maes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">hf_train_sizes</span><span class="p">)</span><span class="p">,</span> <span class="n">navg</span><span class="p">)</span><span class="p">)</span><span class="w">
+</span><span class="n">omfml_maes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">hf_train_sizes</span><span class="p">)</span><span class="p">,</span> <span class="n">navg</span><span class="p">)</span><span class="p">)</span><span class="w">
+</span><span class="w">
+</span><span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">navg</span><span class="p">)</span><span class="p">:</span><span class="w">
+</span><span class="w">
+</span>    <span class="k">for</span> <span class="n">s_idx</span><span class="p">,</span> <span class="n">hf_size</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">hf_train_sizes</span><span class="p">)</span><span class="p">:</span><span class="w">
+</span><span class="w">
+</span>        <span class="c1"># Define the target hierarchy sizes: [8x, 4x, 2x, 1x]</span><span class="w">
+</span>        <span class="n">n_trains_target</span> <span class="o">=</span> <span class="p">[</span><span class="n">hf_size</span> <span class="o">*</span> <span class="mi">8</span><span class="p">,</span> <span class="n">hf_size</span> <span class="o">*</span> <span class="mi">4</span><span class="p">,</span> <span class="n">hf_size</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">hf_size</span><span class="p">]</span><span class="w">
+</span><span class="w">
+</span>        <span class="c1"># Perform top-down cascade to guarantee nestedness</span><span class="w">
+</span>        <span class="n">subset_y</span><span class="p">,</span> <span class="n">subset_idx</span> <span class="o">=</span> <a class="sphx-glr-backref-module-mfml_qc-utils sphx-glr-backref-type-py-function reference internal" href="../index.html#mfml_qc.utils.top_down_subsetting" title="mfml_qc.utils.top_down_subsetting"><span class="n">top_down_subsetting</span></a><span class="p">(</span><span class="w">
+</span>            <span class="n">y_trains</span><span class="p">,</span> <span class="n">indexes</span><span class="p">,</span> <span class="n">n_trains_target</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">42</span> <span class="o">+</span> <span class="n">n</span><span class="w">
+</span>        <span class="p">)</span><span class="w">
+</span><span class="w">
+</span>        <span class="c1"># single fidelity KRR</span><span class="w">
+</span>        <span class="n">X_sf</span> <span class="o">=</span> <span class="n">X_train_parent</span><span class="p">[</span><span class="n">subset_idx</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="p">[</span><span class="p">:</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="p">]</span><span class="w">
+</span>        <span class="n">y_sf</span> <span class="o">=</span> <span class="n">subset_y</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="w">
+</span><span class="w">
+</span>        <a class="sphx-glr-backref-module-mfml_qc-krr sphx-glr-backref-type-py-class sphx-glr-backref-instance reference internal" href="../index.html#mfml_qc.krr.KRR" title="mfml_qc.krr.KRR"><span class="n">krr_sf</span></a> <span class="o">=</span> <a class="sphx-glr-backref-module-mfml_qc-krr sphx-glr-backref-type-py-class reference internal" href="../index.html#mfml_qc.krr.KRR" title="mfml_qc.krr.KRR"><span class="n">KRR</span></a><span class="p">(</span><span class="n">kernel_type</span><span class="o">=</span><span class="s2">&quot;</span><span class="s2">matern</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">715.0</span><span class="p">,</span> <span class="n">reg</span><span class="o">=</span><span class="mf">1e-9</span><span class="p">)</span><span class="w">
+</span>        <a class="sphx-glr-backref-module-mfml_qc-krr sphx-glr-backref-type-py-method reference internal" href="../index.html#mfml_qc.krr.KRR.train" title="mfml_qc.krr.KRR.train"><span class="n">krr_sf</span><span class="o">.</span><span class="n">train</span></a><span class="p">(</span><span class="n">X_sf</span><span class="p">,</span> <span class="n">y_sf</span><span class="p">)</span><span class="w">
+</span><span class="w">
+</span>        <span class="n">preds_sf</span> <span class="o">=</span> <a class="sphx-glr-backref-module-mfml_qc-krr sphx-glr-backref-type-py-method reference internal" href="../index.html#mfml_qc.krr.KRR.predict" title="mfml_qc.krr.KRR.predict"><span class="n">krr_sf</span><span class="o">.</span><span class="n">predict</span></a><span class="p">(</span><span class="n">X_test</span><span class="p">)</span> <span class="o">+</span> <span class="n">means</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="w">
+</span>        <span class="n">sf_maes</span><span class="p">[</span><span class="n">s_idx</span><span class="p">,</span> <span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">preds_sf</span> <span class="o">-</span> <span class="n">y_test_true</span><span class="p">)</span><span class="p">)</span> <span class="o">*</span> <span class="mi">23</span><span class="w">
+</span><span class="w">
+</span>        <span class="c1"># basic MFML</span><span class="w">
+</span>        <a class="sphx-glr-backref-module-mfml_qc-mfml sphx-glr-backref-type-py-class sphx-glr-backref-instance reference internal" href="../index.html#mfml_qc.mfml.ModelMFML" title="mfml_qc.mfml.ModelMFML"><span class="n">mfml_model</span></a> <span class="o">=</span> <a class="sphx-glr-backref-module-mfml_qc-mfml sphx-glr-backref-type-py-class reference internal" href="../index.html#mfml_qc.mfml.ModelMFML" title="mfml_qc.mfml.ModelMFML"><span class="n">ModelMFML</span></a><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s2">&quot;</span><span class="s2">matern</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">715.0</span><span class="p">,</span> <span class="n">reg</span><span class="o">=</span><span class="mf">1e-9</span><span class="p">,</span> <span class="n">p_bar</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="w">
+</span>        <a class="sphx-glr-backref-module-mfml_qc-mfml sphx-glr-backref-type-py-method reference internal" href="../index.html#mfml_qc.mfml.ModelMFML.train" title="mfml_qc.mfml.ModelMFML.train"><span class="n">mfml_model</span><span class="o">.</span><span class="n">train</span></a><span class="p">(</span><span class="w">
+</span>            <span class="n">X_train_parent</span><span class="o">=</span><span class="n">X_train_parent</span><span class="p">,</span> <span class="n">y_trains</span><span class="o">=</span><span class="n">subset_y</span><span class="p">,</span> <span class="n">indexes</span><span class="o">=</span><span class="n">subset_idx</span><span class="w">
+</span>        <span class="p">)</span><span class="w">
+</span><span class="w">
+</span>        <span class="n">preds_mfml</span> <span class="o">=</span> <a class="sphx-glr-backref-module-mfml_qc-mfml sphx-glr-backref-type-py-method reference internal" href="../index.html#mfml_qc.mfml.ModelMFML.predict" title="mfml_qc.mfml.ModelMFML.predict"><span class="n">mfml_model</span><span class="o">.</span><span class="n">predict</span></a><span class="p">(</span><span class="n">X_test</span><span class="o">=</span><span class="n">X_test</span><span class="p">,</span> <span class="n">optimiser</span><span class="o">=</span><span class="s2">&quot;</span><span class="s2">default</span><span class="s2">&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="n">means</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="w">
+</span>        <span class="n">mfml_maes</span><span class="p">[</span><span class="n">s_idx</span><span class="p">,</span> <span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">preds_mfml</span> <span class="o">-</span> <span class="n">y_test_true</span><span class="p">)</span><span class="p">)</span> <span class="o">*</span> <span class="mi">23</span><span class="w">
+</span><span class="w">
+</span>        <span class="c1"># o-MFML</span><span class="w">
+</span>        <span class="n">preds_omfml</span> <span class="o">=</span> <span class="p">(</span><span class="w">
+</span>            <a class="sphx-glr-backref-module-mfml_qc-mfml sphx-glr-backref-type-py-method reference internal" href="../index.html#mfml_qc.mfml.ModelMFML.predict" title="mfml_qc.mfml.ModelMFML.predict"><span class="n">mfml_model</span><span class="o">.</span><span class="n">predict</span></a><span class="p">(</span><span class="w">
+</span>                <span class="n">X_test</span><span class="o">=</span><span class="n">X_test</span><span class="p">,</span> <span class="n">X_val</span><span class="o">=</span><span class="n">X_val</span><span class="p">,</span> <span class="n">y_val</span><span class="o">=</span><span class="n">y_val_centered</span><span class="p">,</span> <span class="n">optimiser</span><span class="o">=</span><span class="s2">&quot;</span><span class="s2">OLS</span><span class="s2">&quot;</span><span class="w">
+</span>            <span class="p">)</span><span class="w">
+</span>            <span class="o">+</span> <span class="n">means</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="w">
+</span>        <span class="p">)</span><span class="w">
+</span><span class="w">
+</span>        <span class="n">omfml_maes</span><span class="p">[</span><span class="n">s_idx</span><span class="p">,</span> <span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">preds_omfml</span> <span class="o">-</span> <span class="n">y_test_true</span><span class="p">)</span><span class="p">)</span> <span class="o">*</span> <span class="mi">23</span><span class="w">
+</span></pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
@@ -508,66 +509,65 @@
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate means over the random shuffles</span>
-<span class="n">mean_sf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">sf_maes</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">mean_mfml</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">mfml_maes</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">mean_omfml</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">omfml_maes</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-
-<span class="c1"># Calculate standard deviations for error bars</span>
-<span class="n">std_sf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">sf_maes</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">std_mfml</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">mfml_maes</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">std_omfml</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">omfml_maes</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
-
-<span class="c1"># Plotting the three curves</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span>
-    <span class="n">hf_train_sizes</span><span class="p">,</span>
-    <span class="n">mean_sf</span><span class="p">,</span>
-    <span class="n">yerr</span><span class="o">=</span><span class="n">std_sf</span><span class="p">,</span>
-    <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;o-&quot;</span><span class="p">,</span>
-    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span>
-    <span class="n">capsize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
-    <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Single-Fidelity KRR&quot;</span><span class="p">,</span>
-<span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span>
-    <span class="n">hf_train_sizes</span><span class="p">,</span>
-    <span class="n">mean_mfml</span><span class="p">,</span>
-    <span class="n">yerr</span><span class="o">=</span><span class="n">std_mfml</span><span class="p">,</span>
-    <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;s-&quot;</span><span class="p">,</span>
-    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;dodgerblue&quot;</span><span class="p">,</span>
-    <span class="n">capsize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
-    <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;MFML&quot;</span><span class="p">,</span>
-<span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span>
-    <span class="n">hf_train_sizes</span><span class="p">,</span>
-    <span class="n">mean_omfml</span><span class="p">,</span>
-    <span class="n">yerr</span><span class="o">=</span><span class="n">std_omfml</span><span class="p">,</span>
-    <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;d-&quot;</span><span class="p">,</span>
-    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;darkorange&quot;</span><span class="p">,</span>
-    <span class="n">capsize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
-    <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;o-MFML (OLS)&quot;</span><span class="p">,</span>
-<span class="p">)</span>
-
-<span class="c1"># Formatting the plot</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s2">&quot;log&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s2">&quot;log&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">hf_train_sizes</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">hf_train_sizes</span><span class="p">])</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Target Fidelity Training Size ($N_{\mathrm</span><span class="si">{train}</span><span class="s2">}^{\mathrm</span><span class="si">{TZVP}</span><span class="s2">}$)&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Test Set MAE (kcal/mol)&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Learning Curves&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span class="c1"># Calculate means over the random shuffles</span><span class="w">
+</span><span class="n">mean_sf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">sf_maes</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="w">
+</span><span class="n">mean_mfml</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">mfml_maes</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="w">
+</span><span class="n">mean_omfml</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">omfml_maes</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="w">
+</span><span class="w">
+</span><span class="c1"># Calculate standard deviations for error bars</span><span class="w">
+</span><span class="n">std_sf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">sf_maes</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="w">
+</span><span class="n">std_mfml</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">mfml_maes</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="w">
+</span><span class="n">std_omfml</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">omfml_maes</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="w">
+</span><span class="w">
+</span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span><span class="p">)</span><span class="w">
+</span><span class="w">
+</span><span class="c1"># Plotting the three curves</span><span class="w">
+</span><span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="w">
+</span>    <span class="n">hf_train_sizes</span><span class="p">,</span><span class="w">
+</span>    <span class="n">mean_sf</span><span class="p">,</span><span class="w">
+</span>    <span class="n">yerr</span><span class="o">=</span><span class="n">std_sf</span><span class="p">,</span><span class="w">
+</span>    <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;</span><span class="s2">o-</span><span class="s2">&quot;</span><span class="p">,</span><span class="w">
+</span>    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;</span><span class="s2">gray</span><span class="s2">&quot;</span><span class="p">,</span><span class="w">
+</span>    <span class="n">capsize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="w">
+</span>    <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="w">
+</span>    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;</span><span class="s2">Single-Fidelity KRR</span><span class="s2">&quot;</span><span class="p">,</span><span class="w">
+</span><span class="p">)</span><span class="w">
+</span><span class="w">
+</span><span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="w">
+</span>    <span class="n">hf_train_sizes</span><span class="p">,</span><span class="w">
+</span>    <span class="n">mean_mfml</span><span class="p">,</span><span class="w">
+</span>    <span class="n">yerr</span><span class="o">=</span><span class="n">std_mfml</span><span class="p">,</span><span class="w">
+</span>    <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;</span><span class="s2">s-</span><span class="s2">&quot;</span><span class="p">,</span><span class="w">
+</span>    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;</span><span class="s2">dodgerblue</span><span class="s2">&quot;</span><span class="p">,</span><span class="w">
+</span>    <span class="n">capsize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="w">
+</span>    <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="w">
+</span>    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;</span><span class="s2">MFML</span><span class="s2">&quot;</span><span class="p">,</span><span class="w">
+</span><span class="p">)</span><span class="w">
+</span><span class="w">
+</span><span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="w">
+</span>    <span class="n">hf_train_sizes</span><span class="p">,</span><span class="w">
+</span>    <span class="n">mean_omfml</span><span class="p">,</span><span class="w">
+</span>    <span class="n">yerr</span><span class="o">=</span><span class="n">std_omfml</span><span class="p">,</span><span class="w">
+</span>    <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;</span><span class="s2">d-</span><span class="s2">&quot;</span><span class="p">,</span><span class="w">
+</span>    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;</span><span class="s2">darkorange</span><span class="s2">&quot;</span><span class="p">,</span><span class="w">
+</span>    <span class="n">capsize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="w">
+</span>    <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="w">
+</span>    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;</span><span class="s2">o-MFML (OLS)</span><span class="s2">&quot;</span><span class="p">,</span><span class="w">
+</span><span class="p">)</span><span class="w">
+</span><span class="w">
+</span><span class="c1"># Formatting the plot</span><span class="w">
+</span><span class="n">plt</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s2">&quot;</span><span class="s2">log</span><span class="s2">&quot;</span><span class="p">)</span><span class="w">
+</span><span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s2">&quot;</span><span class="s2">log</span><span class="s2">&quot;</span><span class="p">)</span><span class="w">
+</span><span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">hf_train_sizes</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">hf_train_sizes</span><span class="p">]</span><span class="p">)</span><span class="w">
+</span><span class="w">
+</span><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;</span><span class="s2">Target Fidelity Training Size ($N_</span><span class="s2">{</span><span class="s2">\</span><span class="s2">mathrm</span><span class="si">{train}</span><span class="s2">}^</span><span class="s2">{</span><span class="s2">\</span><span class="s2">mathrm</span><span class="si">{TZVP}</span><span class="s2">}$)</span><span class="s2">&quot;</span><span class="p">)</span><span class="w">
+</span><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;</span><span class="s2">Test Set MAE (kcal/mol)</span><span class="s2">&quot;</span><span class="p">)</span><span class="w">
+</span><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;</span><span class="s2">Learning Curves</span><span class="s2">&quot;</span><span class="p">)</span><span class="w">
+</span><span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="p">)</span><span class="w">
+</span><span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s2">&quot;</span><span class="s2">both</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;</span><span class="s2">--</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span><span class="w">
+</span><span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">(</span><span class="p">)</span><span class="w">
+</span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="p">)</span><span class="w">
+</span></pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">

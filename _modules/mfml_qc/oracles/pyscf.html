@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>mfml_qc.oracles.pyscf &#8212; MFML-4-QC 1.0.0 documentation</title>
+    <title>mfml_qc.oracles.pyscf &#8212; MFML-4-QC 1.5.0 documentation</title>
   
   
   
@@ -30,7 +30,7 @@
 <link href="../../../_static/styles/pydata-sphinx-theme.css?digest=a95f357e85573c9b56d5" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=fd6457a4" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=c83e6b79" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
@@ -41,7 +41,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=a95f357e85573c9b56d5" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=a95f357e85573c9b56d5" />
 
-    <script src="../../../_static/documentation_options.js?v=8d563738"></script>
+    <script src="../../../_static/documentation_options.js?v=e0a75244"></script>
     <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/sg-tags.js?v=d80f6fa4"></script>
@@ -120,7 +120,7 @@
   
   
   
-    <p class="title logo__title">MFML-4-QC 1.0.0 documentation</p>
+    <p class="title logo__title">MFML-4-QC 1.5.0 documentation</p>
   
 </a></div>
     
@@ -142,8 +142,8 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../computation_times.html">
-    Computation Times
+  <a class="nav-link nav-internal" href="../../../_autosummary/mfml_qc.html">
+    mfml_qc
   </a>
 </li>
 
@@ -233,8 +233,8 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../computation_times.html">
-    Computation Times
+  <a class="nav-link nav-internal" href="../../../_autosummary/mfml_qc.html">
+    mfml_qc
   </a>
 </li>
 
@@ -334,19 +334,19 @@
 <div class="viewcode-block" id="PySCFEngine">
 <a class="viewcode-back" href="../../../index.html#mfml_qc.oracles.pyscf.PySCFEngine">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">PySCFEngine</span><span class="p">(</span><span class="n">QuantumEngine</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Implementation for the PySCF library as the quantum chemsitry engine.</span>
 <span class="sd">    This script is untested and is under works.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">python_executable</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">executable</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Initializes the PySCF engine.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            python_executable: Path to the Python executable that has PySCF installed.</span>
 <span class="sd">                               Defaults to the environment currently running the script.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">python_executable</span> <span class="o">=</span> <span class="n">python_executable</span>
 
 <div class="viewcode-block" id="PySCFEngine.generate_input">
@@ -358,40 +358,40 @@
         <span class="n">work_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">work_dir</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-        <span class="n">input_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">work_dir</span><span class="p">,</span> <span class="s2">&quot;run_pyscf.py&quot;</span><span class="p">)</span>
+        <span class="n">input_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">work_dir</span><span class="p">,</span> <span class="s2">"run_pyscf.py"</span><span class="p">)</span>
 
-        <span class="n">method</span> <span class="o">=</span> <span class="n">fidelity_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;method&quot;</span><span class="p">,</span> <span class="s2">&quot;B3LYP&quot;</span><span class="p">)</span>
-        <span class="n">basis</span> <span class="o">=</span> <span class="n">fidelity_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;basis&quot;</span><span class="p">,</span> <span class="s2">&quot;def2-SVP&quot;</span><span class="p">)</span>
-        <span class="n">charge</span> <span class="o">=</span> <span class="n">fidelity_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;charge&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">method</span> <span class="o">=</span> <span class="n">fidelity_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"method"</span><span class="p">,</span> <span class="s2">"B3LYP"</span><span class="p">)</span>
+        <span class="n">basis</span> <span class="o">=</span> <span class="n">fidelity_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"basis"</span><span class="p">,</span> <span class="s2">"def2-SVP"</span><span class="p">)</span>
+        <span class="n">charge</span> <span class="o">=</span> <span class="n">fidelity_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"charge"</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 
-        <span class="c1"># PySCF uses &quot;spin&quot; (number of unpaired electrons, 2S)</span>
-        <span class="c1"># ORCA uses &quot;multiplicity&quot; (2S + 1)</span>
-        <span class="n">multiplicity</span> <span class="o">=</span> <span class="n">fidelity_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;multiplicity&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="c1"># PySCF uses "spin" (number of unpaired electrons, 2S)</span>
+        <span class="c1"># ORCA uses "multiplicity" (2S + 1)</span>
+        <span class="n">multiplicity</span> <span class="o">=</span> <span class="n">fidelity_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"multiplicity"</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
         <span class="n">spin</span> <span class="o">=</span> <span class="n">multiplicity</span> <span class="o">-</span> <span class="mi">1</span>
 
         <span class="c1"># script that executes PySCF and dumps results to JSON.</span>
         <span class="c1"># Prevents PySCF memory leaks</span>
-        <span class="n">script_content</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+        <span class="n">script_content</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"""</span>
 <span class="s2">import json</span>
 <span class="s2">from pyscf import gto, scf, dft</span>
 
 <span class="s2">try:</span>
 <span class="s2">    # extract geomtry</span>
 <span class="s2">    mol = gto.M(</span>
-<span class="s2">        atom=&#39;</span><span class="si">{</span><span class="n">geometry</span><span class="si">}</span><span class="s2">&#39;,</span>
-<span class="s2">        basis=&#39;</span><span class="si">{</span><span class="n">basis</span><span class="si">}</span><span class="s2">&#39;,</span>
+<span class="s2">        atom='</span><span class="si">{</span><span class="n">geometry</span><span class="si">}</span><span class="s2">',</span>
+<span class="s2">        basis='</span><span class="si">{</span><span class="n">basis</span><span class="si">}</span><span class="s2">',</span>
 <span class="s2">        charge=</span><span class="si">{</span><span class="n">charge</span><span class="si">}</span><span class="s2">,</span>
 <span class="s2">        spin=</span><span class="si">{</span><span class="n">spin</span><span class="si">}</span><span class="s2">,</span>
 <span class="s2">        verbose=3 # Suppress excessive printing</span>
 <span class="s2">    )</span>
 
 <span class="s2">    # method </span>
-<span class="s2">    method_name = &#39;</span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">&#39;.upper()</span>
-<span class="s2">    if method_name == &#39;HF&#39;:</span>
+<span class="s2">    method_name = '</span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">'.upper()</span>
+<span class="s2">    if method_name == 'HF':</span>
 <span class="s2">        mf = scf.RHF(mol) if </span><span class="si">{</span><span class="n">spin</span><span class="si">}</span><span class="s2"> == 0 else scf.UHF(mol)</span>
 <span class="s2">    else:</span>
 <span class="s2">        mf = dft.RKS(mol) if </span><span class="si">{</span><span class="n">spin</span><span class="si">}</span><span class="s2"> == 0 else dft.UKS(mol)</span>
-<span class="s2">        mf.xc = &#39;</span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">&#39;</span>
+<span class="s2">        mf.xc = '</span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">'</span>
 <span class="s2">        </span>
 <span class="s2">    # mf.conv_tol = 1e-8 </span>
 
@@ -401,20 +401,20 @@
 
 <span class="s2">    # Save results</span>
 <span class="s2">    results = </span><span class="se">{{</span>
-<span class="s2">        &quot;success&quot;: success,</span>
-<span class="s2">        &quot;energy&quot;: energy</span>
+<span class="s2">        "success": success,</span>
+<span class="s2">        "energy": energy</span>
 <span class="s2">    </span><span class="se">}}</span>
 <span class="s2">    </span>
 <span class="s2">except Exception as e:</span>
 <span class="s2">    results = </span><span class="se">{{</span>
-<span class="s2">        &quot;success&quot;: False,</span>
-<span class="s2">        &quot;error&quot;: str(e)</span>
+<span class="s2">        "success": False,</span>
+<span class="s2">        "error": str(e)</span>
 <span class="s2">    </span><span class="se">}}</span>
 
-<span class="s2">with open(&quot;pyscf_results.json&quot;, &quot;w&quot;) as f:</span>
+<span class="s2">with open("pyscf_results.json", "w") as f:</span>
 <span class="s2">    json.dump(results, f)</span>
-<span class="s2">&quot;&quot;&quot;</span>
-        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">input_path</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="s2">"""</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">input_path</span><span class="p">,</span> <span class="s2">"w"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
             <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">script_content</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
 
         <span class="k">return</span> <span class="n">input_path</span></div>
@@ -424,14 +424,14 @@
 <a class="viewcode-back" href="../../../index.html#mfml_qc.oracles.pyscf.PySCFEngine.run_calculation">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">run_calculation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">work_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="c1"># PySCF output will be dumped to this JSON file by the above generated script</span>
-        <span class="n">output_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">work_dir</span><span class="p">,</span> <span class="s2">&quot;pyscf_results.json&quot;</span><span class="p">)</span>
+        <span class="n">output_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">work_dir</span><span class="p">,</span> <span class="s2">"pyscf_results.json"</span><span class="p">)</span>
 
         <span class="k">try</span><span class="p">:</span>
             <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
                 <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">python_executable</span><span class="p">,</span> <span class="n">input_file</span><span class="p">],</span>
                 <span class="n">cwd</span><span class="o">=</span><span class="n">work_dir</span><span class="p">,</span>
                 <span class="n">check</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-                <span class="n">capture_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># Capture stdout so it doesn&#39;t spam the main run (say in AL)</span>
+                <span class="n">capture_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># Capture stdout so it doesn't spam the main run (say in AL)</span>
             <span class="p">)</span>
         <span class="k">except</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">CalledProcessError</span><span class="p">:</span>
             <span class="k">pass</span>
@@ -442,12 +442,12 @@
 <div class="viewcode-block" id="PySCFEngine.parse_output">
 <a class="viewcode-back" href="../../../index.html#mfml_qc.oracles.pyscf.PySCFEngine.parse_output">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">parse_output</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
-        <span class="n">results</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;success&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;energy&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"success"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">"energy"</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">output_file</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">results</span>
 
-        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="s2">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">parsed_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
                 <span class="n">results</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">parsed_data</span><span class="p">)</span>
@@ -460,11 +460,11 @@
 <div class="viewcode-block" id="PySCFEngine.cleanup">
 <a class="viewcode-back" href="../../../index.html#mfml_qc.oracles.pyscf.PySCFEngine.cleanup">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">cleanup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">work_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Removes PySCF generated scripts and temp files.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Removes PySCF generated scripts and temp files."""</span>
         <span class="n">files_to_delete</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="s2">&quot;run_pyscf.py&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;pyscf_results.json&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;chkfile.chk&quot;</span><span class="p">,</span>  <span class="c1"># PySCF default checkpoint file name</span>
+            <span class="s2">"run_pyscf.py"</span><span class="p">,</span>
+            <span class="s2">"pyscf_results.json"</span><span class="p">,</span>
+            <span class="s2">"chkfile.chk"</span><span class="p">,</span>  <span class="c1"># PySCF default checkpoint file name</span>
         <span class="p">]</span>
 
         <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">files_to_delete</span><span class="p">:</span>

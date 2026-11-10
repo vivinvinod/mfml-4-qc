@@ -1,0 +1,730 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>mfml_qc.autodiff &#8212; MFML-4-QC 1.5.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=a95f357e85573c9b56d5" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=a95f357e85573c9b56d5" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=c83e6b79" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=a95f357e85573c9b56d5"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=a95f357e85573c9b56d5" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=a95f357e85573c9b56d5" />
+
+    <script src="../../_static/documentation_options.js?v=e0a75244"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/sg-tags.js?v=d80f6fa4"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/mfml_qc/autodiff';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">MFML-4-QC 1.5.0 documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../auto_examples/index.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../_autosummary/mfml_qc.html">
+    mfml_qc
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../auto_examples/index.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../_autosummary/mfml_qc.html">
+    mfml_qc
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">mfml_qc.autodiff</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for mfml_qc.autodiff</h1><div class="highlight"><pre>
+<span></span><span class="sd">"""</span>
+<span class="sd">Autodifferentiable KRR and MFML evaluators.</span>
+
+<span class="sd">Provides differentiable (PyTorch) wrappers around trained KRR and MFML models,</span>
+<span class="sd">enabling energy prediction with automatic force derivation via backpropagation</span>
+<span class="sd">(F = -∇E with respect to atomic coordinates).</span>
+
+<span class="sd">Requires PyTorch (optional dependency of mfml_qc).</span>
+<span class="sd">"""</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+
+
+<div class="viewcode-block" id="generate_coulomb_matrix">
+<a class="viewcode-back" href="../../index.html#mfml_qc.autodiff.generate_coulomb_matrix">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">generate_coulomb_matrix</span><span class="p">(</span><span class="n">coords</span><span class="p">,</span> <span class="n">charges</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Differentiable Unsorted Coulomb Matrix generator.</span>
+
+<span class="sd">    Extracts the diagonal and upper triangle into a 1D flat tensor,</span>
+<span class="sd">    matching the feature order of ``mfml_qc.representations.compute_flat_coulomb``.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    coords : torch.Tensor, shape (N_atoms, 3)</span>
+<span class="sd">        Atomic coordinates (requires_grad=True for force computation).</span>
+<span class="sd">    charges : torch.Tensor, shape (N_atoms,)</span>
+<span class="sd">        Nuclear charges.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    torch.Tensor, shape (N_atoms*(N_atoms+1)//2,)</span>
+<span class="sd">        Flattened upper-triangular Coulomb matrix.</span>
+<span class="sd">    """</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="n">coords</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">row_idx</span><span class="p">,</span> <span class="n">col_idx</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">triu_indices</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">coords</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+    <span class="n">is_diag</span> <span class="o">=</span> <span class="n">row_idx</span> <span class="o">==</span> <span class="n">col_idx</span>
+    <span class="n">is_off_diag</span> <span class="o">=</span> <span class="o">~</span><span class="n">is_diag</span>
+
+    <span class="n">num_features</span> <span class="o">=</span> <span class="n">N</span> <span class="o">*</span> <span class="p">(</span><span class="n">N</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+    <span class="n">cm_flat</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_features</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">coords</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">coords</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+
+    <span class="n">cm_flat</span><span class="p">[</span><span class="n">is_diag</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">charges</span><span class="p">[</span><span class="n">row_idx</span><span class="p">[</span><span class="n">is_diag</span><span class="p">]]</span> <span class="o">**</span> <span class="mf">2.4</span><span class="p">)</span>
+
+    <span class="n">r_i</span> <span class="o">=</span> <span class="n">coords</span><span class="p">[</span><span class="n">row_idx</span><span class="p">[</span><span class="n">is_off_diag</span><span class="p">]]</span>
+    <span class="n">r_j</span> <span class="o">=</span> <span class="n">coords</span><span class="p">[</span><span class="n">col_idx</span><span class="p">[</span><span class="n">is_off_diag</span><span class="p">]]</span>
+    <span class="n">dists</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">r_i</span> <span class="o">-</span> <span class="n">r_j</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">z_i</span> <span class="o">=</span> <span class="n">charges</span><span class="p">[</span><span class="n">row_idx</span><span class="p">[</span><span class="n">is_off_diag</span><span class="p">]]</span>
+    <span class="n">z_j</span> <span class="o">=</span> <span class="n">charges</span><span class="p">[</span><span class="n">col_idx</span><span class="p">[</span><span class="n">is_off_diag</span><span class="p">]]</span>
+    <span class="n">cm_flat</span><span class="p">[</span><span class="n">is_off_diag</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">z_i</span> <span class="o">*</span> <span class="n">z_j</span><span class="p">)</span> <span class="o">/</span> <span class="n">dists</span>
+
+    <span class="k">return</span> <span class="n">cm_flat</span></div>
+
+
+
+<div class="viewcode-block" id="DifferentiableKRR">
+<a class="viewcode-back" href="../../index.html#mfml_qc.autodiff.DifferentiableKRR">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">DifferentiableKRR</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Descriptor-agnostic differentiable KRR evaluator.</span>
+
+<span class="sd">    Takes pre-computed descriptor tensors as input and returns scalar</span>
+<span class="sd">    energy predictions. Supports all kernels from ``mfml_qc.krr``:</span>
+<span class="sd">    gaussian, matern, laplacian, wasserstein.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    X_train_np : np.ndarray, shape (N, D)</span>
+<span class="sd">        Training descriptors.</span>
+<span class="sd">    alphas_np : np.ndarray, shape (N,)</span>
+<span class="sd">        Solved KRR coefficients.</span>
+<span class="sd">    kernel_type : str</span>
+<span class="sd">        Kernel type. One of 'gaussian', 'matern', 'laplacian', 'wasserstein'.</span>
+<span class="sd">    sigma : float</span>
+<span class="sd">        Kernel width parameter.</span>
+<span class="sd">    nu : float</span>
+<span class="sd">        Matern smoothness parameter (0.5, 1.5, or 2.5).</span>
+<span class="sd">    p : float</span>
+<span class="sd">        Wasserstein power parameter.</span>
+<span class="sd">    q : float</span>
+<span class="sd">        Wasserstein outer exponent.</span>
+<span class="sd">    """</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">X_train_np</span><span class="p">,</span>
+        <span class="n">alphas_np</span><span class="p">,</span>
+        <span class="n">kernel_type</span><span class="o">=</span><span class="s2">"gaussian"</span><span class="p">,</span>
+        <span class="n">sigma</span><span class="o">=</span><span class="mf">100.0</span><span class="p">,</span>
+        <span class="n">nu</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span>
+        <span class="n">p</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+        <span class="n">q</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">register_buffer</span><span class="p">(</span><span class="s2">"X_train"</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">X_train_np</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float64</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">register_buffer</span><span class="p">(</span><span class="s2">"alphas"</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">alphas_np</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float64</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">kernel_type</span> <span class="o">=</span> <span class="n">kernel_type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span> <span class="o">=</span> <span class="n">sigma</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nu</span> <span class="o">=</span> <span class="n">nu</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">p</span> <span class="o">=</span> <span class="n">p</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">q</span> <span class="o">=</span> <span class="n">q</span>
+
+<div class="viewcode-block" id="DifferentiableKRR.from_krr_model">
+<a class="viewcode-back" href="../../index.html#mfml_qc.autodiff.DifferentiableKRR.from_krr_model">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">from_krr_model</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">krr_model</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Construct from a trained ``mfml_qc.krr.KRR`` instance.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        krr_model : mfml_qc.krr.KRR</span>
+<span class="sd">            A trained KRR model.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
+            <span class="n">X_train_np</span><span class="o">=</span><span class="n">krr_model</span><span class="o">.</span><span class="n">X_train</span><span class="p">,</span>
+            <span class="n">alphas_np</span><span class="o">=</span><span class="n">krr_model</span><span class="o">.</span><span class="n">alphas</span><span class="p">,</span>
+            <span class="n">kernel_type</span><span class="o">=</span><span class="n">krr_model</span><span class="o">.</span><span class="n">kernel_type</span><span class="p">,</span>
+            <span class="n">sigma</span><span class="o">=</span><span class="n">krr_model</span><span class="o">.</span><span class="n">sigma</span><span class="p">,</span>
+            <span class="n">nu</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">krr_model</span><span class="p">,</span> <span class="s2">"nu"</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">),</span>
+            <span class="n">p</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">krr_model</span><span class="p">,</span> <span class="s2">"p"</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span>
+            <span class="n">q</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">krr_model</span><span class="p">,</span> <span class="s2">"q"</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span>
+        <span class="p">)</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_compute_kernel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X_test</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Compute asymmetric kernel between X_test (1, D) and X_train (N, D)."""</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">kernel_type</span> <span class="o">==</span> <span class="s2">"gaussian"</span><span class="p">:</span>
+            <span class="n">gamma</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+            <span class="n">diffs</span> <span class="o">=</span> <span class="n">X_test</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">X_train</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">sq_dists</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">diffs</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">gamma</span> <span class="o">*</span> <span class="n">sq_dists</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">kernel_type</span> <span class="o">==</span> <span class="s2">"matern"</span><span class="p">:</span>
+            <span class="n">diffs</span> <span class="o">=</span> <span class="n">X_test</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">X_train</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">dists</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">diffs</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">nu</span> <span class="o">==</span> <span class="mf">0.5</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">dists</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">nu</span> <span class="o">==</span> <span class="mf">1.5</span><span class="p">:</span>
+                <span class="n">scaled</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">3.0</span><span class="p">)</span> <span class="o">*</span> <span class="n">dists</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span>
+                <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">scaled</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">scaled</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">nu</span> <span class="o">==</span> <span class="mf">2.5</span><span class="p">:</span>
+                <span class="n">scaled</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">5.0</span><span class="p">)</span> <span class="o">*</span> <span class="n">dists</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span>
+                <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">scaled</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">scaled</span> <span class="o">+</span> <span class="p">(</span><span class="n">scaled</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="mf">3.0</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Only nu=0.5, 1.5, 2.5 supported, got </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">nu</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">kernel_type</span> <span class="o">==</span> <span class="s2">"laplacian"</span><span class="p">:</span>
+            <span class="n">diffs</span> <span class="o">=</span> <span class="n">X_test</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">X_train</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">dists</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">diffs</span><span class="p">),</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">dists</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">kernel_type</span> <span class="o">==</span> <span class="s2">"wasserstein"</span><span class="p">:</span>
+            <span class="n">X_test_sorted</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
+            <span class="n">X_train_sorted</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X_train</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
+            <span class="n">diffs</span> <span class="o">=</span> <span class="n">X_test_sorted</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">X_train_sorted</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">n_feat</span> <span class="o">=</span> <span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">w_p</span> <span class="o">=</span> <span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">diffs</span><span class="p">)</span> <span class="o">**</span> <span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">n_feat</span><span class="p">)</span> <span class="o">**</span> <span class="p">(</span>
+                <span class="mf">1.0</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">p</span>
+            <span class="p">)</span>
+            <span class="n">dists</span> <span class="o">=</span> <span class="n">w_p</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">q</span>
+            <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">dists</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Unsupported kernel type: '</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">kernel_type</span><span class="si">}</span><span class="s2">'"</span><span class="p">)</span>
+
+<div class="viewcode-block" id="DifferentiableKRR.forward">
+<a class="viewcode-back" href="../../index.html#mfml_qc.autodiff.DifferentiableKRR.forward">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X_test</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Predict scalar energy from descriptor tensor.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X_test : torch.Tensor, shape (1, D)</span>
+<span class="sd">            Descriptor for a single geometry.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        torch.Tensor, scalar</span>
+<span class="sd">            Predicted energy.</span>
+<span class="sd">        """</span>
+        <span class="n">k_test</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compute_kernel</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">k_test</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">alphas</span><span class="p">)</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="DifferentiableMFML">
+<a class="viewcode-back" href="../../index.html#mfml_qc.autodiff.DifferentiableMFML">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">DifferentiableMFML</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Differentiable MFML evaluator wrapping 2N-1 ``DifferentiableKRR`` sub-models.</span>
+
+<span class="sd">    Supports default SGCT and sklearn-based o-MFML optimizers.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    sub_models : list of DifferentiableKRR</span>
+<span class="sd">        The 2N-1 trained sub-model evaluators.</span>
+<span class="sd">    nfids : int</span>
+<span class="sd">        Number of fidelity levels.</span>
+<span class="sd">    optimiser : str</span>
+<span class="sd">        Combination strategy: 'default' (SGCT) or 'learned' (sklearn o-MFML).</span>
+<span class="sd">    lcc_optimizer : object, optional</span>
+<span class="sd">        Fitted sklearn estimator for o-MFML combination (OLS, LRR, LASSO, MLPR).</span>
+<span class="sd">    """</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sub_models</span><span class="p">,</span> <span class="n">nfids</span><span class="p">,</span> <span class="n">optimiser</span><span class="o">=</span><span class="s2">"default"</span><span class="p">,</span> <span class="n">lcc_optimizer</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sub_models</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">ModuleList</span><span class="p">(</span><span class="n">sub_models</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nfids</span> <span class="o">=</span> <span class="n">nfids</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">optimiser</span> <span class="o">=</span> <span class="n">optimiser</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lcc_optimizer</span> <span class="o">=</span> <span class="n">lcc_optimizer</span>
+
+<div class="viewcode-block" id="DifferentiableMFML.from_mfml_model">
+<a class="viewcode-back" href="../../index.html#mfml_qc.autodiff.DifferentiableMFML.from_mfml_model">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">from_mfml_model</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">mfml_model</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Construct from a trained ``mfml_qc.mfml.ModelMFML`` instance.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        mfml_model : mfml_qc.mfml.ModelMFML</span>
+<span class="sd">            A trained MFML model.</span>
+<span class="sd">        """</span>
+        <span class="n">nfids</span> <span class="o">=</span> <span class="n">mfml_model</span><span class="o">.</span><span class="n">indexes</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">sub_models</span> <span class="o">=</span> <span class="p">[</span><span class="n">DifferentiableKRR</span><span class="o">.</span><span class="n">from_krr_model</span><span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">mfml_model</span><span class="o">.</span><span class="n">models</span><span class="p">]</span>
+
+        <span class="n">optimiser</span> <span class="o">=</span> <span class="s2">"default"</span>
+        <span class="n">lcc_optimizer</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">mfml_model</span><span class="o">.</span><span class="n">LCCoptimizer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">lcc_optimizer</span> <span class="o">=</span> <span class="n">mfml_model</span><span class="o">.</span><span class="n">LCCoptimizer</span>
+            <span class="n">optimiser</span> <span class="o">=</span> <span class="s2">"learned"</span>
+
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
+            <span class="n">sub_models</span><span class="o">=</span><span class="n">sub_models</span><span class="p">,</span>
+            <span class="n">nfids</span><span class="o">=</span><span class="n">nfids</span><span class="p">,</span>
+            <span class="n">optimiser</span><span class="o">=</span><span class="n">optimiser</span><span class="p">,</span>
+            <span class="n">lcc_optimizer</span><span class="o">=</span><span class="n">lcc_optimizer</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="DifferentiableMFML.forward">
+<a class="viewcode-back" href="../../index.html#mfml_qc.autodiff.DifferentiableMFML.forward">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X_test</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Predict scalar energy from descriptor tensor.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X_test : torch.Tensor, shape (1, D)</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        torch.Tensor, scalar</span>
+<span class="sd">        """</span>
+        <span class="n">sub_preds</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">m</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">sub_models</span><span class="p">])</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">optimiser</span> <span class="o">==</span> <span class="s2">"default"</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">sub_preds</span><span class="p">[:</span> <span class="bp">self</span><span class="o">.</span><span class="n">nfids</span><span class="p">])</span> <span class="o">-</span> <span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span>
+                <span class="n">sub_preds</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">nfids</span> <span class="p">:]</span>
+            <span class="p">)</span>
+
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">optimiser</span> <span class="o">==</span> <span class="s2">"learned"</span><span class="p">:</span>
+            <span class="n">preds_np</span> <span class="o">=</span> <span class="n">sub_preds</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">combo</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lcc_optimizer</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">preds_np</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">combo</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Unknown optimiser '</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">optimiser</span><span class="si">}</span><span class="s2">'"</span><span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="predict_energies_and_forces">
+<a class="viewcode-back" href="../../index.html#mfml_qc.autodiff.predict_energies_and_forces">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">predict_energies_and_forces</span><span class="p">(</span>
+    <span class="n">evaluator</span><span class="p">,</span> <span class="n">test_coords_np</span><span class="p">,</span> <span class="n">charges_np</span><span class="p">,</span> <span class="n">descriptor_fn</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Predict energies and forces via autodifferentiation.</span>
+
+<span class="sd">    For each test geometry, computes the descriptor, predicts the energy,</span>
+<span class="sd">    and obtains forces as ``F = -∇E`` via backpropagation through the</span>
+<span class="sd">    descriptor function and kernel evaluation.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    evaluator : DifferentiableKRR or DifferentiableMFML</span>
+<span class="sd">        A trained differentiable evaluator.</span>
+<span class="sd">    test_coords_np : np.ndarray, shape (N_mol, N_atoms, 3)</span>
+<span class="sd">        Test geometries.</span>
+<span class="sd">    charges_np : np.ndarray, shape (N_atoms,)</span>
+<span class="sd">        Nuclear charges.</span>
+<span class="sd">    descriptor_fn : callable, optional</span>
+<span class="sd">        Maps ``(coords_tensor, charges_tensor) -&gt; (n_features,)`` tensor.</span>
+<span class="sd">        Defaults to :func:`generate_coulomb_matrix`.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    energies : np.ndarray, shape (N_mol,)</span>
+<span class="sd">        Predicted energies.</span>
+<span class="sd">    forces : np.ndarray, shape (N_mol, N_atoms, 3)</span>
+<span class="sd">        Predicted forces (negative energy gradient).</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="n">descriptor_fn</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">descriptor_fn</span> <span class="o">=</span> <span class="n">generate_coulomb_matrix</span>
+
+    <span class="n">charges</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">charges_np</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+
+    <span class="n">predicted_energies</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">predicted_forces</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">test_coords_np</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+        <span class="n">single_coords</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span>
+            <span class="n">test_coords_np</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span>
+        <span class="p">)</span>
+
+        <span class="n">X_test</span> <span class="o">=</span> <span class="n">descriptor_fn</span><span class="p">(</span><span class="n">single_coords</span><span class="p">,</span> <span class="n">charges</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">energy</span> <span class="o">=</span> <span class="n">evaluator</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+        <span class="n">energy</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+
+        <span class="n">predicted_energies</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">energy</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">())</span>
+        <span class="n">predicted_forces</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="o">-</span><span class="n">single_coords</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">())</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">predicted_energies</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">predicted_forces</span><span class="p">)</span></div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=a95f357e85573c9b56d5"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=a95f357e85573c9b56d5"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2026, Vivin Vinod.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.19.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Documentation for MFML-4-QC &#8212; MFML-4-QC 1.0.0 documentation</title>
+    <title>Documentation for MFML-4-QC &#8212; MFML-4-QC 1.5.0 documentation</title>
   
   
   
@@ -31,7 +31,7 @@
 <link href="_static/styles/pydata-sphinx-theme.css?digest=a95f357e85573c9b56d5" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
-    <link rel="stylesheet" type="text/css" href="_static/sg_gallery.css?v=fd6457a4" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery.css?v=c83e6b79" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-rendered-html.css?v=1277b6f3" />
@@ -42,7 +42,7 @@
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=a95f357e85573c9b56d5" />
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=a95f357e85573c9b56d5" />
 
-    <script src="_static/documentation_options.js?v=8d563738"></script>
+    <script src="_static/documentation_options.js?v=e0a75244"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/sg-tags.js?v=d80f6fa4"></script>
@@ -124,7 +124,7 @@
   
   
   
-    <p class="title logo__title">MFML-4-QC 1.0.0 documentation</p>
+    <p class="title logo__title">MFML-4-QC 1.5.0 documentation</p>
   
 </a></div>
     
@@ -146,8 +146,8 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="computation_times.html">
-    Computation Times
+  <a class="nav-link nav-internal" href="_autosummary/mfml_qc.html">
+    mfml_qc
   </a>
 </li>
 
@@ -241,8 +241,8 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="computation_times.html">
-    Computation Times
+  <a class="nav-link nav-internal" href="_autosummary/mfml_qc.html">
+    mfml_qc
   </a>
 </li>
 
@@ -310,6 +310,14 @@
 </div>
 <section id="api-reference">
 <h2>API Reference<a class="headerlink" href="#api-reference" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/mfml_qc.html#module-mfml_qc" title="mfml_qc"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mfml_qc</span></code></a></p></td>
+<td><p>MFML-4-QC: A Python package for Multifidelity Machine Learning in Quantum Chemistry.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
 <section id="module-mfml_qc.representations">
 <span id="representations"></span><h3>Representations<a class="headerlink" href="#module-mfml_qc.representations" title="Link to this heading">#</a></h3>
 <dl class="py function">
@@ -425,6 +433,42 @@ Default is None.</p>
 </dl>
 </dd></dl>
 
+<dl class="py function">
+<dt class="sig sig-object py" id="mfml_qc.datasets.load_nitrophenol_data">
+<span class="sig-prename descclassname"><span class="pre">mfml_qc.datasets.</span></span><span class="sig-name descname"><span class="pre">load_nitrophenol_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/mfml_qc/datasets.html#load_nitrophenol_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mfml_qc.datasets.load_nitrophenol_data" title="Link to this definition">#</a></dt>
+<dd><p>Load and parse the built-in QeMFi nitrophenol dataset.</p>
+<p>The QeMFi dataset contains multifidelity electronic structure properties
+for 15,000 MD geometries of nitrophenol at 5 SCF fidelity levels
+(STO-3G, 3-21G, 6-31G, def2-SVP, def2-TZVP).</p>
+<p>Reference: Vinod et al., J. Chem. Phys. (2024).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data_dir</strong> (<em>str</em><em>, </em><em>optional</em>) – Path to the nitrophenol data directory. If None, resolves the path
+relative to the installed package’s directory (assuming the standard
+‘data/nitrophenol’ repository layout). Default is None.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><p>A dictionary containing the parsed dataset components:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">'R'</span></code> (np.ndarray): Cartesian coordinates, shape (15000, 15, 3).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'Z'</span></code> (np.ndarray): Atomic numbers, shape (15,).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'SCF'</span></code> (np.ndarray): SCF energies at 5 fidelities, shape (15000, 5).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'DPe'</span></code> (np.ndarray): Electronic dipole moments, shape (15000, 5, 3).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'X_CM'</span></code> (np.ndarray): Flattened Coulomb matrices, shape (15000, 120).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'fidelities'</span></code> (list of str): Fidelity level names.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'ID'</span></code> (np.ndarray, optional): WS22 geometry indices, shape (15000,).</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>FileNotFoundError</strong> – If the required data file is not found at the resolved path.</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py function" id="module-mfml_qc.utils">
 <dt class="sig sig-object py" id="mfml_qc.utils.build_hierarchy_arrays">
 <span class="sig-prename descclassname"><span class="pre">mfml_qc.utils.</span></span><span class="sig-name descname"><span class="pre">build_hierarchy_arrays</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_train</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hierarchy_cols</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span></span></span><a class="reference internal" href="_modules/mfml_qc/utils.html#build_hierarchy_arrays"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mfml_qc.utils.build_hierarchy_arrays" title="Link to this definition">#</a></dt>
@@ -504,9 +548,9 @@ sample selection is carried out from the highest fidelity to the lowest.</p>
 </dd></dl>
 
 </section>
-<section id="kernel-ridge-regression">
-<h3>Kernel Ridge Regression<a class="headerlink" href="#kernel-ridge-regression" title="Link to this heading">#</a></h3>
-<dl class="py class" id="module-mfml_qc.krr">
+<section id="module-mfml_qc.krr">
+<span id="kernel-ridge-regression"></span><h3>Kernel Ridge Regression<a class="headerlink" href="#module-mfml_qc.krr" title="Link to this heading">#</a></h3>
+<dl class="py class">
 <dt class="sig sig-object py" id="mfml_qc.krr.KRR">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mfml_qc.krr.</span></span><span class="sig-name descname"><span class="pre">KRR</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kernel_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'matern'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1e-10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mfml_qc/krr.html#KRR"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mfml_qc.krr.KRR" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
@@ -965,7 +1009,7 @@ is generated by the previous step.</p>
 
 <dl class="py class" id="module-mfml_qc.oracles.pyscf">
 <dt class="sig sig-object py" id="mfml_qc.oracles.pyscf.PySCFEngine">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mfml_qc.oracles.pyscf.</span></span><span class="sig-name descname"><span class="pre">PySCFEngine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">python_executable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'/home/vvinod/miniforge3/envs/mfml/bin/python3.10'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mfml_qc/oracles/pyscf.html#PySCFEngine"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mfml_qc.oracles.pyscf.PySCFEngine" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mfml_qc.oracles.pyscf.</span></span><span class="sig-name descname"><span class="pre">PySCFEngine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">python_executable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'/home/vvinod/miniforge3/envs/mfmlenv/bin/python'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mfml_qc/oracles/pyscf.html#PySCFEngine"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mfml_qc.oracles.pyscf.PySCFEngine" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#mfml_qc.oracles.base.QuantumEngine" title="mfml_qc.oracles.base.QuantumEngine"><code class="xref py py-class docutils literal notranslate"><span class="pre">QuantumEngine</span></code></a></p>
 <p>Implementation for the PySCF library as the quantum chemsitry engine.
 This script is untested and is under works.</p>
@@ -1197,6 +1241,516 @@ and <span class="math notranslate nohighlight">\(P^{low}_{ref}\)</span> is the r
 </dd></dl>
 
 </section>
+<section id="module-mfml_qc.vector_krr">
+<span id="vectorized-models"></span><h3>Vectorized Models<a class="headerlink" href="#module-mfml_qc.vector_krr" title="Link to this heading">#</a></h3>
+<p>Vector-valued Kernel Ridge Regression.</p>
+<p>Provides two estimators for learning vector-valued targets (e.g., dipole moments):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">VectorKRR</span></code>: Isotropic kernel K(x,x’) = k(x,x’) I_d. Equivalent to d
+independent scalar KRRs with a shared regularisation parameter. Uses a single
+Cholesky factorisation solved against all d right-hand sides.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CoupledVectorKRR</span></code>: Separable kernel K(x,x’) = k(x,x’) T, where T is a
+d×d positive semidefinite output covariance matrix, learnable via Nelder-Mead
+on validation MSE. T is parameterised as L L^T (Cholesky factor, d(d+1)/2
+free parameters). Efficient solve via eigendecomposition of the scalar kernel.</p></li>
+</ul>
+<p>Both classes expose <code class="docutils literal notranslate"><span class="pre">.train(X,</span> <span class="pre">Y)</span></code> / <code class="docutils literal notranslate"><span class="pre">.predict(X)</span></code> for duck-type
+compatibility with <code class="docutils literal notranslate"><span class="pre">ModelMFML</span></code>’s <code class="docutils literal notranslate"><span class="pre">base_estimator</span></code> interface.</p>
+<p>Also provides <code class="docutils literal notranslate"><span class="pre">DifferentiableVectorKRR</span></code>, a frozen PyTorch evaluator for
+inference in differentiable pipelines.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="mfml_qc.vector_krr.CoupledVectorKRR">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mfml_qc.vector_krr.</span></span><span class="sig-name descname"><span class="pre">CoupledVectorKRR</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kernel_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'gaussian'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val_fraction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.15</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_opt_iter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">200</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mfml_qc/vector_krr.html#CoupledVectorKRR"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mfml_qc.vector_krr.CoupledVectorKRR" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Vector KRR with learnable output covariance T = L L^T.</p>
+<dl class="simple">
+<dt>Training procedure:</dt><dd><ol class="arabic simple">
+<li><p>Split data into train/val</p></li>
+<li><p>Eigendecompose training kernel (computed once)</p></li>
+<li><p>Optimise T via Nelder-Mead on validation MSE</p></li>
+<li><p>Re-solve on full training data with optimal T</p></li>
+</ol>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>kernel_type</strong> (<em>str</em>) – One of ‘gaussian’, ‘matern’, ‘laplacian’, ‘wasserstein’.</p></li>
+<li><p><strong>sigma</strong> (<em>float</em>) – Kernel width parameter.</p></li>
+<li><p><strong>nu</strong> (<em>float</em>) – Matern smoothness parameter.</p></li>
+<li><p><strong>p</strong> (<em>float</em>) – Wasserstein power parameter.</p></li>
+<li><p><strong>q</strong> (<em>float</em>) – Wasserstein outer exponent.</p></li>
+<li><p><strong>reg</strong> (<em>float</em>) – Tikhonov regularisation.</p></li>
+<li><p><strong>val_fraction</strong> (<em>float</em>) – Fraction of training data held out for T optimisation.</p></li>
+<li><p><strong>max_opt_iter</strong> (<em>int</em>) – Maximum Nelder-Mead iterations for T optimisation.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="mfml_qc.vector_krr.CoupledVectorKRR.predict">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_test</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mfml_qc/vector_krr.html#CoupledVectorKRR.predict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mfml_qc.vector_krr.CoupledVectorKRR.predict" title="Link to this definition">#</a></dt>
+<dd><p>Predict vector targets.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>X_test</strong> (<em>np.ndarray</em><em>, </em><em>shape</em><em> (</em><em>M</em><em>, </em><em>D</em><em>)</em>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>np.ndarray, shape (M, d)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mfml_qc.vector_krr.CoupledVectorKRR.train">
+<span class="sig-name descname"><span class="pre">train</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_train</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y_train</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mfml_qc/vector_krr.html#CoupledVectorKRR.train"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mfml_qc.vector_krr.CoupledVectorKRR.train" title="Link to this definition">#</a></dt>
+<dd><p>Train with T optimisation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X_train</strong> (<em>np.ndarray</em><em>, </em><em>shape</em><em> (</em><em>N</em><em>, </em><em>D</em><em>)</em>)</p></li>
+<li><p><strong>Y_train</strong> (<em>np.ndarray</em><em>, </em><em>shape</em><em> (</em><em>N</em><em>, </em><em>d</em><em>) or </em><em>(</em><em>N</em><em>,</em><em>)</em>)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mfml_qc.vector_krr.DifferentiableVectorKRR">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mfml_qc.vector_krr.</span></span><span class="sig-name descname"><span class="pre">DifferentiableVectorKRR</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_train_np</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alphas_np</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kernel_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'gaussian'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mfml_qc/vector_krr.html#DifferentiableVectorKRR"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mfml_qc.vector_krr.DifferentiableVectorKRR" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code></p>
+<p>Frozen PyTorch evaluator for vector-valued KRR.</p>
+<p>Pre-solved alphas are stored as buffers (not learnable parameters).
+Useful as a building block in differentiable pipelines.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X_train_np</strong> (<em>np.ndarray</em><em>, </em><em>shape</em><em> (</em><em>N</em><em>, </em><em>D</em><em>)</em>)</p></li>
+<li><p><strong>alphas_np</strong> (<em>np.ndarray</em><em>, </em><em>shape</em><em> (</em><em>N</em><em>, </em><em>d</em><em>)</em>)</p></li>
+<li><p><strong>kernel_type</strong> (<em>str</em>)</p></li>
+<li><p><strong>sigma</strong> (<em>float</em>)</p></li>
+<li><p><strong>nu</strong> (<em>float</em>)</p></li>
+<li><p><strong>p</strong> (<em>float</em>)</p></li>
+<li><p><strong>q</strong> (<em>float</em>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="mfml_qc.vector_krr.DifferentiableVectorKRR.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_test</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mfml_qc/vector_krr.html#DifferentiableVectorKRR.forward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mfml_qc.vector_krr.DifferentiableVectorKRR.forward" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>X_test</strong> (<em>torch.Tensor</em><em>, </em><em>shape</em><em> (</em><em>1</em><em>, </em><em>D</em><em>)</em>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>torch.Tensor, shape (d,)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mfml_qc.vector_krr.DifferentiableVectorKRR.from_vector_krr">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_vector_krr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mfml_qc/vector_krr.html#DifferentiableVectorKRR.from_vector_krr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mfml_qc.vector_krr.DifferentiableVectorKRR.from_vector_krr" title="Link to this definition">#</a></dt>
+<dd><p>Construct from a trained VectorKRR or CoupledVectorKRR.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mfml_qc.vector_krr.VectorKRR">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mfml_qc.vector_krr.</span></span><span class="sig-name descname"><span class="pre">VectorKRR</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kernel_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'gaussian'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mfml_qc/vector_krr.html#VectorKRR"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mfml_qc.vector_krr.VectorKRR" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Vector-valued KRR with isotropic separable kernel k(x,x’) I_d.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>kernel_type</strong> (<em>str</em>) – One of ‘gaussian’, ‘matern’, ‘laplacian’, ‘wasserstein’.</p></li>
+<li><p><strong>sigma</strong> (<em>float</em>) – Kernel width parameter.</p></li>
+<li><p><strong>nu</strong> (<em>float</em>) – Matern smoothness parameter (0.5, 1.5, or 2.5).</p></li>
+<li><p><strong>p</strong> (<em>float</em>) – Wasserstein power parameter.</p></li>
+<li><p><strong>q</strong> (<em>float</em>) – Wasserstein outer exponent.</p></li>
+<li><p><strong>reg</strong> (<em>float</em>) – Tikhonov regularisation parameter.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="mfml_qc.vector_krr.VectorKRR.predict">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_test</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mfml_qc/vector_krr.html#VectorKRR.predict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mfml_qc.vector_krr.VectorKRR.predict" title="Link to this definition">#</a></dt>
+<dd><p>Predict vector targets for test features.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>X_test</strong> (<em>np.ndarray</em><em>, </em><em>shape</em><em> (</em><em>M</em><em>, </em><em>D</em><em>)</em>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>np.ndarray, shape (M, d)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mfml_qc.vector_krr.VectorKRR.train">
+<span class="sig-name descname"><span class="pre">train</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_train</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y_train</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mfml_qc/vector_krr.html#VectorKRR.train"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mfml_qc.vector_krr.VectorKRR.train" title="Link to this definition">#</a></dt>
+<dd><p>Solve the vector KRR system.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X_train</strong> (<em>np.ndarray</em><em>, </em><em>shape</em><em> (</em><em>N</em><em>, </em><em>D</em><em>)</em>) – Training feature matrix.</p></li>
+<li><p><strong>Y_train</strong> (<em>np.ndarray</em><em>, </em><em>shape</em><em> (</em><em>N</em><em>, </em><em>d</em><em>) or </em><em>(</em><em>N</em><em>,</em><em>)</em>) – Vector targets. If 1D, treated as d=1.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<p id="module-mfml_qc.vector_mfml">MFML for vector-valued properties.</p>
+<p>Provides <code class="docutils literal notranslate"><span class="pre">VectorMFML</span></code>, a multi-fidelity wrapper that trains and predicts
+vector targets (e.g., dipole moments) using the Single-Grid Combination
+Technique (SGCT). Uses any duck-typed vector estimator (VectorKRR,
+CoupledVectorKRR, RPRVectorKRR) as the sub-model.</p>
+<p>Also provides <code class="docutils literal notranslate"><span class="pre">DifferentiableVectorMFML</span></code> (requires PyTorch) for
+differentiable inference pipelines.</p>
+<p>Note: <code class="docutils literal notranslate"><span class="pre">ModelMFML.predict</span></code> assumes scalar outputs, so <code class="docutils literal notranslate"><span class="pre">VectorMFML</span></code>
+implements its own SGCT prediction over d-dimensional vectors.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="mfml_qc.vector_mfml.DifferentiableVectorMFML">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mfml_qc.vector_mfml.</span></span><span class="sig-name descname"><span class="pre">DifferentiableVectorMFML</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sub_models</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nfids</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mfml_qc/vector_mfml.html#DifferentiableVectorMFML"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mfml_qc.vector_mfml.DifferentiableVectorMFML" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code></p>
+<p>Differentiable MFML evaluator for vector properties.</p>
+<p>Wraps 2N-1 <code class="docutils literal notranslate"><span class="pre">DifferentiableVectorKRR</span></code> sub-models and applies SGCT
+arithmetic on d-dimensional prediction vectors.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sub_models</strong> (<em>list</em><em> of </em><a class="reference internal" href="#mfml_qc.vector_krr.DifferentiableVectorKRR" title="mfml_qc.vector_krr.DifferentiableVectorKRR"><em>DifferentiableVectorKRR</em></a>)</p></li>
+<li><p><strong>nfids</strong> (<em>int</em>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="mfml_qc.vector_mfml.DifferentiableVectorMFML.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_test</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mfml_qc/vector_mfml.html#DifferentiableVectorMFML.forward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mfml_qc.vector_mfml.DifferentiableVectorMFML.forward" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>X_test</strong> (<em>torch.Tensor</em><em>, </em><em>shape</em><em> (</em><em>1</em><em>, </em><em>D</em><em>)</em>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>torch.Tensor, shape (d,)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mfml_qc.vector_mfml.DifferentiableVectorMFML.from_vector_mfml">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_vector_mfml</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vector_mfml_model</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mfml_qc/vector_mfml.html#DifferentiableVectorMFML.from_vector_mfml"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mfml_qc.vector_mfml.DifferentiableVectorMFML.from_vector_mfml" title="Link to this definition">#</a></dt>
+<dd><p>Construct from a trained <code class="docutils literal notranslate"><span class="pre">VectorMFML</span></code> instance.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mfml_qc.vector_mfml.VectorMFML">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mfml_qc.vector_mfml.</span></span><span class="sig-name descname"><span class="pre">VectorMFML</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">base_estimator</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mfml_qc/vector_mfml.html#VectorMFML"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mfml_qc.vector_mfml.VectorMFML" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Multi-Fidelity Machine Learning for vector-valued properties.</p>
+<p>Trains 2N-1 sub-models (N upper + N-1 lower) following the SGCT scheme
+and predicts d-dimensional vectors.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>base_estimator</strong> (<em>object</em>) – A model instance with <code class="docutils literal notranslate"><span class="pre">.train(X,</span> <span class="pre">Y)</span></code> and <code class="docutils literal notranslate"><span class="pre">.predict(X)</span></code> methods.
+Will be deep-copied for each sub-model. E.g., <code class="docutils literal notranslate"><span class="pre">VectorKRR</span></code>,
+<code class="docutils literal notranslate"><span class="pre">CoupledVectorKRR</span></code>, or <code class="docutils literal notranslate"><span class="pre">RPRVectorKRR</span></code>.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="mfml_qc.vector_mfml.VectorMFML.predict">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_test</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mfml_qc/vector_mfml.html#VectorMFML.predict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mfml_qc.vector_mfml.VectorMFML.predict" title="Link to this definition">#</a></dt>
+<dd><p>Predict vector targets using SGCT combination.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>X_test</strong> (<em>np.ndarray</em><em>, </em><em>shape</em><em> (</em><em>M</em><em>, </em><em>D</em><em>)</em>) – Test feature matrix (descriptors or flattened coordinates for RPR).</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Predicted vectors (un-centered).</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray, shape (M, d)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mfml_qc.vector_mfml.VectorMFML.train">
+<span class="sig-name descname"><span class="pre">train</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_train_parent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_trains</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indexes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_trains_target</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mfml_qc/vector_mfml.html#VectorMFML.train"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mfml_qc.vector_mfml.VectorMFML.train" title="Link to this definition">#</a></dt>
+<dd><p>Train the MFML vector model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X_train_parent</strong> (<em>np.ndarray</em><em>, </em><em>shape</em><em> (</em><em>N_parent</em><em>, </em><em>D</em><em>)</em>) – Feature matrix for the full parent (lowest fidelity) training set.
+For RPR models, these are flattened coordinates (N, N_atoms*3).
+For non-RPR models, these are pre-computed descriptors.</p></li>
+<li><p><strong>y_trains</strong> (<em>np.ndarray</em><em> of </em><em>object</em><em>, </em><em>length num_fids</em>) – Each element is (N_i, d) array of mean-centered vector targets
+at fidelity i.</p></li>
+<li><p><strong>indexes</strong> (<em>np.ndarray</em><em> of </em><em>object</em><em>, </em><em>length num_fids</em>) – Each element is (N_i, 2) array of [baseline_idx, level_idx] mappings.</p></li>
+<li><p><strong>n_trains_target</strong> (<em>list</em><em> of </em><em>int</em><em>, </em><em>optional</em>) – Target number of training samples per fidelity (lowest to highest).
+If None, uses all available samples.</p></li>
+<li><p><strong>seed</strong> (<em>int</em>) – Random seed for subsetting.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-mfml_qc.autodiff">
+<span id="automatic-differentiation"></span><h3>Automatic Differentiation<a class="headerlink" href="#module-mfml_qc.autodiff" title="Link to this heading">#</a></h3>
+<p>Autodifferentiable KRR and MFML evaluators.</p>
+<p>Provides differentiable (PyTorch) wrappers around trained KRR and MFML models,
+enabling energy prediction with automatic force derivation via backpropagation
+(F = -∇E with respect to atomic coordinates).</p>
+<p>Requires PyTorch (optional dependency of mfml_qc).</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="mfml_qc.autodiff.DifferentiableKRR">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mfml_qc.autodiff.</span></span><span class="sig-name descname"><span class="pre">DifferentiableKRR</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_train_np</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alphas_np</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kernel_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'gaussian'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mfml_qc/autodiff.html#DifferentiableKRR"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mfml_qc.autodiff.DifferentiableKRR" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code></p>
+<p>Descriptor-agnostic differentiable KRR evaluator.</p>
+<p>Takes pre-computed descriptor tensors as input and returns scalar
+energy predictions. Supports all kernels from <code class="docutils literal notranslate"><span class="pre">mfml_qc.krr</span></code>:
+gaussian, matern, laplacian, wasserstein.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X_train_np</strong> (<em>np.ndarray</em><em>, </em><em>shape</em><em> (</em><em>N</em><em>, </em><em>D</em><em>)</em>) – Training descriptors.</p></li>
+<li><p><strong>alphas_np</strong> (<em>np.ndarray</em><em>, </em><em>shape</em><em> (</em><em>N</em><em>,</em><em>)</em>) – Solved KRR coefficients.</p></li>
+<li><p><strong>kernel_type</strong> (<em>str</em>) – Kernel type. One of ‘gaussian’, ‘matern’, ‘laplacian’, ‘wasserstein’.</p></li>
+<li><p><strong>sigma</strong> (<em>float</em>) – Kernel width parameter.</p></li>
+<li><p><strong>nu</strong> (<em>float</em>) – Matern smoothness parameter (0.5, 1.5, or 2.5).</p></li>
+<li><p><strong>p</strong> (<em>float</em>) – Wasserstein power parameter.</p></li>
+<li><p><strong>q</strong> (<em>float</em>) – Wasserstein outer exponent.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="mfml_qc.autodiff.DifferentiableKRR.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_test</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mfml_qc/autodiff.html#DifferentiableKRR.forward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mfml_qc.autodiff.DifferentiableKRR.forward" title="Link to this definition">#</a></dt>
+<dd><p>Predict scalar energy from descriptor tensor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>X_test</strong> (<em>torch.Tensor</em><em>, </em><em>shape</em><em> (</em><em>1</em><em>, </em><em>D</em><em>)</em>) – Descriptor for a single geometry.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Predicted energy.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>torch.Tensor, scalar</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mfml_qc.autodiff.DifferentiableKRR.from_krr_model">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_krr_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">krr_model</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mfml_qc/autodiff.html#DifferentiableKRR.from_krr_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mfml_qc.autodiff.DifferentiableKRR.from_krr_model" title="Link to this definition">#</a></dt>
+<dd><p>Construct from a trained <code class="docutils literal notranslate"><span class="pre">mfml_qc.krr.KRR</span></code> instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>krr_model</strong> (<a class="reference internal" href="#mfml_qc.krr.KRR" title="mfml_qc.krr.KRR"><em>mfml_qc.krr.KRR</em></a>) – A trained KRR model.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mfml_qc.autodiff.DifferentiableMFML">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mfml_qc.autodiff.</span></span><span class="sig-name descname"><span class="pre">DifferentiableMFML</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sub_models</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nfids</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optimiser</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'default'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lcc_optimizer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mfml_qc/autodiff.html#DifferentiableMFML"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mfml_qc.autodiff.DifferentiableMFML" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code></p>
+<p>Differentiable MFML evaluator wrapping 2N-1 <code class="docutils literal notranslate"><span class="pre">DifferentiableKRR</span></code> sub-models.</p>
+<p>Supports default SGCT and sklearn-based o-MFML optimizers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sub_models</strong> (<em>list</em><em> of </em><a class="reference internal" href="#mfml_qc.autodiff.DifferentiableKRR" title="mfml_qc.autodiff.DifferentiableKRR"><em>DifferentiableKRR</em></a>) – The 2N-1 trained sub-model evaluators.</p></li>
+<li><p><strong>nfids</strong> (<em>int</em>) – Number of fidelity levels.</p></li>
+<li><p><strong>optimiser</strong> (<em>str</em>) – Combination strategy: ‘default’ (SGCT) or ‘learned’ (sklearn o-MFML).</p></li>
+<li><p><strong>lcc_optimizer</strong> (<em>object</em><em>, </em><em>optional</em>) – Fitted sklearn estimator for o-MFML combination (OLS, LRR, LASSO, MLPR).</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="mfml_qc.autodiff.DifferentiableMFML.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_test</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mfml_qc/autodiff.html#DifferentiableMFML.forward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mfml_qc.autodiff.DifferentiableMFML.forward" title="Link to this definition">#</a></dt>
+<dd><p>Predict scalar energy from descriptor tensor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>X_test</strong> (<em>torch.Tensor</em><em>, </em><em>shape</em><em> (</em><em>1</em><em>, </em><em>D</em><em>)</em>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>torch.Tensor, scalar</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mfml_qc.autodiff.DifferentiableMFML.from_mfml_model">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_mfml_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mfml_model</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mfml_qc/autodiff.html#DifferentiableMFML.from_mfml_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mfml_qc.autodiff.DifferentiableMFML.from_mfml_model" title="Link to this definition">#</a></dt>
+<dd><p>Construct from a trained <code class="docutils literal notranslate"><span class="pre">mfml_qc.mfml.ModelMFML</span></code> instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>mfml_model</strong> (<a class="reference internal" href="#mfml_qc.mfml.ModelMFML" title="mfml_qc.mfml.ModelMFML"><em>mfml_qc.mfml.ModelMFML</em></a>) – A trained MFML model.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mfml_qc.autodiff.generate_coulomb_matrix">
+<span class="sig-prename descclassname"><span class="pre">mfml_qc.autodiff.</span></span><span class="sig-name descname"><span class="pre">generate_coulomb_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">charges</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mfml_qc/autodiff.html#generate_coulomb_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mfml_qc.autodiff.generate_coulomb_matrix" title="Link to this definition">#</a></dt>
+<dd><p>Differentiable Unsorted Coulomb Matrix generator.</p>
+<p>Extracts the diagonal and upper triangle into a 1D flat tensor,
+matching the feature order of <code class="docutils literal notranslate"><span class="pre">mfml_qc.representations.compute_flat_coulomb</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>coords</strong> (<em>torch.Tensor</em><em>, </em><em>shape</em><em> (</em><em>N_atoms</em><em>, </em><em>3</em><em>)</em>) – Atomic coordinates (requires_grad=True for force computation).</p></li>
+<li><p><strong>charges</strong> (<em>torch.Tensor</em><em>, </em><em>shape</em><em> (</em><em>N_atoms</em><em>,</em><em>)</em>) – Nuclear charges.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Flattened upper-triangular Coulomb matrix.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>torch.Tensor, shape (N_atoms*(N_atoms+1)//2,)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mfml_qc.autodiff.predict_energies_and_forces">
+<span class="sig-prename descclassname"><span class="pre">mfml_qc.autodiff.</span></span><span class="sig-name descname"><span class="pre">predict_energies_and_forces</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">evaluator</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_coords_np</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">charges_np</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">descriptor_fn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mfml_qc/autodiff.html#predict_energies_and_forces"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mfml_qc.autodiff.predict_energies_and_forces" title="Link to this definition">#</a></dt>
+<dd><p>Predict energies and forces via autodifferentiation.</p>
+<p>For each test geometry, computes the descriptor, predicts the energy,
+and obtains forces as <code class="docutils literal notranslate"><span class="pre">F</span> <span class="pre">=</span> <span class="pre">-∇E</span></code> via backpropagation through the
+descriptor function and kernel evaluation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>evaluator</strong> (<a class="reference internal" href="#mfml_qc.autodiff.DifferentiableKRR" title="mfml_qc.autodiff.DifferentiableKRR"><em>DifferentiableKRR</em></a><em> or </em><a class="reference internal" href="#mfml_qc.autodiff.DifferentiableMFML" title="mfml_qc.autodiff.DifferentiableMFML"><em>DifferentiableMFML</em></a>) – A trained differentiable evaluator.</p></li>
+<li><p><strong>test_coords_np</strong> (<em>np.ndarray</em><em>, </em><em>shape</em><em> (</em><em>N_mol</em><em>, </em><em>N_atoms</em><em>, </em><em>3</em><em>)</em>) – Test geometries.</p></li>
+<li><p><strong>charges_np</strong> (<em>np.ndarray</em><em>, </em><em>shape</em><em> (</em><em>N_atoms</em><em>,</em><em>)</em>) – Nuclear charges.</p></li>
+<li><p><strong>descriptor_fn</strong> (<em>callable</em><em>, </em><em>optional</em>) – Maps <code class="docutils literal notranslate"><span class="pre">(coords_tensor,</span> <span class="pre">charges_tensor)</span> <span class="pre">-&gt;</span> <span class="pre">(n_features,)</span></code> tensor.
+Defaults to <a class="reference internal" href="#mfml_qc.autodiff.generate_coulomb_matrix" title="mfml_qc.autodiff.generate_coulomb_matrix"><code class="xref py py-func docutils literal notranslate"><span class="pre">generate_coulomb_matrix()</span></code></a>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>energies</strong> (<em>np.ndarray, shape (N_mol,)</em>) – Predicted energies.</p></li>
+<li><p><strong>forces</strong> (<em>np.ndarray, shape (N_mol, N_atoms, 3)</em>) – Predicted forces (negative energy gradient).</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-mfml_qc.rpr">
+<span id="rpr"></span><h3>RPR<a class="headerlink" href="#module-mfml_qc.rpr" title="Link to this heading">#</a></h3>
+<p>Rotate-Predict-Rotate (RPR) frame canonicalization for vector-valued KRR.</p>
+<p>Provides a per-geometry canonical frame from the inertia tensor and a
+composable wrapper (<code class="docutils literal notranslate"><span class="pre">RPRVectorKRR</span></code>) that works with any model exposing
+<code class="docutils literal notranslate"><span class="pre">.train(X,</span> <span class="pre">Y)</span></code> / <code class="docutils literal notranslate"><span class="pre">.predict(X)</span></code>.</p>
+<p>The canonical frame is defined by the principal axes of inertia. Sign
+ambiguity is resolved using the mass-weighted cubic moment along each
+axis: s_i = Σ_a m_a (r_a · e_i)^3. This is computed in the molecular
+frame and is therefore rotationally covariant.</p>
+<dl class="simple">
+<dt>Degeneracy handling:</dt><dd><ul class="simple">
+<li><p>Linear molecules (one eigenvalue ≈ 0): warning emitted, fallback
+convention based on the heaviest off-axis atom.</p></li>
+<li><p>Symmetric tops (two equal eigenvalues): similar fallback with warning.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Reference: [1] J. Martinka, M. Pederzoli, M. Barbatti, P. O. Dral, J. Pittner, A simple approach to rotationally invariant machine learning of a vector quantity, J. Chem. Phys. 161, 174104 (2024). DOI: 10.1063/5.0230176</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="mfml_qc.rpr.RPRVectorKRR">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mfml_qc.rpr.</span></span><span class="sig-name descname"><span class="pre">RPRVectorKRR</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">descriptor_fn</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mfml_qc/rpr.html#RPRVectorKRR"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mfml_qc.rpr.RPRVectorKRR" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>RPR wrapper around any vector-valued model with .train/.predict.</p>
+<p>During training, each geometry is canonicalized: descriptors are computed
+from canonical coordinates, and targets are rotated to the canonical frame.
+During prediction, predictions in the canonical frame are rotated back to
+the lab frame.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> (<em>object</em>) – Inner model with <code class="docutils literal notranslate"><span class="pre">.train(X,</span> <span class="pre">Y)</span></code> and <code class="docutils literal notranslate"><span class="pre">.predict(X)</span></code> methods.</p></li>
+<li><p><strong>Z</strong> (<em>array-like</em><em>, </em><em>shape</em><em> (</em><em>N_atoms</em><em>,</em><em>)</em>) – Atomic numbers.</p></li>
+<li><p><strong>descriptor_fn</strong> (<em>callable</em>) – Maps <code class="docutils literal notranslate"><span class="pre">(Z=atomic_numbers,</span> <span class="pre">R=coordinates)</span></code> to a 1D descriptor array.
+E.g., <code class="docutils literal notranslate"><span class="pre">mfml_qc.representations.compute_flat_coulomb</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="mfml_qc.rpr.RPRVectorKRR.predict">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_test</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mfml_qc/rpr.html#RPRVectorKRR.predict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mfml_qc.rpr.RPRVectorKRR.predict" title="Link to this definition">#</a></dt>
+<dd><p>Predict and rotate back to lab frame.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>X_test</strong> (<em>np.ndarray</em><em>, </em><em>shape</em><em> (</em><em>M</em><em>, </em><em>N_atoms*3</em><em>)</em>) – Flattened Cartesian coordinates.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Predictions in the lab frame.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray, shape (M, d)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mfml_qc.rpr.RPRVectorKRR.train">
+<span class="sig-name descname"><span class="pre">train</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_train</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y_train</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mfml_qc/rpr.html#RPRVectorKRR.train"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mfml_qc.rpr.RPRVectorKRR.train" title="Link to this definition">#</a></dt>
+<dd><p>Train the RPR-wrapped model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X_train</strong> (<em>np.ndarray</em><em>, </em><em>shape</em><em> (</em><em>N</em><em>, </em><em>N_atoms*3</em><em>)</em>) – Flattened Cartesian coordinates.</p></li>
+<li><p><strong>Y_train</strong> (<em>np.ndarray</em><em>, </em><em>shape</em><em> (</em><em>N</em><em>, </em><em>d</em><em>)</em>) – Vector targets in the lab frame.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mfml_qc.rpr.canonicalize">
+<span class="sig-prename descclassname"><span class="pre">mfml_qc.rpr.</span></span><span class="sig-name descname"><span class="pre">canonicalize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">masses</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">degeneracy_tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-06</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mfml_qc/rpr.html#canonicalize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mfml_qc.rpr.canonicalize" title="Link to this definition">#</a></dt>
+<dd><p>Compute the RPR canonical frame for a molecular geometry.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>coords</strong> (<em>np.ndarray</em><em>, </em><em>shape</em><em> (</em><em>N_atoms</em><em>, </em><em>3</em><em>)</em>) – Cartesian coordinates in the lab frame.</p></li>
+<li><p><strong>masses</strong> (<em>np.ndarray</em><em>, </em><em>shape</em><em> (</em><em>N_atoms</em><em>,</em><em>)</em>) – Atomic masses.</p></li>
+<li><p><strong>degeneracy_tol</strong> (<em>float</em>) – Relative tolerance for detecting degenerate inertia eigenvalues.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>U</strong> (<em>np.ndarray, shape (3, 3)</em>) – Rotation matrix whose columns are the principal axes. Right-handed
+(det = +1). Sign convention: cubic moment along each axis is
+non-negative.</p></li>
+<li><p><strong>com</strong> (<em>np.ndarray, shape (3,)</em>) – Center of mass.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
 </section>
 <section id="indices-and-tables">
 <h2>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Link to this heading">#</a></h2>
@@ -1255,12 +1809,13 @@ and <span class="math notranslate nohighlight">\(P^{low}_{ref}\)</span> is the r
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#module-mfml_qc.datasets">Data Loaders &amp; Utilities</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.datasets.load_benzene_data"><code class="docutils literal notranslate"><span class="pre">load_benzene_data()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.datasets.load_nitrophenol_data"><code class="docutils literal notranslate"><span class="pre">load_nitrophenol_data()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.utils.build_hierarchy_arrays"><code class="docutils literal notranslate"><span class="pre">build_hierarchy_arrays()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.utils.property_differences"><code class="docutils literal notranslate"><span class="pre">property_differences()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.utils.top_down_subsetting"><code class="docutils literal notranslate"><span class="pre">top_down_subsetting()</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kernel-ridge-regression">Kernel Ridge Regression</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#module-mfml_qc.krr">Kernel Ridge Regression</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.krr.KRR"><code class="docutils literal notranslate"><span class="pre">KRR</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.krr.KRR.predict"><code class="docutils literal notranslate"><span class="pre">KRR.predict()</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.krr.KRR.train"><code class="docutils literal notranslate"><span class="pre">KRR.train()</span></code></a></li>
@@ -1313,6 +1868,58 @@ and <span class="math notranslate nohighlight">\(P^{low}_{ref}\)</span> is the r
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.active_learning.ensemble_variance"><code class="docutils literal notranslate"><span class="pre">ensemble_variance()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.active_learning.gpr_variance"><code class="docutils literal notranslate"><span class="pre">gpr_variance()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.active_learning.lfab"><code class="docutils literal notranslate"><span class="pre">lfab()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#module-mfml_qc.vector_krr">Vectorized Models</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.vector_krr.CoupledVectorKRR"><code class="docutils literal notranslate"><span class="pre">CoupledVectorKRR</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.vector_krr.CoupledVectorKRR.predict"><code class="docutils literal notranslate"><span class="pre">CoupledVectorKRR.predict()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.vector_krr.CoupledVectorKRR.train"><code class="docutils literal notranslate"><span class="pre">CoupledVectorKRR.train()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.vector_krr.DifferentiableVectorKRR"><code class="docutils literal notranslate"><span class="pre">DifferentiableVectorKRR</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.vector_krr.DifferentiableVectorKRR.forward"><code class="docutils literal notranslate"><span class="pre">DifferentiableVectorKRR.forward()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.vector_krr.DifferentiableVectorKRR.from_vector_krr"><code class="docutils literal notranslate"><span class="pre">DifferentiableVectorKRR.from_vector_krr()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.vector_krr.VectorKRR"><code class="docutils literal notranslate"><span class="pre">VectorKRR</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.vector_krr.VectorKRR.predict"><code class="docutils literal notranslate"><span class="pre">VectorKRR.predict()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.vector_krr.VectorKRR.train"><code class="docutils literal notranslate"><span class="pre">VectorKRR.train()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.vector_mfml.DifferentiableVectorMFML"><code class="docutils literal notranslate"><span class="pre">DifferentiableVectorMFML</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.vector_mfml.DifferentiableVectorMFML.forward"><code class="docutils literal notranslate"><span class="pre">DifferentiableVectorMFML.forward()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.vector_mfml.DifferentiableVectorMFML.from_vector_mfml"><code class="docutils literal notranslate"><span class="pre">DifferentiableVectorMFML.from_vector_mfml()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.vector_mfml.VectorMFML"><code class="docutils literal notranslate"><span class="pre">VectorMFML</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.vector_mfml.VectorMFML.predict"><code class="docutils literal notranslate"><span class="pre">VectorMFML.predict()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.vector_mfml.VectorMFML.train"><code class="docutils literal notranslate"><span class="pre">VectorMFML.train()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#module-mfml_qc.autodiff">Automatic Differentiation</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.autodiff.DifferentiableKRR"><code class="docutils literal notranslate"><span class="pre">DifferentiableKRR</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.autodiff.DifferentiableKRR.forward"><code class="docutils literal notranslate"><span class="pre">DifferentiableKRR.forward()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.autodiff.DifferentiableKRR.from_krr_model"><code class="docutils literal notranslate"><span class="pre">DifferentiableKRR.from_krr_model()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.autodiff.DifferentiableMFML"><code class="docutils literal notranslate"><span class="pre">DifferentiableMFML</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.autodiff.DifferentiableMFML.forward"><code class="docutils literal notranslate"><span class="pre">DifferentiableMFML.forward()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.autodiff.DifferentiableMFML.from_mfml_model"><code class="docutils literal notranslate"><span class="pre">DifferentiableMFML.from_mfml_model()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.autodiff.generate_coulomb_matrix"><code class="docutils literal notranslate"><span class="pre">generate_coulomb_matrix()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.autodiff.predict_energies_and_forces"><code class="docutils literal notranslate"><span class="pre">predict_energies_and_forces()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#module-mfml_qc.rpr">RPR</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.rpr.RPRVectorKRR"><code class="docutils literal notranslate"><span class="pre">RPRVectorKRR</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.rpr.RPRVectorKRR.predict"><code class="docutils literal notranslate"><span class="pre">RPRVectorKRR.predict()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.rpr.RPRVectorKRR.train"><code class="docutils literal notranslate"><span class="pre">RPRVectorKRR.train()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mfml_qc.rpr.canonicalize"><code class="docutils literal notranslate"><span class="pre">canonicalize()</span></code></a></li>
 </ul>
 </li>
 </ul>

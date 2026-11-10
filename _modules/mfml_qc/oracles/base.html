@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>mfml_qc.oracles.base &#8212; MFML-4-QC 1.0.0 documentation</title>
+    <title>mfml_qc.oracles.base &#8212; MFML-4-QC 1.5.0 documentation</title>
   
   
   
@@ -30,7 +30,7 @@
 <link href="../../../_static/styles/pydata-sphinx-theme.css?digest=a95f357e85573c9b56d5" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=fd6457a4" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=c83e6b79" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
@@ -41,7 +41,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=a95f357e85573c9b56d5" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=a95f357e85573c9b56d5" />
 
-    <script src="../../../_static/documentation_options.js?v=8d563738"></script>
+    <script src="../../../_static/documentation_options.js?v=e0a75244"></script>
     <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/sg-tags.js?v=d80f6fa4"></script>
@@ -120,7 +120,7 @@
   
   
   
-    <p class="title logo__title">MFML-4-QC 1.0.0 documentation</p>
+    <p class="title logo__title">MFML-4-QC 1.5.0 documentation</p>
   
 </a></div>
     
@@ -142,8 +142,8 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../computation_times.html">
-    Computation Times
+  <a class="nav-link nav-internal" href="../../../_autosummary/mfml_qc.html">
+    mfml_qc
   </a>
 </li>
 
@@ -233,8 +233,8 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../computation_times.html">
-    Computation Times
+  <a class="nav-link nav-internal" href="../../../_autosummary/mfml_qc.html">
+    mfml_qc
   </a>
 </li>
 
@@ -331,12 +331,12 @@
 <div class="viewcode-block" id="QuantumEngine">
 <a class="viewcode-back" href="../../../index.html#mfml_qc.oracles.base.QuantumEngine">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">QuantumEngine</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Abstract interface for quantum chemistry orcale engines.</span>
 <span class="sd">    Defines the lifecycle of a single calculation.</span>
 <span class="sd">    Any new QC software connector must inherit from this class and implement its</span>
 <span class="sd">    abstract methods.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
 <div class="viewcode-block" id="QuantumEngine.evaluate">
 <a class="viewcode-back" href="../../../index.html#mfml_qc.oracles.base.QuantumEngine.evaluate">[docs]</a>
@@ -348,7 +348,7 @@
         <span class="n">clean</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">return_outs</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        The main method called by the Active Learning loop.</span>
 <span class="sd">        This method handles the entire lifecycle of a quantum chemistry calculation:</span>
 <span class="sd">        generating the input, running the engine, parsing the results, and</span>
@@ -375,7 +375,7 @@
 <span class="sd">        dict or None</span>
 <span class="sd">            A dictionary of parsed properties (e.g., energies, gradients, success flag)</span>
 <span class="sd">            if `return_outs` is True. Otherwise, returns None.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">input_file</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">generate_input</span><span class="p">(</span><span class="n">geometry</span><span class="p">,</span> <span class="n">fidelity_params</span><span class="p">,</span> <span class="n">work_dir</span><span class="p">)</span>
         <span class="n">output_file</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_calculation</span><span class="p">(</span><span class="n">input_file</span><span class="p">,</span> <span class="n">work_dir</span><span class="p">)</span>
         <span class="n">results</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parse_output</span><span class="p">(</span><span class="n">output_file</span><span class="p">)</span>
@@ -396,7 +396,7 @@
         <span class="n">fidelity_params</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
         <span class="n">work_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Generates the software-specific input file for the QC engine.</span>
 
 <span class="sd">        Parameters</span>
@@ -412,7 +412,7 @@
 <span class="sd">        -------</span>
 <span class="sd">        str</span>
 <span class="sd">            The absolute or relative path to the generated input file.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">pass</span></div>
 
 
@@ -420,7 +420,7 @@
 <a class="viewcode-back" href="../../../index.html#mfml_qc.oracles.base.QuantumEngine.run_calculation">[docs]</a>
     <span class="nd">@abstractmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">run_calculation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">work_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Executes the quantum chemistry program.</span>
 
 <span class="sd">        This method should handle subprocess calls, error catching for</span>
@@ -437,7 +437,7 @@
 <span class="sd">        -------</span>
 <span class="sd">        str</span>
 <span class="sd">            The path to the primary output/log file generated by the engine.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">pass</span></div>
 
 
@@ -445,7 +445,7 @@
 <a class="viewcode-back" href="../../../index.html#mfml_qc.oracles.base.QuantumEngine.parse_output">[docs]</a>
     <span class="nd">@abstractmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">parse_output</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Parses the output file to extract chemical properties.</span>
 
 <span class="sd">        Parameters</span>
@@ -457,9 +457,9 @@
 <span class="sd">        -------</span>
 <span class="sd">        dict</span>
 <span class="sd">            A dictionary containing the extracted properties.</span>
-<span class="sd">            MUST contain at least a &#39;success&#39;: bool key indicating if the</span>
+<span class="sd">            MUST contain at least a 'success': bool key indicating if the</span>
 <span class="sd">            calculation terminated normally without crashing.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">pass</span></div>
 
 
@@ -467,7 +467,7 @@
 <a class="viewcode-back" href="../../../index.html#mfml_qc.oracles.base.QuantumEngine.cleanup">[docs]</a>
     <span class="nd">@abstractmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">cleanup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">work_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Removes temporary/scratch files to save disk space.</span>
 
 <span class="sd">        This method is called automatically by `evaluate` if `clean=True`.</span>
@@ -479,7 +479,7 @@
 <span class="sd">        ----------</span>
 <span class="sd">        work_dir : str</span>
 <span class="sd">            The directory where the calculation was executed.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">pass</span></div>
 </div>
 

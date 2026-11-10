@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>mfml_qc.mfml &#8212; MFML-4-QC 1.0.0 documentation</title>
+    <title>mfml_qc.mfml &#8212; MFML-4-QC 1.5.0 documentation</title>
   
   
   
@@ -30,7 +30,7 @@
 <link href="../../_static/styles/pydata-sphinx-theme.css?digest=a95f357e85573c9b56d5" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=fd6457a4" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=c83e6b79" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
@@ -41,7 +41,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=a95f357e85573c9b56d5" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=a95f357e85573c9b56d5" />
 
-    <script src="../../_static/documentation_options.js?v=8d563738"></script>
+    <script src="../../_static/documentation_options.js?v=e0a75244"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/sg-tags.js?v=d80f6fa4"></script>
@@ -120,7 +120,7 @@
   
   
   
-    <p class="title logo__title">MFML-4-QC 1.0.0 documentation</p>
+    <p class="title logo__title">MFML-4-QC 1.5.0 documentation</p>
   
 </a></div>
     
@@ -142,8 +142,8 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../computation_times.html">
-    Computation Times
+  <a class="nav-link nav-internal" href="../../_autosummary/mfml_qc.html">
+    mfml_qc
   </a>
 </li>
 
@@ -233,8 +233,8 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../computation_times.html">
-    Computation Times
+  <a class="nav-link nav-internal" href="../../_autosummary/mfml_qc.html">
+    mfml_qc
   </a>
 </li>
 
@@ -348,19 +348,19 @@
 <div class="viewcode-block" id="ModelMFML">
 <a class="viewcode-back" href="../../index.html#mfml_qc.mfml.ModelMFML">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">ModelMFML</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    The Multi-Fidelity Machine Learning (MFML) model.</span>
 
 <span class="sd">    This class carries out the training and prediction of</span>
 <span class="sd">    MFML models. It supports both standard MFML and the</span>
 <span class="sd">    optimzied MFML (o-MFML) models which are data-adaptive</span>
 <span class="sd">    combinations of the sub-models.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">reg</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1e-9</span><span class="p">,</span>
-        <span class="n">kernel</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;matern&quot;</span><span class="p">,</span>
+        <span class="n">kernel</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"matern"</span><span class="p">,</span>
         <span class="n">sigma</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">715.0</span><span class="p">,</span>
         <span class="n">nu</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">,</span>
         <span class="n">p</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
@@ -368,7 +368,7 @@
         <span class="n">p_bar</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">base_estimator</span><span class="p">:</span> <span class="nb">object</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Initializes the MFML model class.</span>
 
 <span class="sd">        Parameters</span>
@@ -376,8 +376,8 @@
 <span class="sd">        reg : float, optional</span>
 <span class="sd">            Regularization parameter for the built-in KRR. Defaults to 1e-9.</span>
 <span class="sd">        kernel : str, optional</span>
-<span class="sd">            Kernel type (&#39;matern&#39;, &#39;gaussian&#39;, &#39;laplacian&#39;, &#39;wasserstein&#39;, &#39;linear&#39;).</span>
-<span class="sd">            Defaults to &quot;matern&quot;.</span>
+<span class="sd">            Kernel type ('matern', 'gaussian', 'laplacian', 'wasserstein', 'linear').</span>
+<span class="sd">            Defaults to "matern".</span>
 <span class="sd">        sigma : float, optional</span>
 <span class="sd">            Kernel width parameter for the default KRR estimator. Defaults to 715.0.</span>
 <span class="sd">        nu : float, optional</span>
@@ -393,7 +393,7 @@
 <span class="sd">            A custom ML model instance to use (e.g., from scikit-learn).</span>
 <span class="sd">            If None, defaults to the built-in KRR. Must have a `.fit(X, y)`</span>
 <span class="sd">            or `.train(X, y)` method, and a `.predict(X)` method.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">reg</span> <span class="o">=</span> <span class="n">reg</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">kernel</span> <span class="o">=</span> <span class="n">kernel</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span> <span class="o">=</span> <span class="n">sigma</span>
@@ -421,7 +421,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">p_bar</span> <span class="o">=</span> <span class="n">p_bar</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_generate_nested_indexes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_trains</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Subsets the data indexes to match specified training set sizes while</span>
 <span class="sd">        strictly retaining the nested multifidelity structure.</span>
 
@@ -446,7 +446,7 @@
 <span class="sd">        np.ndarray</span>
 <span class="sd">            An object array of shape (nfids,) containing the patched index mappings</span>
 <span class="sd">            for each fidelity level.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
 
         <span class="n">nfids</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">indexes</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -468,7 +468,7 @@
                 <span class="c1"># For the baseline, candidates are everything available</span>
                 <span class="n">candidates</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">avail_b_ids</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="c1"># For higher fidelities, candidates MUST exist in the previous (lower) fidelity&#39;s selection</span>
+                <span class="c1"># For higher fidelities, candidates MUST exist in the previous (lower) fidelity's selection</span>
                 <span class="n">prev_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">previous_selected_b_ids</span><span class="p">)</span>
                 <span class="n">candidates</span> <span class="o">=</span> <span class="p">[</span><span class="n">b</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">avail_b_ids</span> <span class="k">if</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">prev_set</span><span class="p">]</span>
 
@@ -477,8 +477,8 @@
             <span class="c1"># fallback if user requests more samples than exist within the strict nesting constraints</span>
             <span class="k">if</span> <span class="n">needed</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">candidates</span><span class="p">):</span>
                 <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
-                    <span class="sa">f</span><span class="s2">&quot;Requested </span><span class="si">{</span><span class="n">needed</span><span class="si">}</span><span class="s2"> samples for fidelity </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">, but only </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">candidates</span><span class="p">)</span><span class="si">}</span><span class="s2"> &quot;</span>
-                    <span class="sa">f</span><span class="s2">&quot;are available within the nested baseline subset. Truncating to </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">candidates</span><span class="p">)</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">,</span>
+                    <span class="sa">f</span><span class="s2">"Requested </span><span class="si">{</span><span class="n">needed</span><span class="si">}</span><span class="s2"> samples for fidelity </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">, but only </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">candidates</span><span class="p">)</span><span class="si">}</span><span class="s2"> "</span>
+                    <span class="sa">f</span><span class="s2">"are available within the nested baseline subset. Truncating to </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">candidates</span><span class="p">)</span><span class="si">}</span><span class="s2">."</span><span class="p">,</span>
                     <span class="ne">UserWarning</span><span class="p">,</span>
                 <span class="p">)</span>
                 <span class="n">needed</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">candidates</span><span class="p">)</span>
@@ -506,7 +506,7 @@
         <span class="k">return</span> <span class="n">subset_index_array</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_y_train_breakup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Extracts the target property arrays (y) for the required</span>
 <span class="sd">        multifidelity sub-models.</span>
 
@@ -514,17 +514,17 @@
 <span class="sd">        N models trained on the target properties directly (upper), and</span>
 <span class="sd">        N - 1 models trained on the lower fidelity representations of the</span>
 <span class="sd">        higher fidelity subsets (lower).</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">n</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">indexes</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="n">y_trains</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span> <span class="o">*</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span>
         <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
 
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;Extracting upper y_trains&quot;</span><span class="p">,</span> <span class="n">leave</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">p_bar</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">desc</span><span class="o">=</span><span class="s2">"Extracting upper y_trains"</span><span class="p">,</span> <span class="n">leave</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">p_bar</span><span class="p">):</span>
             <span class="n">ind_i</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">indexes</span><span class="p">[</span><span class="n">i</span><span class="p">][:,</span> <span class="mi">1</span><span class="p">]</span>
             <span class="n">y_trains</span><span class="p">[</span><span class="n">count</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y_trains</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">ind_i</span><span class="p">])</span>
             <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
 
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;Extracting lower y_trains&quot;</span><span class="p">,</span> <span class="n">leave</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">p_bar</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="n">desc</span><span class="o">=</span><span class="s2">"Extracting lower y_trains"</span><span class="p">,</span> <span class="n">leave</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">p_bar</span><span class="p">):</span>
             <span class="n">ind_i</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">indexes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
             <span class="n">ind_ip1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">indexes</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
             <span class="n">c_i</span> <span class="o">=</span> <span class="p">[]</span>
@@ -538,21 +538,21 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">y_trains</span> <span class="o">=</span> <span class="n">y_trains</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_X_train_breakup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Extracts the feature matrices (X) for each fidelity level.</span>
 
 <span class="sd">        Slices the master `X_train_parent` array using the parsed nested indexes</span>
 <span class="sd">        so that each fidelity level has a corresponding, correctly sized feature matrix.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">n</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">indexes</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="n">X_trains</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;Extracting X_trains&quot;</span><span class="p">,</span> <span class="n">leave</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">p_bar</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">desc</span><span class="o">=</span><span class="s2">"Extracting X_trains"</span><span class="p">,</span> <span class="n">leave</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">p_bar</span><span class="p">):</span>
             <span class="n">ind_i</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">indexes</span><span class="p">[</span><span class="n">i</span><span class="p">][:,</span> <span class="mi">0</span><span class="p">]</span>
             <span class="n">X_trains</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">X_train_parent</span><span class="p">[</span><span class="n">ind_i</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">X_trains</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">X_trains</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_get_optimizer_kernel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X1</span><span class="p">,</span> <span class="n">X2</span><span class="p">,</span> <span class="n">ktype</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">order_nu</span><span class="p">,</span> <span class="n">metric_p</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Helper method to evaluate specific kernel matrices for the KRR/CompKRR optimizers</span>
 <span class="sd">        in the o-MFML model. This helper function is also used in the non-linear formulation</span>
 <span class="sd">        of MFML.</span>
@@ -564,7 +564,7 @@
 <span class="sd">        X2 : np.ndarray or None</span>
 <span class="sd">            Second input feature matrix. If None, computes a symmetric kernel.</span>
 <span class="sd">        ktype : str</span>
-<span class="sd">            Kernel type (&#39;matern&#39;, &#39;gaussian&#39;, &#39;laplacian&#39;, &#39;wasserstein&#39;, &#39;linear&#39;).</span>
+<span class="sd">            Kernel type ('matern', 'gaussian', 'laplacian', 'wasserstein', 'linear').</span>
 <span class="sd">        sigma : float</span>
 <span class="sd">            Kernel width parameter.</span>
 <span class="sd">        order_nu : float</span>
@@ -576,26 +576,26 @@
 <span class="sd">        -------</span>
 <span class="sd">        np.ndarray</span>
 <span class="sd">            The computed kernel matrix.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">ktype</span> <span class="o">==</span> <span class="s2">&quot;gaussian&quot;</span><span class="p">:</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="n">ktype</span> <span class="o">==</span> <span class="s2">"gaussian"</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">(</span>
                 <span class="n">gaussian_kernel_symmetric</span><span class="p">(</span><span class="n">X1</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">X2</span> <span class="ow">is</span> <span class="kc">None</span>
                 <span class="k">else</span> <span class="n">gaussian_kernel_asymmetric</span><span class="p">(</span><span class="n">X1</span><span class="p">,</span> <span class="n">X2</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
             <span class="p">)</span>
-        <span class="k">elif</span> <span class="n">ktype</span> <span class="o">==</span> <span class="s2">&quot;laplacian&quot;</span><span class="p">:</span>
+        <span class="k">elif</span> <span class="n">ktype</span> <span class="o">==</span> <span class="s2">"laplacian"</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">(</span>
                 <span class="n">laplacian_kernel_symmetric</span><span class="p">(</span><span class="n">X1</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">X2</span> <span class="ow">is</span> <span class="kc">None</span>
                 <span class="k">else</span> <span class="n">laplacian_kernel_asymmetric</span><span class="p">(</span><span class="n">X1</span><span class="p">,</span> <span class="n">X2</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
             <span class="p">)</span>
-        <span class="k">elif</span> <span class="n">ktype</span> <span class="o">==</span> <span class="s2">&quot;matern&quot;</span><span class="p">:</span>
+        <span class="k">elif</span> <span class="n">ktype</span> <span class="o">==</span> <span class="s2">"matern"</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">(</span>
                 <span class="n">matern_kernel_symmetric</span><span class="p">(</span><span class="n">X1</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">order_nu</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">X2</span> <span class="ow">is</span> <span class="kc">None</span>
                 <span class="k">else</span> <span class="n">matern_kernel_asymmetric</span><span class="p">(</span><span class="n">X1</span><span class="p">,</span> <span class="n">X2</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">order_nu</span><span class="p">)</span>
             <span class="p">)</span>
-        <span class="k">elif</span> <span class="n">ktype</span> <span class="o">==</span> <span class="s2">&quot;wasserstein&quot;</span><span class="p">:</span>
+        <span class="k">elif</span> <span class="n">ktype</span> <span class="o">==</span> <span class="s2">"wasserstein"</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">(</span>
                 <span class="n">wasserstein_kernel_symmetric</span><span class="p">(</span><span class="n">X1</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">order_nu</span><span class="p">,</span> <span class="n">metric_p</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">X2</span> <span class="ow">is</span> <span class="kc">None</span>
@@ -606,7 +606,7 @@
             <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X1</span><span class="p">,</span> <span class="n">X1</span><span class="o">.</span><span class="n">T</span><span class="p">)</span> <span class="k">if</span> <span class="n">X2</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X2</span><span class="p">,</span> <span class="n">X1</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_instantiate_and_train</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X_train</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">y_train</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Helper method to securely instantiate and train a sub-model.</span>
 
 <span class="sd">        Uses duck typing to support arbitrary model architectures (e.g., standard</span>
@@ -623,7 +623,7 @@
 <span class="sd">        -------</span>
 <span class="sd">        object</span>
 <span class="sd">            The trained model instance.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">base_estimator</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">model</span> <span class="o">=</span> <span class="n">KRR</span><span class="p">(</span>
                 <span class="n">kernel_type</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">kernel</span><span class="p">,</span>
@@ -637,13 +637,13 @@
             <span class="n">model</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">base_estimator</span><span class="p">)</span>
 
         <span class="c1"># Support both (.train) and (.fit)</span>
-        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;train&quot;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">"train"</span><span class="p">):</span>
             <span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;fit&quot;</span><span class="p">):</span>
+        <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">"fit"</span><span class="p">):</span>
             <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span>
-                <span class="s2">&quot;The provided base_estimator must have either a &#39;.train(X, y)&#39; or &#39;.fit(X, y)&#39; method.&quot;</span>
+                <span class="s2">"The provided base_estimator must have either a '.train(X, y)' or '.fit(X, y)' method."</span>
             <span class="p">)</span>
 
         <span class="k">return</span> <span class="n">model</span>
@@ -660,7 +660,7 @@
         <span class="n">n_trains</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">seed</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
     <span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Multifidelity data extraction and training of the sub-models.</span>
 
 <span class="sd">        Parameters</span>
@@ -685,14 +685,14 @@
 <span class="sd">        ------</span>
 <span class="sd">        ValueError</span>
 <span class="sd">            If neither precomputed arrays (`y_trains`, `indexes`) nor `file_paths` are provided.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">tstart</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">X_train_parent</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">X_train_parent</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">y_trains</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">indexes</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">file_paths</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                    <span class="s2">&quot;Must provide either precomputed y_trains/indexes or file_paths.&quot;</span>
+                    <span class="s2">"Must provide either precomputed y_trains/indexes or file_paths."</span>
                 <span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">y_trains</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">indexes</span> <span class="o">=</span> <span class="n">property_differences</span><span class="p">(</span><span class="n">file_paths</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
@@ -715,7 +715,7 @@
         <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="c1"># Upper training</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span>
-            <span class="nb">range</span><span class="p">(</span><span class="n">nfids</span><span class="p">),</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;Training upper ML models...&quot;</span><span class="p">,</span> <span class="n">leave</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">p_bar</span>
+            <span class="nb">range</span><span class="p">(</span><span class="n">nfids</span><span class="p">),</span> <span class="n">desc</span><span class="o">=</span><span class="s2">"Training upper ML models..."</span><span class="p">,</span> <span class="n">leave</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">p_bar</span>
         <span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">models</span><span class="p">[</span><span class="n">count</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_instantiate_and_train</span><span class="p">(</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">X_trains</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_trains</span><span class="p">[</span><span class="n">count</span><span class="p">]</span>
@@ -724,7 +724,7 @@
 
         <span class="c1"># Lower training</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span>
-            <span class="nb">range</span><span class="p">(</span><span class="n">nfids</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;Training lower ML models&quot;</span><span class="p">,</span> <span class="n">leave</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">p_bar</span>
+            <span class="nb">range</span><span class="p">(</span><span class="n">nfids</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="n">desc</span><span class="o">=</span><span class="s2">"Training lower ML models"</span><span class="p">,</span> <span class="n">leave</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">p_bar</span>
         <span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">models</span><span class="p">[</span><span class="n">count</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_instantiate_and_train</span><span class="p">(</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">X_trains</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_trains</span><span class="p">[</span><span class="n">count</span><span class="p">]</span>
@@ -742,10 +742,10 @@
         <span class="n">X_val</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">y_test</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">y_val</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">optimiser</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;default&quot;</span><span class="p">,</span>
+        <span class="n">optimiser</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"default"</span><span class="p">,</span>
         <span class="o">**</span><span class="n">optargs</span><span class="p">,</span>
     <span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Predicts target values using the trained multifidelity ensemble.</span>
 
 <span class="sd">        Supports standard Single-Grid Combination Technique (SGCT) arithmetic or</span>
@@ -763,8 +763,8 @@
 <span class="sd">        y_val : np.ndarray, optional</span>
 <span class="sd">            True target values for the validation set, required if using an advanced optimizer.</span>
 <span class="sd">        optimiser : str, optional</span>
-<span class="sd">            The combination strategy to use. Options include: &#39;default&#39; (SGCT),</span>
-<span class="sd">            &#39;OLS&#39;, &#39;LRR&#39;, &#39;LASSO&#39;, &#39;MLPR&#39;, &#39;KRR&#39;, or &#39;CompKRR&#39;. Defaults to &#39;default&#39;.</span>
+<span class="sd">            The combination strategy to use. Options include: 'default' (SGCT),</span>
+<span class="sd">            'OLS', 'LRR', 'LASSO', 'MLPR', 'KRR', or 'CompKRR'. Defaults to 'default'.</span>
 <span class="sd">        **optargs : dict</span>
 <span class="sd">            Additional hyperparameters to pass to the chosen optimizer model.</span>
 
@@ -772,7 +772,7 @@
 <span class="sd">        -------</span>
 <span class="sd">        np.ndarray</span>
 <span class="sd">            The final predicted target values for the test set.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">tstart</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
         <span class="n">nfids</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">indexes</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
@@ -785,7 +785,7 @@
 
         <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="c1"># Upper triangle preds</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">nfids</span><span class="p">),</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;Upper MFML predictions&quot;</span><span class="p">,</span> <span class="n">leave</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">p_bar</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">nfids</span><span class="p">),</span> <span class="n">desc</span><span class="o">=</span><span class="s2">"Upper MFML predictions"</span><span class="p">,</span> <span class="n">leave</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">p_bar</span><span class="p">):</span>
             <span class="k">if</span> <span class="n">y_val</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">val_preds</span><span class="p">[:,</span> <span class="n">count</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">models</span><span class="p">[</span><span class="n">count</span><span class="p">]</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_val</span><span class="p">)</span>
             <span class="n">test_preds</span><span class="p">[:,</span> <span class="n">count</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">models</span><span class="p">[</span><span class="n">count</span><span class="p">]</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
@@ -793,7 +793,7 @@
 
         <span class="c1"># Lower triangle preds</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span>
-            <span class="nb">range</span><span class="p">(</span><span class="n">nfids</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;Lower MFML predictions&quot;</span><span class="p">,</span> <span class="n">leave</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">p_bar</span>
+            <span class="nb">range</span><span class="p">(</span><span class="n">nfids</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="n">desc</span><span class="o">=</span><span class="s2">"Lower MFML predictions"</span><span class="p">,</span> <span class="n">leave</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">p_bar</span>
         <span class="p">):</span>
             <span class="k">if</span> <span class="n">y_val</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">val_preds</span><span class="p">[:,</span> <span class="n">count</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">models</span><span class="p">[</span><span class="n">count</span><span class="p">]</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_val</span><span class="p">)</span>
@@ -801,35 +801,35 @@
             <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
 
         <span class="c1"># optimizers for o-MFML</span>
-        <span class="k">if</span> <span class="n">optimiser</span> <span class="o">==</span> <span class="s2">&quot;OLS&quot;</span><span class="p">:</span>
-            <span class="n">defaultKwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;copy_X&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;fit_intercept&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}</span>
+        <span class="k">if</span> <span class="n">optimiser</span> <span class="o">==</span> <span class="s2">"OLS"</span><span class="p">:</span>
+            <span class="n">defaultKwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"copy_X"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">"fit_intercept"</span><span class="p">:</span> <span class="kc">False</span><span class="p">}</span>
             <span class="n">defaultKwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="o">**</span><span class="n">optargs</span><span class="p">)</span>
             <span class="n">regressor</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">(</span><span class="o">**</span><span class="n">defaultKwargs</span><span class="p">)</span>
             <span class="n">regressor</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">val_preds</span><span class="p">,</span> <span class="n">y_val</span><span class="p">)</span>
             <span class="n">final_preds</span> <span class="o">=</span> <span class="n">regressor</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test_preds</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">LCCoptimizer</span> <span class="o">=</span> <span class="n">regressor</span>
 
-        <span class="k">elif</span> <span class="n">optimiser</span> <span class="o">==</span> <span class="s2">&quot;LRR&quot;</span><span class="p">:</span>
-            <span class="n">defaultKwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;alpha&quot;</span><span class="p">:</span> <span class="mf">1e-9</span><span class="p">,</span> <span class="s2">&quot;fit_intercept&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;copy_X&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+        <span class="k">elif</span> <span class="n">optimiser</span> <span class="o">==</span> <span class="s2">"LRR"</span><span class="p">:</span>
+            <span class="n">defaultKwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"alpha"</span><span class="p">:</span> <span class="mf">1e-9</span><span class="p">,</span> <span class="s2">"fit_intercept"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">"copy_X"</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
             <span class="n">defaultKwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="o">**</span><span class="n">optargs</span><span class="p">)</span>
             <span class="n">regressor</span> <span class="o">=</span> <span class="n">Ridge</span><span class="p">(</span><span class="o">**</span><span class="n">defaultKwargs</span><span class="p">)</span>
             <span class="n">regressor</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">val_preds</span><span class="p">,</span> <span class="n">y_val</span><span class="p">)</span>
             <span class="n">final_preds</span> <span class="o">=</span> <span class="n">regressor</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test_preds</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">LCCoptimizer</span> <span class="o">=</span> <span class="n">regressor</span>
 
-        <span class="k">elif</span> <span class="n">optimiser</span> <span class="o">==</span> <span class="s2">&quot;LASSO&quot;</span><span class="p">:</span>
-            <span class="n">defaultKwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;alpha&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s2">&quot;fit_intercept&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;max_iter&quot;</span><span class="p">:</span> <span class="mi">1000</span><span class="p">}</span>
+        <span class="k">elif</span> <span class="n">optimiser</span> <span class="o">==</span> <span class="s2">"LASSO"</span><span class="p">:</span>
+            <span class="n">defaultKwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"alpha"</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s2">"fit_intercept"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">"max_iter"</span><span class="p">:</span> <span class="mi">1000</span><span class="p">}</span>
             <span class="n">defaultKwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="o">**</span><span class="n">optargs</span><span class="p">)</span>
             <span class="n">regressor</span> <span class="o">=</span> <span class="n">Lasso</span><span class="p">(</span><span class="o">**</span><span class="n">defaultKwargs</span><span class="p">)</span>
             <span class="n">regressor</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">val_preds</span><span class="p">,</span> <span class="n">y_val</span><span class="p">)</span>
             <span class="n">final_preds</span> <span class="o">=</span> <span class="n">regressor</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test_preds</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">LCCoptimizer</span> <span class="o">=</span> <span class="n">regressor</span>
 
-        <span class="k">elif</span> <span class="n">optimiser</span> <span class="o">==</span> <span class="s2">&quot;MLPR&quot;</span><span class="p">:</span>
+        <span class="k">elif</span> <span class="n">optimiser</span> <span class="o">==</span> <span class="s2">"MLPR"</span><span class="p">:</span>
             <span class="n">defaultKwargs</span> <span class="o">=</span> <span class="p">{</span>
-                <span class="s2">&quot;hidden_layer_sizes&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">100</span><span class="p">,),</span>
-                <span class="s2">&quot;activation&quot;</span><span class="p">:</span> <span class="s2">&quot;relu&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;solver&quot;</span><span class="p">:</span> <span class="s2">&quot;adam&quot;</span><span class="p">,</span>
+                <span class="s2">"hidden_layer_sizes"</span><span class="p">:</span> <span class="p">(</span><span class="mi">100</span><span class="p">,),</span>
+                <span class="s2">"activation"</span><span class="p">:</span> <span class="s2">"relu"</span><span class="p">,</span>
+                <span class="s2">"solver"</span><span class="p">:</span> <span class="s2">"adam"</span><span class="p">,</span>
             <span class="p">}</span>
             <span class="n">defaultKwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="o">**</span><span class="n">optargs</span><span class="p">)</span>
             <span class="n">MLPR</span> <span class="o">=</span> <span class="n">MLPRegressor</span><span class="p">(</span><span class="o">**</span><span class="n">defaultKwargs</span><span class="p">)</span>
@@ -837,63 +837,63 @@
             <span class="n">final_preds</span> <span class="o">=</span> <span class="n">MLPR</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test_preds</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">LCCoptimizer</span> <span class="o">=</span> <span class="n">MLPR</span>
 
-        <span class="k">elif</span> <span class="n">optimiser</span> <span class="o">==</span> <span class="s2">&quot;KRR&quot;</span><span class="p">:</span>
+        <span class="k">elif</span> <span class="n">optimiser</span> <span class="o">==</span> <span class="s2">"KRR"</span><span class="p">:</span>
             <span class="n">defaultKwargs</span> <span class="o">=</span> <span class="p">{</span>
-                <span class="s2">&quot;sigma&quot;</span><span class="p">:</span> <span class="mf">700.0</span><span class="p">,</span>
-                <span class="s2">&quot;reg&quot;</span><span class="p">:</span> <span class="mf">1e-9</span><span class="p">,</span>
-                <span class="s2">&quot;kernel_type&quot;</span><span class="p">:</span> <span class="s2">&quot;gaussian&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;order&quot;</span><span class="p">:</span> <span class="mf">1.5</span><span class="p">,</span>
-                <span class="s2">&quot;metric&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+                <span class="s2">"sigma"</span><span class="p">:</span> <span class="mf">700.0</span><span class="p">,</span>
+                <span class="s2">"reg"</span><span class="p">:</span> <span class="mf">1e-9</span><span class="p">,</span>
+                <span class="s2">"kernel_type"</span><span class="p">:</span> <span class="s2">"gaussian"</span><span class="p">,</span>
+                <span class="s2">"order"</span><span class="p">:</span> <span class="mf">1.5</span><span class="p">,</span>
+                <span class="s2">"metric"</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
             <span class="p">}</span>
             <span class="n">defaultKwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="o">**</span><span class="n">optargs</span><span class="p">)</span>
 
             <span class="n">K_val</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_optimizer_kernel</span><span class="p">(</span>
                 <span class="n">val_preds</span><span class="p">,</span>
                 <span class="kc">None</span><span class="p">,</span>
-                <span class="n">defaultKwargs</span><span class="p">[</span><span class="s2">&quot;kernel_type&quot;</span><span class="p">],</span>
-                <span class="n">defaultKwargs</span><span class="p">[</span><span class="s2">&quot;sigma&quot;</span><span class="p">],</span>
-                <span class="n">defaultKwargs</span><span class="p">[</span><span class="s2">&quot;order&quot;</span><span class="p">],</span>
-                <span class="n">defaultKwargs</span><span class="p">[</span><span class="s2">&quot;metric&quot;</span><span class="p">],</span>
+                <span class="n">defaultKwargs</span><span class="p">[</span><span class="s2">"kernel_type"</span><span class="p">],</span>
+                <span class="n">defaultKwargs</span><span class="p">[</span><span class="s2">"sigma"</span><span class="p">],</span>
+                <span class="n">defaultKwargs</span><span class="p">[</span><span class="s2">"order"</span><span class="p">],</span>
+                <span class="n">defaultKwargs</span><span class="p">[</span><span class="s2">"metric"</span><span class="p">],</span>
             <span class="p">)</span>
             <span class="n">K_eval</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_optimizer_kernel</span><span class="p">(</span>
                 <span class="n">val_preds</span><span class="p">,</span>
                 <span class="n">test_preds</span><span class="p">,</span>
-                <span class="n">defaultKwargs</span><span class="p">[</span><span class="s2">&quot;kernel_type&quot;</span><span class="p">],</span>
-                <span class="n">defaultKwargs</span><span class="p">[</span><span class="s2">&quot;sigma&quot;</span><span class="p">],</span>
-                <span class="n">defaultKwargs</span><span class="p">[</span><span class="s2">&quot;order&quot;</span><span class="p">],</span>
-                <span class="n">defaultKwargs</span><span class="p">[</span><span class="s2">&quot;metric&quot;</span><span class="p">],</span>
+                <span class="n">defaultKwargs</span><span class="p">[</span><span class="s2">"kernel_type"</span><span class="p">],</span>
+                <span class="n">defaultKwargs</span><span class="p">[</span><span class="s2">"sigma"</span><span class="p">],</span>
+                <span class="n">defaultKwargs</span><span class="p">[</span><span class="s2">"order"</span><span class="p">],</span>
+                <span class="n">defaultKwargs</span><span class="p">[</span><span class="s2">"metric"</span><span class="p">],</span>
             <span class="p">)</span>
 
-            <span class="n">K_val</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">diag_indices_from</span><span class="p">(</span><span class="n">K_val</span><span class="p">)]</span> <span class="o">+=</span> <span class="n">defaultKwargs</span><span class="p">[</span><span class="s2">&quot;reg&quot;</span><span class="p">]</span>
+            <span class="n">K_val</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">diag_indices_from</span><span class="p">(</span><span class="n">K_val</span><span class="p">)]</span> <span class="o">+=</span> <span class="n">defaultKwargs</span><span class="p">[</span><span class="s2">"reg"</span><span class="p">]</span>
             <span class="n">opt_alpha</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">K_val</span><span class="p">,</span> <span class="n">y_val</span><span class="p">)</span>
             <span class="n">final_preds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">K_eval</span><span class="p">,</span> <span class="n">opt_alpha</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">coeffs</span> <span class="o">=</span> <span class="n">opt_alpha</span>
 
-        <span class="k">elif</span> <span class="n">optimiser</span> <span class="o">==</span> <span class="s2">&quot;CompKRR&quot;</span><span class="p">:</span>
+        <span class="k">elif</span> <span class="n">optimiser</span> <span class="o">==</span> <span class="s2">"CompKRR"</span><span class="p">:</span>
             <span class="n">defaultKwargs</span> <span class="o">=</span> <span class="p">{</span>
-                <span class="s2">&quot;sigma&quot;</span><span class="p">:</span> <span class="mf">700.0</span><span class="p">,</span>
-                <span class="s2">&quot;reg&quot;</span><span class="p">:</span> <span class="mf">1e-9</span><span class="p">,</span>
-                <span class="s2">&quot;kernel_type&quot;</span><span class="p">:</span> <span class="s2">&quot;gaussian&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;order&quot;</span><span class="p">:</span> <span class="mf">1.5</span><span class="p">,</span>
-                <span class="s2">&quot;metric&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+                <span class="s2">"sigma"</span><span class="p">:</span> <span class="mf">700.0</span><span class="p">,</span>
+                <span class="s2">"reg"</span><span class="p">:</span> <span class="mf">1e-9</span><span class="p">,</span>
+                <span class="s2">"kernel_type"</span><span class="p">:</span> <span class="s2">"gaussian"</span><span class="p">,</span>
+                <span class="s2">"order"</span><span class="p">:</span> <span class="mf">1.5</span><span class="p">,</span>
+                <span class="s2">"metric"</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
             <span class="p">}</span>
             <span class="n">defaultKwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="o">**</span><span class="n">optargs</span><span class="p">)</span>
 
             <span class="n">K_val</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_optimizer_kernel</span><span class="p">(</span>
                 <span class="n">val_preds</span><span class="p">,</span>
                 <span class="kc">None</span><span class="p">,</span>
-                <span class="n">defaultKwargs</span><span class="p">[</span><span class="s2">&quot;kernel_type&quot;</span><span class="p">],</span>
-                <span class="n">defaultKwargs</span><span class="p">[</span><span class="s2">&quot;sigma&quot;</span><span class="p">],</span>
-                <span class="n">defaultKwargs</span><span class="p">[</span><span class="s2">&quot;order&quot;</span><span class="p">],</span>
-                <span class="n">defaultKwargs</span><span class="p">[</span><span class="s2">&quot;metric&quot;</span><span class="p">],</span>
+                <span class="n">defaultKwargs</span><span class="p">[</span><span class="s2">"kernel_type"</span><span class="p">],</span>
+                <span class="n">defaultKwargs</span><span class="p">[</span><span class="s2">"sigma"</span><span class="p">],</span>
+                <span class="n">defaultKwargs</span><span class="p">[</span><span class="s2">"order"</span><span class="p">],</span>
+                <span class="n">defaultKwargs</span><span class="p">[</span><span class="s2">"metric"</span><span class="p">],</span>
             <span class="p">)</span>
             <span class="n">K_eval</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_optimizer_kernel</span><span class="p">(</span>
                 <span class="n">val_preds</span><span class="p">,</span>
                 <span class="n">test_preds</span><span class="p">,</span>
-                <span class="n">defaultKwargs</span><span class="p">[</span><span class="s2">&quot;kernel_type&quot;</span><span class="p">],</span>
-                <span class="n">defaultKwargs</span><span class="p">[</span><span class="s2">&quot;sigma&quot;</span><span class="p">],</span>
-                <span class="n">defaultKwargs</span><span class="p">[</span><span class="s2">&quot;order&quot;</span><span class="p">],</span>
-                <span class="n">defaultKwargs</span><span class="p">[</span><span class="s2">&quot;metric&quot;</span><span class="p">],</span>
+                <span class="n">defaultKwargs</span><span class="p">[</span><span class="s2">"kernel_type"</span><span class="p">],</span>
+                <span class="n">defaultKwargs</span><span class="p">[</span><span class="s2">"sigma"</span><span class="p">],</span>
+                <span class="n">defaultKwargs</span><span class="p">[</span><span class="s2">"order"</span><span class="p">],</span>
+                <span class="n">defaultKwargs</span><span class="p">[</span><span class="s2">"metric"</span><span class="p">],</span>
             <span class="p">)</span>
 
             <span class="c1"># Generate input features kernels</span>
@@ -908,7 +908,7 @@
             <span class="n">K_eval_composite</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">K_eval</span><span class="p">,</span> <span class="n">K_x_eval</span><span class="p">)</span>
 
             <span class="n">K_val_composite</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">diag_indices_from</span><span class="p">(</span><span class="n">K_val_composite</span><span class="p">)]</span> <span class="o">+=</span> <span class="n">defaultKwargs</span><span class="p">[</span>
-                <span class="s2">&quot;reg&quot;</span>
+                <span class="s2">"reg"</span>
             <span class="p">]</span>
             <span class="n">solved_coeffs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">K_val_composite</span><span class="p">,</span> <span class="n">y_val</span><span class="p">)</span>
             <span class="n">final_preds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">K_eval_composite</span><span class="p">,</span> <span class="n">solved_coeffs</span><span class="p">)</span>

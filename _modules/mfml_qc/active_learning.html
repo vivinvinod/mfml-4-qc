@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>mfml_qc.active_learning &#8212; MFML-4-QC 1.0.0 documentation</title>
+    <title>mfml_qc.active_learning &#8212; MFML-4-QC 1.5.0 documentation</title>
   
   
   
@@ -30,7 +30,7 @@
 <link href="../../_static/styles/pydata-sphinx-theme.css?digest=a95f357e85573c9b56d5" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=fd6457a4" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=c83e6b79" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
@@ -41,7 +41,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=a95f357e85573c9b56d5" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=a95f357e85573c9b56d5" />
 
-    <script src="../../_static/documentation_options.js?v=8d563738"></script>
+    <script src="../../_static/documentation_options.js?v=e0a75244"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/sg-tags.js?v=d80f6fa4"></script>
@@ -120,7 +120,7 @@
   
   
   
-    <p class="title logo__title">MFML-4-QC 1.0.0 documentation</p>
+    <p class="title logo__title">MFML-4-QC 1.5.0 documentation</p>
   
 </a></div>
     
@@ -142,8 +142,8 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../computation_times.html">
-    Computation Times
+  <a class="nav-link nav-internal" href="../../_autosummary/mfml_qc.html">
+    mfml_qc
   </a>
 </li>
 
@@ -233,8 +233,8 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../computation_times.html">
-    Computation Times
+  <a class="nav-link nav-internal" href="../../_autosummary/mfml_qc.html">
+    mfml_qc
   </a>
 </li>
 
@@ -330,7 +330,7 @@
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">_train_estimator</span><span class="p">(</span><span class="n">base_estimator</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span> <span class="n">X</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">object</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Helper function to securely instantiate and train a machine learning model.</span>
 
 <span class="sd">    Uses duck typing to support arbitrary model architectures. The provided</span>
@@ -355,15 +355,15 @@
 <span class="sd">    ------</span>
 <span class="sd">    AttributeError</span>
 <span class="sd">        If the estimator lacks both `.train()` and `.fit()` methods.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">model</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">base_estimator</span><span class="p">)</span>
-    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;train&quot;</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">"train"</span><span class="p">):</span>
         <span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;fit&quot;</span><span class="p">):</span>
+    <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">"fit"</span><span class="p">):</span>
         <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span>
-            <span class="s2">&quot;Estimator must have a &#39;.train(X, y)&#39; or &#39;.fit(X, y)&#39; method.&quot;</span>
+            <span class="s2">"Estimator must have a '.train(X, y)' or '.fit(X, y)' method."</span>
         <span class="p">)</span>
     <span class="k">return</span> <span class="n">model</span>
 
@@ -373,14 +373,14 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">gpr_variance</span><span class="p">(</span>
     <span class="n">X_train</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
     <span class="n">X_pool</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
-    <span class="n">kernel_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;matern&quot;</span><span class="p">,</span>
+    <span class="n">kernel_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"matern"</span><span class="p">,</span>
     <span class="n">sigma</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">100.0</span><span class="p">,</span>
     <span class="n">reg</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1e-9</span><span class="p">,</span>
     <span class="n">nu</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">,</span>
     <span class="n">p</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
     <span class="n">q</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">"""</span>
 <span class="sd">    Computes the exact analytical predictive variance for a set of pool geometries.</span>
 
 <span class="sd">    Because the predictive variance in Gaussian Process Regression (or Kernel Ridge</span>
@@ -399,7 +399,7 @@
 <span class="sd">    X_pool : np.ndarray</span>
 <span class="sd">        The pool feature matrix containing the points to evaluate :math:`x_*`.</span>
 <span class="sd">    kernel_type : str, optional</span>
-<span class="sd">        The type of kernel to use (&#39;matern&#39;, &#39;gaussian&#39;, &#39;laplacian&#39;, or &#39;wasserstein&#39;). Defaults to &#39;matern&#39;.</span>
+<span class="sd">        The type of kernel to use ('matern', 'gaussian', 'laplacian', or 'wasserstein'). Defaults to 'matern'.</span>
 <span class="sd">    sigma : float, optional</span>
 <span class="sd">        The kernel width parameter. Defaults to 100.0.</span>
 <span class="sd">    reg : float, optional</span>
@@ -415,7 +415,7 @@
 <span class="sd">    -------</span>
 <span class="sd">    np.ndarray</span>
 <span class="sd">        A 1D array of computed predictive variances for each point in the pool.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">dummy_model</span> <span class="o">=</span> <span class="n">KRR</span><span class="p">(</span><span class="n">kernel_type</span><span class="o">=</span><span class="n">kernel_type</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">sigma</span><span class="p">,</span> <span class="n">nu</span><span class="o">=</span><span class="n">nu</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="n">q</span><span class="p">,</span> <span class="n">reg</span><span class="o">=</span><span class="n">reg</span><span class="p">)</span>
 
     <span class="c1"># training kernel</span>
@@ -445,7 +445,7 @@
     <span class="n">n_ensemble</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
     <span class="n">train_size</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.85</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Computes Ensemble-based uncertainty quantification.</span>
 
 <span class="sd">    Estimates uncertainty by training an ensemble of models on random subsets</span>
@@ -470,7 +470,7 @@
 <span class="sd">    -------</span>
 <span class="sd">    np.ndarray</span>
 <span class="sd">        A 1D array of ensemble standard deviations for the pool data.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">pool_preds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">X_pool</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">n_ensemble</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_ensemble</span><span class="p">):</span>
         <span class="n">X_sub</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">y_sub</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
@@ -496,7 +496,7 @@
     <span class="n">X_train</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
     <span class="n">y_train_low</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">"""</span>
 <span class="sd">    Computes Low Fidelity as Bias (LFaB) uncertainty quantification.</span>
 
 <span class="sd">    Estimates uncertainty by using the absolute prediction error of a model</span>
@@ -528,7 +528,7 @@
 <span class="sd">    -------</span>
 <span class="sd">    np.ndarray</span>
 <span class="sd">        A 1D array of absolute prediction errors on the low-fidelity baseline.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">model_low</span> <span class="o">=</span> <span class="n">_train_estimator</span><span class="p">(</span><span class="n">base_estimator</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train_low</span><span class="p">)</span>
     <span class="n">preds_pool_low</span> <span class="o">=</span> <span class="n">model_low</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_pool</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">y_pool_low</span> <span class="o">-</span> <span class="n">preds_pool_low</span><span class="p">)</span></div>

@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>mfml_qc.krr &#8212; MFML-4-QC 1.0.0 documentation</title>
+    <title>mfml_qc.krr &#8212; MFML-4-QC 1.5.0 documentation</title>
   
   
   
@@ -30,7 +30,7 @@
 <link href="../../_static/styles/pydata-sphinx-theme.css?digest=a95f357e85573c9b56d5" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=fd6457a4" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=c83e6b79" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
@@ -41,7 +41,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=a95f357e85573c9b56d5" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=a95f357e85573c9b56d5" />
 
-    <script src="../../_static/documentation_options.js?v=8d563738"></script>
+    <script src="../../_static/documentation_options.js?v=e0a75244"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/sg-tags.js?v=d80f6fa4"></script>
@@ -120,7 +120,7 @@
   
   
   
-    <p class="title logo__title">MFML-4-QC 1.0.0 documentation</p>
+    <p class="title logo__title">MFML-4-QC 1.5.0 documentation</p>
   
 </a></div>
     
@@ -142,8 +142,8 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../computation_times.html">
-    Computation Times
+  <a class="nav-link nav-internal" href="../../_autosummary/mfml_qc.html">
+    mfml_qc
   </a>
 </li>
 
@@ -233,8 +233,8 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../computation_times.html">
-    Computation Times
+  <a class="nav-link nav-internal" href="../../_autosummary/mfml_qc.html">
+    mfml_qc
   </a>
 </li>
 
@@ -333,7 +333,7 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">matern_kernel_symmetric</span><span class="p">(</span>
     <span class="n">X</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">sigma</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">100.0</span><span class="p">,</span> <span class="n">nu</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.5</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">"""</span>
 <span class="sd">    Function to generate the symmetric Matérn kernel matrix.</span>
 <span class="sd">    Supports smoothness parameter :math:`\nu \in \{0.5, 1.5, 2.5\}`.</span>
 <span class="sd">    For example, the Matérn 3/2 (:math:`\nu=1.5`) kernel entry for some :math:`x_i, x_j` is computed as:</span>
@@ -354,9 +354,9 @@
 <span class="sd">    -------</span>
 <span class="sd">    K : np.ndarray</span>
 <span class="sd">        Symmetric Matérn kernel matrix for the given input X.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">if</span> <span class="n">nu</span> <span class="o">!=</span> <span class="mf">0.5</span> <span class="ow">and</span> <span class="n">nu</span> <span class="o">!=</span> <span class="mf">1.5</span> <span class="ow">and</span> <span class="n">nu</span> <span class="o">!=</span> <span class="mf">2.5</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Only nu=0.5, 1.5, and 2.5 are supported.&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Only nu=0.5, 1.5, and 2.5 are supported."</span><span class="p">)</span>
 
     <span class="n">n</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">K</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
@@ -392,7 +392,7 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">matern_kernel_asymmetric</span><span class="p">(</span>
     <span class="n">X_train</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">X_test</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">sigma</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">100.0</span><span class="p">,</span> <span class="n">nu</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.5</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">"""</span>
 <span class="sd">    Function to generate the asymmetric Matérn kernel matrix.</span>
 <span class="sd">    Supports smoothness parameter :math:`\nu \in \{0.5, 1.5, 2.5\}`.</span>
 <span class="sd">    For example, the Matérn 3/2 (:math:`\nu=1.5`) kernel entry for some :math:`x_i \in X_{test}, x_j \in X_{train}` is computed as:</span>
@@ -415,9 +415,9 @@
 <span class="sd">    -------</span>
 <span class="sd">    K : np.ndarray</span>
 <span class="sd">        Asymmetric Matérn kernel matrix for given inputs X_train and X_test.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">if</span> <span class="n">nu</span> <span class="o">!=</span> <span class="mf">0.5</span> <span class="ow">and</span> <span class="n">nu</span> <span class="o">!=</span> <span class="mf">1.5</span> <span class="ow">and</span> <span class="n">nu</span> <span class="o">!=</span> <span class="mf">2.5</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Only nu=0.5, 1.5, and 2.5 are supported.&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Only nu=0.5, 1.5, and 2.5 are supported."</span><span class="p">)</span>
 
     <span class="n">n_train</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">n_test</span> <span class="o">=</span> <span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -450,7 +450,7 @@
 <a class="viewcode-back" href="../../index.html#mfml_qc.krr.gaussian_kernel_symmetric">[docs]</a>
 <span class="nd">@njit</span><span class="p">(</span><span class="n">parallel</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fastmath</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">gaussian_kernel_symmetric</span><span class="p">(</span><span class="n">X</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">sigma</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">100.0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">"""</span>
 <span class="sd">    Function to generate the symmetric Gaussian kernel matrix for a given kernel width, :math:`\sigma`.</span>
 <span class="sd">    The Gaussian kernel matrix entry for some :math:`x_i, x_j` is computed as:</span>
 
@@ -468,7 +468,7 @@
 <span class="sd">    -------</span>
 <span class="sd">    K : np.ndarray</span>
 <span class="sd">        Symmetric Gaussian kernel matrix for given input X.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">n</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">K</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
     <span class="n">gamma</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
@@ -492,7 +492,7 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">gaussian_kernel_asymmetric</span><span class="p">(</span>
     <span class="n">X_train</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">X_test</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">sigma</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">100.0</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">"""</span>
 <span class="sd">    Function to generate the asymmetric Gaussian kernel matrix for a given kernel width, :math:`\sigma`.</span>
 <span class="sd">    The Gaussian kernel matrix entry for some :math:`x_i \in X_{test}, x_j \in X_{train}` is computed as:</span>
 
@@ -512,7 +512,7 @@
 <span class="sd">    -------</span>
 <span class="sd">    K : np.ndarray</span>
 <span class="sd">        Asymmetric Gaussian kernel matrix for given inputs X_train and X_test.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">n_train</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">n_test</span> <span class="o">=</span> <span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">K</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_test</span><span class="p">,</span> <span class="n">n_train</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
@@ -532,7 +532,7 @@
 <a class="viewcode-back" href="../../index.html#mfml_qc.krr.laplacian_kernel_symmetric">[docs]</a>
 <span class="nd">@njit</span><span class="p">(</span><span class="n">parallel</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fastmath</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">laplacian_kernel_symmetric</span><span class="p">(</span><span class="n">X</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">sigma</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">100.0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">"""</span>
 <span class="sd">    Function to generate the symmetric Laplacian kernel matrix for a given kernel width, :math:`\sigma`.</span>
 <span class="sd">    The Laplacian kernel matrix entry for some :math:`x_i, x_j` is computed as:</span>
 
@@ -550,7 +550,7 @@
 <span class="sd">    -------</span>
 <span class="sd">    K : np.ndarray</span>
 <span class="sd">        Symmetric Laplacian kernel matrix for given input X.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">n</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">K</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
 
@@ -572,7 +572,7 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">laplacian_kernel_asymmetric</span><span class="p">(</span>
     <span class="n">X_train</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">X_test</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">sigma</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">100.0</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">"""</span>
 <span class="sd">    Function to generate the asymmetric Laplacian kernel matrix for a given kernel width, :math:`\sigma`.</span>
 <span class="sd">    The Laplacian kernel matrix entry for some :math:`x_i \in X_{test}, x_j \in X_{train}` is computed as:</span>
 
@@ -592,7 +592,7 @@
 <span class="sd">    -------</span>
 <span class="sd">    K : np.ndarray</span>
 <span class="sd">        Asymmetric Laplacian kernel matrix for given inputs X_train and X_test.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">n_train</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">n_test</span> <span class="o">=</span> <span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">K</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_test</span><span class="p">,</span> <span class="n">n_train</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
@@ -611,7 +611,7 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">_wasserstein_dist</span><span class="p">(</span>
     <span class="n">a_sorted</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">b_sorted</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">p</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">q</span><span class="p">:</span> <span class="nb">float</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">"""</span>
 <span class="sd">    Helper function to evaluate the 1D Wasserstein distance between two sets of sorted features.</span>
 
 <span class="sd">    This function calculates the Wasserstein distance using the 1D empirical</span>
@@ -640,7 +640,7 @@
 <span class="sd">    -------</span>
 <span class="sd">    float</span>
 <span class="sd">        The calculated Wasserstein distance between the two feature sets.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">m</span> <span class="o">=</span> <span class="n">a_sorted</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">all_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">m</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
     <span class="n">all_values</span><span class="p">[:</span><span class="n">m</span><span class="p">]</span> <span class="o">=</span> <span class="n">a_sorted</span>
@@ -653,8 +653,8 @@
         <span class="n">delta</span> <span class="o">=</span> <span class="n">all_values</span><span class="p">[</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">val</span>
         <span class="c1"># Optimization: Only calculate differences where the interval &gt; 0</span>
         <span class="k">if</span> <span class="n">delta</span> <span class="o">&gt;</span> <span class="mf">0.0</span><span class="p">:</span>
-            <span class="n">a_cdf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">searchsorted</span><span class="p">(</span><span class="n">a_sorted</span><span class="p">,</span> <span class="n">val</span><span class="p">,</span> <span class="n">side</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">)</span> <span class="o">/</span> <span class="n">m</span>
-            <span class="n">b_cdf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">searchsorted</span><span class="p">(</span><span class="n">b_sorted</span><span class="p">,</span> <span class="n">val</span><span class="p">,</span> <span class="n">side</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">)</span> <span class="o">/</span> <span class="n">m</span>
+            <span class="n">a_cdf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">searchsorted</span><span class="p">(</span><span class="n">a_sorted</span><span class="p">,</span> <span class="n">val</span><span class="p">,</span> <span class="n">side</span><span class="o">=</span><span class="s2">"right"</span><span class="p">)</span> <span class="o">/</span> <span class="n">m</span>
+            <span class="n">b_cdf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">searchsorted</span><span class="p">(</span><span class="n">b_sorted</span><span class="p">,</span> <span class="n">val</span><span class="p">,</span> <span class="n">side</span><span class="o">=</span><span class="s2">"right"</span><span class="p">)</span> <span class="o">/</span> <span class="n">m</span>
             <span class="n">dist_p</span> <span class="o">+=</span> <span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">a_cdf</span> <span class="o">-</span> <span class="n">b_cdf</span><span class="p">)</span> <span class="o">**</span> <span class="n">p</span><span class="p">)</span> <span class="o">*</span> <span class="n">delta</span>
 
     <span class="k">return</span> <span class="p">(</span><span class="n">dist_p</span> <span class="o">**</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">p</span><span class="p">))</span> <span class="o">**</span> <span class="n">q</span>
@@ -666,7 +666,7 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">wasserstein_kernel_symmetric</span><span class="p">(</span>
     <span class="n">X</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">sigma</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">100.0</span><span class="p">,</span> <span class="n">p</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">q</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">"""</span>
 <span class="sd">    Function to generate the symmetric Wasserstein kernel matrix based on 1D representations.</span>
 
 <span class="sd">    The Wasserstein kernel matrix entry for some :math:`x_i, x_j` is computed as:</span>
@@ -696,7 +696,7 @@
 <span class="sd">    -------</span>
 <span class="sd">    K : np.ndarray</span>
 <span class="sd">        Symmetric Wasserstein kernel matrix.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">n</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
     <span class="n">X_sorted</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty_like</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
@@ -726,7 +726,7 @@
     <span class="n">p</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
     <span class="n">q</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">"""</span>
 <span class="sd">    Function to generate the asymmetric Wasserstein kernel matrix based on 1D representations.</span>
 
 <span class="sd">    The Wasserstein kernel matrix entry for some :math:`x_i \in X_{test}, x_j \in X_{train}` is computed as:</span>
@@ -758,7 +758,7 @@
 <span class="sd">    -------</span>
 <span class="sd">    K : np.ndarray</span>
 <span class="sd">        Asymmetric Wasserstein kernel matrix.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">n_train</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">n_test</span> <span class="o">=</span> <span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
@@ -784,30 +784,30 @@
 <div class="viewcode-block" id="KRR">
 <a class="viewcode-back" href="../../index.html#mfml_qc.krr.KRR">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">KRR</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Kernel Ridge Regression (KRR) model.</span>
 
 <span class="sd">    This class implements a lightweight, pure-NumPy KRR solver tailored</span>
 <span class="sd">    for the ultra-fast Numba-compiled kernels provided in this module.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">kernel_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;matern&quot;</span><span class="p">,</span>
+        <span class="n">kernel_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"matern"</span><span class="p">,</span>
         <span class="n">sigma</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">100.0</span><span class="p">,</span>
         <span class="n">nu</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">,</span>
         <span class="n">p</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
         <span class="n">q</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
         <span class="n">reg</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1e-10</span><span class="p">,</span>
     <span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Initializes the KRR model.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        kernel_type : str, optional</span>
-<span class="sd">            The type of kernel to use (&#39;matern&#39;, &#39;gaussian&#39;, &#39;laplacian&#39;, or &#39;wasserstein&#39;).</span>
-<span class="sd">            The default is &#39;matern&#39;.</span>
+<span class="sd">            The type of kernel to use ('matern', 'gaussian', 'laplacian', or 'wasserstein').</span>
+<span class="sd">            The default is 'matern'.</span>
 <span class="sd">        sigma : float, optional</span>
 <span class="sd">            The kernel width parameter. The default is 100.0.</span>
 <span class="sd">        nu : float, optional</span>
@@ -819,7 +819,7 @@
 <span class="sd">        reg : float, optional</span>
 <span class="sd">            The regularization parameter (lambda) added to the diagonal of the</span>
 <span class="sd">            kernel matrix to prevent overfitting and singular matrices. The default is 1e-10.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">kernel_type</span> <span class="o">=</span> <span class="n">kernel_type</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span> <span class="o">=</span> <span class="n">sigma</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">nu</span> <span class="o">=</span> <span class="n">nu</span>
@@ -832,7 +832,7 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">_generate_kernel</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">X_train</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">X_test</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Helper method to generate the requested kernel matrix.</span>
 
 <span class="sd">        Parameters</span>
@@ -847,25 +847,25 @@
 <span class="sd">        -------</span>
 <span class="sd">        np.ndarray</span>
 <span class="sd">            The evaluated kernel matrix.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">kernel_type</span> <span class="o">==</span> <span class="s2">&quot;matern&quot;</span><span class="p">:</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">kernel_type</span> <span class="o">==</span> <span class="s2">"matern"</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">X_test</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">matern_kernel_symmetric</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sigma</span><span class="p">,</span> <span class="n">nu</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">nu</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">matern_kernel_asymmetric</span><span class="p">(</span>
                     <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sigma</span><span class="p">,</span> <span class="n">nu</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">nu</span>
                 <span class="p">)</span>
-        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">kernel_type</span> <span class="o">==</span> <span class="s2">&quot;gaussian&quot;</span><span class="p">:</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">kernel_type</span> <span class="o">==</span> <span class="s2">"gaussian"</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">X_test</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">gaussian_kernel_symmetric</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sigma</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">gaussian_kernel_asymmetric</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sigma</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">kernel_type</span> <span class="o">==</span> <span class="s2">&quot;laplacian&quot;</span><span class="p">:</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">kernel_type</span> <span class="o">==</span> <span class="s2">"laplacian"</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">X_test</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">laplacian_kernel_symmetric</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sigma</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">laplacian_kernel_asymmetric</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sigma</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">kernel_type</span> <span class="o">==</span> <span class="s2">&quot;wasserstein&quot;</span><span class="p">:</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">kernel_type</span> <span class="o">==</span> <span class="s2">"wasserstein"</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">X_test</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">wasserstein_kernel_symmetric</span><span class="p">(</span>
                     <span class="n">X_train</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sigma</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">q</span>
@@ -876,13 +876,13 @@
                 <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;Unsupported kernel type: &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">kernel_type</span><span class="si">}</span><span class="s2">&#39;. Use &#39;matern&#39;, &#39;gaussian&#39;, &#39;laplacian&#39;, or &#39;wasserstein&#39;.&quot;</span>
+                <span class="sa">f</span><span class="s2">"Unsupported kernel type: '</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">kernel_type</span><span class="si">}</span><span class="s2">'. Use 'matern', 'gaussian', 'laplacian', or 'wasserstein'."</span>
             <span class="p">)</span>
 
 <div class="viewcode-block" id="KRR.train">
 <a class="viewcode-back" href="../../index.html#mfml_qc.krr.KRR.train">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">train</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X_train</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">y_train</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Fits the Kernel Ridge Regression model to the training data.</span>
 
 <span class="sd">        Parameters</span>
@@ -891,7 +891,7 @@
 <span class="sd">            The training feature data matrix.</span>
 <span class="sd">        y_train : np.ndarray</span>
 <span class="sd">            The training target data array.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="c1"># Store training features as they are required for prediction</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">X_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
 
@@ -908,7 +908,7 @@
 <div class="viewcode-block" id="KRR.predict">
 <a class="viewcode-back" href="../../index.html#mfml_qc.krr.KRR.predict">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X_test</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Predicts target values for the given test data.</span>
 
 <span class="sd">        Parameters</span>
@@ -925,9 +925,9 @@
 <span class="sd">        ------</span>
 <span class="sd">        ValueError</span>
 <span class="sd">            If the model has not been trained yet.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">alphas</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">X_train</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The model has not been trained yet. Call .train() first.&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"The model has not been trained yet. Call .train() first."</span><span class="p">)</span>
 
         <span class="c1"># Generate test kernel matrix against stored training data</span>
         <span class="n">k_test</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_kernel</span><span class="p">(</span><span class="n">X_train</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="o">=</span><span class="n">X_test</span><span class="p">)</span>
